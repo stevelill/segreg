@@ -9,4 +9,5 @@ License
 
 Documentation
 -------------
-See 
+For a technical overview of Segmented Regression and algorithms used in ``segreg``,
+see `segmented_regression.pdf <doc/segmented_regression.pdf>`_.
