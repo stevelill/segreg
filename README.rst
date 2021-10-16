@@ -11,3 +11,9 @@ Documentation
 -------------
 For a technical overview of Segmented Regression and algorithms used in ``segreg``,
 see `segmented_regression.pdf <doc/segmented_regression.pdf>`_.
+
+Setup
+-----
+To build cython C files, run this:
+
+``python setup.py build_ext --inplace``
