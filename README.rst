@@ -3,6 +3,11 @@ segreg
 
 **segreg** is a Python module for segmented regression.
 
+Releases
+--------
+This is a pre-release.  Further small changes will be made before the code
+is considered available for general use.
+
 License
 -------
 ``segreg`` is licensed under a BSD-3-Clause License.  See `LICENSE <LICENSE>`_.
