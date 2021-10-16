@@ -8,6 +8,9 @@ Releases
 This is a pre-release.  Further small changes will be made before the code
 is considered available for general use.
 
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.5574166.svg
+   :target: https://doi.org/10.5281/zenodo.5574166
+
 License
 -------
 ``segreg`` is licensed under a BSD-3-Clause License.  See `LICENSE <LICENSE>`_.
