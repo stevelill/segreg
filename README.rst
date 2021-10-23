@@ -4,10 +4,10 @@ segreg
 **segreg** is a Python module for segmented regression.
 
 Segmented regression models are defined as having breakpoints where the functional form
-changes.  The code here treats the case of piecewise-linear and continuous univariate
-models with at most two breakpoints.
+changes.  This project is currently limited in scope to the case of piecewise-linear and 
+continuous univariate models with at most two breakpoints.
 
-This code fits segmented regression models to data using an exact algorithm due to Hudson.
+The ``segreg`` code fits segmented regression models to data using an exact algorithm due to Hudson.
 The primary implementation is based on ``cython``.  Alternative implementations
 are also provided in pure python, with or without ``numba``.
 
@@ -18,6 +18,13 @@ is considered available for general use.
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.5574166.svg
    :target: https://doi.org/10.5281/zenodo.5574166
+
+Installation
+------------
+``pip install segreg``
+
+**We strongly recommended using a virtual environment (venv), or a conda environment,
+to avoid possible conflicts with other packages or other issues.**
 
 License
 -------
@@ -30,8 +37,8 @@ see `segmented_regression.pdf <doc/segmented_regression.pdf>`_.
 
 Code documentation and a user guide shall be forthcoming.
 
-Setup
------
+Development Setup
+-----------------
 To build core modules, run this:
 
 ``python setup.py build_ext --inplace``
