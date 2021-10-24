@@ -15,12 +15,39 @@ from segreg.model.estimator import Estimator
 class OneBkptSegRegEstimator(Estimator):
 
     """
-    classdocs
+    Estimator for one-bkpt segmented regression.
+
+    For univariate, continuous, linear, one-bkpt segmented regression problems.
+    The model fitting estimates the parameters: ``u,v,m1,m2,sigma``, where
+        ``(u,v)`` is the breakpoint (in x-y plane)
+
+        ``m1`` is the slope of the left-hand segment
+
+        ``m2`` is the slope of the right-hand segment
+
+        ``sigma`` is the standard deviation of the residuals
+
+
+    See Also
+    --------
+    OLSRegressionEstimator
+    TwoBkptSegRegEstimator
+
+    Parameters
+    ----------
+    num_end_to_skip: int
+        Number of data points to skip at each end of the data.
+        If None, defaults to the underlying implementation.
+        TODO: explain
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+                 num_end_to_skip=None,
+                 **kwargs):
+        # TODO: check and restrict
+        self._num_end_to_skip = num_end_to_skip
+
         self._restrict_rhs_slope = kwargs.pop('restrict_rhs_slope', None)
-        self._num_end_to_skip = kwargs.pop('num_end_to_skip', None)
         self._no_bias_variance = kwargs.pop('no_bias_variance', False)
 
         # TODO: make this better
@@ -35,6 +62,28 @@ class OneBkptSegRegEstimator(Estimator):
     ##########################################################################
     # OVERRIDE Estimator
     ##########################################################################
+
+    # overriding here for the types of inputs allowed
+    def fit(self, indep, dep):
+        """
+        Fit the model to the given data.
+
+        Parameters
+        ----------
+        indep: array-like of shape (num_data,)
+            The independent data.  Also called predictor, explanatory variable,
+            regressor, or exogenous variable.
+        dep: array-like of shape (num_data,)
+            The dependent data.  Also called response, regressand, or endogenous
+            variable.
+            
+        Returns
+        -------
+        params: array of shape (num_params,)
+            The estimated parameters.  The returned parameters are, in order,
+            [u,v,m1,m2,sigma].
+        """
+        return super().fit(indep, dep)
 
     @property
     def num_params(self):
@@ -126,6 +175,9 @@ class OneBkptSegRegEstimator(Estimator):
     ##########################################################################
 
     def _argmin_sum_squares(self):
+        """
+        Main routine that calls cython-derived code.
+        """
 
         # TODO: can we pass this bool as arg to the function and get rid of
         # this if/else ???

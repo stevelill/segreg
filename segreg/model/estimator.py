@@ -71,7 +71,16 @@ class Estimator(object, metaclass=abc.ABCMeta):
     # TODO: have a "fast version" just for boot that only returns params
     def fit(self, indep, dep):
         """
-        TODO
+        Fit the model to the given data.
+        
+        Parameters
+        ----------
+        indep: array-like
+            The independent data.  Also called predictor, explanatory variable,
+            regressor, or exogenous variable.
+        dep: array-like
+            The dependent data.  Also called response, regressand, or endogenous
+            variable.
         """
         self._set_data(indep, dep)
         return self._estimate()
@@ -100,7 +109,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
     def loglikelihood(self):
         """
-        Computes loglikelihood at the MLE.
+        Computes loglikelihood at the MLE (maximum likelihood estimate).
         """
         # TODO: check calling this before estimation is raising this exception
         if not self._is_estimated:
@@ -113,6 +122,9 @@ class Estimator(object, metaclass=abc.ABCMeta):
         return self._loglikelihood
 
     def rss(self):
+        """
+        Residual sum of squares from the fit.
+        """
         return self._rss
 
     def r_squared(self):
