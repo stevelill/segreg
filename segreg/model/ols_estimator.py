@@ -19,6 +19,8 @@ class OLSRegressionEstimator(Estimator):
 
     def __init__(self):
 
+        super().__init__()
+
         # TODO: make this better
         # currently not using in OLS
         # we include estimate of residual variance as a parameter

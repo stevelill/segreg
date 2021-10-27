@@ -44,6 +44,8 @@ class OneBkptSegRegEstimator(Estimator):
     def __init__(self,
                  num_end_to_skip=None,
                  **kwargs):
+        super().__init__()
+        
         # TODO: check and restrict
         self._num_end_to_skip = num_end_to_skip
 
@@ -201,6 +203,9 @@ class TwoBkptSegRegEstimator(Estimator):
     """
 
     def __init__(self, **kwargs):
+        
+        super().__init__()
+        
         self._num_end_to_skip = kwargs.pop('num_end_to_skip', None)
         self._num_between_to_skip = kwargs.pop('num_between_to_skip', 5)
         self._no_bias_variance = kwargs.pop('no_bias_variance', False)
