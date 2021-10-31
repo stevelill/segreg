@@ -7,45 +7,21 @@ Bootstrap resampling methods.
 
 
 import numpy as np
-import statsmodels.api as sm
-
-
-def _normalize_residuals(indep, resid):
-    ########################################################################
-    # get estimate of resid variance
-    # new -- put aic
-    # TODO: one should check both ls-cv and aic visually
-    model = sm.nonparametric.KernelReg(resid * resid,
-                                       indep,
-                                       "c",
-                                       reg_type="ll",
-                                       bw="aic")
-    mean, mfx = model.fit()
-    est_cond_stddev = np.sqrt(mean)
-    resid_to_use = resid / est_cond_stddev
-
-    return resid_to_use, est_cond_stddev
 
 
 def boot_resample(indep,
                   dep,
                   fitted_values=None,
                   resid=None,
-                  resample_cases=False,
-                  preserve_cond_var=False,
-                  **kwargs):
-    cond_var_residuals = kwargs.pop('cond_var_residuals', None)
-    est_cond_stddev = kwargs.pop('est_cond_stddev', None)
+                  resample_cases=False):
+
     if resample_cases:
-        indep_resample, dep_resample = random_selection_with_replacement_two_series(indep, dep)
+        (indep_resample,
+         dep_resample) = random_selection_with_replacement_two_series(indep,
+                                                                      dep)
     else:
         # or from empirical residuals
-        if preserve_cond_var:
-            epsilon = random_selection_with_replacement(cond_var_residuals)
-            epsilon = np.multiply(epsilon, est_cond_stddev)
-        else:
-            epsilon = random_selection_with_replacement(resid)
-
+        epsilon = random_selection_with_replacement(resid)
         dep_resample = fitted_values + epsilon
         indep_resample = indep
 
@@ -58,7 +34,9 @@ def boot_param_dist(indep,
                     num_iter,
                     resample_cases=False,
                     seed=None,
-                    **kwargs):
+                    verbose=False,
+                    diagnoser=None,
+                    include_fixed_params=True):
     """
     Computes sampling distribution of model parameters.
 
@@ -66,10 +44,19 @@ def boot_param_dist(indep,
 
     Parameters
     ----------
-    estimator : subclass of segreg.statistics.estimator.Estimator
+    indep: array-like
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: array-like
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+    estimator : subclass of segreg.model.estimator.Estimator
+    num_iter: int
+        Number of bootstrap simulations.
     resample_cases : boolean, default False
-        see 6.2.4 Davison and Hinkley
-
+        If True, the bootstrap will resample pairs with replacement 
+        from (indep, dep).  See Section 6.2.4 in Davison and Hinkley, 
+        "Bootstrap Methods and their Application".
 
     Returns
     -------
@@ -78,10 +65,6 @@ def boot_param_dist(indep,
         row represents parameter estimates for a sample from the data-generating
         distribution
     """
-    verbose = kwargs.pop('verbose', True)
-    preserve_cond_var = kwargs.pop('preserve_cond_var', False)
-    diagnoser = kwargs.pop('diagnoser', None)
-    include_fixed_params = kwargs.pop('include_fixed_params', True)
 
     estimator.fit(indep, dep)
     func = estimator.get_func()
@@ -105,15 +88,6 @@ def boot_param_dist(indep,
 
     resid = estimator.residuals()
 
-    if preserve_cond_var:
-        resid_to_use, est_cond_stddev = _normalize_residuals(indep, resid)
-        print()
-        print("TRY TO PRESERVE ORIG CONDITIONAL VARIANCE")
-        print("orig resid stddev: ", np.std(resid))
-        print("new resid stddev: ", np.std(resid_to_use))
-        print()
-        ########################################################################
-
     params_arr = []
 
     # small speed-up to pre-compute these
@@ -124,12 +98,11 @@ def boot_param_dist(indep,
             if verbose:
                 print("iter: ", i)
 
-        indep_curr, dep_curr = boot_resample(indep,
-                                             dep,
-                                             fitted_values,
-                                             resid,
-                                             resample_cases,
-                                             preserve_cond_var)
+        indep_curr, dep_curr = boot_resample(indep=indep,
+                                             dep=dep,
+                                             fitted_values=fitted_values,
+                                             resid=resid,
+                                             resample_cases=resample_cases)
 
         # check resampled data size for sanity
         curr_num_indep = len(indep_curr)

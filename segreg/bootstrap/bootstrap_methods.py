@@ -91,10 +91,10 @@ def model_bca(boot_sims,
 
     Parameters
     ----------
-    boot_sims : scipy ndarray shape: (num_simulations, num_params)
-        ie: each column represents bootstrap simulations for a single statistic
-        should not include any columns corresponding to fixed params in the
-        model
+    boot_sims : numpy ndarray of shape: (num_simulations, num_params)
+        Each column represents bootstrap simulations for a single statistic.
+        Should not include any columns corresponding to fixed params in the
+        model.
 
     orig_sample_estimate : scipy ndarray shape: (num_params,)
         the estimate for the parameters from the original data sample
