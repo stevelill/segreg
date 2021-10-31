@@ -38,7 +38,7 @@ def _confidence_intervals(params_arr,
     param_names = param_names[estimator.estimated_params_indices()]
     cols = ["Left", "Estimate", "Right"]
 
-    # BCA
+    # BCa
     bca_conf_interval = bootstrap_methods.model_bca(params_arr,
                                                     est_params,
                                                     estimator,
@@ -46,38 +46,28 @@ def _confidence_intervals(params_arr,
                                                     dep,
                                                     significance=significance)
 
-#     ci_data = {cols[1]: est_params,
-#                cols[0]: bca_conf_interval.T[0],
-#                cols[2]: bca_conf_interval.T[1]}
-#     bca_ci_df = DataFrame(ci_data, index=param_names, columns=cols)
-#     bca_ci_df.index.name = "Parameter"
-
     bca_ci_df = _create_df(conf_interval=bca_conf_interval,
                            est_params=est_params,
                            cols=cols,
                            param_names=param_names)
 
-    # percentile
     percentile_conf_interval = bootstrap_methods.boot_percentile_conf_interval(params_arr,
                                                                                est_params,
                                                                                significance=significance)
 
-    ci_data = {cols[1]: est_params,
-               cols[0]: percentile_conf_interval.T[0],
-               cols[2]: percentile_conf_interval.T[1]}
+    percentile_ci_df = _create_df(conf_interval=percentile_conf_interval,
+                                  est_params=est_params,
+                                  cols=cols,
+                                  param_names=param_names)
 
-    percentile_ci_df = DataFrame(ci_data, index=param_names, columns=cols)
-
-    # basic
     basic_conf_interval = bootstrap_methods.boot_basic_conf_interval(params_arr,
                                                                      est_params,
                                                                      significance=significance)
 
-    ci_data = {cols[1]: est_params,
-               cols[0]: basic_conf_interval.T[0],
-               cols[2]: basic_conf_interval.T[1]}
-
-    basic_ci_df = DataFrame(ci_data, index=param_names, columns=cols)
+    basic_ci_df = _create_df(conf_interval=basic_conf_interval,
+                             est_params=est_params,
+                             cols=cols,
+                             param_names=param_names)
 
     return bca_ci_df, percentile_ci_df, basic_ci_df
 
