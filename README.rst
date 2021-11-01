@@ -8,8 +8,18 @@ changes.  This project is currently limited in scope to the case of piecewise-li
 continuous univariate models with at most two breakpoints.
 
 The ``segreg`` code fits segmented regression models to data using an exact algorithm due to Hudson.
-The primary implementation is based on ``cython``.  Alternative implementations
+The primary implementation is based on ``cython``.  Alternative implementations (of the same
+algorithm)
 are also provided in pure python, with or without ``numba``.
+
+To accomodate bootstrap and other monte carlo routines, it helps for the model fitting to
+be fast and exact.  By exact, we mean that the optimal parameter values minimizing the
+residual sum of squares function are found.  This is in contrast to numerically approximate
+routines such as grid search or non-linear optimization.
+
+Hudson's algorithm is exact, but can involve a fair amount of computation
+for two or more breakpoints.  The implementation here strives to be fast.  
+
 
 Releases
 --------
