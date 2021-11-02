@@ -1,5 +1,5 @@
 """
-
+Test bootstrap.
 """
 
 # Author: Steven Lillywhite
@@ -8,7 +8,6 @@
 
 import unittest
 
-import scipy.stats
 import numpy as np
 
 from segreg.bootstrap import bootstrap_methods
@@ -125,7 +124,7 @@ class TestBootstrapMethods(unittest.TestCase):
         self.assertTrue(close)
 
         ########################################################################
-        # do zero acceleratin
+        # do zero acceleration
         acceleration = 0
 
         computed_bca = bootstrap_methods.bca(one_param_sims,

@@ -108,6 +108,7 @@ def boot_conf_intervals(indep,
     dep: array-like
         The dependent data.  Also called response, regressand, or endogenous
         variable.
+    estimator: type segreg.statistics.estimator.Estimator
     display_name: str
     resample_cases : boolean, default False
         If True, the bootstrap will resample pairs with replacement 
@@ -140,7 +141,7 @@ def boot_conf_intervals(indep,
     params_arr = resampling.boot_param_dist(indep=indep,
                                             dep=dep,
                                             estimator=estimator,
-                                            num_iter=num_sims,
+                                            num_sims=num_sims,
                                             resample_cases=resample_cases,
                                             seed=seed,
                                             include_fixed_params=False,

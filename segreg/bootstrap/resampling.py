@@ -31,16 +31,14 @@ def boot_resample(indep,
 def boot_param_dist(indep,
                     dep,
                     estimator,
-                    num_iter,
+                    num_sims,
                     resample_cases=False,
                     seed=None,
                     verbose=False,
                     diagnoser=None,
                     include_fixed_params=True):
     """
-    Computes sampling distribution of model parameters.
-
-    TODO: finish
+    Computes bootstrap sampling distribution of model parameters.
 
     Parameters
     ----------
@@ -51,19 +49,26 @@ def boot_param_dist(indep,
         The dependent data.  Also called response, regressand, or endogenous
         variable.
     estimator : subclass of segreg.model.estimator.Estimator
-    num_iter: int
+    num_sims: int
         Number of bootstrap simulations.
     resample_cases : boolean, default False
         If True, the bootstrap will resample pairs with replacement 
         from (indep, dep).  See Section 6.2.4 in Davison and Hinkley, 
         "Bootstrap Methods and their Application".
+    seed: int
+        Seed for random generator driving bootstrap simulations.
+    verbose: bool
+    diagnoser: function object taking params: estimator, params, indep, dep
+        Used for diagnosing each bootstrap resample.  This is currently a
+        developmental feature.
+    include_fixed_params: bool
 
     Returns
     -------
-    param sims: scipy array shape (num_iter, num_params)
-        returns sampling distribution for the parameters; a matrix where each
-        row represents parameter estimates for a sample from the data-generating
-        distribution
+    param sims: numpy array shape (num_sims, num_params)
+        Returns bootstrap sampling distribution for the parameters: panel data 
+        where each row represents parameter estimates for a bootstrap sample.
+        The columns are in the same order as given by the ``estimator`` input.
     """
 
     estimator.fit(indep, dep)
@@ -82,7 +87,7 @@ def boot_param_dist(indep,
             boot_type = "resample cases"
         print()
         print("Bootstrap parameter statistics")
-        print("num bootstrap resamples: ", str(num_iter))
+        print("num bootstrap resamples: ", str(num_sims))
         print(boot_type)
         print()
 
@@ -91,9 +96,9 @@ def boot_param_dist(indep,
     params_arr = []
 
     # small speed-up to pre-compute these
-    #resample_indices = np.random.choice(num_data, (num_iter, num_data) )
+    #resample_indices = np.random.choice(num_data, (num_sims, num_data) )
 
-    for i in range(num_iter):
+    for i in range(num_sims):
         if (i % 200000 == 0):
             if verbose:
                 print("iter: ", i)

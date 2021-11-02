@@ -38,7 +38,7 @@ def bca_acceleration(estimator, indep, dep):
 
     Returns
     -------
-    bca acceleration: scipy array shape (num_params, )
+    bca acceleration: numpy array of shape (num_params, )
     """
     num_data = len(indep)
 
@@ -56,7 +56,7 @@ def bca_acceleration(estimator, indep, dep):
 
     acceleration = _bca_acceleration_impl(jackknife_estimates)
 
-    # we guarantee to return array_lik
+    # we guarantee to return array-like
     if not hasattr(acceleration, "__iter__"):
         acceleration = np.array([acceleration])
     return acceleration
@@ -71,10 +71,10 @@ def model_bca(boot_sims,
               indep,
               dep,
               significance=0.05,
-              **kwargs):
+              no_acceleration=False,
+              verbose=False):
     """
-    Computes bca confidence intervals for regression-like data and a
-    regression-like estimator.
+    Computes bca confidence intervals for regression models.
 
     TODO: see my write-up for formula and refs.
     (We follow formula in stata bootstrap manual.)
@@ -99,20 +99,20 @@ def model_bca(boot_sims,
     orig_sample_estimate : scipy ndarray shape: (num_params,)
         the estimate for the parameters from the original data sample
         should not include fixed params
-    estimator: type segreg.statistics.estimator.Estimator
+    estimator : subclass of segreg.model.estimator.Estimator
+    indep: array-like
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: array-like
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
 
-    indep: scipy array shape (num_data,)
-        original data
-    dep: scipy array shape (num_data,)
-        original data
 
     Returns
     -------
-    bca confidence intervals: scipy array shape (num_boot_params, 2)
-        columns are endpts of confidence intervals, left, right, respectively
+    bca confidence intervals: numpy array of shape (num_boot_params, 2)
+        columns are endpoints of confidence intervals, left, right, respectively
     """
-    no_acceleration = kwargs.pop('no_acceleration', False)
-    verbose = kwargs.pop('verbose', False)
 
     num_boot_params = boot_sims.shape[1]
 

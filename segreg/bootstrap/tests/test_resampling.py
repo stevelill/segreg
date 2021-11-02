@@ -1,16 +1,14 @@
 """
-
+Test resampling routines.
 """
 
 # Author: Steven Lillywhite
 # License: BSD 3 clause
 
-import pprint
 import unittest
 
 import numpy as np
 
-from segreg import analysis
 from segreg.model import OneBkptSegRegEstimator
 from segreg.bootstrap import resampling
 
