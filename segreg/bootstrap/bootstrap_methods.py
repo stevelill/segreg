@@ -74,14 +74,12 @@ def model_bca(boot_sims,
               no_acceleration=False,
               verbose=False):
     """
-    Computes bca confidence intervals for regression models.
-
-    TODO: see my write-up for formula and refs.
-    (We follow formula in stata bootstrap manual.)
+    Computes BCa (bias-corrected and accelerated) confidence intervals for 
+    regression models.
 
     Note
     ----
-    This computes bca confidence intervals for each parameter independently.
+    This computes BCa confidence intervals for each parameter independently.
     In particular, it does not compute any joint parameter region.
 
     Warning
@@ -93,12 +91,11 @@ def model_bca(boot_sims,
     ----------
     boot_sims : numpy ndarray of shape: (num_simulations, num_params)
         Each column represents bootstrap simulations for a single statistic.
-        Should not include any columns corresponding to fixed params in the
+        Should not include any columns corresponding to fixed parameters in the
         model.
-
-    orig_sample_estimate : scipy ndarray shape: (num_params,)
-        the estimate for the parameters from the original data sample
-        should not include fixed params
+    orig_sample_estimate : numpy ndarray shape: (num_params,)
+        The estimate for the parameters from the original data sample. It 
+        should not include fixed parameters.
     estimator : subclass of segreg.model.estimator.Estimator
     indep: array-like
         The independent data.  Also called predictor, explanatory variable,
@@ -107,12 +104,15 @@ def model_bca(boot_sims,
         The dependent data.  Also called response, regressand, or endogenous
         variable.
 
-
     Returns
     -------
     bca confidence intervals: numpy array of shape (num_boot_params, 2)
-        columns are endpoints of confidence intervals, left, right, respectively
+        Columns are endpoints of confidence intervals, left, right, 
+        respectively.
     """
+
+    # TODO: see my write-up for formula and refs.
+    #(We follow formula in stata bootstrap manual.)
 
     num_boot_params = boot_sims.shape[1]
 
@@ -153,10 +153,18 @@ def bca(boot_sims,
         ties=False,
         respect_right=False):
     """
-    Computes bca confidence intervals for a single parameter.
+    Computes BCa (bias-corrected and accelerated) confidence intervals for a 
+    single parameter.
 
-    TODO: see my write-up for formula and refs.
-    (We follow formula in stata bootstrap manual.)
+    References
+    ----------
+    This is described in numerous sources such as: 
+    
+    Davison, A.C., & Hinkley, D.V. (1997). "Bootstrap Methods and their 
+       Application". Cambridge University Press.
+
+    DiCiccio, T. J., & Efron, B. (1996). "Bootstrap confidence intervals." 
+       Statistical Science, 11 (3), 189-228
 
     Parameters
     ----------
@@ -166,15 +174,20 @@ def bca(boot_sims,
     acceleration: float
         acceleration term for bca (can be zero)
     significance : float
-        the coverage of the confidence interval would be: 1 - significance
-        eg: a 95% confidence interval corresponds to a significance value
-        of 0.05
+        The coverage of the confidence interval would be: 1 - significance.
+        For example, a 95% confidence interval corresponds to a ``significance`` 
+        value of 0.05.
+    ties: bool
+    respect_right: bool
 
     Returns
     -------
-    bca confidence interval: scipy array shape (2,)
-        endpts of confidence interval, left, right, respectively
+    bca confidence interval: numpy array shape (2,)
+        The endpoints of the confidence interval, left, right, respectively.
     """
+    # TODO: see my write-up for formula and refs.
+    # (We follow formula in stata bootstrap manual.)
+
     sorted_boot_sims = np.sort(boot_sims)
 
     num_sims = len(sorted_boot_sims)

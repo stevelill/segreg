@@ -14,12 +14,64 @@ def boot_resample(indep,
                   fitted_values=None,
                   resid=None,
                   resample_cases=False):
+    """
+    A single boot resampling for a regression model.
+
+    If ``resample_cases`` is False (the default), then both ``fitted_values``
+    and ``resid`` must be set.  In this case, it is assumed that there is some 
+    (fitted) model of the form:
+
+        .. math::
+            y = f(x) + \epsilon
+
+    and the ``fitted_values`` are :math:`\{f(x_i)\}`, where 
+    ``indep`` = :math:`\{x_1, x_2, \dots, x_n\}`.  If 
+    ``resid`` = :math:`\{\epsilon_1, \epsilon_2, \dots, \epsilon_n\}`, then
+    this function takes a random sample with replacement from ``resid``, 
+    :math:`\{\epsilon_1^*, \epsilon_2^*, \dots, \epsilon_n^*\}`, and returns
+
+        .. math::
+            \{f(x_i) + \epsilon_i^*\}
+    as the resampled dependent values.
+    
+
+    Parameters
+    ----------
+    indep: array-like
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: array-like
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+    fitted_values: array-like of shape (len(indep),)
+        The returned dependent data will be these values plus bootstrap 
+        residuals (random draws with replacement from ``resid``).
+    resid: array-like of shape (len(``indep``),)
+        Residuals from which to draw a bootstrap resample (random sample with
+        replacement).
+    resample_cases : boolean, default False
+        If True, the bootstrap will resample pairs with replacement 
+        from (``indep``, ``dep``).  See Section 6.2.4 in Davison and Hinkley, 
+        "Bootstrap Methods and their Application".
+
+    Returns
+    -------
+    indep_resample: numpy array
+        When ``resample_cases`` is False (the default), the returned array is
+        the input ``indep``.  That is, a copy is not made.
+    dep_resample: numpy array
+    """
 
     if resample_cases:
         (indep_resample,
          dep_resample) = random_selection_with_replacement_two_series(indep,
                                                                       dep)
     else:
+        if resid is None:
+            raise ValueError("resid must be set")
+        if fitted_values is None:
+            raise ValueError("fitted values must be set")
+
         # or from empirical residuals
         epsilon = random_selection_with_replacement(resid)
         dep_resample = fitted_values + epsilon
@@ -163,7 +215,7 @@ def random_selection_with_replacement_two_series(series1, series2):
     ----------
     series1 : array-like
     series2 : array-like
-        must have same number of elements as series1
+        Must have same number of elements as series1.
 
     RETURNS
     -------

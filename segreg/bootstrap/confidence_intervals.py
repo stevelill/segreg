@@ -88,17 +88,22 @@ def boot_conf_intervals(indep,
     A convenience method to produce formatted outputs for presenting results.
     Returns confidence intervals of the regression model parameters
     for three types of confidence interval: 
-        BCa (bootstrapped bias-corrected and accelerated
+        BCa (bias-corrected and accelerated)
         percentile
         basic
 
-    These are described in Davison and Hinkley, "Bootstrap Methods and their 
-    Application", as well as numerous other sources such as: 
-    DiCiccio, T. J., & Efron, B. (1996). "Bootstrap confidence intervals." 
-    Statistical Science, 11 (3), 189-228
-
     The "basic" bootstrap confidence intervals follows the nomenclature of 
     Davison and Hinkley.
+
+    References
+    ----------
+    These are described in numerous sources such as: 
+    
+    Davison, A.C., & Hinkley, D.V. (1997). "Bootstrap Methods and their 
+    Application". Cambridge University Press.
+
+    DiCiccio, T. J., & Efron, B. (1996). "Bootstrap confidence intervals." 
+    Statistical Science, 11 (3), 189-228
 
     Parameters
     ----------
