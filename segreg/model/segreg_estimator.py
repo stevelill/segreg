@@ -17,8 +17,9 @@ class OneBkptSegRegEstimator(Estimator):
     """
     Estimator for one-bkpt segmented regression.
 
-    For univariate, continuous, linear, one-bkpt segmented regression problems.
-    The model fitting estimates the parameters: ``u,v,m1,m2,sigma``, where
+    This estimator is limited to univariate, continuous, linear, one-bkpt 
+    segmented regression problems.  The model fitting estimates the parameters: 
+    ``u, v, m1, m2, sigma``, where
         ``(u,v)`` is the breakpoint (in x-y plane)
 
         ``m1`` is the slope of the left-hand segment
@@ -36,21 +37,23 @@ class OneBkptSegRegEstimator(Estimator):
     Parameters
     ----------
     num_end_to_skip: int
-        Number of data points to skip at each end of the data.
+        Number of data points to skip at each end of the data when solving for
+        the bkpts.  As such, this determines a guaranteed minimum number of data 
+        points in the left and right segments in the returned fit.
         If None, defaults to the underlying implementation.
         TODO: explain
     """
 
     def __init__(self,
                  num_end_to_skip=None,
-                 **kwargs):
+                 restrict_rhs_slope=None,
+                 no_bias_variance=False):
         super().__init__()
-        
+
         # TODO: check and restrict
         self._num_end_to_skip = num_end_to_skip
-
-        self._restrict_rhs_slope = kwargs.pop('restrict_rhs_slope', None)
-        self._no_bias_variance = kwargs.pop('no_bias_variance', False)
+        self._restrict_rhs_slope = restrict_rhs_slope
+        self._no_bias_variance = no_bias_variance
 
         # TODO: make this better
         # keep noise variance as param
@@ -78,7 +81,7 @@ class OneBkptSegRegEstimator(Estimator):
         dep: array-like of shape (num_data,)
             The dependent data.  Also called response, regressand, or endogenous
             variable.
-            
+
         Returns
         -------
         params: array of shape (num_params,)
@@ -199,16 +202,52 @@ class OneBkptSegRegEstimator(Estimator):
 class TwoBkptSegRegEstimator(Estimator):
 
     """
-    classdocs
+    Estimator for two-bkpt segmented regression.
+
+    This estimator is limited to univariate, continuous, linear, two-bkpt 
+    segmented regression problems.  The model fitting estimates the parameters: 
+    ``u1, v1, u2, v2, m1, m2, sigma``, where
+        ``(u1,v1), (u2, v2)`` are the breakpoints (in x-y plane), ordered such
+        that ``u1 < u2``
+
+        ``m1`` is the slope of the left-most segment
+
+        ``m2`` is the slope of the right-most segment
+
+        ``sigma`` is the standard deviation of the residuals
+
+
+    See Also
+    --------
+    OLSRegressionEstimator
+    OneBkptSegRegEstimator
+
+    Parameters
+    ----------
+    num_end_to_skip: int
+        Number of data points to skip at each end of the data when solving for
+        the bkpts.  As such, this determines a guaranteed minimum number of data 
+        points in the left-most and right-most segments in the returned fit.
+        If None, defaults to the underlying implementation.
+        TODO: explain
+    num_between_to_skip: int
+        Number of data points to skip between the two bkpts (ie: the middle
+        segment) when solving for the bkpts.  Specifically, for each choice of
+        left bkpt ``u1``, will skip this many data points between ``u1`` and
+        ``u2``.  As such, this determines a guaranteed minimum number of data 
+        points between the bkpts in the returned fit.
     """
 
-    def __init__(self, **kwargs):
-        
+    def __init__(self,
+                 num_end_to_skip=None,
+                 num_between_to_skip=5,
+                 no_bias_variance=False):
+
         super().__init__()
-        
-        self._num_end_to_skip = kwargs.pop('num_end_to_skip', None)
-        self._num_between_to_skip = kwargs.pop('num_between_to_skip', 5)
-        self._no_bias_variance = kwargs.pop('no_bias_variance', False)
+
+        self._num_end_to_skip = num_end_to_skip
+        self._num_between_to_skip = num_between_to_skip
+        self._no_bias_variance = no_bias_variance
 
         # TODO: make this better
         self._num_params = 7
