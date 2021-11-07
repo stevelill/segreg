@@ -11,10 +11,31 @@ from segreg.model import regression
 from segreg.model.estimator import Estimator
 
 
-# TODO: frozen paradigm?
 class OLSRegressionEstimator(Estimator):
     """
-    classdocs
+    Estimator for ordinary least-squares regression.
+
+    This estimator is limited to univariate, linear, regression problems.  The 
+    model fitting estimates the parameters: 
+    ``intercept, slope, sigma``, where the fitted line is defined by
+        y = ``intercept`` + ``slope`` * x
+
+        ``sigma`` is the standard deviation of the residuals
+
+    Notes
+    -----
+    There are many standard python libraries for this type of OLS, eg: 
+    ``scipy``, ``statsmodels``.  This class is provided as a convenience to
+    implement the same interface as the estimators for segmented regression.
+    Moreover, the underlying implementation has been customized for the 
+    univariate regression problems for which this class is limited.  This allows
+    for much greater calculation speed.
+
+
+    See Also
+    --------
+    OneBkptSegRegEstimator
+    TwoBkptSegRegEstimator
     """
 
     def __init__(self):
@@ -32,6 +53,32 @@ class OLSRegressionEstimator(Estimator):
     ############################################################################
     # OVERRIDE Estimator
     ############################################################################
+
+    # overriding here for the types of inputs allowed
+    def fit(self, indep, dep):
+        """
+        Fit the model to the given data.
+        
+        The fit automatically includes an intercept.  There is no need to add
+        a column of ones to the ``indep`` input.
+
+        Parameters
+        ----------
+        indep: array-like of shape (num_data,)
+            The independent data.  Also called predictor, explanatory variable,
+            regressor, or exogenous variable.
+        dep: array-like of shape (num_data,)
+            The dependent data.  Also called response, regressand, or endogenous
+            variable.
+
+        Returns
+        -------
+        params: array of shape (num_params,)
+            The estimated parameters.  The returned parameters are, in order,
+            [intercept, slope, sigma].
+        """
+        return super().fit(indep, dep)
+
 
     @property
     def num_params(self):

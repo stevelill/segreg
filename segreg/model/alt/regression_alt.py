@@ -111,11 +111,6 @@ def mat_by_hand_ols(indep, dep):
     return result
 
 
-##########################################################################
-# BEGIN: numba jit methods
-##########################################################################
-
-
 @jit(nopython=True, cache=False)
 def ols_verbose(indep, dep, slope=np.nan):
     """
@@ -224,11 +219,8 @@ def _matrix_ols_impl(indep, dep, add_const=True):
 
     return const, rest_beta
 
-##########################################################################
-# END: numba jit methods
-##########################################################################
 
-
+@jit(nopython=True, cache=False)
 def fast_ols(indep, dep):
     """
     Assumes intercept.
@@ -249,6 +241,7 @@ def fast_ols(indep, dep):
     return intercept, slope
 
 
+@jit(nopython=True, cache=False)
 def fast_ols_with_rss(indep, dep):
     """
     Assumes intercept.
