@@ -323,9 +323,7 @@ class TwoBkptSegRegEstimator(Estimator):
         v2 = params[3]
         m1 = params[4]
         m2 = params[5]
-        # TODO: fix this
-        # don't use last param which was appended resid stddev
-        # return two_bkpt_segreg.segmented_func(params[0:-1])
+
         return two_bkpt_segreg.segmented_func([u1, v1, u2, v2, m1, m2])
 
     # TODO: static?

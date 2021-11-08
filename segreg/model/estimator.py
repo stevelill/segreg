@@ -9,14 +9,38 @@ import abc
 
 import numpy as np
 
-from segreg.model import regression
+
+def loglikelihood(num_data, rss):
+    """
+    Loglikelihood evaluated at the MLE.
+
+    Assumes the residual errors are normally distributed i.i.d. with zero mean 
+    and constant variance.  This is valid for any regression model of the form: 
+        y = f(x) + e
+    where
+        e ~ N(0, v)
+
+    Parameters
+    ----------
+    num_data: int
+    rss: float
+        The residual sum of squares.
+
+    Returns
+    -------
+    loglikelihood: float
+    """
+    return -0.5 * num_data * (np.log(2.0 * np.pi)
+                              - np.log(num_data)
+                              + 1.0
+                              + np.log(rss))
 
 
 class Estimator(object, metaclass=abc.ABCMeta):
 
     """
     Base class for estimators.
-    
+
     TODO: define special exception for not fitted
     """
 
@@ -42,9 +66,9 @@ class Estimator(object, metaclass=abc.ABCMeta):
     def num_params(self):
         """
         Number of model parameters.
-        
+
         Includes the residual variance.
-        
+
         Returns
         -------
         int
@@ -61,12 +85,12 @@ class Estimator(object, metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def get_func_for_params(self, *params):        
+    def get_func_for_params(self, *params):
         """
         Returns the function defined by the given parameters.  
-        
+
         That is, if the model is of the form:
-        
+
         .. math::
             y = f(x; a_1, a_2, \dots, a_k) + \epsilon
 
@@ -75,13 +99,13 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         .. math::
             f(x; a_1, \dots, a_k)
-            
+
         where :math:`a_1, \dots, a_k` are passed to this function as `params`.
-        
+
         See Also
         --------
         `get_func`
-        
+
         Returns
         -------
         function
@@ -104,7 +128,6 @@ class Estimator(object, metaclass=abc.ABCMeta):
         """
         return self._estimated_params_indices
 
-    # TODO: have a "fast version" just for boot that only returns params
     def fit(self, indep, dep):
         """
         Fit the model to the given data.
@@ -143,9 +166,9 @@ class Estimator(object, metaclass=abc.ABCMeta):
     def get_func(self):
         """
         Returns the function defined by the estimated parameters.  
-        
+
         That is, if the model is of the form:
-        
+
         .. math::
             y = f(x; a_1, a_2, \dots, a_k) + \epsilon
 
@@ -154,19 +177,19 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         .. math::
             f(x; \widehat{a}_1, \dots, \widehat{a}_k)
-            
+
         where :math:`\widehat{a}_1, \dots, \widehat{a}_k` are the estimated
         parameters from fitting the model to data.
 
         See Also
         --------
         `get_func_for_params`
-        
+
         Raises
         ------
         Exception
             If ``fit`` has not been called.
-            
+
         Returns
         -------
         function object
@@ -184,7 +207,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         ------
         Exception
             If ``fit`` has not been called.
-        
+
         Returns
         -------
         residuals: array-like
@@ -201,11 +224,14 @@ class Estimator(object, metaclass=abc.ABCMeta):
         """
         Computes loglikelihood at the MLE (maximum likelihood estimate).
 
+        This assumes the residual errors are normally distributed i.i.d. with
+        zero mean and constant variance.
+
         Raises
         ------
         Exception
             If ``fit`` has not been called.
-        
+
         Returns
         -------
         float
@@ -216,7 +242,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         # TODO: could make num_obs this a class variable
         num_obs = len(self._indep)
-        self._loglikelihood = regression.loglikelihood(num_obs, self._rss)
+        self._loglikelihood = loglikelihood(num_obs, self._rss)
 
         return self._loglikelihood
 
@@ -228,12 +254,11 @@ class Estimator(object, metaclass=abc.ABCMeta):
         ------
         Exception
             If ``fit`` has not been called.
-        
+
         Returns
         -------
         float
         """
-
         if not self._is_estimated:
             raise Exception("Need to call fit first")
 
@@ -247,7 +272,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         ------
         Exception
             If ``fit`` has not been called.
-        
+
         Returns
         -------
         float
@@ -257,8 +282,6 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         dep_mean = np.mean(self._dep)
 
-        # orig
-        #regression_vals = self._func(self._indep) - dep_mean
         func = self.get_func()
 
         regression_vals = func(self._indep) - dep_mean

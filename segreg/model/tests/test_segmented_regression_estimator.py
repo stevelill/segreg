@@ -9,10 +9,10 @@ import unittest
 
 import numpy as np
 
-from segreg.model import regression
 from segreg.model import one_bkpt_segreg
 from segreg.model import OneBkptSegRegEstimator
 from segreg.data import _testing_util
+from segreg.model import estimator
 
 
 class TestOneBkptSegRegEstimator(unittest.TestCase):
@@ -146,7 +146,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         computed_loglikelihood = self._segreg.loglikelihood()
 
         rss = self._segreg.estimation_func_val_at_estimate()
-        expected_loglikelihood = regression.loglikelihood(self._num_data, rss)
+        expected_loglikelihood = estimator.loglikelihood(self._num_data, rss)
 
         self.assertAlmostEqual(expected_loglikelihood,
                                computed_loglikelihood,

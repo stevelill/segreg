@@ -9,8 +9,9 @@ import unittest
 
 import numpy as np
 
-from segreg.model import OLSRegressionEstimator, regression
+from segreg.model import OLSRegressionEstimator
 from segreg.data import _testing_util
+from segreg.model import estimator
 
 
 class TestOlsEstimator(unittest.TestCase):
@@ -111,7 +112,7 @@ class TestOlsEstimator(unittest.TestCase):
         residuals = self._ols.residuals()
         rss = np.vdot(residuals, residuals)
 
-        expected_loglikelihood = regression.loglikelihood(self._num_data, rss)
+        expected_loglikelihood = estimator.loglikelihood(self._num_data, rss)
 
         self.assertAlmostEqual(expected_loglikelihood,
                                computed_loglikelihood,
@@ -138,5 +139,4 @@ class TestOlsEstimator(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

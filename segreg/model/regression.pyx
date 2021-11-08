@@ -16,43 +16,22 @@ cimport cython
 from segreg.model.regression cimport OLSData
 from segreg.model.regression cimport OlsEstTerms
 
-## TODO: get in line with regression_util
 
 ################################################################################
-## PYTHON
+# PYTHON
 ################################################################################
-
-## TODO: should we use cimport numpy instead of scipy?
-
-################################################################################
-## LIKELIHOOD
-################################################################################
-
-def loglikelihood(num_data, rss):
-    """
-    Loglikelihood evaluated at the MLE.
-    
-    For any regression model of the form: y = f(x) + e, where
-    e ~ N(0, v)
-    
-    TODO: move this
-    """
-    return -0.5 * num_data * (np.log(2.0 * np.pi)
-                              - np.log(num_data)
-                              + 1.0
-                              + np.log(rss))
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
-def ols_with_rss(double[:] indep, double[:] dep, slope = None):
-    
-    cdef OLSData ols_data_to_use 
+def ols_with_rss(double[:] indep, double[:] dep, slope=None):
+
+    cdef OLSData ols_data_to_use
     ols_data_to_use = ols_data(indep, dep)
-        
+
     cdef OlsEstTerms ols_est_terms
-    
+
     if slope is not None:
         ols_est_terms = ols_from_formula_with_rss_cimpl(ols_data_to_use, slope)
     else:
@@ -60,22 +39,23 @@ def ols_with_rss(double[:] indep, double[:] dep, slope = None):
 
     return ols_est_terms.intercept, ols_est_terms.slope, ols_est_terms.rss
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
-def ols_verbose(double[:] indep, double[:] dep, slope = None):
-    
-    cdef OLSData ols_data_to_use 
+def ols_verbose(double[:] indep, double[:] dep, slope=None):
+
+    cdef OLSData ols_data_to_use
     ols_data_to_use = ols_data(indep, dep)
-        
+
     cdef OlsEstTerms ols_est_terms
-    
+
     if slope is not None:
         ols_est_terms = ols_from_formula_with_rss_cimpl(ols_data_to_use, slope)
     else:
         ols_est_terms = ols_from_formula_with_rss_cimpl(ols_data_to_use)
 
-    ## note: if we return the struct, it converts to python dict
+    # note: if we return the struct, it converts to python dict
     ols_data_arr = [ols_data_to_use.num,
                     ols_data_to_use.sum_x,
                     ols_data_to_use.sum_y,
@@ -83,14 +63,14 @@ def ols_verbose(double[:] indep, double[:] dep, slope = None):
                     ols_data_to_use.sum_yy,
                     ols_data_to_use.sum_xy]
 
-    return (ols_est_terms.intercept, 
-            ols_est_terms.slope, 
-            ols_est_terms.rss, 
+    return (ols_est_terms.intercept,
+            ols_est_terms.slope,
+            ols_est_terms.rss,
             np.array(ols_data_arr))
 
 
 ################################################################################
-## CYTHON
+# CYTHON
 ################################################################################
 
 cdef OLSData add(OLSData ols_data_lhs, OLSData ols_data_rhs):
@@ -113,6 +93,7 @@ cdef OLSData subtract(OLSData ols_data_lhs, OLSData ols_data_rhs):
     result.sum_xy = ols_data_lhs.sum_xy - ols_data_rhs.sum_xy
     return result
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
@@ -123,7 +104,9 @@ cdef double sum(double[:] arr):
         result += arr[i]
     return result
 
-## TODO: when do we want these?
+# TODO: when do we want these?
+
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
@@ -134,7 +117,9 @@ cdef double vdot(double[:] lhs_arr, double[:] rhs_arr):
         result += lhs_arr[i] * rhs_arr[i]
     return result
 
-## TODO: pointers, references (is this copying under the hood for return?)
+# TODO: pointers, references (is this copying under the hood for return?)
+
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
@@ -148,8 +133,10 @@ cdef OLSData ols_data(double[:] x_arr, double[:] y_arr):
     result.sum_xy = vdot(x_arr, y_arr)
     return result
 
-## NOTE: c++ NAN is a float, but double seems ok here and ties out with other
-## pure python impl -- somehow we want double here and not float (TODO check why)
+# NOTE: c++ NAN is a float, but double seems ok here and ties out with other
+# pure python impl -- somehow we want double here and not float (TODO check why)
+
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
@@ -170,17 +157,17 @@ cdef OlsEstTerms ols_from_formula_with_rss_cimpl(OLSData ols_data, double slope=
 
     if isnan(slope):
         slope = (num_data * sum_xy - sum_y * sum_x) / (num_data * sum_xx - sum_x * sum_x)
-        
+
     cdef double intercept = mean_y - slope * mean_x
 
     cdef double two_intercept = 2.0 * intercept
 
     cdef double rss = (sum_yy - two_intercept * sum_y - 2.0 * slope * sum_xy +
-           intercept * intercept * num_data + two_intercept * slope * sum_x + slope * slope * sum_xx)
+                       intercept * intercept * num_data + two_intercept * slope * sum_x + slope * slope * sum_xx)
 
     cdef OlsEstTerms ols_est_terms
     ols_est_terms.intercept = intercept
     ols_est_terms.slope = slope
     ols_est_terms.rss = rss
-    
+
     return ols_est_terms
