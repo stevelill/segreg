@@ -40,6 +40,16 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
     """
     Base class for estimators.
+    
+    This class is geared to estimation problems of the form:
+    
+        y_i = f(x_i; theta) + epsilon_i
+    
+    where f(x) is generally a non-linear function of x, defined by a vector
+    theta of parameters, and {epsilon_i} are independently and identically
+    distributed errors with mean zero and constant variance. For given data
+    {x_i, y_i} (i=1,...,n), the parameters theta are determined by means of
+    least-squares estimation.
 
     TODO: define special exception for not fitted
     """
@@ -86,21 +96,21 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def get_func_for_params(self, *params):
-        """
+        r"""
         Returns the function defined by the given parameters.  
 
         That is, if the model is of the form:
 
         .. math::
-            y = f(x; a_1, a_2, \dots, a_k) + \epsilon
+            y = f(x; \theta) + \varepsilon
 
-        where :math:`f(x)` is a function of x depending on parameters 
-        :math:`a_1, \dots, a_k`, then this returns the function
+        where :math:`f(x)` is a function of x depending on the parameter vector 
+        :math:`\theta`, then this returns the function
 
         .. math::
-            f(x; a_1, \dots, a_k)
+            f(x; \theta)
 
-        where :math:`a_1, \dots, a_k` are passed to this function as `params`.
+        where :math:`\theta` is passed to this function as `params`.
 
         See Also
         --------
@@ -146,8 +156,29 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
     @property
     def params(self):
-        """
-        Returns the fitted params.
+        r"""
+        Returns the fitted parameters.
+        
+        If the model is of the form:
+
+        .. math::
+            y_i = f(x_i; \theta) + \varepsilon_i
+
+        where :math:`f(x)` is a function of x depending on the parameter vector 
+        :math:`\theta`, and :math:`\{\varepsilon_i\}` is i.i.d. random error of 
+        mean zero and variance :math:`\sigma^2`, then the returned parameter
+        vector is of the form:
+
+        .. math::
+            [\theta_1, \dots, \theta_k, \sigma] 
+
+        where :math:`\theta = [\theta_1, \dots, \theta_k]`.
+
+        Notes
+        -----
+        The error variance :math:`\sigma^2` is often considered a nuisance
+        parameter.
+
 
         Raises
         ------
@@ -164,22 +195,22 @@ class Estimator(object, metaclass=abc.ABCMeta):
         return self._params
 
     def get_func(self):
-        """
+        r"""
         Returns the function defined by the estimated parameters.  
 
         That is, if the model is of the form:
 
         .. math::
-            y = f(x; a_1, a_2, \dots, a_k) + \epsilon
+            y = f(x; \theta) + \varepsilon
 
-        where :math:`f(x)` is a function of x depending on parameters 
-        :math:`a_1, \dots, a_k`, then this returns the function
+        where :math:`f(x)` is a function of x depending on the parameter vector 
+        :math:`\theta`, then this returns the function
 
         .. math::
-            f(x; \widehat{a}_1, \dots, \widehat{a}_k)
+            f(x; \widehat{\theta})
 
-        where :math:`\widehat{a}_1, \dots, \widehat{a}_k` are the estimated
-        parameters from fitting the model to data.
+        where :math:`\widehat{\theta}` is the estimated parameter vector from 
+        fitting the model to data.
 
         See Also
         --------
