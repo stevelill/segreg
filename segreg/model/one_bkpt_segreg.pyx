@@ -34,11 +34,28 @@ from segreg.model.one_bkpt_segreg cimport FixedBkptTerms
 
 def segmented_func(u, v, m1, m2):
     """
-    TODO: force float here?
+    Returns the one-bkpt function corresponding to the given parameters.
+
+    ``(u,v)`` is the breakpoint (in x-y plane)
+
+    ``m1`` is the slope of the left-hand segment
+
+    ``m2`` is the slope of the right-hand segment
+
+
+    Parameters
+    ----------
+    u: float
+    v: float
+    m1: float
+    m2: float
+
+    Returns
+    -------
+    func: function object
     """
     def func(x):
 
-        # TODO: keep?
         x_arr = np.asarray(x, dtype=float)
 
         result = np.piecewise(x_arr,
@@ -81,12 +98,45 @@ def fixed_bkpt_ls_for_data(indep, dep, bkpt):
             fixed_bkpt_terms.rss)
 
 
-def one_bkpt_seg_profile_rss_func(indep, dep):
+def one_bkpt_rss_func(indep, dep):
+    """    
+    Returns a function which takes a bkpt and returns the RSS of a one-bkpt
+    segmented fit.
 
-    # TODO: sort input here
+    The returned function takes a single argument which is interpreted as a
+    bkpt location.  Given a bkpt, it computes the RSS of a one-bkpt segmented
+    fit to the given data for the specified bkpt.  In particular, there is no 
+    estimation of the bkpt involved.
+
+    This method is intended to be used primarily for plotting or diagnosis of
+    one-bkpt segmented regression problems.
+
+    Notes
+    -----
+    For one-bkpt segmented regression problems, estimation of the bkpt is
+    equivalent to minimization of the returned function.
+
+    Parameters
+    ----------
+    indep: array-like of shape (num_data,)
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: array-like of shape (num_data,)
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+
+    Returns
+    -------
+    func: a function object
+    """
+
+    # sort input because called function expects this
+    argsort_for_indep = indep.argsort()
+    indep_to_use = indep[argsort_for_indep]
+    dep_to_use = dep[argsort_for_indep]
 
     def func(u):
-        v, m1, m2, rss = fixed_bkpt_ls_for_data(indep, dep, u)
+        v, m1, m2, rss = fixed_bkpt_ls_for_data(indep_to_use, dep_to_use, u)
         return rss
     return func
 

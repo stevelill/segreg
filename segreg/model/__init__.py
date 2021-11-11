@@ -10,6 +10,9 @@ from segreg.model.ols_estimator import OLSRegressionEstimator
 from segreg.model.segreg_estimator import OneBkptSegRegEstimator
 from segreg.model.segreg_estimator import TwoBkptSegRegEstimator
 
+from segreg.model.one_bkpt_segreg import one_bkpt_rss_func
+
 __all__ = ["OLSRegressionEstimator",
            "OneBkptSegRegEstimator",
-           "TwoBkptSegRegEstimator"]
+           "TwoBkptSegRegEstimator",
+           "one_bkpt_rss_func"]

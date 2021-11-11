@@ -7,19 +7,13 @@ DEPRECATED -- WILL BE REMOVED OR MODIFIED SOON
 # Author: Steven Lillywhite
 # License: BSD 3 clause
 
-import datetime
+
 import os
 
 from matplotlib import pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
 import numpy as np
-import statsmodels.api as sm
-
-
-_FIGSIZE = (12, 6)
-
-# TODO ???
 
 
 def _handle_plot(save_dir, save_name, show=True):
@@ -30,6 +24,8 @@ def _handle_plot(save_dir, save_name, show=True):
         if show:
             pass
             # plt.show()
+
+# called by mathsci
 
 
 def plot_model(func_arr,
@@ -235,188 +231,9 @@ def plot_fit(estimator):
     pass
 
 
-def plot_segmented_fit(indep,
-                       dep,
-                       func,
-                       bkpt,
-                       **kwargs):
-    xlabel = kwargs.pop('xlabel', None)
-    ylabel = kwargs.pop('ylabel', None)
-    savedir = kwargs.pop('savedir', None)
-    name = kwargs.pop('name', None)
-    lines = kwargs.pop('lines', False)
-    figsize = kwargs.pop('figsize', None)
-    segreg_title = kwargs.pop('segreg_title', None)
-
-    func2 = kwargs.pop('func2', None)
-    func2_title = kwargs.pop('func2_title', None)
-    func2_is_segreg = kwargs.pop('func2_is_segreg', False)
-    func2_bkpt = kwargs.pop('func2_bkpt', None)
-
-    segreg_title_to_use = "Segmented Regression Fit"
-    if segreg_title is not None:
-        segreg_title_to_use = segreg_title
-    # TODO: check who calls this; eventually change this default
-    func2_title_to_use = "Residual Sum Squares for Segmented Regression"
-    if func2_title is not None:
-        func2_title_to_use = func2_title
-    # TODO: reverse order of func1, func2
-
-    argsort_for_indep = indep.argsort()
-    indep_to_use = indep[argsort_for_indep]
-    dep_to_use = dep[argsort_for_indep]
-
-    if func2 is not None:
-        if figsize is None:
-            figsize = (12, 8)
-
-        fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=figsize)
-
-        if func2_is_segreg:
-            _plot_segreg(ax1,
-                         indep_to_use,
-                         dep_to_use,
-                         func2,
-                         func2_bkpt,
-                         func2_title_to_use,
-                         xlabel,
-                         ylabel,
-                         name)
-        else:
-            _plot_func(ax1,
-                       indep_to_use,
-                       dep_to_use,
-                       func2,
-                       bkpt,
-                       lines,
-                       func2_title_to_use,
-                       xlabel,
-                       ylabel="rss",
-                       name=name)
-
-        _plot_segreg(ax2,
-                     indep_to_use,
-                     dep_to_use,
-                     func,
-                     bkpt,
-                     segreg_title_to_use,
-                     xlabel,
-                     ylabel,
-                     name)
-
-    else:
-        if figsize is None:
-            # pass
-            figsize = _FIGSIZE
-
-        fig, ax1 = plt.subplots(1, 1, figsize=figsize)
-
-        _plot_segreg(ax1,
-                     indep_to_use,
-                     dep_to_use,
-                     func,
-                     bkpt,
-                     segreg_title_to_use,
-                     xlabel,
-                     ylabel,
-                     name)
-
-    # keep it tight
-    # plt.axis('tight')
-    #plt.ticklabel_format(useOffset=False, style='plain')
-
-    if savedir is not None:
-        if name is not None:
-            name_for_file = name.replace(" ", "")
-
-        filepath = os.path.join(savedir, name_for_file + "_segreg_rss")
-        plt.savefig(filepath)
-    else:
-        # TODO: put back erase this pass here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        pass
-        # plt.show()
-
-
-def _plot_segreg(ax,
-                 indep,
-                 dep,
-                 func,
-                 bkpt,
-                 title=None,
-                 xlabel=None,
-                 ylabel=None,
-                 name=None):
-    ax.scatter(indep, dep, color="gray", s=2)
-    fitted = []
-    for val in indep:
-        fitted.append(func(val))
-
-    # let's also add breakpoint to plot
-    domain = indep
-    domain = np.append(domain, bkpt)
-    fitted.append(func(bkpt))
-
-    # see also: argsort (it is less magical)
-    # resort them pairwise after adding breakpoint
-    domain, fitted = list(zip(*sorted(zip(domain, fitted))))
-
-    ax.plot(domain, fitted)
-
-    if xlabel is not None:
-        ax.set_xlabel(xlabel)
-    if ylabel is not None:
-        ax.set_ylabel(ylabel)
-
-    ax.axvline(bkpt, color="red")
-
-    if title is not None:
-        title_to_use = title
-        if name is not None:
-            title_to_use += " ; " + name
-
-        ax.set_title(title_to_use)
-
-    ax.grid()
-
-
-def _plot_func(ax,
-               indep,
-               dep,
-               func,
-               bkpt,
-               lines,
-               title=None,
-               xlabel=None,
-               ylabel=None,
-               name=None):
-    # TODO: don't we want the scatter?
-    ax.scatter(indep, dep, color="gray", s=2)
-
-    domain = np.arange(indep[0], indep[-1], 0.01)
-
-    myrange = []
-    for val in domain:
-        myrange.append(func(val))
-
-    if lines:
-        for val in indep:
-            ax.axvline(val, color="red")
-
-    ax.plot(domain, myrange)
-    ax.axvline(bkpt, color="red")
-
-    if xlabel is not None:
-        ax.set_xlabel(xlabel)
-    if ylabel is not None:
-        ax.set_ylabel(ylabel)
-
-    if name is not None:
-        title += " ; " + name
-
-    ax.set_title(title)
-    ax.grid()
-
 # DEPRECATE???
+
+# called by notebooks
 
 
 def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
@@ -462,136 +279,3 @@ def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
 
     plt.grid()
     # plt.show()
-
-# TODO: expand to multiple breakpoints; ie: x0 becomes array
-# DEPRECATED
-
-
-def plot_segmented_fitORIG(indep, dep, func, x0, **kwargs):
-    title = kwargs.pop('title', None)
-    xlabel = kwargs.pop('xlabel', None)
-    ylabel = kwargs.pop('ylabel', None)
-    savedir = kwargs.pop('savedir', None)
-    shortname = kwargs.pop('shortname', "")
-
-    plt.scatter(indep, dep)
-    fitted = []
-    for val in indep:
-        fitted.append(func(val))
-
-    # let's also add breakpoint to plot
-    domain = indep
-    domain = np.append(domain, x0)
-    fitted.append(func(x0))
-
-    # see also: argsort (it is less magical)
-    # let's sort them pairwise
-    domain, fitted = list(zip(*sorted(zip(domain, fitted))))
-
-    plt.plot(domain, fitted)
-    if title is not None:
-        plt.title(title)
-    if xlabel is not None:
-        plt.xlabel(xlabel)
-    if ylabel is not None:
-        plt.ylabel(ylabel)
-
-    if savedir is not None:
-        filepath = os.path.join(savedir, shortname + "_segreg")
-        plt.savefig(filepath)
-
-    plt.show()
-
-# TODO: need a smart histogram bin calculator
-
-
-def plot_boot_sample(series,
-                     statistic_name,
-                     display_name,
-                     show_graph=False,
-                     save_dir=None,
-                     **kwargs):
-    """
-    Parameters
-    ----------
-    series : numpy ndarray, shape: (num,)
-        represents bootstrap sample estimates for a single statistic
-
-    kwargs
-    ------
-    trim: list [lower_percentile, upper_percentile]
-        in plot, will trim away below lower_percentile and above
-        upper_percentile
-
-    """
-    trim = kwargs.pop('trim', None)
-    show_estimate = kwargs.pop('show_estimate', None)
-    show_mean = kwargs.pop('show_mean', True)
-
-    if trim is not None:
-        trim_value_bounds = np.percentile(series, trim)
-        series_to_use = series[np.logical_and(series > trim_value_bounds[0],
-                                              series < trim_value_bounds[1])]
-    else:
-        series_to_use = series
-
-    num_iter = len(series_to_use)
-
-    min_rhs = min(series_to_use)
-    max_rhs = max(series_to_use)
-    binwidth = (max_rhs - min_rhs) / 20.0
-    num_bins = 100
-    if num_iter < 10000:
-        num_bins = 100
-    else:
-        num_bins = int(num_iter / 100.0)
-
-    # n, bins, patches = plt.hist(rhs_slope_estimates, bins=scipy.arange(min_rhs, max_rhs + binwidth, binwidth), normed=False, histtype='bar')
-#    n, bins, patches = plt.hist(series_to_use, num_bins, normed=False, histtype='bar')
-
-    # normed appears to be gone in recent versions
-
-    n, bins, patches = plt.hist(series_to_use,
-                                num_bins,
-                                # normed=False,
-                                density=True,
-                                histtype='bar')
-
-    # plt.setp(patches, 'facecolor', 'g', 'alpha', 0.75)
-
-    plt.xlabel(statistic_name)
-    plt.title("Bootstrap Sample Distribution: " + statistic_name
-              + "\n" + display_name)
-
-    if show_mean:
-        mean = np.mean(series)
-        plt.axvline(mean, color="green", label="mean")
-    if show_estimate is not None:
-        plt.axvline(show_estimate, color="red", label="estimate")
-
-    plt.legend(loc="best")
-    plt.grid()
-
-    if save_dir is not None:
-        boot_hist_name = "boot_histogram_" + statistic_name + "_" + display_name
-
-        boot_hist_name = boot_hist_name.replace(" ", "_")
-
-        plt.savefig(os.path.join(save_dir, boot_hist_name))
-        # plt.close()
-    if show_graph:
-        plt.plot()
-
-    probplot = sm.ProbPlot(series_to_use, dist="norm", fit=True)
-    probplot.qqplot(line='45')
-
-    plt.title("Bootstrap Sample QQ Plot Versus Normal: " + statistic_name
-              + "\n" + display_name)
-    if save_dir is not None:
-        qqplot_name = "boot_qqplot_" + statistic_name + "_" + display_name
-
-        qqplot_name = qqplot_name.replace(" ", "_")
-        plt.savefig(os.path.join(save_dir, qqplot_name))
-        # plt.close()
-    if show_graph:
-        plt.show()

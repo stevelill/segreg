@@ -31,5 +31,6 @@ extensions = [
 setup(
     name="segreg",
     ext_modules=cythonize(extensions,
-                          language_level=3)
+                          language_level=3,
+                          compiler_directives={'embedsignature': True})
 )

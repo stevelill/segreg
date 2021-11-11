@@ -82,6 +82,9 @@ class OLSRegressionEstimator(Estimator):
 
     @property
     def num_params(self):
+        """
+        
+        """
         return self._num_params
 
     def has_restricted_params(self):
