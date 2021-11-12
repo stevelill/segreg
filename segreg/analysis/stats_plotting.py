@@ -1,7 +1,7 @@
 """
 Routines to plot segmented regression results.
 
-DEPRECATED -- WILL BE REMOVED OR MODIFIED SOON
+SEMI-DEPRECATED -- METHODS WILL BE REMOVED OR MODIFIED SOON
 """
 
 # Author: Steven Lillywhite
@@ -11,21 +11,7 @@ DEPRECATED -- WILL BE REMOVED OR MODIFIED SOON
 import os
 
 from matplotlib import pyplot as plt
-from matplotlib.ticker import MaxNLocator
-
 import numpy as np
-
-
-def _handle_plot(save_dir, save_name, show=True):
-    if save_dir is not None:
-        #plt.savefig(os.path.join(save_dir, save_name + ".pdf"))
-        plt.savefig(os.path.join(save_dir, save_name))
-    else:
-        if show:
-            pass
-            # plt.show()
-
-# called by mathsci
 
 
 def plot_model(func_arr,
@@ -45,15 +31,67 @@ def plot_model(func_arr,
                marker="o",
                ax=None):
     """
-    Assumes data is sorted.
+    Plots univariate functions together with scatter of the data.
+
+    This plotting utility is geared towards segmented regression problems where  
+    the function inputs would be the piecewise-linear segmented functions.
+
+    Notes
+    -----
+    For plotting segmented regression models, it is recommended to pass in the 
+    bkpts via the parameter ``extra_pts_arr`` to ensure the plot looks correct.  
+    This is because the bkpts might not coincide with data points, and the plot
+    interpolation between plotted points could appear wrong near the bkpts.
+
+    Parameters
+    ----------
+    func_arr: array-like
+        An array of function objects.  Each function should be defined on the
+        domain of the independent data.
+    indep: array-like
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: array-like
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+    domain_begin_arr: array-like
+        An array of float.  Each element specifies the left endpoint of the
+        domain to plot for corresponding function in ``func_arr``. Must have 
+        same length as the parameter ``func_arr``.
+    domain_end_arr: array-like
+        An array of float.  Each element specifies the right endpoint of the
+        domain to plot for corresponding function in ``func_arr``. Must have 
+        same length as the parameter ``func_arr``.
+    extra_pts_arr: array-like
+        An array of arrays.  Each element is an array containing extra points
+        to plot.  The points are in the x-axis domain (ie: the domain of the
+        independent data).  Must have same length as the parameter ``func_arr``.
+        Each element must be either array-like or None.  
+            Eg: [ [1,2], [3] ].
+
+            Eg: [ None, [4,5] ].
+    title: str
+    xlabel: str
+    ylabel: str
+    mark_extra_pts: bool
+        If True, will add marker to any plotted extra points, as set by the
+        parameter ``extra_pts_arr``.
+    padding_scale: float
+    full_size_scatter: bool
+    scatter_size: int
+    scatter_color: str
+    marker: str
+    ax: matplotlib axes object, default None
     """
     num_series = len(func_arr)
     # todo: put in array length checks
 
     if domain_begin_arr is None:
-        domain_begin_arr = [indep[0] for dummy in range(num_series)]
+        left_endpt = min(indep)
+        domain_begin_arr = [left_endpt for dummy in range(num_series)]
     if domain_end_arr is None:
-        domain_end_arr = [indep[-1] for dummy in range(num_series)]
+        right_endpt = max(indep)
+        domain_end_arr = [right_endpt for dummy in range(num_series)]
 
     domain_orig_arr = []
     for domain_begin, domain_end in zip(domain_begin_arr, domain_end_arr):
@@ -74,7 +112,6 @@ def plot_model(func_arr,
     if full_size_scatter:
         ax.scatter(indep, dep, color=scatter_color)
     else:
-        #plt.scatter(indep, dep, color="gray", s=2)
         ax.scatter(indep,
                    dep,
                    color=scatter_color,
@@ -98,11 +135,7 @@ def plot_model(func_arr,
                 for extra_pt in extra_pts:
                     ax.plot(extra_pt, func(extra_pt), 'o', color="red")
 
-        # print(domain)
         ax.plot(domain, func(domain))
-
-
-#    plt.grid()
 
     # if padding is None:
     padding = padding_scale * dx
@@ -111,7 +144,6 @@ def plot_model(func_arr,
     #padding_left = padding * abs(domain_begin)
     #padding_right = padding * abs(domain_end)
     #padding_to_use = max(padding_left, padding_right)
-
 
 # MOST RECENT WAS THIS for xlim
 #    plt.xlim([min(domain_begin_arr) - padding,
@@ -158,84 +190,9 @@ def plot_model(func_arr,
 #    ax.xaxis.set_major_locator(MaxNLocator(20))
 
     return ax
-#    plt.close()
 
 
-def plot_fitted_model(domain_begin,
-                      domain_end,
-                      func,
-                      indep,
-                      dep,
-                      extra_pts=None,
-                      title=None,
-                      xlabel=None,
-                      ylabel=None,
-                      save_dir=None,
-                      save_name=None,
-                      mark_extra_pts=False,
-                      padding=0.005,
-                      show=True,
-                      full_size_scatter=False):
-    """
-    Assumes data is sorted.
-    """
-    dx = (domain_end - domain_begin) / 100.0
-    domain = np.arange(domain_begin, domain_end + dx, dx)
-    if extra_pts is not None:
-        domain = np.concatenate((domain, extra_pts))
-    domain.sort()
-
-    myrange = func(domain)
-
-#    plt.figure()
-
-    if full_size_scatter:
-        plt.scatter(indep, dep, color="gray")
-    else:
-        #plt.scatter(indep, dep, color="gray", s=2)
-        plt.scatter(indep, dep, color="gray", s=3)
-
-    plt.plot(domain, myrange)
-    plt.grid()
-
-    padding_left = padding * abs(domain_begin)
-    padding_right = padding * abs(domain_end)
-    padding_to_use = max(padding_left, padding_right)
-
-    plt.xlim([domain_begin - padding_to_use,
-              domain_end + padding_to_use])
-
-#     ax = plt.gca()
-#     lim = ax.get_xlim()
-#     curr_xticks = list(ax.get_xticks())
-#     ax.set_xticks(curr_xticks[0:-1] + [domain_end])
-#     ax.set_xlim(lim)
-
-    if title is not None:
-        plt.title(title)
-    if xlabel is not None:
-        plt.xlabel(xlabel)
-    if ylabel is not None:
-        plt.ylabel(ylabel)
-
-    if mark_extra_pts:
-        for extra_pt in extra_pts:
-            plt.plot(extra_pt, func(extra_pt), 'o', color="red")
-
-    _handle_plot(save_dir, save_name, show)
-
-#    plt.close()
-
-
-def plot_fit(estimator):
-    pass
-
-
-# DEPRECATE???
-
-# called by notebooks
-
-
+## TODO: rewrite this
 def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
     title = kwargs.pop('title', None)
     xlabel = kwargs.pop('xlabel', None)
