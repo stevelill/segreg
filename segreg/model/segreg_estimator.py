@@ -144,14 +144,6 @@ class OneBkptSegRegEstimator(Estimator):
 
         return self._params
 
-    def estimation_func_val_at_estimate(self):
-        """
-        For regression model such as this, this gives RSS.
-        """
-        if not self._is_estimated:
-            raise Exception("Need to call fit first")
-        return self._rss
-
     def get_func_for_params(self, params):
         u = params[0]
         v = params[1]
@@ -307,14 +299,6 @@ class TwoBkptSegRegEstimator(Estimator):
         self._is_estimated = True
 
         return self._params
-
-    def estimation_func_val_at_estimate(self):
-        """
-        For regression model such as this, this gives RSS.
-        """
-        if not self._is_estimated:
-            raise Exception("Need to call fit first")
-        return self._rss
 
     def get_func_for_params(self, params):
         u1 = params[0]

@@ -9,6 +9,8 @@ import abc
 
 import numpy as np
 
+# TODO: make more properties
+
 
 def loglikelihood(num_data, rss):
     """
@@ -40,11 +42,11 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
     """
     Base class for estimators.
-    
+
     This class is geared to estimation problems of the form:
-    
+
         y_i = f(x_i; theta) + epsilon_i
-    
+
     where f(x) is generally a non-linear function of x, defined by a vector
     theta of parameters, and {epsilon_i} are independently and identically
     distributed errors with mean zero and constant variance. For given data
@@ -123,18 +125,14 @@ class Estimator(object, metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def estimation_func_val_at_estimate(self):
-        pass
-
-    @abc.abstractmethod
     def param_names(self):
         pass
 
     def estimated_params_indices(self):
         """
-        In case the model has fixed params, this give indices in the params
-        array of the non-fixed params.  That is, the params that are actually
-        estimated.
+        In case the model has fixed parameters, this give indices in the 
+        parameter array of the non-fixed parameters.  That is, the parameters 
+        that are actually estimated.
         """
         return self._estimated_params_indices
 
@@ -158,7 +156,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     def params(self):
         r"""
         Returns the fitted parameters.
-        
+
         If the model is of the form:
 
         .. math::
@@ -277,6 +275,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         return self._loglikelihood
 
+    @property
     def rss(self):
         """
         Residual sum of squares from the fit.
@@ -295,6 +294,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         return self._rss
 
+    # TODO: make property
     def r_squared(self):
         """
         Computes R-squared of the fit.

@@ -20,7 +20,7 @@ class OLSRegressionEstimator(Estimator):
     ``intercept, slope, sigma``, where the fitted line is defined by
         y = ``intercept`` + ``slope`` * x
 
-        ``sigma`` is the standard deviation of the residuals
+        and ``sigma`` is the standard deviation of the residuals
 
     Notes
     -----
@@ -28,8 +28,8 @@ class OLSRegressionEstimator(Estimator):
     ``scipy``, ``statsmodels``.  This class is provided as a convenience to
     implement the same interface as the estimators for segmented regression.
     Moreover, the underlying implementation has been customized for the 
-    univariate regression problems for which this class is limited.  This allows
-    for much greater calculation speed.
+    univariate regression problems for which this class is limited, for the
+    purpose of greater calculation speed.
 
 
     See Also
@@ -42,8 +42,6 @@ class OLSRegressionEstimator(Estimator):
 
         super().__init__()
 
-        # TODO: make this better
-        # currently not using in OLS
         # we include estimate of residual variance as a parameter
         self._num_params = 3
         self._fixed_params_indices = []
@@ -58,7 +56,7 @@ class OLSRegressionEstimator(Estimator):
     def fit(self, indep, dep):
         """
         Fit the model to the given data.
-        
+
         The fit automatically includes an intercept.  There is no need to add
         a column of ones to the ``indep`` input.
 
@@ -79,11 +77,10 @@ class OLSRegressionEstimator(Estimator):
         """
         return super().fit(indep, dep)
 
-
     @property
     def num_params(self):
         """
-        
+
         """
         return self._num_params
 
@@ -114,33 +111,17 @@ class OLSRegressionEstimator(Estimator):
 
         return self._params
 
-    def estimation_func_val_at_estimate(self):
-        """
-        For regression model such as this, this gives RSS.
-        """
-        if not self._is_estimated:
-            raise Exception("Need to call fit first")
-        return self._rss
-
-    # TODO: for multivariate
     def get_func_for_params(self, params):
         intercept = params[0]
         slope = params[1]
 
-        # TODO: handle for multivariate
         def ols_func(x):
             return intercept + slope * x
 
         return ols_func
 
-    def param_names(self, **kwargs):
-        # return ["intercept", "slope"]
+    def param_names(self):
 
-        latex = kwargs.pop('latex', False)
-
-        if latex:
-            result = ["$intercept$", "$slope$", "$\sigma$"]
-        else:
-            result = ["intercept", "slope", "sigma"]
+        result = ["intercept", "slope", "sigma"]
 
         return result

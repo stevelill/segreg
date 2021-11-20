@@ -72,14 +72,9 @@ class TestSegRegTieout(unittest.TestCase):
 
             good_segmented = OneBkptSegRegEstimator(
                 num_end_to_skip=num_end_to_skip)
-            min_params = good_segmented.fit(self._indep, self._dep)
-            min_value = good_segmented.estimation_func_val_at_estimate()
+            min_params = good_segmented.fit(self._indep, self._dep)            
+            min_value = good_segmented.rss
 
-#             (basic_min_params,
-#              basic_min_value) = one_bkpt_segreg_alt.estimate_one_bkpt_segreg_basic(self._indep,
-#                                                                                    self._dep,
-#                                                                                    num_end_to_skip=num_end_to_skip,
-#                                                                                    verbose=False)
 
             (basic_min_params,
              basic_min_value) = one_bkpt_segreg_alt.estimate_one_bkpt_segreg(self._indep,
@@ -122,7 +117,7 @@ class TestSegRegTieout(unittest.TestCase):
             good_segmented = OneBkptSegRegEstimator(
                 num_end_to_skip=num_end_to_skip)
             min_params = good_segmented.fit(self._indep, self._dep)
-            min_value = good_segmented.estimation_func_val_at_estimate()
+            min_value = good_segmented.rss
 
             (basic_min_params,
              basic_min_value) = one_bkpt_segreg_alt.estimate_one_bkpt_segreg_basic(self._indep,
@@ -150,7 +145,7 @@ class TestSegRegTieout(unittest.TestCase):
         good_segmented = OneBkptSegRegEstimator(
             num_end_to_skip=num_end_to_skip)
         min_params = good_segmented.fit(self._indep, self._dep)
-        min_value = good_segmented.estimation_func_val_at_estimate()
+        min_value = good_segmented.rss
 
         (basic_min_params,
          basic_min_value) = one_bkpt_segreg_alt.estimate_one_bkpt_segreg_basic(self._indep,
@@ -181,7 +176,7 @@ class TestSegRegTieout(unittest.TestCase):
         dep += resid
 
         min_params = good_segmented.fit(indep, dep)
-        min_value = good_segmented.estimation_func_val_at_estimate()
+        min_value = good_segmented.rss
 
         (basic_min_params,
          basic_min_value) = one_bkpt_segreg_alt.estimate_one_bkpt_segreg_basic(indep,
@@ -212,7 +207,7 @@ class TestSegRegTieout(unittest.TestCase):
         dep += resid
 
         min_params = good_segmented.fit(indep, dep)
-        min_value = good_segmented.estimation_func_val_at_estimate()
+        min_value = good_segmented.rss
 
         (basic_min_params,
          basic_min_value) = one_bkpt_segreg_alt.estimate_one_bkpt_segreg_basic(indep,

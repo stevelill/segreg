@@ -77,8 +77,8 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         close = np.allclose(expected_est_params, computed_est_params)
         self.assertTrue(close)
 
-    def test_estimation_func_val_at_estimate(self):
-        computed_func_val = self._segreg.estimation_func_val_at_estimate()
+    def test_rss(self):
+        computed_func_val = self._segreg.rss
 
         # subtract rhs rss bit by bit
         #expected_func_val = 354.4481044261281
@@ -145,7 +145,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
     def test_loglikelihood(self):
         computed_loglikelihood = self._segreg.loglikelihood()
 
-        rss = self._segreg.estimation_func_val_at_estimate()
+        rss = self._segreg.rss
         expected_loglikelihood = estimator.loglikelihood(self._num_data, rss)
 
         self.assertAlmostEqual(expected_loglikelihood,

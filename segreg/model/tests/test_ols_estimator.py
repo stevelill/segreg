@@ -55,9 +55,9 @@ class TestOlsEstimator(unittest.TestCase):
         close = np.allclose(expected_est_params, est_params)
         self.assertTrue(close)
 
-    def test_estimation_func_val_at_estimate(self):
+    def test_rss(self):
         self._ols.fit(self._indep, self._dep)
-        computed_func_val = self._ols.estimation_func_val_at_estimate()
+        computed_func_val = self._ols.rss
         expected_func_val = 376.01823141359989
         self.assertAlmostEqual(expected_func_val, computed_func_val, places=10)
 

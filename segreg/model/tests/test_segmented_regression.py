@@ -124,18 +124,6 @@ class TestSegmentedRegression(unittest.TestCase):
 
         vals = func(self._indep)
 
-        # begin eras
-#        print
-#        print "expected: "
-#        print expected_vals
-#        print
-#        print
-#        print "computed: "
-#        print vals
-#        print
-#        exit()
-        # end erae
-
         close = np.allclose(vals, expected_vals)
         self.assertTrue(close)
 
@@ -147,7 +135,7 @@ class TestSegmentedRegression(unittest.TestCase):
     def test_single_break_point_regression(self):
         seg_reg = OneBkptSegRegEstimator()
         est_params = seg_reg.fit(self._indep, self._dep)
-        est_value = seg_reg.estimation_func_val_at_estimate()
+        est_value = seg_reg.rss
 
         expected_params = [4.6516524673749009,
                            0.91795696348885369,
@@ -167,7 +155,7 @@ class TestSegmentedRegression(unittest.TestCase):
 
         seg_reg = OneBkptSegRegEstimator(restrict_rhs_slope=rhs_slope)
         est_params = seg_reg.fit(self._indep, self._dep)
-        est_value = seg_reg.estimation_func_val_at_estimate()
+        est_value = seg_reg.rss
 
         expected_params = [4.8775363888197658,
                            0.9616743333333333,
