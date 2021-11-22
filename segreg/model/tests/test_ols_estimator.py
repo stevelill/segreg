@@ -120,7 +120,7 @@ class TestOlsEstimator(unittest.TestCase):
 
         # TODO: add r sq to interface of Estimator?
 #    def test_r_squared(self):
-#        computed_r_squared = self._segreg.r_squared()
+#        computed_r_squared = self._segreg.r_squared
 #
 #        dep_mean = np.mean(self._dep)
 #        func = self._segreg.get_func()

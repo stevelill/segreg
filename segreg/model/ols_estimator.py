@@ -120,6 +120,7 @@ class OLSRegressionEstimator(Estimator):
 
         return ols_func
 
+    @property
     def param_names(self):
 
         result = ["intercept", "slope", "sigma"]

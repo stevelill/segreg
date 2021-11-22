@@ -124,6 +124,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         """
         pass
 
+    @property
     @abc.abstractmethod
     def param_names(self):
         pass
@@ -294,7 +295,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         return self._rss
 
-    # TODO: make property
+    @property
     def r_squared(self):
         """
         Computes R-squared of the fit.

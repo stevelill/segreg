@@ -31,7 +31,7 @@ def _confidence_intervals(params_arr,
                           indep,
                           dep):
 
-    param_names = estimator.param_names()
+    param_names = estimator.param_names
 
     # in case there are restricted params
     param_names = np.array(param_names)

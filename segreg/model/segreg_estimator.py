@@ -156,14 +156,10 @@ class OneBkptSegRegEstimator(Estimator):
 
         return one_bkpt_segreg.segmented_func(u, v, m1, m2)
 
-    # TODO: static?
-    def param_names(self, **kwargs):
-        latex = kwargs.pop('latex', False)
+    @property
+    def param_names(self):
 
-        if latex:
-            result = ["$u$", "$v$", "$m_1$", "$m_2$", "$\sigma$"]
-        else:
-            result = ["u", "v", "m1", "m2", "sigma"]
+        result = ["u", "v", "m1", "m2", "sigma"]
 
         return result
 
@@ -310,15 +306,10 @@ class TwoBkptSegRegEstimator(Estimator):
 
         return two_bkpt_segreg.segmented_func([u1, v1, u2, v2, m1, m2])
 
-    # TODO: static?
-    def param_names(self, **kwargs):
-        latex = kwargs.pop('latex', False)
+    @property
+    def param_names(self):
 
-        if latex:
-            result = ["$u1$", "$v1$", "$u2$",
-                      "$v2$", "$m_1$", "$m_2$", "$\sigma$"]
-        else:
-            result = ["u1", "v1", "u2", "v2", "m1", "m2", "sigma"]
+        result = ["u1", "v1", "u2", "v2", "m1", "m2", "sigma"]
 
         return result
 
