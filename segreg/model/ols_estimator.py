@@ -52,7 +52,6 @@ class OLSRegressionEstimator(Estimator):
     # OVERRIDE Estimator
     ############################################################################
 
-    # overriding here for the types of inputs allowed
     def fit(self, indep, dep):
         """
         Fit the model to the given data.
@@ -75,7 +74,8 @@ class OLSRegressionEstimator(Estimator):
             The estimated parameters.  The returned parameters are, in order,
             [intercept, slope, sigma].
         """
-        return super().fit(indep, dep)
+        self._set_data(indep, dep)
+        return self._estimate()
 
     @property
     def num_params(self):

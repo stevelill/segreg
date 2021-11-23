@@ -62,7 +62,7 @@ class TestSegmentedRegression(unittest.TestCase):
     def test_get_residuals(self):
         seg_reg = OneBkptSegRegEstimator()
         seg_reg.fit(self._indep, self._dep)
-        residuals = seg_reg.residuals()
+        residuals = seg_reg.residuals
 
         expected_residuals = np.array([-0.034275543372, 0.032013734373,
                                        0.009386361128, 0.023827638872,

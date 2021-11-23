@@ -91,7 +91,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
                                delta=1.0e-14)
 
         # compute by hand -- this matches with less precision
-        residuals = self._segreg.residuals()
+        residuals = self._segreg.residuals
         rss = np.vdot(residuals, residuals)
 
         self.assertAlmostEqual(rss, computed_func_val, places=9)
@@ -134,7 +134,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         self.assertTrue(close)
 
     def test_residuals(self):
-        computed_residuals = self._segreg.residuals()
+        computed_residuals = self._segreg.residuals
 
         func = self._segreg.get_func()
         expected_residuals = self._dep - func(self._indep)

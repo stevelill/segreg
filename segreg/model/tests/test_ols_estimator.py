@@ -62,7 +62,7 @@ class TestOlsEstimator(unittest.TestCase):
         self.assertAlmostEqual(expected_func_val, computed_func_val, places=10)
 
         # compute by hand -- this matches with less precision
-        residuals = self._ols.residuals()
+        residuals = self._ols.residuals
         rss = np.vdot(residuals, residuals)
 
         self.assertAlmostEqual(rss, computed_func_val, places=9)
@@ -97,7 +97,7 @@ class TestOlsEstimator(unittest.TestCase):
 
     def test_residuals(self):
         self._ols.fit(self._indep, self._dep)
-        computed_residuals = self._ols.residuals()
+        computed_residuals = self._ols.residuals
 
         func = self._ols.get_func()
         expected_residuals = self._dep - func(self._indep)
@@ -109,7 +109,7 @@ class TestOlsEstimator(unittest.TestCase):
         self._ols.fit(self._indep, self._dep)
         computed_loglikelihood = self._ols.loglikelihood()
 
-        residuals = self._ols.residuals()
+        residuals = self._ols.residuals
         rss = np.vdot(residuals, residuals)
 
         expected_loglikelihood = estimator.loglikelihood(self._num_data, rss)

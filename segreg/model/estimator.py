@@ -138,6 +138,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         """
         return self._estimated_params_indices
 
+    @abc.abstractmethod
     def fit(self, indep, dep):
         """
         Fit the model to the given data.
@@ -151,8 +152,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
             The dependent data.  Also called response, regressand, or endogenous
             variable.
         """
-        self._set_data(indep, dep)
-        return self._estimate()
+        pass
 
     @property
     def params(self):
@@ -230,6 +230,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         return self.get_func_for_params(self._params)
 
+    @property
     def residuals(self):
         """
         Returns the residuals from a fit of the model to data.

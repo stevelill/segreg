@@ -143,7 +143,7 @@ def boot_param_dist(indep,
         print(boot_type)
         print()
 
-    resid = estimator.residuals()
+    resid = estimator.residuals
 
     params_arr = []
 

@@ -68,7 +68,6 @@ class OneBkptSegRegEstimator(Estimator):
     # OVERRIDE Estimator
     ##########################################################################
 
-    # overriding here for the types of inputs allowed
     def fit(self, indep, dep):
         """
         Fit the model to the given data.
@@ -88,7 +87,8 @@ class OneBkptSegRegEstimator(Estimator):
             The estimated parameters.  The returned parameters are, in order,
             [u,v,m1,m2,sigma].
         """
-        return super().fit(indep, dep)
+        self._set_data(indep, dep)
+        return self._estimate()
 
     @property
     def num_params(self):
@@ -295,6 +295,28 @@ class TwoBkptSegRegEstimator(Estimator):
         self._is_estimated = True
 
         return self._params
+
+    def fit(self, indep, dep):
+        """
+        Fit the model to the given data.
+
+        Parameters
+        ----------
+        indep: array-like of shape (num_data,)
+            The independent data.  Also called predictor, explanatory variable,
+            regressor, or exogenous variable.
+        dep: array-like of shape (num_data,)
+            The dependent data.  Also called response, regressand, or endogenous
+            variable.
+
+        Returns
+        -------
+        params: array of shape (num_params,)
+            The estimated parameters.  The returned parameters are, in order,
+            [u1,v1,u2,v2,m1,m2,sigma].
+        """
+        self._set_data(indep, dep)
+        return self._estimate()
 
     def get_func_for_params(self, params):
         u1 = params[0]
