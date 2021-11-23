@@ -131,7 +131,7 @@ class OneBkptSegRegEstimator(Estimator):
 
         if self._no_bias_variance:
             # subtract one representing the resid stddev itself
-            num_primary_params = len(self.estimated_params_indices()) - 1
+            num_primary_params = len(self.estimated_params_indices) - 1
             variance = self._rss / (num_obs - num_primary_params)
 
         resid_stddev = np.sqrt(variance)
@@ -284,7 +284,7 @@ class TwoBkptSegRegEstimator(Estimator):
 
         if self._no_bias_variance:
             # subtract one representing the resid stddev itself
-            num_primary_params = len(self.estimated_params_indices()) - 1
+            num_primary_params = len(self.estimated_params_indices) - 1
             variance = self._rss / (num_obs - num_primary_params)
 
         resid_stddev = np.sqrt(variance)

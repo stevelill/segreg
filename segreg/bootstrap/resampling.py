@@ -178,7 +178,7 @@ def boot_param_dist(indep,
     params_arr = np.array(params_arr)
 
     if not include_fixed_params:
-        estimated_params_indices = estimator.estimated_params_indices()
+        estimated_params_indices = estimator.estimated_params_indices
         params_arr = params_arr[:, estimated_params_indices]
 
     return params_arr

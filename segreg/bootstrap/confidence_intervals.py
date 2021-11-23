@@ -35,7 +35,7 @@ def _confidence_intervals(params_arr,
 
     # in case there are restricted params
     param_names = np.array(param_names)
-    param_names = param_names[estimator.estimated_params_indices()]
+    param_names = param_names[estimator.estimated_params_indices]
     cols = ["Left", "Estimate", "Right"]
 
     # BCa
@@ -153,7 +153,7 @@ def boot_conf_intervals(indep,
                                             verbose=verbose)
 
     if estimator.has_restricted_params():
-        est_params = est_params[estimator.estimated_params_indices()]
+        est_params = est_params[estimator.estimated_params_indices]
 
     (bca_ci_df,
      percentile_ci_df,

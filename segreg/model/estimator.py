@@ -1,5 +1,5 @@
 """
-General code for statistical estimators.
+General code for statistical regression estimators.
 """
 
 # Author: Steven Lillywhite
@@ -8,8 +8,6 @@ General code for statistical estimators.
 import abc
 
 import numpy as np
-
-# TODO: make more properties
 
 
 def loglikelihood(num_data, rss):
@@ -74,6 +72,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         self._loglikelihood = None
         self._is_estimated = False
 
+    @property
     @abc.abstractmethod
     def num_params(self):
         """
@@ -87,6 +86,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         """
         pass
 
+    @property
     @abc.abstractmethod
     def has_restricted_params(self):
         """
@@ -129,6 +129,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     def param_names(self):
         pass
 
+    @property
     def estimated_params_indices(self):
         """
         In case the model has fixed parameters, this give indices in the 

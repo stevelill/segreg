@@ -50,7 +50,7 @@ def bca_acceleration(estimator, indep, dep):
         sub_params = estimator.fit(sub_indep, sub_dep)
 
         # in case of fixed params in model
-        sub_params = sub_params[estimator.estimated_params_indices()]
+        sub_params = sub_params[estimator.estimated_params_indices]
 
         jackknife_estimates.append(sub_params)
 
