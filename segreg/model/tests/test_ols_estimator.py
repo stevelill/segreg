@@ -112,7 +112,7 @@ class TestOlsEstimator(unittest.TestCase):
         residuals = self._ols.residuals
         rss = np.vdot(residuals, residuals)
 
-        expected_loglikelihood = estimator.loglikelihood(self._num_data, rss)
+        expected_loglikelihood = estimator._loglikelihood(self._num_data, rss)
 
         self.assertAlmostEqual(expected_loglikelihood,
                                computed_loglikelihood,

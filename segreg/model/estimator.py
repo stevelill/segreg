@@ -10,7 +10,7 @@ import abc
 import numpy as np
 
 
-def loglikelihood(num_data, rss):
+def _loglikelihood(num_data, rss):
     """
     Loglikelihood evaluated at the MLE.
 
@@ -72,7 +72,6 @@ class Estimator(object, metaclass=abc.ABCMeta):
         self._loglikelihood = None
         self._is_estimated = False
 
-    
     @property
     @abc.abstractmethod
     def num_params(self):
@@ -277,7 +276,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         # TODO: could make num_obs this a class variable
         num_obs = len(self._indep)
-        self._loglikelihood = loglikelihood(num_obs, self._rss)
+        self._loglikelihood = _loglikelihood(num_obs, self._rss)
 
         return self._loglikelihood
 
