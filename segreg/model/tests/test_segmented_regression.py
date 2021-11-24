@@ -119,8 +119,8 @@ class TestSegmentedRegression(unittest.TestCase):
         estimator.fit(self._indep, self._dep)
         restricted_estimator.fit(self._indep, self._dep)
 
-        func = estimator.get_func()
-        res_func = restricted_estimator.get_func()
+        func = estimator.model_function
+        res_func = restricted_estimator.model_function
 
         vals = func(self._indep)
 

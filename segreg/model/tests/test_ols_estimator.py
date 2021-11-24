@@ -73,7 +73,7 @@ class TestOlsEstimator(unittest.TestCase):
         def expected_func(x):
             return est_params[0] + est_params[1] * x
 
-        computed_func = self._ols.get_func()
+        computed_func = self._ols.model_function
 
         expected_func_vals = expected_func(self._indep)
         computed_func_vals = computed_func(self._indep)
@@ -99,7 +99,7 @@ class TestOlsEstimator(unittest.TestCase):
         self._ols.fit(self._indep, self._dep)
         computed_residuals = self._ols.residuals
 
-        func = self._ols.get_func()
+        func = self._ols.model_function
         expected_residuals = self._dep - func(self._indep)
 
         close = np.allclose(expected_residuals, computed_residuals)
@@ -123,7 +123,7 @@ class TestOlsEstimator(unittest.TestCase):
 #        computed_r_squared = self._segreg.r_squared
 #
 #        dep_mean = np.mean(self._dep)
-#        func = self._segreg.get_func()
+#        func = self._segreg.model_function
 #
 #        regression_vals = func(self._indep) - dep_mean
 #        regression_sum_sq = np.vdot(regression_vals, regression_vals)

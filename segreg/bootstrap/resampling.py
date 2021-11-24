@@ -124,7 +124,7 @@ def boot_param_dist(indep,
     """
 
     estimator.fit(indep, dep)
-    func = estimator.get_func()
+    func = estimator.model_function
 
     fitted_values = func(indep)
 

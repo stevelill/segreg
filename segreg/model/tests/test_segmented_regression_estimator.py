@@ -97,7 +97,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         self.assertAlmostEqual(rss, computed_func_val, places=9)
 
     def test_func(self):
-        computed_func = self._segreg.get_func()
+        computed_func = self._segreg.model_function
 
         est_params = self._segreg.fit(self._indep, self._dep)
 
@@ -136,7 +136,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
     def test_residuals(self):
         computed_residuals = self._segreg.residuals
 
-        func = self._segreg.get_func()
+        func = self._segreg.model_function
         expected_residuals = self._dep - func(self._indep)
 
         close = np.allclose(expected_residuals, computed_residuals)
@@ -156,7 +156,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         computed_r_squared = self._segreg.r_squared
 
         dep_mean = np.mean(self._dep)
-        func = self._segreg.get_func()
+        func = self._segreg.model_function
 
         regression_vals = func(self._indep) - dep_mean
         regression_sum_sq = np.vdot(regression_vals, regression_vals)

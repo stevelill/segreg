@@ -90,6 +90,8 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def has_restricted_params(self):
         """
+        Whether there are any model parameters set to a fixed value.
+
         Returns
         -------
         bool
@@ -116,7 +118,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         See Also
         --------
-        `get_func`
+        `model_function`
 
         Returns
         -------
@@ -195,9 +197,11 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         return self._params
 
-    def get_func(self):
+    @property
+    def model_function(self):
         r"""
-        Returns the function defined by the estimated parameters.  
+        Returns the regression model function defined by the estimated 
+        parameters.  
 
         That is, if the model is of the form:
 
@@ -248,7 +252,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         if not self._is_estimated:
             raise Exception("Need to call fit first")
 
-        func = self.get_func()
+        func = self.model_function
         self._residuals = self._dep - func(self._indep)
 
         return self._residuals
@@ -318,7 +322,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         dep_mean = np.mean(self._dep)
 
-        func = self.get_func()
+        func = self.model_function
 
         regression_vals = func(self._indep) - dep_mean
 
