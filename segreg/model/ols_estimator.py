@@ -108,6 +108,10 @@ class OLSRegressionEstimator(Estimator):
 
         return self._params
 
+    @property
+    def estimated_params_indices(self):
+        return self._estimated_params_indices
+
     def get_func_for_params(self, params):
         intercept = params[0]
         slope = params[1]

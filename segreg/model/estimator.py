@@ -72,6 +72,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         self._loglikelihood = None
         self._is_estimated = False
 
+    
     @property
     @abc.abstractmethod
     def num_params(self):
@@ -130,13 +131,14 @@ class Estimator(object, metaclass=abc.ABCMeta):
         pass
 
     @property
+    @abc.abstractmethod
     def estimated_params_indices(self):
         """
         In case the model has fixed parameters, this give indices in the 
         parameter array of the non-fixed parameters.  That is, the parameters 
         that are actually estimated.
         """
-        return self._estimated_params_indices
+        pass
 
     @abc.abstractmethod
     def fit(self, indep, dep):
@@ -252,6 +254,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         return self._residuals
 
+    @property
     def loglikelihood(self):
         """
         Computes loglikelihood at the MLE (maximum likelihood estimate).

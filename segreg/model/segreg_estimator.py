@@ -98,6 +98,10 @@ class OneBkptSegRegEstimator(Estimator):
         # TODO change later this impl
         return self._restrict_rhs_slope is not None
 
+    @property
+    def estimated_params_indices(self):
+        return self._estimated_params_indices
+
     def _set_data(self, indep, dep):
         self._clear()
 
@@ -254,6 +258,10 @@ class TwoBkptSegRegEstimator(Estimator):
     def has_restricted_params(self):
         # TODO change later this impl
         return len(self._fixed_params_indices) > 0
+
+    @property
+    def estimated_params_indices(self):
+        return self._estimated_params_indices
 
     def _set_data(self, indep, dep):
         self._clear()

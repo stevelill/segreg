@@ -107,7 +107,7 @@ class TestOlsEstimator(unittest.TestCase):
 
     def test_loglikelihood(self):
         self._ols.fit(self._indep, self._dep)
-        computed_loglikelihood = self._ols.loglikelihood()
+        computed_loglikelihood = self._ols.loglikelihood
 
         residuals = self._ols.residuals
         rss = np.vdot(residuals, residuals)

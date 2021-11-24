@@ -143,7 +143,7 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         self.assertTrue(close)
 
     def test_loglikelihood(self):
-        computed_loglikelihood = self._segreg.loglikelihood()
+        computed_loglikelihood = self._segreg.loglikelihood
 
         rss = self._segreg.rss
         expected_loglikelihood = estimator.loglikelihood(self._num_data, rss)
