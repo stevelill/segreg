@@ -302,6 +302,8 @@ def estimate_one_bkpt_segreg(indep,
                              optimize=True,
                              check_near_middle=False):
     """
+    Estimate one-bkpt segmented regression model.
+    
     NOTES
     -----
     This implementation does not compute anything when there are 2n+1 distinct

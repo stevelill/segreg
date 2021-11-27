@@ -82,7 +82,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         Returns
         -------
-        int
+        num_params: int
         """
         pass
 
@@ -94,14 +94,14 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         Returns
         -------
-        bool
+        has_restricted_params: bool
         """
         pass
 
     @abc.abstractmethod
     def get_func_for_params(self, *params):
         r"""
-        Returns the function defined by the given parameters.  
+        Returns the regression model function defined by the given parameters.  
 
         That is, if the model is of the form:
 
@@ -129,15 +129,26 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
     def param_names(self):
+        """
+        Names of the parameters.
+        
+        Returns
+        -------
+        param_names: array-like of shape (``num_params``,)
+        """
         pass
 
     @property
     @abc.abstractmethod
     def estimated_params_indices(self):
         """
-        In case the model has fixed parameters, this give indices in the 
-        parameter array of the non-fixed parameters.  That is, the parameters 
-        that are actually estimated.
+        Indices in the parameter array of the fitted parameters.
+        
+        This is only useful when there are fixed parameters in the model.
+
+        Returns
+        -------
+        estimated_params_indices: array-like of shape (num fitted,)
         """
         pass
 
@@ -238,7 +249,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @property
     def residuals(self):
         """
-        Returns the residuals from a fit of the model to data.
+        Returns the residuals from the fit.
 
         Raises
         ------
@@ -287,7 +298,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @property
     def rss(self):
         """
-        Residual sum of squares from the fit.
+        Residual sum of squares of the fit.
 
         Raises
         ------
@@ -306,7 +317,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @property
     def r_squared(self):
         """
-        Computes R-squared of the fit.
+        R-squared of the fit.
 
         Raises
         ------

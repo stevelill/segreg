@@ -152,7 +152,7 @@ def boot_conf_intervals(indep,
                                             include_fixed_params=False,
                                             verbose=verbose)
 
-    if estimator.has_restricted_params():
+    if estimator.has_restricted_params:
         est_params = est_params[estimator.estimated_params_indices]
 
     (bca_ci_df,

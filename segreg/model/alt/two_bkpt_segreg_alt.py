@@ -376,6 +376,9 @@ def estimate_two_bkpt_segreg(indep,
                              num_between_to_skip=4,
                              verbose=False,
                              optimize=True):
+    """
+    Estimate two-bkpt segmented regression model.
+    """
     # TODO: do we need to sort the data?
     # TODO: can we raise Exception with Numba?
     # if num_between_to_skip < 2:

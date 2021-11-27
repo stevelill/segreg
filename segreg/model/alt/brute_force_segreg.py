@@ -24,7 +24,7 @@ def estimate_one_bkpt_segreg(indep,
                              extra_verbose=False,
                              check_near_middle=False):
     """
-    estimate_one_bkpt_segreg(indep, dep)
+    Estimate one-bkpt segmented regression model using a brute-force method.
     
     
     Parameters
@@ -119,7 +119,7 @@ def estimate_two_bkpt_segreg(indep,
                              verbose=False,
                              extra_verbose=False):
     """
-
+    Estimate two-bkpt segmented regression model using a brute-force method.
     """
     # list call gets set out of order, so we call sort here on indices
     unique_indep = list(set(indep))

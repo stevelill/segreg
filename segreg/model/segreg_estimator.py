@@ -64,10 +64,6 @@ class OneBkptSegRegEstimator(Estimator):
         self._estimated_params_indices = np.setdiff1d(np.arange(self._num_params),
                                                       self._fixed_params_indices)
 
-    ##########################################################################
-    # OVERRIDE Estimator
-    ##########################################################################
-
     def fit(self, indep, dep):
         """
         Fit the model to the given data.
@@ -94,6 +90,7 @@ class OneBkptSegRegEstimator(Estimator):
     def num_params(self):
         return self._num_params
 
+    @property
     def has_restricted_params(self):
         # TODO change later this impl
         return self._restrict_rhs_slope is not None
@@ -166,10 +163,6 @@ class OneBkptSegRegEstimator(Estimator):
         result = ["u", "v", "m1", "m2", "sigma"]
 
         return result
-
-    ##########################################################################
-    # IMPL
-    ##########################################################################
 
     def _argmin_sum_squares(self):
         """
@@ -247,14 +240,11 @@ class TwoBkptSegRegEstimator(Estimator):
         self._estimated_params_indices = np.setdiff1d(np.arange(self._num_params),
                                                       self._fixed_params_indices)
 
-    ##########################################################################
-    # OVERRIDE Estimator
-    ##########################################################################
-
     @property
     def num_params(self):
         return self._num_params
 
+    @property
     def has_restricted_params(self):
         # TODO change later this impl
         return len(self._fixed_params_indices) > 0
@@ -342,10 +332,6 @@ class TwoBkptSegRegEstimator(Estimator):
         result = ["u1", "v1", "u2", "v2", "m1", "m2", "sigma"]
 
         return result
-
-    ##########################################################################
-    # IMPL
-    ##########################################################################
 
     def _argmin_sum_squares(self):
 
