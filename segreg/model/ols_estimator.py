@@ -17,20 +17,22 @@ class OLSRegressionEstimator(Estimator):
 
     This estimator is limited to univariate, linear, regression problems.  The 
     model fitting estimates the parameters: 
-    ``intercept, slope, sigma``, where the fitted line is defined by
+
+        ``[intercept, slope, sigma]``
+
+    where the fitted line is defined by
+
         y = ``intercept`` + ``slope`` * x
 
-        and ``sigma`` is the standard deviation of the residuals
+    and ``sigma`` is the standard deviation of the residuals.
 
     Notes
     -----
-    There are many standard python libraries for this type of OLS, eg: 
-    ``scipy``, ``statsmodels``.  This class is provided as a convenience to
-    implement the same interface as the estimators for segmented regression.
-    Moreover, the underlying implementation has been customized for the 
-    univariate regression problems for which this class is limited, for the
-    purpose of greater calculation speed.
-
+    There are many standard python libraries for this type of OLS. This class is 
+    provided as a convenience to implement the same interface as the estimators 
+    for segmented regression.  Moreover, the underlying implementation has been 
+    customized for the univariate regression problems for which this class is 
+    limited, for the purpose of greater calculation speed.
 
     See Also
     --------
@@ -47,10 +49,6 @@ class OLSRegressionEstimator(Estimator):
         self._fixed_params_indices = []
         self._estimated_params_indices = np.setdiff1d(np.arange(self._num_params),
                                                       self._fixed_params_indices)
-
-    ############################################################################
-    # OVERRIDE Estimator
-    ############################################################################
 
     def fit(self, indep, dep):
         """
@@ -76,6 +74,18 @@ class OLSRegressionEstimator(Estimator):
         """
         self._set_data(indep, dep)
         return self._estimate()
+
+    @property
+    def params(self):
+        """
+        Returns the fitted parameters.
+
+        The returned parameters are, in order,
+
+            [intercept, slope, sigma]
+        """
+        return super().params
+    params.__doc__ += Estimator.params.__doc__ 
 
     @property
     def num_params(self):
@@ -128,3 +138,5 @@ class OLSRegressionEstimator(Estimator):
         result = ["intercept", "slope", "sigma"]
 
         return result
+
+

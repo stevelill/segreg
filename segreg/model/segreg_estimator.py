@@ -19,7 +19,11 @@ class OneBkptSegRegEstimator(Estimator):
 
     This estimator is limited to univariate, continuous, linear, one-bkpt 
     segmented regression problems.  The model fitting estimates the parameters: 
-    ``u, v, m1, m2, sigma``, where
+
+        ``[u, v, m1, m2, sigma]``
+
+    where
+
         ``(u,v)`` is the breakpoint (in x-y plane)
 
         ``m1`` is the slope of the left-hand segment
@@ -81,10 +85,22 @@ class OneBkptSegRegEstimator(Estimator):
         -------
         params: array of shape (num_params,)
             The estimated parameters.  The returned parameters are, in order,
-            [u,v,m1,m2,sigma].
+            [u, v, m1, m2, sigma].
         """
         self._set_data(indep, dep)
         return self._estimate()
+
+    @property
+    def params(self):
+        """
+        Returns the fitted parameters.
+
+        The returned parameters are, in order,
+
+            [u, v, m1, m2, sigma]
+        """
+        return super().params
+    params.__doc__ += Estimator.params.__doc__
 
     @property
     def num_params(self):
@@ -191,7 +207,11 @@ class TwoBkptSegRegEstimator(Estimator):
 
     This estimator is limited to univariate, continuous, linear, two-bkpt 
     segmented regression problems.  The model fitting estimates the parameters: 
-    ``u1, v1, u2, v2, m1, m2, sigma``, where
+    
+    ``[u1, v1, u2, v2, m1, m2, sigma]``
+    
+    where
+    
         ``(u1,v1), (u2, v2)`` are the breakpoints (in x-y plane), ordered such
         that ``u1 < u2``
 
@@ -311,10 +331,22 @@ class TwoBkptSegRegEstimator(Estimator):
         -------
         params: array of shape (num_params,)
             The estimated parameters.  The returned parameters are, in order,
-            [u1,v1,u2,v2,m1,m2,sigma].
+            [u1, v1, u2, v2, m1, m2, sigma].
         """
         self._set_data(indep, dep)
         return self._estimate()
+
+    @property
+    def params(self):
+        """
+        Returns the fitted parameters.
+
+        The returned parameters are, in order,
+
+            [u1, v1, u2, v2, m1, m2, sigma]
+        """
+        return super().params
+    params.__doc__ += Estimator.params.__doc__
 
     def get_func_for_params(self, params):
         u1 = params[0]

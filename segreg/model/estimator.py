@@ -118,11 +118,11 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         See Also
         --------
-        `model_function`
+        model_function
 
         Returns
         -------
-        function
+        func_for_params: function object
         """
         pass
 
@@ -131,7 +131,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     def param_names(self):
         """
         Names of the parameters.
-        
+
         Returns
         -------
         param_names: array-like of shape (``num_params``,)
@@ -143,7 +143,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     def estimated_params_indices(self):
         """
         Indices in the parameter array of the fitted parameters.
-        
+
         This is only useful when there are fixed parameters in the model.
 
         Returns
@@ -171,9 +171,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @property
     def params(self):
         r"""
-        Returns the fitted parameters.
-
-        If the model is of the form:
+        More generally, if the (fitted) model is of the form:
 
         .. math::
             y_i = f(x_i; \theta) + \varepsilon_i
@@ -191,7 +189,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         Notes
         -----
         The error variance :math:`\sigma^2` is often considered a nuisance
-        parameter.
+        parameter, and is not required for many applications.
 
 
         Raises
@@ -230,7 +228,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         See Also
         --------
-        `get_func_for_params`
+        get_func_for_params
 
         Raises
         ------
@@ -239,7 +237,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         Returns
         -------
-        function object
+        model_function: function object
         """
         if not self._is_estimated:
             raise Exception("Need to call fit first")
@@ -283,7 +281,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         Returns
         -------
-        float
+        loglikelihood: float
         """
         # TODO: check calling this before estimation is raising this exception
         if not self._is_estimated:
@@ -307,7 +305,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         Returns
         -------
-        float
+        rss: float
         """
         if not self._is_estimated:
             raise Exception("Need to call fit first")
@@ -326,7 +324,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
 
         Returns
         -------
-        float
+        r_squared: float
         """
         if not self._is_estimated:
             raise Exception("Need to call fit first")
