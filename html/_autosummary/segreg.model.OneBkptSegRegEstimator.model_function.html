@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>segreg.model.OneBkptSegRegEstimator.model_function &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="segreg.model.OneBkptSegRegEstimator.num_params" href="segreg.model.OneBkptSegRegEstimator.num_params.html" />
+    <link rel="prev" title="segreg.model.OneBkptSegRegEstimator.loglikelihood" href="segreg.model.OneBkptSegRegEstimator.loglikelihood.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="segreg.model.OneBkptSegRegEstimator.num_params.html" title="segreg.model.OneBkptSegRegEstimator.num_params"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.OneBkptSegRegEstimator.loglikelihood.html" title="segreg.model.OneBkptSegRegEstimator.loglikelihood"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="segreg.model.OneBkptSegRegEstimator.html" accesskey="U">segreg.model.OneBkptSegRegEstimator</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.OneBkptSegRegEstimator.model_function</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="segreg-model-onebkptsegregestimator-model-function">
+<h1>segreg.model.OneBkptSegRegEstimator.model_function<a class="headerlink" href="#segreg-model-onebkptsegregestimator-model-function" title="Permalink to this headline">¶</a></h1>
+<dl class="py property">
+<dt class="sig sig-object py" id="segreg.model.OneBkptSegRegEstimator.model_function">
+<em class="property"><span class="pre">property</span> </em><span class="sig-prename descclassname"><span class="pre">OneBkptSegRegEstimator.</span></span><span class="sig-name descname"><span class="pre">model_function</span></span><a class="headerlink" href="#segreg.model.OneBkptSegRegEstimator.model_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the regression model function defined by the estimated
+parameters.</p>
+<p>That is, if the model is of the form:</p>
+<div class="math notranslate nohighlight">
+\[y = f(x; \theta) + \varepsilon\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a function of x depending on the parameter vector
+<span class="math notranslate nohighlight">\(\theta\)</span>, then this returns the function</p>
+<div class="math notranslate nohighlight">
+\[f(x; \widehat{\theta})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\widehat{\theta}\)</span> is the estimated parameter vector from
+fitting the model to data.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.get_func_for_params.html#segreg.model.OneBkptSegRegEstimator.get_func_for_params" title="segreg.model.OneBkptSegRegEstimator.get_func_for_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_func_for_params</span></code></a></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception</strong> – If <code class="docutils literal notranslate"><span class="pre">fit</span></code> has not been called.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>model_function</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>function object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="segreg.model.OneBkptSegRegEstimator.loglikelihood.html"
+                        title="previous chapter">segreg.model.OneBkptSegRegEstimator.loglikelihood</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="segreg.model.OneBkptSegRegEstimator.num_params.html"
+                        title="next chapter">segreg.model.OneBkptSegRegEstimator.num_params</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_autosummary/segreg.model.OneBkptSegRegEstimator.model_function.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="segreg.model.OneBkptSegRegEstimator.num_params.html" title="segreg.model.OneBkptSegRegEstimator.num_params"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.OneBkptSegRegEstimator.loglikelihood.html" title="segreg.model.OneBkptSegRegEstimator.loglikelihood"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="segreg.model.OneBkptSegRegEstimator.html" >segreg.model.OneBkptSegRegEstimator</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.OneBkptSegRegEstimator.model_function</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

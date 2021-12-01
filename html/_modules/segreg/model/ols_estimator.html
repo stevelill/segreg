@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>segreg.model.ols_estimator &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.ols_estimator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for segreg.model.ols_estimator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ordinary Least Squares Estimator.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Steven Lillywhite</span>
+<span class="c1"># License: BSD 3 clause</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">regression</span>
+<span class="kn">from</span> <span class="nn">segreg.model.estimator</span> <span class="kn">import</span> <span class="n">Estimator</span>
+
+
+<div class="viewcode-block" id="OLSRegressionEstimator"><a class="viewcode-back" href="../../../_autosummary/segreg.model.OLSRegressionEstimator.html#segreg.model.OLSRegressionEstimator">[docs]</a><span class="k">class</span> <span class="nc">OLSRegressionEstimator</span><span class="p">(</span><span class="n">Estimator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estimator for ordinary least-squares regression.</span>
+
+<span class="sd">    This estimator is limited to univariate, linear, regression problems.  The </span>
+<span class="sd">    model fitting estimates the parameters: </span>
+
+<span class="sd">        ``[intercept, slope, sigma]``</span>
+
+<span class="sd">    where the fitted line is defined by</span>
+
+<span class="sd">        y = ``intercept`` + ``slope`` * x</span>
+
+<span class="sd">    and ``sigma`` is the standard deviation of the residuals.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    There are many standard python libraries for this type of OLS. This class is </span>
+<span class="sd">    provided as a convenience to implement the same interface as the estimators </span>
+<span class="sd">    for segmented regression.  Moreover, the underlying implementation has been </span>
+<span class="sd">    customized for the univariate regression problems for which this class is </span>
+<span class="sd">    limited, for the purpose of greater calculation speed.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    OneBkptSegRegEstimator</span>
+<span class="sd">    TwoBkptSegRegEstimator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># we include estimate of residual variance as a parameter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num_params</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_params_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_estimated_params_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_params</span><span class="p">),</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_params_indices</span><span class="p">)</span>
+
+<div class="viewcode-block" id="OLSRegressionEstimator.fit"><a class="viewcode-back" href="../../../_autosummary/segreg.model.OLSRegressionEstimator.fit.html#segreg.model.OLSRegressionEstimator.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit the model to the given data.</span>
+
+<span class="sd">        The fit automatically includes an intercept.  There is no need to add</span>
+<span class="sd">        a column of ones to the ``indep`` input.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        indep: array-like of shape (num_data,)</span>
+<span class="sd">            The independent data.  Also called predictor, explanatory variable,</span>
+<span class="sd">            regressor, or exogenous variable.</span>
+<span class="sd">        dep: array-like of shape (num_data,)</span>
+<span class="sd">            The dependent data.  Also called response, regressand, or endogenous</span>
+<span class="sd">            variable.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        params: array of shape (num_params,)</span>
+<span class="sd">            The estimated parameters.  The returned parameters are, in order,</span>
+<span class="sd">            [intercept, slope, sigma].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># some cython methods only accept double array arguments</span>
+        <span class="n">indep_to_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">dep_to_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dep</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_data</span><span class="p">(</span><span class="n">indep_to_use</span><span class="p">,</span> <span class="n">dep_to_use</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the fitted parameters.</span>
+
+<span class="sd">        The returned parameters are, in order,</span>
+
+<span class="sd">            [intercept, slope, sigma]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">params</span>
+    <span class="n">params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="vm">__doc__</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_params</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_restricted_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_indep</span> <span class="o">=</span> <span class="n">indep</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dep</span> <span class="o">=</span> <span class="n">dep</span>
+
+    <span class="k">def</span> <span class="nf">_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">est_const</span><span class="p">,</span> <span class="n">est_mat</span><span class="p">,</span> <span class="n">rss</span> <span class="o">=</span> <span class="n">regression</span><span class="o">.</span><span class="n">ols_with_rss</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_indep</span><span class="p">,</span>
+                                                          <span class="bp">self</span><span class="o">.</span><span class="n">_dep</span><span class="p">)</span>
+
+        <span class="n">num_obs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_indep</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rss</span> <span class="o">=</span> <span class="n">rss</span>
+        <span class="c1"># TODO: mle way or non-bias way here?</span>
+        <span class="c1">#variance = self._rss / num_obs</span>
+
+        <span class="n">variance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rss</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_obs</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">resid_stddev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">est_const</span><span class="p">,</span> <span class="n">est_mat</span><span class="p">,</span> <span class="n">resid_stddev</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_estimated</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">estimated_params_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimated_params_indices</span>
+
+<div class="viewcode-block" id="OLSRegressionEstimator.get_func_for_params"><a class="viewcode-back" href="../../../_autosummary/segreg.model.OLSRegressionEstimator.get_func_for_params.html#segreg.model.OLSRegressionEstimator.get_func_for_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_func_for_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="n">intercept</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">slope</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">ols_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">intercept</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">x</span>
+
+        <span class="k">return</span> <span class="n">ols_func</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">param_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;intercept&quot;</span><span class="p">,</span> <span class="s2">&quot;slope&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.ols_estimator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

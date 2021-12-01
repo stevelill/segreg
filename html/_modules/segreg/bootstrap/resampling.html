@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>segreg.bootstrap.resampling &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.bootstrap.resampling</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for segreg.bootstrap.resampling</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Bootstrap resampling methods.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Steven Lillywhite</span>
+<span class="c1"># License: BSD 3 clause</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="boot_resample"><a class="viewcode-back" href="../../../_autosummary/segreg.bootstrap.boot_resample.html#segreg.bootstrap.boot_resample">[docs]</a><span class="k">def</span> <span class="nf">boot_resample</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span>
+                  <span class="n">dep</span><span class="p">,</span>
+                  <span class="n">fitted_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">resid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">resample_cases</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A single boot resampling for a regression model.</span>
+
+<span class="sd">    If ``resample_cases`` is False (the default), then both ``fitted_values``</span>
+<span class="sd">    and ``resid`` must be set.  In this case, it is assumed that there is some </span>
+<span class="sd">    (fitted) model of the form:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            y = f(x) + \epsilon</span>
+
+<span class="sd">    and the ``fitted_values`` are :math:`\{f(x_i)\}`, where </span>
+<span class="sd">    ``indep`` = :math:`\{x_1, x_2, \dots, x_n\}`.  If </span>
+<span class="sd">    ``resid`` = :math:`\{\epsilon_1, \epsilon_2, \dots, \epsilon_n\}`, then</span>
+<span class="sd">    this function takes a random sample with replacement from ``resid``, </span>
+<span class="sd">    :math:`\{\epsilon_1^*, \epsilon_2^*, \dots, \epsilon_n^*\}`, and returns</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \{f(x_i) + \epsilon_i^*\}</span>
+<span class="sd">    as the resampled dependent values.</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    indep: array-like</span>
+<span class="sd">        The independent data.  Also called predictor, explanatory variable,</span>
+<span class="sd">        regressor, or exogenous variable.</span>
+<span class="sd">    dep: array-like</span>
+<span class="sd">        The dependent data.  Also called response, regressand, or endogenous</span>
+<span class="sd">        variable.</span>
+<span class="sd">    fitted_values: array-like of shape (len(indep),)</span>
+<span class="sd">        The returned dependent data will be these values plus bootstrap </span>
+<span class="sd">        residuals (random draws with replacement from ``resid``).</span>
+<span class="sd">    resid: array-like of shape (len(``indep``),)</span>
+<span class="sd">        Residuals from which to draw a bootstrap resample (random sample with</span>
+<span class="sd">        replacement).</span>
+<span class="sd">    resample_cases : boolean, default False</span>
+<span class="sd">        If True, the bootstrap will resample pairs with replacement </span>
+<span class="sd">        from (``indep``, ``dep``).  See Section 6.2.4 in Davison and Hinkley, </span>
+<span class="sd">        &quot;Bootstrap Methods and their Application&quot;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    indep_resample: numpy array</span>
+<span class="sd">        When ``resample_cases`` is False (the default), the returned array is</span>
+<span class="sd">        the input ``indep``.  That is, a copy is not made.</span>
+<span class="sd">    dep_resample: numpy array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">resample_cases</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">indep_resample</span><span class="p">,</span>
+         <span class="n">dep_resample</span><span class="p">)</span> <span class="o">=</span> <span class="n">random_selection_with_replacement_two_series</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span>
+                                                                      <span class="n">dep</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">resid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;resid must be set&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fitted_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;fitted values must be set&quot;</span><span class="p">)</span>
+
+        <span class="c1"># or from empirical residuals</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="n">random_selection_with_replacement</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+        <span class="n">dep_resample</span> <span class="o">=</span> <span class="n">fitted_values</span> <span class="o">+</span> <span class="n">epsilon</span>
+        <span class="n">indep_resample</span> <span class="o">=</span> <span class="n">indep</span>
+
+    <span class="k">return</span> <span class="n">indep_resample</span><span class="p">,</span> <span class="n">dep_resample</span></div>
+
+
+<div class="viewcode-block" id="boot_param_dist"><a class="viewcode-back" href="../../../_autosummary/segreg.bootstrap.boot_param_dist.html#segreg.bootstrap.boot_param_dist">[docs]</a><span class="k">def</span> <span class="nf">boot_param_dist</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span>
+                    <span class="n">dep</span><span class="p">,</span>
+                    <span class="n">estimator</span><span class="p">,</span>
+                    <span class="n">num_sims</span><span class="p">,</span>
+                    <span class="n">resample_cases</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">diagnoser</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">include_fixed_params</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes bootstrap sampling distribution of model parameters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    indep: array-like</span>
+<span class="sd">        The independent data.  Also called predictor, explanatory variable,</span>
+<span class="sd">        regressor, or exogenous variable.</span>
+<span class="sd">    dep: array-like</span>
+<span class="sd">        The dependent data.  Also called response, regressand, or endogenous</span>
+<span class="sd">        variable.</span>
+<span class="sd">    estimator : subclass of segreg.model.estimator.Estimator</span>
+<span class="sd">    num_sims: int</span>
+<span class="sd">        Number of bootstrap simulations.</span>
+<span class="sd">    resample_cases : boolean, default False</span>
+<span class="sd">        If True, the bootstrap will resample pairs with replacement </span>
+<span class="sd">        from (indep, dep).  See Section 6.2.4 in Davison and Hinkley, </span>
+<span class="sd">        &quot;Bootstrap Methods and their Application&quot;.</span>
+<span class="sd">    seed: int</span>
+<span class="sd">        Seed for random generator driving bootstrap simulations.</span>
+<span class="sd">    verbose: bool</span>
+<span class="sd">    diagnoser: function object taking params: estimator, params, indep, dep</span>
+<span class="sd">        Used for diagnosing each bootstrap resample.  This is currently a</span>
+<span class="sd">        developmental feature.</span>
+<span class="sd">    include_fixed_params: bool</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    param sims: numpy array shape (num_sims, num_params)</span>
+<span class="sd">        Returns bootstrap sampling distribution for the parameters: panel data </span>
+<span class="sd">        where each row represents parameter estimates for a bootstrap sample.</span>
+<span class="sd">        The columns are in the same order as given by the ``estimator`` input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">)</span>
+    <span class="n">func</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">model_function</span>
+
+    <span class="n">fitted_values</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">indep</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">num_data</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indep</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">boot_type</span> <span class="o">=</span> <span class="s2">&quot;resample residuals&quot;</span>
+        <span class="k">if</span> <span class="n">resample_cases</span><span class="p">:</span>
+            <span class="n">boot_type</span> <span class="o">=</span> <span class="s2">&quot;resample cases&quot;</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bootstrap parameter statistics&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num bootstrap resamples: &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_sims</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">boot_type</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+    <span class="n">resid</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">residuals</span>
+
+    <span class="n">params_arr</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># small speed-up to pre-compute these</span>
+    <span class="c1">#resample_indices = np.random.choice(num_data, (num_sims, num_data) )</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">200000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iter: &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+        <span class="n">indep_curr</span><span class="p">,</span> <span class="n">dep_curr</span> <span class="o">=</span> <span class="n">boot_resample</span><span class="p">(</span><span class="n">indep</span><span class="o">=</span><span class="n">indep</span><span class="p">,</span>
+                                             <span class="n">dep</span><span class="o">=</span><span class="n">dep</span><span class="p">,</span>
+                                             <span class="n">fitted_values</span><span class="o">=</span><span class="n">fitted_values</span><span class="p">,</span>
+                                             <span class="n">resid</span><span class="o">=</span><span class="n">resid</span><span class="p">,</span>
+                                             <span class="n">resample_cases</span><span class="o">=</span><span class="n">resample_cases</span><span class="p">)</span>
+
+        <span class="c1"># check resampled data size for sanity</span>
+        <span class="n">curr_num_indep</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indep_curr</span><span class="p">)</span>
+        <span class="n">curr_num_dep</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dep_curr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">curr_num_indep</span> <span class="o">!=</span> <span class="n">num_data</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">curr_num_dep</span> <span class="o">!=</span> <span class="n">num_data</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;num boot resamples not equal to orig num data!!!&quot;</span><span class="p">)</span>
+
+        <span class="n">curr_params</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep_curr</span><span class="p">,</span> <span class="n">dep_curr</span><span class="p">)</span>
+
+        <span class="n">params_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_params</span><span class="p">)</span>
+
+        <span class="c1"># potential diagnosis</span>
+        <span class="k">if</span> <span class="n">diagnoser</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">diagnoser</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">curr_params</span><span class="p">,</span> <span class="n">indep_curr</span><span class="p">,</span> <span class="n">dep_curr</span><span class="p">)</span>
+
+    <span class="n">params_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">params_arr</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">include_fixed_params</span><span class="p">:</span>
+        <span class="n">estimated_params_indices</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">estimated_params_indices</span>
+        <span class="n">params_arr</span> <span class="o">=</span> <span class="n">params_arr</span><span class="p">[:,</span> <span class="n">estimated_params_indices</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">params_arr</span></div>
+
+
+<div class="viewcode-block" id="random_selection_with_replacement"><a class="viewcode-back" href="../../../_autosummary/segreg.bootstrap.random_selection_with_replacement.html#segreg.bootstrap.random_selection_with_replacement">[docs]</a><span class="k">def</span> <span class="nf">random_selection_with_replacement</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Random draw with replacement from series.  Returns same number of elements</span>
+<span class="sd">    as the input.</span>
+
+<span class="sd">    PARAMETERS</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series : array-like</span>
+
+<span class="sd">    RETURNS</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">series_to_use</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">series_to_use</span><span class="p">)</span>
+
+    <span class="n">choice_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">series_to_use</span><span class="p">[</span><span class="n">choice_indices</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="random_selection_with_replacement_two_series"><a class="viewcode-back" href="../../../_autosummary/segreg.bootstrap.random_selection_with_replacement_two_series.html#segreg.bootstrap.random_selection_with_replacement_two_series">[docs]</a><span class="k">def</span> <span class="nf">random_selection_with_replacement_two_series</span><span class="p">(</span><span class="n">series1</span><span class="p">,</span> <span class="n">series2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Random draw with replacement.  Each draw is from the same index for the</span>
+<span class="sd">    two series.  The two series are assumed to have the same length, and</span>
+<span class="sd">    the number of draws is equal to the number of elements of the series.</span>
+
+<span class="sd">    PARAMETERS</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series1 : array-like</span>
+<span class="sd">    series2 : array-like</span>
+<span class="sd">        Must have same number of elements as series1.</span>
+
+<span class="sd">    RETURNS</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        tuple of numpy array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">series1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">series2</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;length of series1: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span>
+                        <span class="s2">&quot; not equal to &quot;</span> <span class="o">+</span>
+                        <span class="s2">&quot;length of series2: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">series2</span><span class="p">)))</span>
+
+    <span class="n">series_to_use1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">series1</span><span class="p">)</span>
+    <span class="n">series_to_use2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">series2</span><span class="p">)</span>
+
+    <span class="n">choice_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">series_to_use1</span><span class="p">[</span><span class="n">choice_indices</span><span class="p">],</span> <span class="n">series_to_use2</span><span class="p">[</span><span class="n">choice_indices</span><span class="p">]</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.bootstrap.resampling</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

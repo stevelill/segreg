@@ -1,0 +1,6 @@
+﻿segreg.model.one\_bkpt\_segreg.one\_bkpt\_rss\_func
+===================================================
+
+.. currentmodule:: segreg.model.one_bkpt_segreg
+
+.. autofunction:: one_bkpt_rss_func
