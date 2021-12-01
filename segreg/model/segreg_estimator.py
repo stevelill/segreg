@@ -32,6 +32,9 @@ class OneBkptSegRegEstimator(Estimator):
 
         ``sigma`` is the standard deviation of the residuals
 
+    Examples
+    --------
+    >>> 
 
     See Also
     --------
@@ -87,7 +90,11 @@ class OneBkptSegRegEstimator(Estimator):
             The estimated parameters.  The returned parameters are, in order,
             [u, v, m1, m2, sigma].
         """
-        self._set_data(indep, dep)
+        # some cython methods only accept double array arguments
+        indep_to_use = np.asarray(indep, dtype=float)
+        dep_to_use = np.asarray(dep, dtype=float)
+
+        self._set_data(indep_to_use, dep_to_use)
         return self._estimate()
 
     @property
@@ -207,11 +214,11 @@ class TwoBkptSegRegEstimator(Estimator):
 
     This estimator is limited to univariate, continuous, linear, two-bkpt 
     segmented regression problems.  The model fitting estimates the parameters: 
-    
+
     ``[u1, v1, u2, v2, m1, m2, sigma]``
-    
+
     where
-    
+
         ``(u1,v1), (u2, v2)`` are the breakpoints (in x-y plane), ordered such
         that ``u1 < u2``
 
@@ -331,9 +338,14 @@ class TwoBkptSegRegEstimator(Estimator):
         -------
         params: array of shape (num_params,)
             The estimated parameters.  The returned parameters are, in order,
+
             [u1, v1, u2, v2, m1, m2, sigma].
         """
-        self._set_data(indep, dep)
+        # some cython methods only accept double array arguments
+        indep_to_use = np.asarray(indep, dtype=float)
+        dep_to_use = np.asarray(dep, dtype=float)
+
+        self._set_data(indep_to_use, dep_to_use)
         return self._estimate()
 
     @property

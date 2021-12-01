@@ -72,7 +72,10 @@ class OLSRegressionEstimator(Estimator):
             The estimated parameters.  The returned parameters are, in order,
             [intercept, slope, sigma].
         """
-        self._set_data(indep, dep)
+        # some cython methods only accept double array arguments
+        indep_to_use = np.asarray(indep, dtype=float)
+        dep_to_use = np.asarray(dep, dtype=float)
+        self._set_data(indep_to_use, dep_to_use)
         return self._estimate()
 
     @property
@@ -85,7 +88,7 @@ class OLSRegressionEstimator(Estimator):
             [intercept, slope, sigma]
         """
         return super().params
-    params.__doc__ += Estimator.params.__doc__ 
+    params.__doc__ += Estimator.params.__doc__
 
     @property
     def num_params(self):
@@ -138,5 +141,3 @@ class OLSRegressionEstimator(Estimator):
         result = ["intercept", "slope", "sigma"]
 
         return result
-
-

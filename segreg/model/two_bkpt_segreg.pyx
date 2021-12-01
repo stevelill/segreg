@@ -44,11 +44,11 @@ def _segmented_func(x, params):
 
 def _segmented_func_impl(x, params):
     """
-    PARAMETERS
+    Parameters
     ----------
     x: array-like (non-scalar)
     """
-    # TODO: REMEMBER THIS FUNCTION GIVES ODD RESULTS WITH INTEGER INPUT
+    # TODO: remember this function gives odd results with integer input
     x_arr = np.array(x, dtype=float)
 
     u1, v1, u2, v2, m1, m2 = params

@@ -13,7 +13,7 @@ import os
 from matplotlib import pyplot as plt
 import numpy as np
 
-
+# TODO: handle legend
 def plot_model(func_arr,
                indep,
                dep,
