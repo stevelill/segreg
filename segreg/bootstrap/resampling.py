@@ -14,7 +14,7 @@ def boot_resample(indep,
                   fitted_values=None,
                   resid=None,
                   resample_cases=False):
-    """
+    r"""
     A single boot resampling for a regression model.
 
     If ``resample_cases`` is False (the default), then both ``fitted_values``

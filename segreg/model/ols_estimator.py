@@ -127,6 +127,16 @@ class OLSRegressionEstimator(Estimator):
         return self._estimated_params_indices
 
     def get_func_for_params(self, params):
+        """
+        Returns the regression model function defined by the given parameters.
+
+        Parameters
+        ----------
+        params: array-like
+            First element should be the ``intercept``, second element the 
+            ``slope``.  Any further elements in ``params`` are ignored.
+
+        """
         intercept = params[0]
         slope = params[1]
 
@@ -134,6 +144,7 @@ class OLSRegressionEstimator(Estimator):
             return intercept + slope * x
 
         return ols_func
+    get_func_for_params.__doc__ += Estimator.get_func_for_params.__doc__
 
     @property
     def param_names(self):

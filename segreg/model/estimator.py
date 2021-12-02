@@ -101,9 +101,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_func_for_params(self, *params):
         r"""
-        Returns the regression model function defined by the given parameters.  
-
-        That is, if the model is of the form:
+        More generally, if the model is of the form:
 
         .. math::
             y = f(x; \theta) + \varepsilon
@@ -114,7 +112,7 @@ class Estimator(object, metaclass=abc.ABCMeta):
         .. math::
             f(x; \theta)
 
-        where :math:`\theta` is passed to this function as `params`.
+        where :math:`\theta` is passed to this function as ``params``.
 
         See Also
         --------

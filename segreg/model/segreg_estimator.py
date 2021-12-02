@@ -34,12 +34,10 @@ class OneBkptSegRegEstimator(Estimator):
 
     Examples
     --------
-    >>> 
+    >>> estimator = OneBkptSegRegEstimator()
+    >>> estimator.fit(indep, dep)
+    array([50.384, 19.936, -0.007, -0.102,  0.479])
 
-    See Also
-    --------
-    OLSRegressionEstimator
-    TwoBkptSegRegEstimator
 
     Parameters
     ----------
@@ -49,6 +47,17 @@ class OneBkptSegRegEstimator(Estimator):
         points in the left and right segments in the returned fit.
         If None, defaults to the underlying implementation.
         TODO: explain
+    restrict_rhs_slope: float or None
+        If not ``None``, will fix the rhs slope, ``m2``, to the given value.  As 
+        such, the rhs slope ``m2`` will not be estimated when ``fit`` is called.
+    no_bias_variance: bool
+        If True, will modify the MLE estimate of the variance so that it is
+        unbiased. 
+
+    See Also
+    --------
+    OLSRegressionEstimator
+    TwoBkptSegRegEstimator
     """
 
     def __init__(self,
@@ -169,6 +178,17 @@ class OneBkptSegRegEstimator(Estimator):
         return self._params
 
     def get_func_for_params(self, params):
+        """
+        Returns the regression model function defined by the given parameters.
+
+        Parameters
+        ----------
+        params: array-like
+            First four elements should be: [u, v, m1, m2, ...].  Any further 
+            elements in ``params`` are ignored.  If ``restrict_rhs_slope`` has
+            been set, then ``m2`` will be ignored here.
+
+        """
         u = params[0]
         v = params[1]
         m1 = params[2]
@@ -179,6 +199,7 @@ class OneBkptSegRegEstimator(Estimator):
             m2 = self._restrict_rhs_slope
 
         return one_bkpt_segreg.segmented_func(u, v, m1, m2)
+    get_func_for_params.__doc__ += Estimator.get_func_for_params.__doc__
 
     @property
     def param_names(self):
@@ -228,11 +249,11 @@ class TwoBkptSegRegEstimator(Estimator):
 
         ``sigma`` is the standard deviation of the residuals
 
-
-    See Also
-    --------
-    OLSRegressionEstimator
-    OneBkptSegRegEstimator
+    Notes
+    -----
+    The slope of the middle segment of the two-bkpt model does not appear as a 
+    parameter since it is implied by the parameters ``(u1, v1)`` and 
+    ``(u2, v2)``.
 
     Parameters
     ----------
@@ -248,6 +269,17 @@ class TwoBkptSegRegEstimator(Estimator):
         left bkpt ``u1``, will skip this many data points between ``u1`` and
         ``u2``.  As such, this determines a guaranteed minimum number of data 
         points between the bkpts in the returned fit.
+
+    Examples
+    --------
+    >>> estimator = TwoBkptSegRegEstimator()
+    >>> estimator.fit(indep, dep)
+    array([24.37 , 20.015, 80.185, 19.985,  0.079, -0.107,  0.267])
+
+    See Also
+    --------
+    OLSRegressionEstimator
+    OneBkptSegRegEstimator
     """
 
     def __init__(self,
@@ -361,6 +393,16 @@ class TwoBkptSegRegEstimator(Estimator):
     params.__doc__ += Estimator.params.__doc__
 
     def get_func_for_params(self, params):
+        """
+        Returns the regression model function defined by the given parameters.
+
+        Parameters
+        ----------
+        params: array-like
+            First six elements should be: [u1, v1, u2, v2, m1, m2, ...].  Any 
+            further elements in ``params`` are ignored.
+
+        """
         u1 = params[0]
         v1 = params[1]
         u2 = params[2]
@@ -369,6 +411,7 @@ class TwoBkptSegRegEstimator(Estimator):
         m2 = params[5]
 
         return two_bkpt_segreg.segmented_func([u1, v1, u2, v2, m1, m2])
+    get_func_for_params.__doc__ += Estimator.get_func_for_params.__doc__
 
     @property
     def param_names(self):

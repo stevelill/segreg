@@ -18,6 +18,7 @@ dist   distribution
 indep  independent variable  (aka regressor, explanatory variable, predictor)
 lhs    left-hand-side
 ls     least squares
+mle    maximum likelihood estimate
 ols    ordinary least squares
 rhs    right-hand-side
 rss    residual sum of squares
