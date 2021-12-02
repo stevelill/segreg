@@ -45,7 +45,8 @@ Documentation
 For a technical overview of Segmented Regression and algorithms used in ``segreg``,
 see `segmented_regression.pdf <doc/segmented_regression.pdf>`_.
 
-Code documentation and a user guide shall be forthcoming.
+Code documentation and tutorials are available here:
+https://stevelill.github.io/segreg/
 
 Development Setup
 -----------------
