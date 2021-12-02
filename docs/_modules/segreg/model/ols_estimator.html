@@ -164,6 +164,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimated_params_indices</span>
 
 <div class="viewcode-block" id="OLSRegressionEstimator.get_func_for_params"><a class="viewcode-back" href="../../../_autosummary/segreg.model.OLSRegressionEstimator.get_func_for_params.html#segreg.model.OLSRegressionEstimator.get_func_for_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_func_for_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the regression model function defined by the given parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params: array-like</span>
+<span class="sd">            First element should be the ``intercept``, second element the </span>
+<span class="sd">            ``slope``.  Any further elements in ``params`` are ignored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">intercept</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">slope</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
@@ -171,6 +181,7 @@
             <span class="k">return</span> <span class="n">intercept</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">x</span>
 
         <span class="k">return</span> <span class="n">ols_func</span></div>
+    <span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">param_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

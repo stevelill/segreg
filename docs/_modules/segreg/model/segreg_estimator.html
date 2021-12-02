@@ -71,12 +71,10 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    &gt;&gt;&gt; estimator = OneBkptSegRegEstimator()</span>
+<span class="sd">    &gt;&gt;&gt; estimator.fit(indep, dep)</span>
+<span class="sd">    array([50.384, 19.936, -0.007, -0.102,  0.479])</span>
 
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    OLSRegressionEstimator</span>
-<span class="sd">    TwoBkptSegRegEstimator</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -86,6 +84,17 @@
 <span class="sd">        points in the left and right segments in the returned fit.</span>
 <span class="sd">        If None, defaults to the underlying implementation.</span>
 <span class="sd">        TODO: explain</span>
+<span class="sd">    restrict_rhs_slope: float or None</span>
+<span class="sd">        If not ``None``, will fix the rhs slope, ``m2``, to the given value.  As </span>
+<span class="sd">        such, the rhs slope ``m2`` will not be estimated when ``fit`` is called.</span>
+<span class="sd">    no_bias_variance: bool</span>
+<span class="sd">        If True, will modify the MLE estimate of the variance so that it is</span>
+<span class="sd">        unbiased. </span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    OLSRegressionEstimator</span>
+<span class="sd">    TwoBkptSegRegEstimator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
@@ -206,6 +215,17 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span>
 
 <div class="viewcode-block" id="OneBkptSegRegEstimator.get_func_for_params"><a class="viewcode-back" href="../../../_autosummary/segreg.model.OneBkptSegRegEstimator.get_func_for_params.html#segreg.model.OneBkptSegRegEstimator.get_func_for_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_func_for_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the regression model function defined by the given parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params: array-like</span>
+<span class="sd">            First four elements should be: [u, v, m1, m2, ...].  Any further </span>
+<span class="sd">            elements in ``params`` are ignored.  If ``restrict_rhs_slope`` has</span>
+<span class="sd">            been set, then ``m2`` will be ignored here.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">m1</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
@@ -216,6 +236,7 @@
             <span class="n">m2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_restrict_rhs_slope</span>
 
         <span class="k">return</span> <span class="n">one_bkpt_segreg</span><span class="o">.</span><span class="n">segmented_func</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span></div>
+    <span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">param_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -265,11 +286,11 @@
 
 <span class="sd">        ``sigma`` is the standard deviation of the residuals</span>
 
-
-<span class="sd">    See Also</span>
-<span class="sd">    --------</span>
-<span class="sd">    OLSRegressionEstimator</span>
-<span class="sd">    OneBkptSegRegEstimator</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The slope of the middle segment of the two-bkpt model does not appear as a </span>
+<span class="sd">    parameter since it is implied by the parameters ``(u1, v1)`` and </span>
+<span class="sd">    ``(u2, v2)``.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -285,6 +306,17 @@
 <span class="sd">        left bkpt ``u1``, will skip this many data points between ``u1`` and</span>
 <span class="sd">        ``u2``.  As such, this determines a guaranteed minimum number of data </span>
 <span class="sd">        points between the bkpts in the returned fit.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; estimator = TwoBkptSegRegEstimator()</span>
+<span class="sd">    &gt;&gt;&gt; estimator.fit(indep, dep)</span>
+<span class="sd">    array([24.37 , 20.015, 80.185, 19.985,  0.079, -0.107,  0.267])</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    OLSRegressionEstimator</span>
+<span class="sd">    OneBkptSegRegEstimator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
@@ -398,6 +430,16 @@
     <span class="n">params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="vm">__doc__</span>
 
 <div class="viewcode-block" id="TwoBkptSegRegEstimator.get_func_for_params"><a class="viewcode-back" href="../../../_autosummary/segreg.model.TwoBkptSegRegEstimator.get_func_for_params.html#segreg.model.TwoBkptSegRegEstimator.get_func_for_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_func_for_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the regression model function defined by the given parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params: array-like</span>
+<span class="sd">            First six elements should be: [u1, v1, u2, v2, m1, m2, ...].  Any </span>
+<span class="sd">            further elements in ``params`` are ignored.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">u1</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">v1</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">u2</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
@@ -406,6 +448,7 @@
         <span class="n">m2</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">two_bkpt_segreg</span><span class="o">.</span><span class="n">segmented_func</span><span class="p">([</span><span class="n">u1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">])</span></div>
+    <span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">param_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

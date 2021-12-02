@@ -60,10 +60,10 @@ that <code class="docutils literal notranslate"><span class="pre">u1</span> <spa
 <p><code class="docutils literal notranslate"><span class="pre">m2</span></code> is the slope of the right-most segment</p>
 <p><code class="docutils literal notranslate"><span class="pre">sigma</span></code> is the standard deviation of the residuals</p>
 </div></blockquote>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="segreg.model.OLSRegressionEstimator.html#segreg.model.OLSRegressionEstimator" title="segreg.model.OLSRegressionEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OLSRegressionEstimator</span></code></a>, <a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.html#segreg.model.OneBkptSegRegEstimator" title="segreg.model.OneBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneBkptSegRegEstimator</span></code></a></p>
-</div>
+<p class="rubric">Notes</p>
+<p>The slope of the middle segment of the two-bkpt model does not appear as a
+parameter since it is implied by the parameters <code class="docutils literal notranslate"><span class="pre">(u1,</span> <span class="pre">v1)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">(u2,</span> <span class="pre">v2)</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -80,6 +80,16 @@ points between the bkpts in the returned fit.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">TwoBkptSegRegEstimator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">)</span>
+<span class="go">array([24.37 , 20.015, 80.185, 19.985,  0.079, -0.107,  0.267])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="segreg.model.OLSRegressionEstimator.html#segreg.model.OLSRegressionEstimator" title="segreg.model.OLSRegressionEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OLSRegressionEstimator</span></code></a>, <a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.html#segreg.model.OneBkptSegRegEstimator" title="segreg.model.OneBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneBkptSegRegEstimator</span></code></a></p>
+</div>
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>

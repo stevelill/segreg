@@ -52,14 +52,21 @@
 <dt class="sig sig-object py" id="segreg.model.OneBkptSegRegEstimator.get_func_for_params">
 <span class="sig-prename descclassname"><span class="pre">OneBkptSegRegEstimator.</span></span><span class="sig-name descname"><span class="pre">get_func_for_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/segreg/model/segreg_estimator.html#OneBkptSegRegEstimator.get_func_for_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#segreg.model.OneBkptSegRegEstimator.get_func_for_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the regression model function defined by the given parameters.</p>
-<p>That is, if the model is of the form:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>array-like</em>) – First four elements should be: [u, v, m1, m2, …].  Any further
+elements in <code class="docutils literal notranslate"><span class="pre">params</span></code> are ignored.  If <code class="docutils literal notranslate"><span class="pre">restrict_rhs_slope</span></code> has
+been set, then <code class="docutils literal notranslate"><span class="pre">m2</span></code> will be ignored here.</p>
+</dd>
+</dl>
+<p>More generally, if the model is of the form:</p>
 <div class="math notranslate nohighlight">
 \[y = f(x; \theta) + \varepsilon\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a function of x depending on the parameter vector
 <span class="math notranslate nohighlight">\(\theta\)</span>, then this returns the function</p>
 <div class="math notranslate nohighlight">
 \[f(x; \theta)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is passed to this function as <cite>params</cite>.</p>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is passed to this function as <code class="docutils literal notranslate"><span class="pre">params</span></code>.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.model_function.html#segreg.model.OneBkptSegRegEstimator.model_function" title="segreg.model.OneBkptSegRegEstimator.model_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_function</span></code></a></p>

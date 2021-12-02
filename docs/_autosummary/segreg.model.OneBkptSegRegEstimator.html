@@ -62,22 +62,30 @@ segmented regression problems.  The model fitting estimates the parameters:</p>
 <p><code class="docutils literal notranslate"><span class="pre">sigma</span></code> is the standard deviation of the residuals</p>
 </div></blockquote>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">OneBkptSegRegEstimator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">)</span>
+<span class="go">array([50.384, 19.936, -0.007, -0.102,  0.479])</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_end_to_skip</strong> (<em>int</em>) – Number of data points to skip at each end of the data when solving for
+the bkpts.  As such, this determines a guaranteed minimum number of data
+points in the left and right segments in the returned fit.
+If None, defaults to the underlying implementation.
+TODO: explain</p></li>
+<li><p><strong>restrict_rhs_slope</strong> (<em>float</em><em> or </em><em>None</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, will fix the rhs slope, <code class="docutils literal notranslate"><span class="pre">m2</span></code>, to the given value.  As
+such, the rhs slope <code class="docutils literal notranslate"><span class="pre">m2</span></code> will not be estimated when <code class="docutils literal notranslate"><span class="pre">fit</span></code> is called.</p></li>
+<li><p><strong>no_bias_variance</strong> (<em>bool</em>) – If True, will modify the MLE estimate of the variance so that it is
+unbiased.</p></li>
+</ul>
+</dd>
+</dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="segreg.model.OLSRegressionEstimator.html#segreg.model.OLSRegressionEstimator" title="segreg.model.OLSRegressionEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OLSRegressionEstimator</span></code></a>, <a class="reference internal" href="segreg.model.TwoBkptSegRegEstimator.html#segreg.model.TwoBkptSegRegEstimator" title="segreg.model.TwoBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoBkptSegRegEstimator</span></code></a></p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>num_end_to_skip</strong> (<em>int</em>) – Number of data points to skip at each end of the data when solving for
-the bkpts.  As such, this determines a guaranteed minimum number of data
-points in the left and right segments in the returned fit.
-If None, defaults to the underlying implementation.
-TODO: explain</p>
-</dd>
-</dl>
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
