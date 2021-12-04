@@ -47,7 +47,29 @@ def one_bkpt_segmented_func(u, v, m1, m2):
 
 
 def two_bkpt_segmented_func(u1, v1, u2, v2, m1, m2):
+    """
+    Returns the two-bkpt function corresponding to the given parameters.
 
+    ``(u1,v1), (u2, v2)`` are the breakpoints (in x-y plane), ordered such
+    that ``u1 < u2``
+
+    ``m1`` is the slope of the left-most segment
+
+    ``m2`` is the slope of the right-most segment
+
+    Parameters
+    ----------
+    u1: float
+    v1: float
+    u2: float
+    v2: float
+    m1: float
+    m2: float
+
+    Returns
+    -------
+    func: function object
+    """
     params = [u1, v1, u2, v2, m1, m2]
 
     def func(x):
