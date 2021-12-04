@@ -35,9 +35,12 @@ class OneBkptSegRegEstimator(Estimator):
 
     Examples
     --------
+    >>> from segreg.model import OneBkptSegRegEstimator
+    >>> indep = [1,2,3,4,5,6,7,8,9]
+    >>> dep = [1,2,3,4,5,4,3,2,1]
     >>> estimator = OneBkptSegRegEstimator()
     >>> estimator.fit(indep, dep)
-    array([50.384, 19.936, -0.007, -0.102,  0.479])
+    array([ 5.,  5.,  1., -1.,  0.])
 
 
     Parameters
@@ -273,9 +276,12 @@ class TwoBkptSegRegEstimator(Estimator):
 
     Examples
     --------
+    >>> from segreg.model import TwoBkptSegRegEstimator
+    >>> indep = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    >>> dep = [1,2,3,4,5,4,3,2,1,0,1,2,3,4]
     >>> estimator = TwoBkptSegRegEstimator()
     >>> estimator.fit(indep, dep)
-    array([24.37 , 20.015, 80.185, 19.985,  0.079, -0.107,  0.267])
+    array([ 5.,  5., 10., -0.,  1.,  1.,  0.])
 
     See Also
     --------
@@ -285,7 +291,7 @@ class TwoBkptSegRegEstimator(Estimator):
 
     def __init__(self,
                  num_end_to_skip=None,
-                 num_between_to_skip=5,
+                 num_between_to_skip=None,
                  no_bias_variance=False):
 
         super().__init__()
@@ -333,6 +339,11 @@ class TwoBkptSegRegEstimator(Estimator):
         m2 = est_params[5]
 
         self._params = [u1, v1, u2, v2, m1, m2]
+
+        # for straight-line data, the fitted rss can sometimes be negative,
+        # due to noise in the computations
+        if abs(est_value) < 1.0e-13:
+            est_value = 0.0
 
         self._rss = est_value
 

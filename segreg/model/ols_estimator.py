@@ -34,6 +34,15 @@ class OLSRegressionEstimator(Estimator):
     customized for the univariate regression problems for which this class is 
     limited, for the purpose of greater calculation speed.
 
+    Examples
+    --------
+    >>> from segreg.model import OLSRegressionEstimator
+    >>> indep = [1,2,3,4,5]
+    >>> dep = [2,3,4,5,6]
+    >>> estimator = OLSRegressionEstimator()
+    >>> estimator.fit(indep, dep)
+    array([1., 1., 0.])
+
     See Also
     --------
     OneBkptSegRegEstimator
