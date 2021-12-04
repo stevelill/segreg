@@ -1,6 +1,0 @@
-﻿segreg.analysis.plot\_model
-===========================
-
-.. currentmodule:: segreg.analysis
-
-.. autofunction:: plot_model

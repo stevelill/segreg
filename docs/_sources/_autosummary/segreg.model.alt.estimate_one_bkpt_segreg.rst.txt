@@ -1,6 +1,0 @@
-﻿segreg.model.alt.estimate\_one\_bkpt\_segreg
-============================================
-
-.. currentmodule:: segreg.model.alt
-
-.. autofunction:: estimate_one_bkpt_segreg
