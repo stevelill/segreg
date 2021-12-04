@@ -1,0 +1,6 @@
+segreg.model.OLSRegressionEstimator.loglikelihood
+=================================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OLSRegressionEstimator.loglikelihood

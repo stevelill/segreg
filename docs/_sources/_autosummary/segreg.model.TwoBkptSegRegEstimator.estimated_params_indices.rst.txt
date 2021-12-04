@@ -1,0 +1,6 @@
+segreg.model.TwoBkptSegRegEstimator.estimated\_params\_indices
+==============================================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: TwoBkptSegRegEstimator.estimated_params_indices

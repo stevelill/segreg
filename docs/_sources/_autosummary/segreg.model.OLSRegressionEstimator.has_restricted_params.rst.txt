@@ -1,0 +1,6 @@
+segreg.model.OLSRegressionEstimator.has\_restricted\_params
+===========================================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OLSRegressionEstimator.has_restricted_params

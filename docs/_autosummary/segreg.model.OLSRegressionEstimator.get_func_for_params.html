@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>segreg.model.OLSRegressionEstimator.get_func_for_params &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="segreg.model.OLSRegressionEstimator.estimated_params_indices" href="segreg.model.OLSRegressionEstimator.estimated_params_indices.html" />
+    <link rel="prev" title="segreg.model.OLSRegressionEstimator.fit" href="segreg.model.OLSRegressionEstimator.fit.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="segreg.model.OLSRegressionEstimator.estimated_params_indices.html" title="segreg.model.OLSRegressionEstimator.estimated_params_indices"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.OLSRegressionEstimator.fit.html" title="segreg.model.OLSRegressionEstimator.fit"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="segreg.model.OLSRegressionEstimator.html" accesskey="U">segreg.model.OLSRegressionEstimator</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.OLSRegressionEstimator.get_func_for_params</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="segreg-model-olsregressionestimator-get-func-for-params">
+<h1>segreg.model.OLSRegressionEstimator.get_func_for_params<a class="headerlink" href="#segreg-model-olsregressionestimator-get-func-for-params" title="Permalink to this headline">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="segreg.model.OLSRegressionEstimator.get_func_for_params">
+<span class="sig-prename descclassname"><span class="pre">OLSRegressionEstimator.</span></span><span class="sig-name descname"><span class="pre">get_func_for_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/segreg/model/ols_estimator.html#OLSRegressionEstimator.get_func_for_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#segreg.model.OLSRegressionEstimator.get_func_for_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the regression model function defined by the given parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>array-like</em>) – First element should be the <code class="docutils literal notranslate"><span class="pre">intercept</span></code>, second element the
+<code class="docutils literal notranslate"><span class="pre">slope</span></code>.  Any further elements in <code class="docutils literal notranslate"><span class="pre">params</span></code> are ignored.</p>
+</dd>
+</dl>
+<p>More generally, if the model is of the form:</p>
+<div class="math notranslate nohighlight">
+\[y = f(x; \theta) + \varepsilon\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(x)\)</span> is a function of x depending on the parameter vector
+<span class="math notranslate nohighlight">\(\theta\)</span>, then this returns the function</p>
+<div class="math notranslate nohighlight">
+\[f(x; \theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is passed to this function as <code class="docutils literal notranslate"><span class="pre">params</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="segreg.model.OLSRegressionEstimator.model_function.html#segreg.model.OLSRegressionEstimator.model_function" title="segreg.model.OLSRegressionEstimator.model_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_function</span></code></a></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>func_for_params</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>function object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="segreg.model.OLSRegressionEstimator.fit.html"
+                        title="previous chapter">segreg.model.OLSRegressionEstimator.fit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="segreg.model.OLSRegressionEstimator.estimated_params_indices.html"
+                        title="next chapter">segreg.model.OLSRegressionEstimator.estimated_params_indices</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_autosummary/segreg.model.OLSRegressionEstimator.get_func_for_params.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="segreg.model.OLSRegressionEstimator.estimated_params_indices.html" title="segreg.model.OLSRegressionEstimator.estimated_params_indices"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.OLSRegressionEstimator.fit.html" title="segreg.model.OLSRegressionEstimator.fit"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="segreg.model.OLSRegressionEstimator.html" >segreg.model.OLSRegressionEstimator</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.OLSRegressionEstimator.get_func_for_params</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

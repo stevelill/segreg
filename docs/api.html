@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>API &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="segreg.model.OLSRegressionEstimator" href="_autosummary/segreg.model.OLSRegressionEstimator.html" />
+    <link rel="prev" title="Segmented Regression (segreg)" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="_autosummary/segreg.model.OLSRegressionEstimator.html" title="segreg.model.OLSRegressionEstimator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Segmented Regression (segreg)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">segreg 1.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<section id="segreg-model-models">
+<h2><code class="docutils literal notranslate"><span class="pre">segreg.model</span></code>: Models<a class="headerlink" href="#segreg-model-models" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.model.OLSRegressionEstimator.html#segreg.model.OLSRegressionEstimator" title="segreg.model.OLSRegressionEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OLSRegressionEstimator</span></code></a>()</p></td>
+<td><p>Estimator for ordinary least-squares regression.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.model.OneBkptSegRegEstimator.html#segreg.model.OneBkptSegRegEstimator" title="segreg.model.OneBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneBkptSegRegEstimator</span></code></a>([num_end_to_skip, ...])</p></td>
+<td><p>Estimator for one-bkpt segmented regression.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.model.TwoBkptSegRegEstimator.html#segreg.model.TwoBkptSegRegEstimator" title="segreg.model.TwoBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoBkptSegRegEstimator</span></code></a>([num_end_to_skip, ...])</p></td>
+<td><p>Estimator for two-bkpt segmented regression.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.model.one_bkpt_rss_func.html#segreg.model.one_bkpt_rss_func" title="segreg.model.one_bkpt_rss_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">one_bkpt_rss_func</span></code></a>(indep, dep)</p></td>
+<td><p>Returns a function which takes a bkpt and returns the RSS of a one-bkpt segmented fit.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="segreg-analysis-tools-for-analyzing-results">
+<h2><code class="docutils literal notranslate"><span class="pre">segreg.analysis</span></code>: Tools for Analyzing Results<a class="headerlink" href="#segreg-analysis-tools-for-analyzing-results" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.analysis.plot_model.html#segreg.analysis.plot_model" title="segreg.analysis.plot_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_model</span></code></a>(func_arr, indep, dep[, ...])</p></td>
+<td><p>Plots univariate functions together with scatter of the data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="segreg-bootstrap-bootstrap">
+<h2><code class="docutils literal notranslate"><span class="pre">segreg.bootstrap</span></code>: Bootstrap<a class="headerlink" href="#segreg-bootstrap-bootstrap" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.boot_conf_intervals.html#segreg.bootstrap.boot_conf_intervals" title="segreg.bootstrap.boot_conf_intervals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">boot_conf_intervals</span></code></a>(indep, dep, estimator[, ...])</p></td>
+<td><p>Bootstrap confidence intervals for regression models.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.bca_acceleration.html#segreg.bootstrap.bca_acceleration" title="segreg.bootstrap.bca_acceleration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bca_acceleration</span></code></a>(estimator, indep, dep)</p></td>
+<td><p>see: stata manual on the bootstrap</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.model_bca.html#segreg.bootstrap.model_bca" title="segreg.bootstrap.model_bca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_bca</span></code></a>(boot_sims, orig_sample_estimate, ...)</p></td>
+<td><p>Computes BCa (bias-corrected and accelerated) confidence intervals for regression models.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.bca.html#segreg.bootstrap.bca" title="segreg.bootstrap.bca"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bca</span></code></a>(boot_sims, orig_sample_estimate, ...[, ...])</p></td>
+<td><p>Computes BCa (bias-corrected and accelerated) confidence intervals for a single parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.boot_basic_conf_interval.html#segreg.bootstrap.boot_basic_conf_interval" title="segreg.bootstrap.boot_basic_conf_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">boot_basic_conf_interval</span></code></a>(boot_sims, ...[, ...])</p></td>
+<td><p>Name follows Davison and Hinkley.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.boot_percentile_conf_interval.html#segreg.bootstrap.boot_percentile_conf_interval" title="segreg.bootstrap.boot_percentile_conf_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">boot_percentile_conf_interval</span></code></a>(boot_sims, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.boot_param_dist.html#segreg.bootstrap.boot_param_dist" title="segreg.bootstrap.boot_param_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">boot_param_dist</span></code></a>(indep, dep, estimator, num_sims)</p></td>
+<td><p>Computes bootstrap sampling distribution of model parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.boot_resample.html#segreg.bootstrap.boot_resample" title="segreg.bootstrap.boot_resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">boot_resample</span></code></a>(indep, dep[, fitted_values, ...])</p></td>
+<td><p>A single boot resampling for a regression model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.random_selection_with_replacement.html#segreg.bootstrap.random_selection_with_replacement" title="segreg.bootstrap.random_selection_with_replacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_selection_with_replacement</span></code></a>(series)</p></td>
+<td><p>Random draw with replacement from series.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.bootstrap.random_selection_with_replacement_two_series.html#segreg.bootstrap.random_selection_with_replacement_two_series" title="segreg.bootstrap.random_selection_with_replacement_two_series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_selection_with_replacement_two_series</span></code></a>(...)</p></td>
+<td><p>Random draw with replacement.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="segreg-data-datasets">
+<h2><code class="docutils literal notranslate"><span class="pre">segreg.data</span></code>: Datasets<a class="headerlink" href="#segreg-data-datasets" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.data.hinkley.html#segreg.data.hinkley" title="segreg.data.hinkley"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hinkley</span></code></a>()</p></td>
+<td><p>A dataset from an academic paper by David Hinkley.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.data.test1.html#segreg.data.test1" title="segreg.data.test1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test1</span></code></a>()</p></td>
+<td><p>Random dataset for testing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.data.test2.html#segreg.data.test2" title="segreg.data.test2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test2</span></code></a>()</p></td>
+<td><p>Random dataset for testing.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="segreg-model-alt-alternative-implementations">
+<h2><code class="docutils literal notranslate"><span class="pre">segreg.model.alt</span></code>: Alternative Implementations<a class="headerlink" href="#segreg-model-alt-alternative-implementations" title="Permalink to this headline">¶</a></h2>
+<section id="pure-python-segmented-regression">
+<h3>Pure Python Segmented Regression<a class="headerlink" href="#pure-python-segmented-regression" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.model.alt.fit_one_bkpt.html#segreg.model.alt.fit_one_bkpt" title="segreg.model.alt.fit_one_bkpt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_one_bkpt</span></code></a>(indep, dep[, num_end_to_skip, ...])</p></td>
+<td><p>Estimate one-bkpt segmented regression model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.model.alt.fit_two_bkpt.html#segreg.model.alt.fit_two_bkpt" title="segreg.model.alt.fit_two_bkpt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit_two_bkpt</span></code></a>(indep, dep[, num_end_to_skip, ...])</p></td>
+<td><p>Estimate two-bkpt segmented regression model.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="brute-force-grid-search">
+<h3>Brute Force Grid Search<a class="headerlink" href="#brute-force-grid-search" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/segreg.model.alt.brute_fit_one_bkpt.html#segreg.model.alt.brute_fit_one_bkpt" title="segreg.model.alt.brute_fit_one_bkpt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">brute_fit_one_bkpt</span></code></a>(indep, dep, num_end_to_skip)</p></td>
+<td><p>Estimate one-bkpt segmented regression model using a brute-force method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/segreg.model.alt.brute_fit_two_bkpt.html#segreg.model.alt.brute_fit_two_bkpt" title="segreg.model.alt.brute_fit_two_bkpt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">brute_fit_two_bkpt</span></code></a>(indep, dep, ...[, dx, ...])</p></td>
+<td><p>Estimate two-bkpt segmented regression model using a brute-force method.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#segreg-model-models"><code class="docutils literal notranslate"><span class="pre">segreg.model</span></code>: Models</a></li>
+<li><a class="reference internal" href="#segreg-analysis-tools-for-analyzing-results"><code class="docutils literal notranslate"><span class="pre">segreg.analysis</span></code>: Tools for Analyzing Results</a></li>
+<li><a class="reference internal" href="#segreg-bootstrap-bootstrap"><code class="docutils literal notranslate"><span class="pre">segreg.bootstrap</span></code>: Bootstrap</a></li>
+<li><a class="reference internal" href="#segreg-data-datasets"><code class="docutils literal notranslate"><span class="pre">segreg.data</span></code>: Datasets</a></li>
+<li><a class="reference internal" href="#segreg-model-alt-alternative-implementations"><code class="docutils literal notranslate"><span class="pre">segreg.model.alt</span></code>: Alternative Implementations</a><ul>
+<li><a class="reference internal" href="#pure-python-segmented-regression">Pure Python Segmented Regression</a></li>
+<li><a class="reference internal" href="#brute-force-grid-search">Brute Force Grid Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Segmented Regression (<cite>segreg</cite>)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="_autosummary/segreg.model.OLSRegressionEstimator.html"
+                        title="next chapter">segreg.model.OLSRegressionEstimator</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="_autosummary/segreg.model.OLSRegressionEstimator.html" title="segreg.model.OLSRegressionEstimator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Segmented Regression (segreg)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">segreg 1.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>
