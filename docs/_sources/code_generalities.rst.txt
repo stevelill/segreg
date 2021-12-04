@@ -20,6 +20,7 @@ lhs    left-hand-side
 ls     least squares
 mle    maximum likelihood estimate
 ols    ordinary least squares
+param  parameter
 rhs    right-hand-side
 rss    residual sum of squares
 segreg segmented regression

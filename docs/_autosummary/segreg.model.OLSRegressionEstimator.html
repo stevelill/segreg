@@ -65,6 +65,15 @@ provided as a convenience to implement the same interface as the estimators
 for segmented regression.  Moreover, the underlying implementation has been
 customized for the univariate regression problems for which this class is
 limited, for the purpose of greater calculation speed.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">OLSRegressionEstimator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">indep</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dep</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">OLSRegressionEstimator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">)</span>
+<span class="go">array([1., 1., 0.])</span>
+</pre></div>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.html#segreg.model.OneBkptSegRegEstimator" title="segreg.model.OneBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneBkptSegRegEstimator</span></code></a>, <a class="reference internal" href="segreg.model.TwoBkptSegRegEstimator.html#segreg.model.TwoBkptSegRegEstimator" title="segreg.model.TwoBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoBkptSegRegEstimator</span></code></a></p>

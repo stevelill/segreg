@@ -62,9 +62,12 @@ segmented regression problems.  The model fitting estimates the parameters:</p>
 <p><code class="docutils literal notranslate"><span class="pre">sigma</span></code> is the standard deviation of the residuals</p>
 </div></blockquote>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">OneBkptSegRegEstimator</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">OneBkptSegRegEstimator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">indep</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dep</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">OneBkptSegRegEstimator</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">)</span>
-<span class="go">array([50.384, 19.936, -0.007, -0.102,  0.479])</span>
+<span class="go">array([ 5.,  5.,  1., -1.,  0.])</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

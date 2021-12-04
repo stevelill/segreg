@@ -1,25 +1,25 @@
 API Reference
 =============
 
-Models
-******
+``segreg.model``: Models
+************************
 .. autosummary::
    :toctree: _autosummary
 
    ~segreg.model.OLSRegressionEstimator
    ~segreg.model.OneBkptSegRegEstimator
    ~segreg.model.TwoBkptSegRegEstimator
-   ~segreg.model.one_bkpt_segreg.one_bkpt_rss_func
+   ~segreg.model.one_bkpt_rss_func
 
-Tools for Analyzing Results
-***************************
+``segreg.analysis``: Tools for Analyzing Results
+************************************************
 .. autosummary::
    :toctree: _autosummary
 
    ~segreg.analysis.plot_model
 
-Bootstrap
-*********
+``segreg.bootstrap``: Bootstrap
+*******************************
 .. autosummary::
    :toctree: _autosummary
 
@@ -35,8 +35,8 @@ Bootstrap
    ~segreg.bootstrap.random_selection_with_replacement_two_series
 
 
-Datasets
-********
+``segreg.data``: Datasets
+*************************
 .. autosummary::
    :toctree: _autosummary
 
@@ -44,8 +44,8 @@ Datasets
    ~segreg.data.test1
    ~segreg.data.test2
 
-Alternative Implementations
-***************************
+``segreg.model.alt``: Alternative Implementations
+*************************************************
 
 Pure Python Segmented Regression
 --------------------------------

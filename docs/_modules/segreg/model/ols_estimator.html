@@ -71,6 +71,15 @@
 <span class="sd">    customized for the univariate regression problems for which this class is </span>
 <span class="sd">    limited, for the purpose of greater calculation speed.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from segreg.model import OLSRegressionEstimator</span>
+<span class="sd">    &gt;&gt;&gt; indep = [1,2,3,4,5]</span>
+<span class="sd">    &gt;&gt;&gt; dep = [2,3,4,5,6]</span>
+<span class="sd">    &gt;&gt;&gt; estimator = OLSRegressionEstimator()</span>
+<span class="sd">    &gt;&gt;&gt; estimator.fit(indep, dep)</span>
+<span class="sd">    array([1., 1., 0.])</span>
+
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
 <span class="sd">    OneBkptSegRegEstimator</span>

@@ -46,6 +46,7 @@
 
 <span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">one_bkpt_segreg</span>
 <span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">two_bkpt_segreg</span>
+<span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">segreg_util</span>
 <span class="kn">from</span> <span class="nn">segreg.model.estimator</span> <span class="kn">import</span> <span class="n">Estimator</span>
 
 
@@ -71,9 +72,12 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from segreg.model import OneBkptSegRegEstimator</span>
+<span class="sd">    &gt;&gt;&gt; indep = [1,2,3,4,5,6,7,8,9]</span>
+<span class="sd">    &gt;&gt;&gt; dep = [1,2,3,4,5,4,3,2,1]</span>
 <span class="sd">    &gt;&gt;&gt; estimator = OneBkptSegRegEstimator()</span>
 <span class="sd">    &gt;&gt;&gt; estimator.fit(indep, dep)</span>
-<span class="sd">    array([50.384, 19.936, -0.007, -0.102,  0.479])</span>
+<span class="sd">    array([ 5.,  5.,  1., -1.,  0.])</span>
 
 
 <span class="sd">    Parameters</span>
@@ -235,7 +239,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">m2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_restrict_rhs_slope</span>
 
-        <span class="k">return</span> <span class="n">one_bkpt_segreg</span><span class="o">.</span><span class="n">segmented_func</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">segreg_util</span><span class="o">.</span><span class="n">one_bkpt_segmented_func</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span></div>
     <span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="nd">@property</span>
@@ -309,9 +313,12 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from segreg.model import TwoBkptSegRegEstimator</span>
+<span class="sd">    &gt;&gt;&gt; indep = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]</span>
+<span class="sd">    &gt;&gt;&gt; dep = [1,2,3,4,5,4,3,2,1,0,1,2,3,4]</span>
 <span class="sd">    &gt;&gt;&gt; estimator = TwoBkptSegRegEstimator()</span>
 <span class="sd">    &gt;&gt;&gt; estimator.fit(indep, dep)</span>
-<span class="sd">    array([24.37 , 20.015, 80.185, 19.985,  0.079, -0.107,  0.267])</span>
+<span class="sd">    array([ 5.,  5., 10., -0.,  1.,  1.,  0.])</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
@@ -321,7 +328,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">num_end_to_skip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">num_between_to_skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                 <span class="n">num_between_to_skip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">no_bias_variance</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -369,6 +376,11 @@
         <span class="n">m2</span> <span class="o">=</span> <span class="n">est_params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">u1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">]</span>
+
+        <span class="c1"># for straight-line data, the fitted rss can sometimes be negative,</span>
+        <span class="c1"># due to noise in the computations</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">est_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1.0e-13</span><span class="p">:</span>
+            <span class="n">est_value</span> <span class="o">=</span> <span class="mf">0.0</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_rss</span> <span class="o">=</span> <span class="n">est_value</span>
 
@@ -447,7 +459,7 @@
         <span class="n">m1</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
         <span class="n">m2</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">two_bkpt_segreg</span><span class="o">.</span><span class="n">segmented_func</span><span class="p">([</span><span class="n">u1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">segreg_util</span><span class="o">.</span><span class="n">two_bkpt_segmented_func</span><span class="p">(</span><span class="n">u1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span></div>
     <span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="n">Estimator</span><span class="o">.</span><span class="n">get_func_for_params</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="nd">@property</span>
