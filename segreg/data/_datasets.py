@@ -11,14 +11,14 @@ import numpy as np
 
 def hinkley():
     """
-    Dataset from:
+    A dataset from an academic paper by David Hinkley.
 
     Inference in Two-Phase Regression
     David Hinkley
     Journal of the American Statistical Association
     Vol. 66, No. 336 (Dec., 1971), pp. 736-743
 
-    RETURNS
+    Returns
     -------
     indep : numpy array
     dep : numpy array        
@@ -60,11 +60,13 @@ def test1():
     """
     Random dataset for testing.
 
-    dep created with one-bkpt model defined by parameters:
+    ``dep`` created with one-bkpt model defined by parameters:
+
     (u=20, v=10, m1=0.0, m2=-0.1) 
+
     and normal errors.
 
-    RETURNS
+    Returns
     -------
     indep : numpy array
     dep : numpy array        
@@ -90,11 +92,13 @@ def test2():
     """
     Random dataset for testing.
 
-    dep created with one-bkpt model defined by parameters: 
+    ``dep`` created with one-bkpt model defined by parameters:
+
     (u=50, v=20, m1=0.0, m2=-0.1) 
+
     and normal errors.
 
-    RETURNS
+    Returns
     -------
     indep : numpy array
     dep : numpy array        
