@@ -1,6 +1,8 @@
 Segmented Regression (`segreg`)
 ===============================
 
+We consider the :doc:`api` to be the public interface for the ``segreg`` code.
+
 .. toctree::
    :maxdepth: 1
 
@@ -9,8 +11,8 @@ Segmented Regression (`segreg`)
    tutorial
 
 
-Indices and tables
-==================
+Other
+*****
 
 * :ref:`genindex`
 * :ref:`search`

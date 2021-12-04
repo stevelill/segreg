@@ -1,5 +1,5 @@
-API Reference
-=============
+API
+===
 
 ``segreg.model``: Models
 ************************
@@ -52,8 +52,8 @@ Pure Python Segmented Regression
 .. autosummary::
    :toctree: _autosummary
 
-   ~segreg.model.alt.estimate_one_bkpt_segreg
-   ~segreg.model.alt.estimate_two_bkpt_segreg
+   ~segreg.model.alt.fit_one_bkpt
+   ~segreg.model.alt.fit_two_bkpt
 
 Brute Force Grid Search
 -----------------------
