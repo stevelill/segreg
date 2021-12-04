@@ -1213,8 +1213,7 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
 struct arrayobject;
 typedef struct arrayobject arrayobject;
 #endif
-struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func;
-struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func;
+struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -1327,7 +1326,7 @@ struct __pyx_opt_args_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls {
   double m2;
 };
 
-/* "segreg/model/one_bkpt_segreg.pyx":146
+/* "segreg/model/one_bkpt_segreg.pyx":105
  * 
  * 
  * cdef struct OneBkptParams:             # <<<<<<<<<<<<<<
@@ -1341,30 +1340,14 @@ struct __pyx_t_6segreg_5model_15one_bkpt_segreg_OneBkptParams {
   double rhs_slope;
 };
 
-/* "segreg/model/one_bkpt_segreg.pyx":35
- * 
- * 
- * def segmented_func(u, v, m1, m2):             # <<<<<<<<<<<<<<
- *     """
- *     Returns the one-bkpt function corresponding to the given parameters.
- */
-struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func {
-  PyObject_HEAD
-  PyObject *__pyx_v_m1;
-  PyObject *__pyx_v_m2;
-  PyObject *__pyx_v_u;
-  PyObject *__pyx_v_v;
-};
-
-
-/* "segreg/model/one_bkpt_segreg.pyx":101
+/* "segreg/model/one_bkpt_segreg.pyx":60
  * 
  * 
  * def one_bkpt_rss_func(indep, dep):             # <<<<<<<<<<<<<<
  *     """
  *     Returns a function which takes a bkpt and returns the RSS of a one-bkpt
  */
-struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func {
+struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func {
   PyObject_HEAD
   PyObject *__pyx_v_dep_to_use;
   PyObject *__pyx_v_indep_to_use;
@@ -1572,9 +1555,6 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
     const char* function_name);
 
-/* None.proto */
-static CYTHON_INLINE void __Pyx_RaiseClosureNameError(const char *varname);
-
 /* PyObjectGetAttrStr.proto */
 #if CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name);
@@ -1632,11 +1612,132 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
+/* PyFunctionFastCall.proto */
+#if CYTHON_FAST_PYCALL
+#define __Pyx_PyFunction_FastCall(func, args, nargs)\
+    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs);
+#else
+#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
+#endif
+#define __Pyx_BUILD_ASSERT_EXPR(cond)\
+    (sizeof(char [1 - 2*!(cond)]) - 1)
+#ifndef Py_MEMBER_SIZE
+#define Py_MEMBER_SIZE(type, member) sizeof(((type *)0)->member)
+#endif
+  static size_t __pyx_pyframe_localsplus_offset = 0;
+  #include "frameobject.h"
+  #define __Pxy_PyFrame_Initialize_Offsets()\
+    ((void)__Pyx_BUILD_ASSERT_EXPR(sizeof(PyFrameObject) == offsetof(PyFrameObject, f_localsplus) + Py_MEMBER_SIZE(PyFrameObject, f_localsplus)),\
+     (void)(__pyx_pyframe_localsplus_offset = ((size_t)PyFrame_Type.tp_basicsize) - Py_MEMBER_SIZE(PyFrameObject, f_localsplus)))
+  #define __Pyx_PyFrame_GetLocalsplus(frame)\
+    (assert(__pyx_pyframe_localsplus_offset), (PyObject **)(((char *)(frame)) + __pyx_pyframe_localsplus_offset))
+#endif
+
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
 /* PyObjectCall.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
 #else
 #define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
+
+/* SliceObject.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
+        PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** py_start, PyObject** py_stop, PyObject** py_slice,
+        int has_cstart, int has_cstop, int wraparound);
+
+/* MemviewSliceInit.proto */
+#define __Pyx_BUF_MAX_NDIMS %(BUF_MAX_NDIMS)d
+#define __Pyx_MEMVIEW_DIRECT   1
+#define __Pyx_MEMVIEW_PTR      2
+#define __Pyx_MEMVIEW_FULL     4
+#define __Pyx_MEMVIEW_CONTIG   8
+#define __Pyx_MEMVIEW_STRIDED  16
+#define __Pyx_MEMVIEW_FOLLOW   32
+#define __Pyx_IS_C_CONTIG 1
+#define __Pyx_IS_F_CONTIG 2
+static int __Pyx_init_memviewslice(
+                struct __pyx_memoryview_obj *memview,
+                int ndim,
+                __Pyx_memviewslice *memviewslice,
+                int memview_is_new_reference);
+static CYTHON_INLINE int __pyx_add_acquisition_count_locked(
+    __pyx_atomic_int *acquisition_count, PyThread_type_lock lock);
+static CYTHON_INLINE int __pyx_sub_acquisition_count_locked(
+    __pyx_atomic_int *acquisition_count, PyThread_type_lock lock);
+#define __pyx_get_slice_count_pointer(memview) (memview->acquisition_count_aligned_p)
+#define __pyx_get_slice_count(memview) (*__pyx_get_slice_count_pointer(memview))
+#define __PYX_INC_MEMVIEW(slice, have_gil) __Pyx_INC_MEMVIEW(slice, have_gil, __LINE__)
+#define __PYX_XDEC_MEMVIEW(slice, have_gil) __Pyx_XDEC_MEMVIEW(slice, have_gil, __LINE__)
+static CYTHON_INLINE void __Pyx_INC_MEMVIEW(__Pyx_memviewslice *, int, int);
+static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *, int, int);
+
+/* None.proto */
+static CYTHON_INLINE void __Pyx_RaiseClosureNameError(const char *varname);
+
+/* RaiseTooManyValuesToUnpack.proto */
+static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
+
+/* RaiseNeedMoreValuesToUnpack.proto */
+static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index);
+
+/* IterFinish.proto */
+static CYTHON_INLINE int __Pyx_IterFinish(void);
+
+/* UnpackItemEndCheck.proto */
+static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
+
+/* PyObjectCallMethO.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
+#endif
+
+/* PyObjectCallNoArg.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
+#endif
+
+/* PyObjectCallOneArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
+/* GetItemInt.proto */
+#define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_GetItemInt_Fast(o, (Py_ssize_t)i, is_list, wraparound, boundscheck) :\
+    (is_list ? (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL) :\
+               __Pyx_GetItemInt_Generic(o, to_py_func(i))))
+#define __Pyx_GetItemInt_List(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_GetItemInt_List_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
+    (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL))
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck);
+#define __Pyx_GetItemInt_Tuple(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_GetItemInt_Tuple_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
+    (PyErr_SetString(PyExc_IndexError, "tuple index out of range"), (PyObject*)NULL))
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck);
+static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
+                                                     int is_list, int wraparound, int boundscheck);
+
+/* ObjectGetItem.proto */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
+#else
+#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
 #endif
 
 /* FetchCommonType.proto */
@@ -1701,127 +1802,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *closure,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
-
-/* PyFunctionFastCall.proto */
-#if CYTHON_FAST_PYCALL
-#define __Pyx_PyFunction_FastCall(func, args, nargs)\
-    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs);
-#else
-#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
-#endif
-#define __Pyx_BUILD_ASSERT_EXPR(cond)\
-    (sizeof(char [1 - 2*!(cond)]) - 1)
-#ifndef Py_MEMBER_SIZE
-#define Py_MEMBER_SIZE(type, member) sizeof(((type *)0)->member)
-#endif
-  static size_t __pyx_pyframe_localsplus_offset = 0;
-  #include "frameobject.h"
-  #define __Pxy_PyFrame_Initialize_Offsets()\
-    ((void)__Pyx_BUILD_ASSERT_EXPR(sizeof(PyFrameObject) == offsetof(PyFrameObject, f_localsplus) + Py_MEMBER_SIZE(PyFrameObject, f_localsplus)),\
-     (void)(__pyx_pyframe_localsplus_offset = ((size_t)PyFrame_Type.tp_basicsize) - Py_MEMBER_SIZE(PyFrameObject, f_localsplus)))
-  #define __Pyx_PyFrame_GetLocalsplus(frame)\
-    (assert(__pyx_pyframe_localsplus_offset), (PyObject **)(((char *)(frame)) + __pyx_pyframe_localsplus_offset))
-#endif
-
-/* PyCFunctionFastCall.proto */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
-#else
-#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
-#endif
-
-/* PyObjectCall2Args.proto */
-static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* PyObjectCallMethO.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
-#endif
-
-/* PyObjectCallOneArg.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
-
-/* SliceObject.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
-        PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
-        PyObject** py_start, PyObject** py_stop, PyObject** py_slice,
-        int has_cstart, int has_cstop, int wraparound);
-
-/* MemviewSliceInit.proto */
-#define __Pyx_BUF_MAX_NDIMS %(BUF_MAX_NDIMS)d
-#define __Pyx_MEMVIEW_DIRECT   1
-#define __Pyx_MEMVIEW_PTR      2
-#define __Pyx_MEMVIEW_FULL     4
-#define __Pyx_MEMVIEW_CONTIG   8
-#define __Pyx_MEMVIEW_STRIDED  16
-#define __Pyx_MEMVIEW_FOLLOW   32
-#define __Pyx_IS_C_CONTIG 1
-#define __Pyx_IS_F_CONTIG 2
-static int __Pyx_init_memviewslice(
-                struct __pyx_memoryview_obj *memview,
-                int ndim,
-                __Pyx_memviewslice *memviewslice,
-                int memview_is_new_reference);
-static CYTHON_INLINE int __pyx_add_acquisition_count_locked(
-    __pyx_atomic_int *acquisition_count, PyThread_type_lock lock);
-static CYTHON_INLINE int __pyx_sub_acquisition_count_locked(
-    __pyx_atomic_int *acquisition_count, PyThread_type_lock lock);
-#define __pyx_get_slice_count_pointer(memview) (memview->acquisition_count_aligned_p)
-#define __pyx_get_slice_count(memview) (*__pyx_get_slice_count_pointer(memview))
-#define __PYX_INC_MEMVIEW(slice, have_gil) __Pyx_INC_MEMVIEW(slice, have_gil, __LINE__)
-#define __PYX_XDEC_MEMVIEW(slice, have_gil) __Pyx_XDEC_MEMVIEW(slice, have_gil, __LINE__)
-static CYTHON_INLINE void __Pyx_INC_MEMVIEW(__Pyx_memviewslice *, int, int);
-static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *, int, int);
-
-/* RaiseTooManyValuesToUnpack.proto */
-static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
-
-/* RaiseNeedMoreValuesToUnpack.proto */
-static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index);
-
-/* IterFinish.proto */
-static CYTHON_INLINE int __Pyx_IterFinish(void);
-
-/* UnpackItemEndCheck.proto */
-static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
-
-/* PyObjectCallNoArg.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
-#else
-#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
-#endif
-
-/* GetItemInt.proto */
-#define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_GetItemInt_Fast(o, (Py_ssize_t)i, is_list, wraparound, boundscheck) :\
-    (is_list ? (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL) :\
-               __Pyx_GetItemInt_Generic(o, to_py_func(i))))
-#define __Pyx_GetItemInt_List(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_GetItemInt_List_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
-    (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL))
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck);
-#define __Pyx_GetItemInt_Tuple(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_GetItemInt_Tuple_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) :\
-    (PyErr_SetString(PyExc_IndexError, "tuple index out of range"), (PyObject*)NULL))
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck);
-static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
-                                                     int is_list, int wraparound, int boundscheck);
-
-/* ObjectGetItem.proto */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
-#else
-#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
-#endif
 
 /* PyThreadStateGet.proto */
 #if CYTHON_FAST_THREAD_STATE
@@ -1894,6 +1874,9 @@ static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* 
 #else
 #define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
 #endif
+
+/* PyObjectCall2Args.proto */
+static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
 
 /* PyIntBinop.proto */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -2635,8 +2618,7 @@ static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 /* Module declarations from 'libc.math' */
 
 /* Module declarations from 'segreg.model.one_bkpt_segreg' */
-static PyTypeObject *__pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func = 0;
-static PyTypeObject *__pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func = 0;
+static PyTypeObject *__pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -2702,7 +2684,6 @@ static const char __pyx_k_O[] = "O";
 static const char __pyx_k_c[] = "c";
 static const char __pyx_k_u[] = "u";
 static const char __pyx_k_v[] = "v";
-static const char __pyx_k_x[] = "x";
 static const char __pyx_k_id[] = "id";
 static const char __pyx_k_m1[] = "m1";
 static const char __pyx_k_m2[] = "m2";
@@ -2733,7 +2714,6 @@ static const char __pyx_k_ASCII[] = "ASCII";
 static const char __pyx_k_array[] = "array";
 static const char __pyx_k_class[] = "__class__";
 static const char __pyx_k_count[] = "count";
-static const char __pyx_k_dtype[] = "dtype";
 static const char __pyx_k_error[] = "error";
 static const char __pyx_k_flags[] = "flags";
 static const char __pyx_k_indep[] = "indep";
@@ -2744,7 +2724,6 @@ static const char __pyx_k_ols_2[] = "ols_2";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_shape[] = "shape";
 static const char __pyx_k_start[] = "start";
-static const char __pyx_k_x_arr[] = "x_arr";
 static const char __pyx_k_encode[] = "encode";
 static const char __pyx_k_format[] = "format";
 static const char __pyx_k_import[] = "__import__";
@@ -2756,13 +2735,11 @@ static const char __pyx_k_next_x[] = "next_x";
 static const char __pyx_k_next_y[] = "next_y";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
-static const char __pyx_k_result[] = "result";
 static const char __pyx_k_struct[] = "struct";
 static const char __pyx_k_unique[] = "unique";
 static const char __pyx_k_unpack[] = "unpack";
 static const char __pyx_k_update[] = "update";
 static const char __pyx_k_argsort[] = "argsort";
-static const char __pyx_k_asarray[] = "asarray";
 static const char __pyx_k_first_x[] = "first_x";
 static const char __pyx_k_first_y[] = "first_y";
 static const char __pyx_k_fortran[] = "fortran";
@@ -2775,7 +2752,6 @@ static const char __pyx_k_rhs_rss[] = "rhs_rss";
 static const char __pyx_k_Ellipsis[] = "Ellipsis";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_half_num[] = "half_num";
-static const char __pyx_k_isscalar[] = "isscalar";
 static const char __pyx_k_itemsize[] = "itemsize";
 static const char __pyx_k_ols_next[] = "ols_next";
 static const char __pyx_k_pyx_type[] = "__pyx_type";
@@ -2787,7 +2763,6 @@ static const char __pyx_k_lhs_slope[] = "lhs_slope";
 static const char __pyx_k_min_value[] = "min_value";
 static const char __pyx_k_ols_data1[] = "ols_data1";
 static const char __pyx_k_ols_data2[] = "ols_data2";
-static const char __pyx_k_piecewise[] = "piecewise";
 static const char __pyx_k_pyx_state[] = "__pyx_state";
 static const char __pyx_k_range_end[] = "range_end";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
@@ -2819,7 +2794,6 @@ static const char __pyx_k_pyx_getbuffer[] = "__pyx_getbuffer";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_rhs_ols_slope[] = "rhs_ols_slope";
 static const char __pyx_k_in_right_place[] = "in_right_place";
-static const char __pyx_k_segmented_func[] = "segmented_func";
 static const char __pyx_k_View_MemoryView[] = "View.MemoryView";
 static const char __pyx_k_allocate_buffer[] = "allocate_buffer";
 static const char __pyx_k_dtype_is_object[] = "dtype_is_object";
@@ -2854,7 +2828,6 @@ static const char __pyx_k_estimate_one_bkpt_segreg[] = "estimate_one_bkpt_segreg
 static const char __pyx_k_fixed_bkpt_least_squares[] = "fixed_bkpt_least_squares";
 static const char __pyx_k_unique_indep_lhs_indices[] = "unique_indep_lhs_indices";
 static const char __pyx_k_Invalid_shape_in_axis_d_d[] = "Invalid shape in axis %d: %d.";
-static const char __pyx_k_segmented_func_locals_func[] = "segmented_func.<locals>.func";
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
 static const char __pyx_k_segreg_model_one_bkpt_segreg[] = "segreg.model.one_bkpt_segreg";
 static const char __pyx_k_one_bkpt_rss_func_locals_func[] = "one_bkpt_rss_func.<locals>.func";
@@ -2875,7 +2848,6 @@ static const char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to conver
 static const char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension %d (got %d and %d)";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
-static const char __pyx_k_segmented_func_locals_func_local[] = "segmented_func.<locals>.func.<locals>.<lambda>";
 static const char __pyx_k_segreg_model_one_bkpt_segreg_pyx[] = "segreg/model/one_bkpt_segreg.pyx";
 static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
 static PyObject *__pyx_n_s_ASCII;
@@ -2906,7 +2878,6 @@ static PyObject *__pyx_n_s_allocate_buffer;
 static PyObject *__pyx_n_s_argsort;
 static PyObject *__pyx_n_s_argsort_for_indep;
 static PyObject *__pyx_n_s_array;
-static PyObject *__pyx_n_s_asarray;
 static PyObject *__pyx_n_s_base;
 static PyObject *__pyx_n_s_bkpt;
 static PyObject *__pyx_n_s_c;
@@ -2921,7 +2892,6 @@ static PyObject *__pyx_n_s_count;
 static PyObject *__pyx_n_s_dep;
 static PyObject *__pyx_n_s_dep_to_use;
 static PyObject *__pyx_n_s_dict;
-static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_dtype_is_object;
 static PyObject *__pyx_n_s_encode;
 static PyObject *__pyx_n_s_enumerate;
@@ -2952,7 +2922,6 @@ static PyObject *__pyx_n_s_index_minus_one;
 static PyObject *__pyx_n_s_index_to_use;
 static PyObject *__pyx_n_s_indices_can_skip;
 static PyObject *__pyx_n_u_inf;
-static PyObject *__pyx_n_s_isscalar;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
 static PyObject *__pyx_n_s_kwargs;
@@ -3003,7 +2972,6 @@ static PyObject *__pyx_n_s_one_bkpt_rss_func;
 static PyObject *__pyx_n_s_one_bkpt_rss_func_locals_func;
 static PyObject *__pyx_n_s_pack;
 static PyObject *__pyx_n_s_pickle;
-static PyObject *__pyx_n_s_piecewise;
 static PyObject *__pyx_n_s_pop;
 static PyObject *__pyx_n_s_prev_index;
 static PyObject *__pyx_n_s_pyx_PickleError;
@@ -3020,7 +2988,6 @@ static PyObject *__pyx_n_s_range_end;
 static PyObject *__pyx_n_s_reduce;
 static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
-static PyObject *__pyx_n_s_result;
 static PyObject *__pyx_n_s_rhs_dep;
 static PyObject *__pyx_n_s_rhs_indep;
 static PyObject *__pyx_n_s_rhs_ols_intercept;
@@ -3029,9 +2996,6 @@ static PyObject *__pyx_n_s_rhs_rss;
 static PyObject *__pyx_n_s_rhs_slope;
 static PyObject *__pyx_n_s_rss;
 static PyObject *__pyx_n_s_searchsorted;
-static PyObject *__pyx_n_s_segmented_func;
-static PyObject *__pyx_n_s_segmented_func_locals_func;
-static PyObject *__pyx_n_s_segmented_func_locals_func_local;
 static PyObject *__pyx_n_s_segreg_model_one_bkpt_segreg;
 static PyObject *__pyx_kp_s_segreg_model_one_bkpt_segreg_pyx;
 static PyObject *__pyx_n_s_setstate;
@@ -3058,19 +3022,13 @@ static PyObject *__pyx_n_s_unique_indep_lhs_indices;
 static PyObject *__pyx_n_s_unpack;
 static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_n_s_v;
-static PyObject *__pyx_n_s_x;
 static PyObject *__pyx_n_s_x0;
-static PyObject *__pyx_n_s_x_arr;
 static PyObject *__pyx_n_s_y0;
-static PyObject *__pyx_lambda_funcdef_lambda(PyObject *__pyx_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_lambda_funcdef_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_14segmented_func_func(PyObject *__pyx_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_segmented_func(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_u, PyObject *__pyx_v_v, PyObject *__pyx_v_m1, PyObject *__pyx_v_m2); /* proto */
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep, PyObject *__pyx_v_bkpt); /* proto */
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_fixed_bkpt_ls_for_data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep, PyObject *__pyx_v_bkpt); /* proto */
 static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_func(PyObject *__pyx_self, PyObject *__pyx_v_u); /* proto */
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep); /* proto */
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squares(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_ols_data1, __Pyx_memviewslice __pyx_v_ols_data2, double __pyx_v_u); /* proto */
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_segreg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_indep, __Pyx_memviewslice __pyx_v_dep, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2one_bkpt_rss_func(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep); /* proto */
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4fixed_bkpt_least_squares(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_ols_data1, __Pyx_memviewslice __pyx_v_ols_data2, double __pyx_v_u); /* proto */
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6estimate_one_bkpt_segreg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_indep, __Pyx_memviewslice __pyx_v_dep, PyObject *__pyx_v_kwargs); /* proto */
 static int __pyx_pf_7cpython_5array_5array___getbuffer__(arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info, CYTHON_UNUSED int __pyx_v_flags); /* proto */
 static void __pyx_pf_7cpython_5array_5array_2__releasebuffer__(CYTHON_UNUSED arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -3115,8 +3073,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_16_memoryviewslice_4base___get__
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3127,14 +3084,15 @@ static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_184977713;
 static PyObject *__pyx_int_neg_1;
-static double __pyx_k__5;
+static double __pyx_k__3;
 static PyObject *__pyx_tuple_;
-static PyObject *__pyx_tuple__3;
+static PyObject *__pyx_tuple__4;
+static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_tuple__9;
-static PyObject *__pyx_slice__22;
+static PyObject *__pyx_slice__20;
 static PyObject *__pyx_tuple__10;
 static PyObject *__pyx_tuple__11;
 static PyObject *__pyx_tuple__12;
@@ -3145,648 +3103,28 @@ static PyObject *__pyx_tuple__16;
 static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__18;
 static PyObject *__pyx_tuple__19;
-static PyObject *__pyx_tuple__20;
 static PyObject *__pyx_tuple__21;
+static PyObject *__pyx_tuple__22;
 static PyObject *__pyx_tuple__23;
 static PyObject *__pyx_tuple__24;
-static PyObject *__pyx_tuple__25;
 static PyObject *__pyx_tuple__26;
 static PyObject *__pyx_tuple__28;
 static PyObject *__pyx_tuple__30;
 static PyObject *__pyx_tuple__32;
+static PyObject *__pyx_tuple__33;
 static PyObject *__pyx_tuple__34;
+static PyObject *__pyx_tuple__35;
 static PyObject *__pyx_tuple__36;
 static PyObject *__pyx_tuple__37;
-static PyObject *__pyx_tuple__38;
-static PyObject *__pyx_tuple__39;
-static PyObject *__pyx_tuple__40;
-static PyObject *__pyx_tuple__41;
 static PyObject *__pyx_codeobj__2;
-static PyObject *__pyx_codeobj__4;
+static PyObject *__pyx_codeobj__25;
 static PyObject *__pyx_codeobj__27;
 static PyObject *__pyx_codeobj__29;
 static PyObject *__pyx_codeobj__31;
-static PyObject *__pyx_codeobj__33;
-static PyObject *__pyx_codeobj__35;
-static PyObject *__pyx_codeobj__42;
+static PyObject *__pyx_codeobj__38;
 /* Late includes */
 
-/* "segreg/model/one_bkpt_segreg.pyx":35
- * 
- * 
- * def segmented_func(u, v, m1, m2):             # <<<<<<<<<<<<<<
- *     """
- *     Returns the one-bkpt function corresponding to the given parameters.
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_1segmented_func(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_segmented_func[] = "segmented_func(u, v, m1, m2)\n\n    Returns the one-bkpt function corresponding to the given parameters.\n\n    ``(u,v)`` is the breakpoint (in x-y plane)\n\n    ``m1`` is the slope of the left-hand segment\n\n    ``m2`` is the slope of the right-hand segment\n\n\n    Parameters\n    ----------\n    u: float\n    v: float\n    m1: float\n    m2: float\n\n    Returns\n    -------\n    func: function object\n    ";
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_1segmented_func = {"segmented_func", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_1segmented_func, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_segmented_func};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_1segmented_func(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_u = 0;
-  PyObject *__pyx_v_v = 0;
-  PyObject *__pyx_v_m1 = 0;
-  PyObject *__pyx_v_m2 = 0;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("segmented_func (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_u,&__pyx_n_s_v,&__pyx_n_s_m1,&__pyx_n_s_m2,0};
-    PyObject* values[4] = {0,0,0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        CYTHON_FALLTHROUGH;
-        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_u)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_v)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("segmented_func", 1, 4, 4, 1); __PYX_ERR(0, 35, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_m1)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("segmented_func", 1, 4, 4, 2); __PYX_ERR(0, 35, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_m2)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("segmented_func", 1, 4, 4, 3); __PYX_ERR(0, 35, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "segmented_func") < 0)) __PYX_ERR(0, 35, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-    }
-    __pyx_v_u = values[0];
-    __pyx_v_v = values[1];
-    __pyx_v_m1 = values[2];
-    __pyx_v_m2 = values[3];
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("segmented_func", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 35, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.segmented_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_segmented_func(__pyx_self, __pyx_v_u, __pyx_v_v, __pyx_v_m1, __pyx_v_m2);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "segreg/model/one_bkpt_segreg.pyx":57
- *     func: function object
- *     """
- *     def func(x):             # <<<<<<<<<<<<<<
- * 
- *         x_arr = np.asarray(x, dtype=float)
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_1func(PyObject *__pyx_self, PyObject *__pyx_v_x); /*proto*/
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_14segmented_func_1func = {"func", (PyCFunction)__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_1func, METH_O, 0};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_1func(PyObject *__pyx_self, PyObject *__pyx_v_x) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("func (wrapper)", 0);
-  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_14segmented_func_func(__pyx_self, ((PyObject *)__pyx_v_x));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "segreg/model/one_bkpt_segreg.pyx":64
- *                               [x_arr <= u,
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),             # <<<<<<<<<<<<<<
- *                                   lambda x: v + m2 * (x - u)])
- *         # np.piecewise returns zero-dim array when scalar
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_lambda(PyObject *__pyx_self, PyObject *__pyx_v_x); /*proto*/
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_lambda = {"lambda", (PyCFunction)__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_lambda, METH_O, 0};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_lambda(PyObject *__pyx_self, PyObject *__pyx_v_x) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("lambda (wrapper)", 0);
-  __pyx_r = __pyx_lambda_funcdef_lambda(__pyx_self, ((PyObject *)__pyx_v_x));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_lambda_funcdef_lambda(PyObject *__pyx_self, PyObject *__pyx_v_x) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_cur_scope;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_outer_scope;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("lambda", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
-  __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_v)) { __Pyx_RaiseClosureNameError("v"); __PYX_ERR(0, 64, __pyx_L1_error) }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_m1)) { __Pyx_RaiseClosureNameError("m1"); __PYX_ERR(0, 64, __pyx_L1_error) }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_u)) { __Pyx_RaiseClosureNameError("u"); __PYX_ERR(0, 64, __pyx_L1_error) }
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_cur_scope->__pyx_v_u); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_cur_scope->__pyx_v_m1, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_cur_scope->__pyx_v_v, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.segmented_func.func.lambda", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "segreg/model/one_bkpt_segreg.pyx":65
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),
- *                                   lambda x: v + m2 * (x - u)])             # <<<<<<<<<<<<<<
- *         # np.piecewise returns zero-dim array when scalar
- *         if np.isscalar(x):
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_1lambda1(PyObject *__pyx_self, PyObject *__pyx_v_x); /*proto*/
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_1lambda1 = {"lambda1", (PyCFunction)__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_1lambda1, METH_O, 0};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_1lambda1(PyObject *__pyx_self, PyObject *__pyx_v_x) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("lambda1 (wrapper)", 0);
-  __pyx_r = __pyx_lambda_funcdef_lambda1(__pyx_self, ((PyObject *)__pyx_v_x));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_lambda_funcdef_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_x) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_cur_scope;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_outer_scope;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("lambda1", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
-  __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_v)) { __Pyx_RaiseClosureNameError("v"); __PYX_ERR(0, 65, __pyx_L1_error) }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_m2)) { __Pyx_RaiseClosureNameError("m2"); __PYX_ERR(0, 65, __pyx_L1_error) }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_u)) { __Pyx_RaiseClosureNameError("u"); __PYX_ERR(0, 65, __pyx_L1_error) }
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_cur_scope->__pyx_v_u); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_cur_scope->__pyx_v_m2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_cur_scope->__pyx_v_v, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.segmented_func.func.lambda1", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "segreg/model/one_bkpt_segreg.pyx":57
- *     func: function object
- *     """
- *     def func(x):             # <<<<<<<<<<<<<<
- * 
- *         x_arr = np.asarray(x, dtype=float)
- */
-
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_14segmented_func_func(PyObject *__pyx_self, PyObject *__pyx_v_x) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_cur_scope;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_outer_scope;
-  PyObject *__pyx_v_x_arr = NULL;
-  PyObject *__pyx_v_result = NULL;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_t_7;
-  int __pyx_t_8;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("func", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":59
- *     def func(x):
- * 
- *         x_arr = np.asarray(x, dtype=float)             # <<<<<<<<<<<<<<
- * 
- *         result = np.piecewise(x_arr,
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_v_x);
-  __Pyx_GIVEREF(__pyx_v_x);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_x);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, ((PyObject *)(&PyFloat_Type))) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_x_arr = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":61
- *         x_arr = np.asarray(x, dtype=float)
- * 
- *         result = np.piecewise(x_arr,             # <<<<<<<<<<<<<<
- *                               [x_arr <= u,
- *                                x_arr > u],
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_piecewise); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":62
- * 
- *         result = np.piecewise(x_arr,
- *                               [x_arr <= u,             # <<<<<<<<<<<<<<
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),
- */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_u)) { __Pyx_RaiseClosureNameError("u"); __PYX_ERR(0, 62, __pyx_L1_error) }
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_x_arr, __pyx_cur_scope->__pyx_v_u, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
-
-  /* "segreg/model/one_bkpt_segreg.pyx":63
- *         result = np.piecewise(x_arr,
- *                               [x_arr <= u,
- *                                x_arr > u],             # <<<<<<<<<<<<<<
- *                               [lambda x: v + m1 * (x - u),
- *                                   lambda x: v + m2 * (x - u)])
- */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_u)) { __Pyx_RaiseClosureNameError("u"); __PYX_ERR(0, 63, __pyx_L1_error) }
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x_arr, __pyx_cur_scope->__pyx_v_u, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
-
-  /* "segreg/model/one_bkpt_segreg.pyx":62
- * 
- *         result = np.piecewise(x_arr,
- *                               [x_arr <= u,             # <<<<<<<<<<<<<<
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),
- */
-  __pyx_t_5 = PyList_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
-  __pyx_t_3 = 0;
-  __pyx_t_2 = 0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":64
- *                               [x_arr <= u,
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),             # <<<<<<<<<<<<<<
- *                                   lambda x: v + m2 * (x - u)])
- *         # np.piecewise returns zero-dim array when scalar
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_lambda, 0, __pyx_n_s_segmented_func_locals_func_local, ((PyObject*)__pyx_cur_scope), __pyx_n_s_segreg_model_one_bkpt_segreg, __pyx_d, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-
-  /* "segreg/model/one_bkpt_segreg.pyx":65
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),
- *                                   lambda x: v + m2 * (x - u)])             # <<<<<<<<<<<<<<
- *         # np.piecewise returns zero-dim array when scalar
- *         if np.isscalar(x):
- */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_14segmented_func_4func_1lambda1, 0, __pyx_n_s_segmented_func_locals_func_local, ((PyObject*)__pyx_cur_scope), __pyx_n_s_segreg_model_one_bkpt_segreg, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-
-  /* "segreg/model/one_bkpt_segreg.pyx":64
- *                               [x_arr <= u,
- *                                x_arr > u],
- *                               [lambda x: v + m1 * (x - u),             # <<<<<<<<<<<<<<
- *                                   lambda x: v + m2 * (x - u)])
- *         # np.piecewise returns zero-dim array when scalar
- */
-  __pyx_t_6 = PyList_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyList_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyList_SET_ITEM(__pyx_t_6, 1, __pyx_t_3);
-  __pyx_t_2 = 0;
-  __pyx_t_3 = 0;
-  __pyx_t_3 = NULL;
-  __pyx_t_7 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_7 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_1)) {
-    PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_x_arr, __pyx_t_5, __pyx_t_6};
-    __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-    PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_x_arr, __pyx_t_5, __pyx_t_6};
-    __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  } else
-  #endif
-  {
-    __pyx_t_2 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (__pyx_t_3) {
-      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
-    }
-    __Pyx_INCREF(__pyx_v_x_arr);
-    __Pyx_GIVEREF(__pyx_v_x_arr);
-    PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_7, __pyx_v_x_arr);
-    __Pyx_GIVEREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_7, __pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_6);
-    PyTuple_SET_ITEM(__pyx_t_2, 2+__pyx_t_7, __pyx_t_6);
-    __pyx_t_5 = 0;
-    __pyx_t_6 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_result = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":67
- *                                   lambda x: v + m2 * (x - u)])
- *         # np.piecewise returns zero-dim array when scalar
- *         if np.isscalar(x):             # <<<<<<<<<<<<<<
- *             result = float(result)
- *         return result
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_isscalar); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_4 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_x);
-  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__pyx_t_8) {
-
-    /* "segreg/model/one_bkpt_segreg.pyx":68
- *         # np.piecewise returns zero-dim array when scalar
- *         if np.isscalar(x):
- *             result = float(result)             # <<<<<<<<<<<<<<
- *         return result
- *     return func
- */
-    __pyx_t_4 = __Pyx_PyNumber_Float(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF_SET(__pyx_v_result, __pyx_t_4);
-    __pyx_t_4 = 0;
-
-    /* "segreg/model/one_bkpt_segreg.pyx":67
- *                                   lambda x: v + m2 * (x - u)])
- *         # np.piecewise returns zero-dim array when scalar
- *         if np.isscalar(x):             # <<<<<<<<<<<<<<
- *             result = float(result)
- *         return result
- */
-  }
-
-  /* "segreg/model/one_bkpt_segreg.pyx":69
- *         if np.isscalar(x):
- *             result = float(result)
- *         return result             # <<<<<<<<<<<<<<
- *     return func
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_result);
-  __pyx_r = __pyx_v_result;
-  goto __pyx_L0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":57
- *     func: function object
- *     """
- *     def func(x):             # <<<<<<<<<<<<<<
- * 
- *         x_arr = np.asarray(x, dtype=float)
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.segmented_func.func", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_x_arr);
-  __Pyx_XDECREF(__pyx_v_result);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "segreg/model/one_bkpt_segreg.pyx":35
- * 
- * 
- * def segmented_func(u, v, m1, m2):             # <<<<<<<<<<<<<<
- *     """
- *     Returns the one-bkpt function corresponding to the given parameters.
- */
-
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_segmented_func(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_u, PyObject *__pyx_v_v, PyObject *__pyx_v_m1, PyObject *__pyx_v_m2) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_cur_scope;
-  PyObject *__pyx_v_func = 0;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("segmented_func", 0);
-  __pyx_cur_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *)__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func(__pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func, __pyx_empty_tuple, NULL);
-  if (unlikely(!__pyx_cur_scope)) {
-    __pyx_cur_scope = ((struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *)Py_None);
-    __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 35, __pyx_L1_error)
-  } else {
-    __Pyx_GOTREF(__pyx_cur_scope);
-  }
-  __pyx_cur_scope->__pyx_v_u = __pyx_v_u;
-  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_u);
-  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_u);
-  __pyx_cur_scope->__pyx_v_v = __pyx_v_v;
-  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_v);
-  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_v);
-  __pyx_cur_scope->__pyx_v_m1 = __pyx_v_m1;
-  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_m1);
-  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_m1);
-  __pyx_cur_scope->__pyx_v_m2 = __pyx_v_m2;
-  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_m2);
-  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_m2);
-
-  /* "segreg/model/one_bkpt_segreg.pyx":57
- *     func: function object
- *     """
- *     def func(x):             # <<<<<<<<<<<<<<
- * 
- *         x_arr = np.asarray(x, dtype=float)
- */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_14segmented_func_1func, 0, __pyx_n_s_segmented_func_locals_func, ((PyObject*)__pyx_cur_scope), __pyx_n_s_segreg_model_one_bkpt_segreg, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_func = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":70
- *             result = float(result)
- *         return result
- *     return func             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_func);
-  __pyx_r = __pyx_v_func;
-  goto __pyx_L0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":35
- * 
- * 
- * def segmented_func(u, v, m1, m2):             # <<<<<<<<<<<<<<
- *     """
- *     Returns the one-bkpt function corresponding to the given parameters.
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.segmented_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_func);
-  __Pyx_DECREF(((PyObject *)__pyx_cur_scope));
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "segreg/model/one_bkpt_segreg.pyx":73
+/* "segreg/model/one_bkpt_segreg.pyx":32
  * 
  * 
  * def fixed_bkpt_ls_for_data(indep, dep, bkpt):             # <<<<<<<<<<<<<<
@@ -3795,10 +3133,10 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_segmented_func(CYTHON
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_data(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_data[] = "fixed_bkpt_ls_for_data(indep, dep, bkpt)\n    \n    NOTES\n    -----\n    assumes input is sorted\n\n    TODO: check where this is used\n    ";
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_data = {"fixed_bkpt_ls_for_data", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_data, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_data};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_data(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_1fixed_bkpt_ls_for_data(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_fixed_bkpt_ls_for_data[] = "fixed_bkpt_ls_for_data(indep, dep, bkpt)\n    \n    NOTES\n    -----\n    assumes input is sorted\n\n    TODO: check where this is used\n    ";
+static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_1fixed_bkpt_ls_for_data = {"fixed_bkpt_ls_for_data", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_1fixed_bkpt_ls_for_data, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_fixed_bkpt_ls_for_data};
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_1fixed_bkpt_ls_for_data(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_indep = 0;
   PyObject *__pyx_v_dep = 0;
   PyObject *__pyx_v_bkpt = 0;
@@ -3833,17 +3171,17 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_da
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dep)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_ls_for_data", 1, 3, 3, 1); __PYX_ERR(0, 73, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_ls_for_data", 1, 3, 3, 1); __PYX_ERR(0, 32, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_bkpt)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_ls_for_data", 1, 3, 3, 2); __PYX_ERR(0, 73, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_ls_for_data", 1, 3, 3, 2); __PYX_ERR(0, 32, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fixed_bkpt_ls_for_data") < 0)) __PYX_ERR(0, 73, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fixed_bkpt_ls_for_data") < 0)) __PYX_ERR(0, 32, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3858,20 +3196,20 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_da
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fixed_bkpt_ls_for_data", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fixed_bkpt_ls_for_data", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 32, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.fixed_bkpt_ls_for_data", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_data(__pyx_self, __pyx_v_indep, __pyx_v_dep, __pyx_v_bkpt);
+  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_fixed_bkpt_ls_for_data(__pyx_self, __pyx_v_indep, __pyx_v_dep, __pyx_v_bkpt);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep, PyObject *__pyx_v_bkpt) {
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_fixed_bkpt_ls_for_data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep, PyObject *__pyx_v_bkpt) {
   PyObject *__pyx_v_index = NULL;
   PyObject *__pyx_v_lhs_indep = NULL;
   PyObject *__pyx_v_lhs_dep = NULL;
@@ -3896,16 +3234,16 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("fixed_bkpt_ls_for_data", 0);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":81
+  /* "segreg/model/one_bkpt_segreg.pyx":40
  *     TODO: check where this is used
  *     """
  *     index = np.searchsorted(indep, bkpt)             # <<<<<<<<<<<<<<
  * 
  *     lhs_indep = indep[0:index]
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_searchsorted); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_searchsorted); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -3923,7 +3261,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_indep, __pyx_v_bkpt};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -3931,13 +3269,13 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_indep, __pyx_v_bkpt};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -3948,7 +3286,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
     __Pyx_INCREF(__pyx_v_bkpt);
     __Pyx_GIVEREF(__pyx_v_bkpt);
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_bkpt);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -3956,63 +3294,63 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   __pyx_v_index = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":83
+  /* "segreg/model/one_bkpt_segreg.pyx":42
  *     index = np.searchsorted(indep, bkpt)
  * 
  *     lhs_indep = indep[0:index]             # <<<<<<<<<<<<<<
  *     lhs_dep = dep[0:index]
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_indep, 0, 0, NULL, &__pyx_v_index, NULL, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_indep, 0, 0, NULL, &__pyx_v_index, NULL, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_lhs_indep = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":84
+  /* "segreg/model/one_bkpt_segreg.pyx":43
  * 
  *     lhs_indep = indep[0:index]
  *     lhs_dep = dep[0:index]             # <<<<<<<<<<<<<<
  * 
  *     rhs_indep = indep[index:]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_dep, 0, 0, NULL, &__pyx_v_index, NULL, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_dep, 0, 0, NULL, &__pyx_v_index, NULL, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_lhs_dep = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":86
+  /* "segreg/model/one_bkpt_segreg.pyx":45
  *     lhs_dep = dep[0:index]
  * 
  *     rhs_indep = indep[index:]             # <<<<<<<<<<<<<<
  *     rhs_dep = dep[index:]
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_indep, 0, 0, &__pyx_v_index, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_indep, 0, 0, &__pyx_v_index, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_rhs_indep = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":87
+  /* "segreg/model/one_bkpt_segreg.pyx":46
  * 
  *     rhs_indep = indep[index:]
  *     rhs_dep = dep[index:]             # <<<<<<<<<<<<<<
  * 
  *     cdef OLSData ols_1
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_dep, 0, 0, &__pyx_v_index, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_dep, 0, 0, &__pyx_v_index, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_rhs_dep = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":91
+  /* "segreg/model/one_bkpt_segreg.pyx":50
  *     cdef OLSData ols_1
  *     cdef OLSData ols_2
  *     ols_1 = ols_data(lhs_indep, lhs_dep)             # <<<<<<<<<<<<<<
  *     ols_2 = ols_data(rhs_indep, rhs_dep)
  * 
  */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_lhs_indep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_lhs_dep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_lhs_indep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_lhs_dep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 50, __pyx_L1_error)
   __pyx_v_ols_1 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_6, __pyx_t_7);
   __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_6.memview = NULL;
@@ -4021,15 +3359,15 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":92
+  /* "segreg/model/one_bkpt_segreg.pyx":51
  *     cdef OLSData ols_2
  *     ols_1 = ols_data(lhs_indep, lhs_dep)
  *     ols_2 = ols_data(rhs_indep, rhs_dep)             # <<<<<<<<<<<<<<
  * 
  *     cdef FixedBkptTerms fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, bkpt)
  */
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_rhs_indep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_rhs_dep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_rhs_indep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_rhs_dep, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 51, __pyx_L1_error)
   __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_7, __pyx_t_6);
   __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
   __pyx_t_7.memview = NULL;
@@ -4038,17 +3376,17 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":94
+  /* "segreg/model/one_bkpt_segreg.pyx":53
  *     ols_2 = ols_data(rhs_indep, rhs_dep)
  * 
  *     cdef FixedBkptTerms fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, bkpt)             # <<<<<<<<<<<<<<
  *     return (fixed_bkpt_terms.v,
  *             fixed_bkpt_terms.m1,
  */
-  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_v_bkpt); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_v_bkpt); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
   __pyx_v_fixed_bkpt_terms = __pyx_f_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls(__pyx_v_ols_1, __pyx_v_ols_2, __pyx_t_8, NULL);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":95
+  /* "segreg/model/one_bkpt_segreg.pyx":54
  * 
  *     cdef FixedBkptTerms fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, bkpt)
  *     return (fixed_bkpt_terms.v,             # <<<<<<<<<<<<<<
@@ -4056,47 +3394,47 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
  *             fixed_bkpt_terms.m2,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.v); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.v); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":96
+  /* "segreg/model/one_bkpt_segreg.pyx":55
  *     cdef FixedBkptTerms fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, bkpt)
  *     return (fixed_bkpt_terms.v,
  *             fixed_bkpt_terms.m1,             # <<<<<<<<<<<<<<
  *             fixed_bkpt_terms.m2,
  *             fixed_bkpt_terms.rss)
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":97
+  /* "segreg/model/one_bkpt_segreg.pyx":56
  *     return (fixed_bkpt_terms.v,
  *             fixed_bkpt_terms.m1,
  *             fixed_bkpt_terms.m2,             # <<<<<<<<<<<<<<
  *             fixed_bkpt_terms.rss)
  * 
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":98
+  /* "segreg/model/one_bkpt_segreg.pyx":57
  *             fixed_bkpt_terms.m1,
  *             fixed_bkpt_terms.m2,
  *             fixed_bkpt_terms.rss)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.rss); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.rss); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":95
+  /* "segreg/model/one_bkpt_segreg.pyx":54
  * 
  *     cdef FixedBkptTerms fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, bkpt)
  *     return (fixed_bkpt_terms.v,             # <<<<<<<<<<<<<<
  *             fixed_bkpt_terms.m1,
  *             fixed_bkpt_terms.m2,
  */
-  __pyx_t_9 = PyTuple_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_9 = PyTuple_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_1);
@@ -4114,7 +3452,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   __pyx_t_9 = 0;
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":73
+  /* "segreg/model/one_bkpt_segreg.pyx":32
  * 
  * 
  * def fixed_bkpt_ls_for_data(indep, dep, bkpt):             # <<<<<<<<<<<<<<
@@ -4144,7 +3482,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":101
+/* "segreg/model/one_bkpt_segreg.pyx":60
  * 
  * 
  * def one_bkpt_rss_func(indep, dep):             # <<<<<<<<<<<<<<
@@ -4153,10 +3491,10 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2fixed_bkpt_ls_for_da
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func[] = "one_bkpt_rss_func(indep, dep)\n    \n    Returns a function which takes a bkpt and returns the RSS of a one-bkpt\n    segmented fit.\n\n    The returned function takes a single argument which is interpreted as a\n    bkpt location.  Given a bkpt, it computes the RSS of a one-bkpt segmented\n    fit to the given data for the specified bkpt.  In particular, there is no \n    estimation of the bkpt involved.\n\n    This method is intended to be used primarily for plotting or diagnosis of\n    one-bkpt segmented regression problems.\n\n    Notes\n    -----\n    For one-bkpt segmented regression problems, estimation of the bkpt is\n    equivalent to minimization of the returned function.\n\n    Parameters\n    ----------\n    indep: array-like of shape (num_data,)\n        The independent data.  Also called predictor, explanatory variable,\n        regressor, or exogenous variable.\n    dep: array-like of shape (num_data,)\n        The dependent data.  Also called response, regressand, or endogenous\n        variable.\n\n    Returns\n    -------\n    func: a function object\n    ";
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func = {"one_bkpt_rss_func", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_3one_bkpt_rss_func(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_2one_bkpt_rss_func[] = "one_bkpt_rss_func(indep, dep)\n    \n    Returns a function which takes a bkpt and returns the RSS of a one-bkpt\n    segmented fit.\n\n    The returned function takes a single argument which is interpreted as a\n    bkpt location.  Given a bkpt, it computes the RSS of a one-bkpt segmented\n    fit to the given data for the specified bkpt.  In particular, there is no \n    estimation of the bkpt involved.\n\n    This method is intended to be used primarily for plotting or diagnosis of\n    one-bkpt segmented regression problems.\n\n    Notes\n    -----\n    For one-bkpt segmented regression problems, estimation of the bkpt is\n    equivalent to minimization of the returned function.\n\n    Parameters\n    ----------\n    indep: array-like of shape (num_data,)\n        The independent data.  Also called predictor, explanatory variable,\n        regressor, or exogenous variable.\n    dep: array-like of shape (num_data,)\n        The dependent data.  Also called response, regressand, or endogenous\n        variable.\n\n    Returns\n    -------\n    func: a function object\n    ";
+static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_3one_bkpt_rss_func = {"one_bkpt_rss_func", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_3one_bkpt_rss_func, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_2one_bkpt_rss_func};
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_3one_bkpt_rss_func(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_indep = 0;
   PyObject *__pyx_v_dep = 0;
   int __pyx_lineno = 0;
@@ -4188,11 +3526,11 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func(Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dep)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("one_bkpt_rss_func", 1, 2, 2, 1); __PYX_ERR(0, 101, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("one_bkpt_rss_func", 1, 2, 2, 1); __PYX_ERR(0, 60, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "one_bkpt_rss_func") < 0)) __PYX_ERR(0, 101, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "one_bkpt_rss_func") < 0)) __PYX_ERR(0, 60, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4205,20 +3543,20 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func(Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("one_bkpt_rss_func", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 101, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("one_bkpt_rss_func", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 60, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.one_bkpt_rss_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(__pyx_self, __pyx_v_indep, __pyx_v_dep);
+  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_2one_bkpt_rss_func(__pyx_self, __pyx_v_indep, __pyx_v_dep);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":138
+/* "segreg/model/one_bkpt_segreg.pyx":97
  *     dep_to_use = dep[argsort_for_indep]
  * 
  *     def func(u):             # <<<<<<<<<<<<<<
@@ -4241,8 +3579,8 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_1
 }
 
 static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_func(PyObject *__pyx_self, PyObject *__pyx_v_u) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *__pyx_cur_scope;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *__pyx_outer_scope;
+  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *__pyx_cur_scope;
+  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *__pyx_outer_scope;
   CYTHON_UNUSED PyObject *__pyx_v_v = NULL;
   CYTHON_UNUSED PyObject *__pyx_v_m1 = NULL;
   CYTHON_UNUSED PyObject *__pyx_v_m2 = NULL;
@@ -4261,20 +3599,20 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("func", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *) __Pyx_CyFunction_GetClosure(__pyx_self);
+  __pyx_outer_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":139
+  /* "segreg/model/one_bkpt_segreg.pyx":98
  * 
  *     def func(u):
  *         v, m1, m2, rss = fixed_bkpt_ls_for_data(indep_to_use, dep_to_use, u)             # <<<<<<<<<<<<<<
  *         return rss
  *     return func
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_fixed_bkpt_ls_for_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_fixed_bkpt_ls_for_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_indep_to_use)) { __Pyx_RaiseClosureNameError("indep_to_use"); __PYX_ERR(0, 139, __pyx_L1_error) }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_dep_to_use)) { __Pyx_RaiseClosureNameError("dep_to_use"); __PYX_ERR(0, 139, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_indep_to_use)) { __Pyx_RaiseClosureNameError("indep_to_use"); __PYX_ERR(0, 98, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_dep_to_use)) { __Pyx_RaiseClosureNameError("dep_to_use"); __PYX_ERR(0, 98, __pyx_L1_error) }
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -4290,7 +3628,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_cur_scope->__pyx_v_indep_to_use, __pyx_cur_scope->__pyx_v_dep_to_use, __pyx_v_u};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -4298,13 +3636,13 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_cur_scope->__pyx_v_indep_to_use, __pyx_cur_scope->__pyx_v_dep_to_use, __pyx_v_u};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -4318,7 +3656,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
     __Pyx_INCREF(__pyx_v_u);
     __Pyx_GIVEREF(__pyx_v_u);
     PyTuple_SET_ITEM(__pyx_t_5, 2+__pyx_t_4, __pyx_v_u);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -4329,7 +3667,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
     if (unlikely(size != 4)) {
       if (size > 4) __Pyx_RaiseTooManyValuesError(4);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 139, __pyx_L1_error)
+      __PYX_ERR(0, 98, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -4352,7 +3690,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
       Py_ssize_t i;
       PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_5,&__pyx_t_3,&__pyx_t_6};
       for (i=0; i < 4; i++) {
-        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 139, __pyx_L1_error)
+        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 98, __pyx_L1_error)
         __Pyx_GOTREF(item);
         *(temps[i]) = item;
       }
@@ -4362,7 +3700,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   } else {
     Py_ssize_t index = -1;
     PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_5,&__pyx_t_3,&__pyx_t_6};
-    __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -4371,7 +3709,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
       __Pyx_GOTREF(item);
       *(temps[index]) = item;
     }
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 4) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 4) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L4_unpacking_done;
@@ -4379,7 +3717,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 139, __pyx_L1_error)
+    __PYX_ERR(0, 98, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_v = __pyx_t_2;
@@ -4391,7 +3729,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   __pyx_v_rss = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":140
+  /* "segreg/model/one_bkpt_segreg.pyx":99
  *     def func(u):
  *         v, m1, m2, rss = fixed_bkpt_ls_for_data(indep_to_use, dep_to_use, u)
  *         return rss             # <<<<<<<<<<<<<<
@@ -4403,7 +3741,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   __pyx_r = __pyx_v_rss;
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":138
+  /* "segreg/model/one_bkpt_segreg.pyx":97
  *     dep_to_use = dep[argsort_for_indep]
  * 
  *     def func(u):             # <<<<<<<<<<<<<<
@@ -4431,7 +3769,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":101
+/* "segreg/model/one_bkpt_segreg.pyx":60
  * 
  * 
  * def one_bkpt_rss_func(indep, dep):             # <<<<<<<<<<<<<<
@@ -4439,8 +3777,8 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_f
  *     Returns a function which takes a bkpt and returns the RSS of a one-bkpt
  */
 
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *__pyx_cur_scope;
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_2one_bkpt_rss_func(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_indep, PyObject *__pyx_v_dep) {
+  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *__pyx_cur_scope;
   PyObject *__pyx_v_argsort_for_indep = NULL;
   PyObject *__pyx_v_func = 0;
   PyObject *__pyx_r = NULL;
@@ -4452,23 +3790,23 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CY
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("one_bkpt_rss_func", 0);
-  __pyx_cur_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *)__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func(__pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func, __pyx_empty_tuple, NULL);
+  __pyx_cur_scope = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *)__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func(__pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func, __pyx_empty_tuple, NULL);
   if (unlikely(!__pyx_cur_scope)) {
-    __pyx_cur_scope = ((struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *)Py_None);
+    __pyx_cur_scope = ((struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 101, __pyx_L1_error)
+    __PYX_ERR(0, 60, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":134
+  /* "segreg/model/one_bkpt_segreg.pyx":93
  * 
  *     # sort input because called function expects this
  *     argsort_for_indep = indep.argsort()             # <<<<<<<<<<<<<<
  *     indep_to_use = indep[argsort_for_indep]
  *     dep_to_use = dep[argsort_for_indep]
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_indep, __pyx_n_s_argsort); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_indep, __pyx_n_s_argsort); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4482,51 +3820,51 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CY
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_argsort_for_indep = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":135
+  /* "segreg/model/one_bkpt_segreg.pyx":94
  *     # sort input because called function expects this
  *     argsort_for_indep = indep.argsort()
  *     indep_to_use = indep[argsort_for_indep]             # <<<<<<<<<<<<<<
  *     dep_to_use = dep[argsort_for_indep]
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_indep, __pyx_v_argsort_for_indep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_indep, __pyx_v_argsort_for_indep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_indep_to_use = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":136
+  /* "segreg/model/one_bkpt_segreg.pyx":95
  *     argsort_for_indep = indep.argsort()
  *     indep_to_use = indep[argsort_for_indep]
  *     dep_to_use = dep[argsort_for_indep]             # <<<<<<<<<<<<<<
  * 
  *     def func(u):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_dep, __pyx_v_argsort_for_indep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_dep, __pyx_v_argsort_for_indep); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_dep_to_use = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":138
+  /* "segreg/model/one_bkpt_segreg.pyx":97
  *     dep_to_use = dep[argsort_for_indep]
  * 
  *     def func(u):             # <<<<<<<<<<<<<<
  *         v, m1, m2, rss = fixed_bkpt_ls_for_data(indep_to_use, dep_to_use, u)
  *         return rss
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_1func, 0, __pyx_n_s_one_bkpt_rss_func_locals_func, ((PyObject*)__pyx_cur_scope), __pyx_n_s_segreg_model_one_bkpt_segreg, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_17one_bkpt_rss_func_1func, 0, __pyx_n_s_one_bkpt_rss_func_locals_func, ((PyObject*)__pyx_cur_scope), __pyx_n_s_segreg_model_one_bkpt_segreg, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_func = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":141
+  /* "segreg/model/one_bkpt_segreg.pyx":100
  *         v, m1, m2, rss = fixed_bkpt_ls_for_data(indep_to_use, dep_to_use, u)
  *         return rss
  *     return func             # <<<<<<<<<<<<<<
@@ -4538,7 +3876,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CY
   __pyx_r = __pyx_v_func;
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":101
+  /* "segreg/model/one_bkpt_segreg.pyx":60
  * 
  * 
  * def one_bkpt_rss_func(indep, dep):             # <<<<<<<<<<<<<<
@@ -4562,7 +3900,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CY
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":153
+/* "segreg/model/one_bkpt_segreg.pyx":112
  * 
  * # TODO: add fixed m1
  * cdef FixedBkptTerms fixed_breakpt_ls(OLSData ols_terms_1,             # <<<<<<<<<<<<<<
@@ -4571,7 +3909,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4one_bkpt_rss_func(CY
  */
 
 static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls(struct __pyx_t_6segreg_5model_10regression_OLSData __pyx_v_ols_terms_1, struct __pyx_t_6segreg_5model_10regression_OLSData __pyx_v_ols_terms_2, double __pyx_v_u, struct __pyx_opt_args_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls *__pyx_optional_args) {
-  double __pyx_v_m2 = __pyx_k__5;
+  double __pyx_v_m2 = __pyx_k__3;
   size_t __pyx_v_num_data_1;
   double __pyx_v_sum_x_1;
   double __pyx_v_sum_y_1;
@@ -4616,7 +3954,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
     }
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":169
+  /* "segreg/model/one_bkpt_segreg.pyx":128
  *         regression calculation
  *     """
  *     cdef size_t num_data_1 = ols_terms_1.num             # <<<<<<<<<<<<<<
@@ -4626,7 +3964,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_1 = __pyx_v_ols_terms_1.num;
   __pyx_v_num_data_1 = __pyx_t_1;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":170
+  /* "segreg/model/one_bkpt_segreg.pyx":129
  *     """
  *     cdef size_t num_data_1 = ols_terms_1.num
  *     cdef double sum_x_1 = ols_terms_1.sum_x             # <<<<<<<<<<<<<<
@@ -4636,7 +3974,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_1.sum_x;
   __pyx_v_sum_x_1 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":171
+  /* "segreg/model/one_bkpt_segreg.pyx":130
  *     cdef size_t num_data_1 = ols_terms_1.num
  *     cdef double sum_x_1 = ols_terms_1.sum_x
  *     cdef double sum_y_1 = ols_terms_1.sum_y             # <<<<<<<<<<<<<<
@@ -4646,7 +3984,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_1.sum_y;
   __pyx_v_sum_y_1 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":172
+  /* "segreg/model/one_bkpt_segreg.pyx":131
  *     cdef double sum_x_1 = ols_terms_1.sum_x
  *     cdef double sum_y_1 = ols_terms_1.sum_y
  *     cdef double sum_xx_1 = ols_terms_1.sum_xx             # <<<<<<<<<<<<<<
@@ -4656,7 +3994,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_1.sum_xx;
   __pyx_v_sum_xx_1 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":173
+  /* "segreg/model/one_bkpt_segreg.pyx":132
  *     cdef double sum_y_1 = ols_terms_1.sum_y
  *     cdef double sum_xx_1 = ols_terms_1.sum_xx
  *     cdef double sum_yy_1 = ols_terms_1.sum_yy             # <<<<<<<<<<<<<<
@@ -4666,7 +4004,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_1.sum_yy;
   __pyx_v_sum_yy_1 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":174
+  /* "segreg/model/one_bkpt_segreg.pyx":133
  *     cdef double sum_xx_1 = ols_terms_1.sum_xx
  *     cdef double sum_yy_1 = ols_terms_1.sum_yy
  *     cdef double sum_xy_1 = ols_terms_1.sum_xy             # <<<<<<<<<<<<<<
@@ -4676,7 +4014,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_1.sum_xy;
   __pyx_v_sum_xy_1 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":176
+  /* "segreg/model/one_bkpt_segreg.pyx":135
  *     cdef double sum_xy_1 = ols_terms_1.sum_xy
  * 
  *     cdef size_t num_data_2 = ols_terms_2.num             # <<<<<<<<<<<<<<
@@ -4686,7 +4024,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_1 = __pyx_v_ols_terms_2.num;
   __pyx_v_num_data_2 = __pyx_t_1;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":177
+  /* "segreg/model/one_bkpt_segreg.pyx":136
  * 
  *     cdef size_t num_data_2 = ols_terms_2.num
  *     cdef double sum_x_2 = ols_terms_2.sum_x             # <<<<<<<<<<<<<<
@@ -4696,7 +4034,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_2.sum_x;
   __pyx_v_sum_x_2 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":178
+  /* "segreg/model/one_bkpt_segreg.pyx":137
  *     cdef size_t num_data_2 = ols_terms_2.num
  *     cdef double sum_x_2 = ols_terms_2.sum_x
  *     cdef double sum_y_2 = ols_terms_2.sum_y             # <<<<<<<<<<<<<<
@@ -4706,7 +4044,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_2.sum_y;
   __pyx_v_sum_y_2 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":179
+  /* "segreg/model/one_bkpt_segreg.pyx":138
  *     cdef double sum_x_2 = ols_terms_2.sum_x
  *     cdef double sum_y_2 = ols_terms_2.sum_y
  *     cdef double sum_xx_2 = ols_terms_2.sum_xx             # <<<<<<<<<<<<<<
@@ -4716,7 +4054,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_2.sum_xx;
   __pyx_v_sum_xx_2 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":180
+  /* "segreg/model/one_bkpt_segreg.pyx":139
  *     cdef double sum_y_2 = ols_terms_2.sum_y
  *     cdef double sum_xx_2 = ols_terms_2.sum_xx
  *     cdef double sum_yy_2 = ols_terms_2.sum_yy             # <<<<<<<<<<<<<<
@@ -4726,7 +4064,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_2.sum_yy;
   __pyx_v_sum_yy_2 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":181
+  /* "segreg/model/one_bkpt_segreg.pyx":140
  *     cdef double sum_xx_2 = ols_terms_2.sum_xx
  *     cdef double sum_yy_2 = ols_terms_2.sum_yy
  *     cdef double sum_xy_2 = ols_terms_2.sum_xy             # <<<<<<<<<<<<<<
@@ -4736,7 +4074,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = __pyx_v_ols_terms_2.sum_xy;
   __pyx_v_sum_xy_2 = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":183
+  /* "segreg/model/one_bkpt_segreg.pyx":142
  *     cdef double sum_xy_2 = ols_terms_2.sum_xy
  * 
  *     cdef double sum_x_minus_u_sq_1 = sum_xx_1 - 2.0 * u * sum_x_1 + u * u * num_data_1             # <<<<<<<<<<<<<<
@@ -4745,7 +4083,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_sum_x_minus_u_sq_1 = ((__pyx_v_sum_xx_1 - ((2.0 * __pyx_v_u) * __pyx_v_sum_x_1)) + ((__pyx_v_u * __pyx_v_u) * __pyx_v_num_data_1));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":184
+  /* "segreg/model/one_bkpt_segreg.pyx":143
  * 
  *     cdef double sum_x_minus_u_sq_1 = sum_xx_1 - 2.0 * u * sum_x_1 + u * u * num_data_1
  *     cdef double sum_x_minus_u_sq_2 = sum_xx_2 - 2.0 * u * sum_x_2 + u * u * num_data_2             # <<<<<<<<<<<<<<
@@ -4754,7 +4092,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_sum_x_minus_u_sq_2 = ((__pyx_v_sum_xx_2 - ((2.0 * __pyx_v_u) * __pyx_v_sum_x_2)) + ((__pyx_v_u * __pyx_v_u) * __pyx_v_num_data_2));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":188
+  /* "segreg/model/one_bkpt_segreg.pyx":147
  *     ## BEGIN: v
  *     # numerator
  *     cdef double v_num_term_1 = (sum_xy_1 - u * sum_y_1) * (sum_x_1 - u * num_data_1) / sum_x_minus_u_sq_1             # <<<<<<<<<<<<<<
@@ -4764,11 +4102,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = ((__pyx_v_sum_xy_1 - (__pyx_v_u * __pyx_v_sum_y_1)) * (__pyx_v_sum_x_1 - (__pyx_v_u * __pyx_v_num_data_1)));
   if (unlikely(__pyx_v_sum_x_minus_u_sq_1 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 188, __pyx_L1_error)
+    __PYX_ERR(0, 147, __pyx_L1_error)
   }
   __pyx_v_v_num_term_1 = (__pyx_t_2 / __pyx_v_sum_x_minus_u_sq_1);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":192
+  /* "segreg/model/one_bkpt_segreg.pyx":151
  *     cdef double v_num_term_2
  * 
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -4778,7 +4116,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_3 = (isnan(__pyx_v_m2) != 0);
   if (__pyx_t_3) {
 
-    /* "segreg/model/one_bkpt_segreg.pyx":193
+    /* "segreg/model/one_bkpt_segreg.pyx":152
  * 
  *     if isnan(m2):
  *         v_num_term_2 = (sum_xy_2 - u * sum_y_2) * (sum_x_2 - u * num_data_2) / sum_x_minus_u_sq_2             # <<<<<<<<<<<<<<
@@ -4788,11 +4126,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
     __pyx_t_2 = ((__pyx_v_sum_xy_2 - (__pyx_v_u * __pyx_v_sum_y_2)) * (__pyx_v_sum_x_2 - (__pyx_v_u * __pyx_v_num_data_2)));
     if (unlikely(__pyx_v_sum_x_minus_u_sq_2 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 193, __pyx_L1_error)
+      __PYX_ERR(0, 152, __pyx_L1_error)
     }
     __pyx_v_v_num_term_2 = (__pyx_t_2 / __pyx_v_sum_x_minus_u_sq_2);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":192
+    /* "segreg/model/one_bkpt_segreg.pyx":151
  *     cdef double v_num_term_2
  * 
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -4802,7 +4140,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
     goto __pyx_L3;
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":195
+  /* "segreg/model/one_bkpt_segreg.pyx":154
  *         v_num_term_2 = (sum_xy_2 - u * sum_y_2) * (sum_x_2 - u * num_data_2) / sum_x_minus_u_sq_2
  *     else:
  *         v_num_term_2 = m2 * (sum_x_2 - u * num_data_2)             # <<<<<<<<<<<<<<
@@ -4814,7 +4152,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   }
   __pyx_L3:;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":197
+  /* "segreg/model/one_bkpt_segreg.pyx":156
  *         v_num_term_2 = m2 * (sum_x_2 - u * num_data_2)
  * 
  *     cdef double v_numerator = sum_y_1 + sum_y_2 - v_num_term_1 - v_num_term_2             # <<<<<<<<<<<<<<
@@ -4823,7 +4161,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_v_numerator = (((__pyx_v_sum_y_1 + __pyx_v_sum_y_2) - __pyx_v_v_num_term_1) - __pyx_v_v_num_term_2);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":200
+  /* "segreg/model/one_bkpt_segreg.pyx":159
  * 
  *     # denominator
  *     cdef double piece1 = (sum_x_1 - u * num_data_1)             # <<<<<<<<<<<<<<
@@ -4832,7 +4170,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_piece1 = (__pyx_v_sum_x_1 - (__pyx_v_u * __pyx_v_num_data_1));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":201
+  /* "segreg/model/one_bkpt_segreg.pyx":160
  *     # denominator
  *     cdef double piece1 = (sum_x_1 - u * num_data_1)
  *     cdef double v_denom_term_1 = piece1 * piece1 / sum_x_minus_u_sq_1             # <<<<<<<<<<<<<<
@@ -4842,11 +4180,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_2 = (__pyx_v_piece1 * __pyx_v_piece1);
   if (unlikely(__pyx_v_sum_x_minus_u_sq_1 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 201, __pyx_L1_error)
+    __PYX_ERR(0, 160, __pyx_L1_error)
   }
   __pyx_v_v_denom_term_1 = (__pyx_t_2 / __pyx_v_sum_x_minus_u_sq_1);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":202
+  /* "segreg/model/one_bkpt_segreg.pyx":161
  *     cdef double piece1 = (sum_x_1 - u * num_data_1)
  *     cdef double v_denom_term_1 = piece1 * piece1 / sum_x_minus_u_sq_1
  *     cdef double piece2 = (sum_x_2 - u * num_data_2)             # <<<<<<<<<<<<<<
@@ -4855,7 +4193,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_piece2 = (__pyx_v_sum_x_2 - (__pyx_v_u * __pyx_v_num_data_2));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":205
+  /* "segreg/model/one_bkpt_segreg.pyx":164
  * 
  *     cdef double v_denom_term_2
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -4865,7 +4203,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_3 = (isnan(__pyx_v_m2) != 0);
   if (__pyx_t_3) {
 
-    /* "segreg/model/one_bkpt_segreg.pyx":206
+    /* "segreg/model/one_bkpt_segreg.pyx":165
  *     cdef double v_denom_term_2
  *     if isnan(m2):
  *         v_denom_term_2 = piece2 * piece2 / sum_x_minus_u_sq_2             # <<<<<<<<<<<<<<
@@ -4875,11 +4213,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
     __pyx_t_2 = (__pyx_v_piece2 * __pyx_v_piece2);
     if (unlikely(__pyx_v_sum_x_minus_u_sq_2 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 206, __pyx_L1_error)
+      __PYX_ERR(0, 165, __pyx_L1_error)
     }
     __pyx_v_v_denom_term_2 = (__pyx_t_2 / __pyx_v_sum_x_minus_u_sq_2);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":205
+    /* "segreg/model/one_bkpt_segreg.pyx":164
  * 
  *     cdef double v_denom_term_2
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -4889,7 +4227,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
     goto __pyx_L4;
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":208
+  /* "segreg/model/one_bkpt_segreg.pyx":167
  *         v_denom_term_2 = piece2 * piece2 / sum_x_minus_u_sq_2
  *     else:
  *         v_denom_term_2 = 0.0             # <<<<<<<<<<<<<<
@@ -4901,7 +4239,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   }
   __pyx_L4:;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":210
+  /* "segreg/model/one_bkpt_segreg.pyx":169
  *         v_denom_term_2 = 0.0
  * 
  *     cdef double v_denominator = num_data_1 + num_data_2 - v_denom_term_1 - v_denom_term_2             # <<<<<<<<<<<<<<
@@ -4910,7 +4248,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_v_denominator = (((__pyx_v_num_data_1 + __pyx_v_num_data_2) - __pyx_v_v_denom_term_1) - __pyx_v_v_denom_term_2);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":212
+  /* "segreg/model/one_bkpt_segreg.pyx":171
  *     cdef double v_denominator = num_data_1 + num_data_2 - v_denom_term_1 - v_denom_term_2
  * 
  *     cdef double v = v_numerator / v_denominator             # <<<<<<<<<<<<<<
@@ -4919,11 +4257,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   if (unlikely(__pyx_v_v_denominator == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 212, __pyx_L1_error)
+    __PYX_ERR(0, 171, __pyx_L1_error)
   }
   __pyx_v_v = (__pyx_v_v_numerator / __pyx_v_v_denominator);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":216
+  /* "segreg/model/one_bkpt_segreg.pyx":175
  * 
  *     ## BEGIN: slopes
  *     cdef double uv = u * v             # <<<<<<<<<<<<<<
@@ -4932,7 +4270,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_uv = (__pyx_v_u * __pyx_v_v);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":218
+  /* "segreg/model/one_bkpt_segreg.pyx":177
  *     cdef double uv = u * v
  * 
  *     cdef double m1_numerator = sum_xy_1 - v * sum_x_1 - u * sum_y_1 + uv * num_data_1             # <<<<<<<<<<<<<<
@@ -4941,7 +4279,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_m1_numerator = (((__pyx_v_sum_xy_1 - (__pyx_v_v * __pyx_v_sum_x_1)) - (__pyx_v_u * __pyx_v_sum_y_1)) + (__pyx_v_uv * __pyx_v_num_data_1));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":219
+  /* "segreg/model/one_bkpt_segreg.pyx":178
  * 
  *     cdef double m1_numerator = sum_xy_1 - v * sum_x_1 - u * sum_y_1 + uv * num_data_1
  *     cdef double m1 = m1_numerator / sum_x_minus_u_sq_1             # <<<<<<<<<<<<<<
@@ -4950,11 +4288,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   if (unlikely(__pyx_v_sum_x_minus_u_sq_1 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 219, __pyx_L1_error)
+    __PYX_ERR(0, 178, __pyx_L1_error)
   }
   __pyx_v_m1 = (__pyx_v_m1_numerator / __pyx_v_sum_x_minus_u_sq_1);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":222
+  /* "segreg/model/one_bkpt_segreg.pyx":181
  * 
  *     cdef double m2_numerator
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -4964,7 +4302,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_t_3 = (isnan(__pyx_v_m2) != 0);
   if (__pyx_t_3) {
 
-    /* "segreg/model/one_bkpt_segreg.pyx":223
+    /* "segreg/model/one_bkpt_segreg.pyx":182
  *     cdef double m2_numerator
  *     if isnan(m2):
  *         m2_numerator = sum_xy_2 - v * sum_x_2 - u * sum_y_2 + uv * num_data_2             # <<<<<<<<<<<<<<
@@ -4973,7 +4311,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
     __pyx_v_m2_numerator = (((__pyx_v_sum_xy_2 - (__pyx_v_v * __pyx_v_sum_x_2)) - (__pyx_v_u * __pyx_v_sum_y_2)) + (__pyx_v_uv * __pyx_v_num_data_2));
 
-    /* "segreg/model/one_bkpt_segreg.pyx":224
+    /* "segreg/model/one_bkpt_segreg.pyx":183
  *     if isnan(m2):
  *         m2_numerator = sum_xy_2 - v * sum_x_2 - u * sum_y_2 + uv * num_data_2
  *         m2 = m2_numerator / sum_x_minus_u_sq_2             # <<<<<<<<<<<<<<
@@ -4982,11 +4320,11 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
     if (unlikely(__pyx_v_sum_x_minus_u_sq_2 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 224, __pyx_L1_error)
+      __PYX_ERR(0, 183, __pyx_L1_error)
     }
     __pyx_v_m2 = (__pyx_v_m2_numerator / __pyx_v_sum_x_minus_u_sq_2);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":222
+    /* "segreg/model/one_bkpt_segreg.pyx":181
  * 
  *     cdef double m2_numerator
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -4995,7 +4333,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":227
+  /* "segreg/model/one_bkpt_segreg.pyx":186
  *     ## END: slopes
  * 
  *     cdef double rss = rss_for_region(ols_terms_1, u, v, m1) + rss_for_region(ols_terms_2, u, v, m2)             # <<<<<<<<<<<<<<
@@ -5004,7 +4342,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_rss = (__pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(__pyx_v_ols_terms_1, __pyx_v_u, __pyx_v_v, __pyx_v_m1) + __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(__pyx_v_ols_terms_2, __pyx_v_u, __pyx_v_v, __pyx_v_m2));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":230
+  /* "segreg/model/one_bkpt_segreg.pyx":189
  * 
  *     cdef FixedBkptTerms fixed_bkpt_terms
  *     fixed_bkpt_terms.v = v             # <<<<<<<<<<<<<<
@@ -5013,7 +4351,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_fixed_bkpt_terms.v = __pyx_v_v;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":231
+  /* "segreg/model/one_bkpt_segreg.pyx":190
  *     cdef FixedBkptTerms fixed_bkpt_terms
  *     fixed_bkpt_terms.v = v
  *     fixed_bkpt_terms.m1 = m1             # <<<<<<<<<<<<<<
@@ -5022,7 +4360,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_fixed_bkpt_terms.m1 = __pyx_v_m1;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":232
+  /* "segreg/model/one_bkpt_segreg.pyx":191
  *     fixed_bkpt_terms.v = v
  *     fixed_bkpt_terms.m1 = m1
  *     fixed_bkpt_terms.m2 = m2             # <<<<<<<<<<<<<<
@@ -5031,7 +4369,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_fixed_bkpt_terms.m2 = __pyx_v_m2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":233
+  /* "segreg/model/one_bkpt_segreg.pyx":192
  *     fixed_bkpt_terms.m1 = m1
  *     fixed_bkpt_terms.m2 = m2
  *     fixed_bkpt_terms.rss = rss             # <<<<<<<<<<<<<<
@@ -5040,7 +4378,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
  */
   __pyx_v_fixed_bkpt_terms.rss = __pyx_v_rss;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":235
+  /* "segreg/model/one_bkpt_segreg.pyx":194
  *     fixed_bkpt_terms.rss = rss
  * 
  *     return fixed_bkpt_terms             # <<<<<<<<<<<<<<
@@ -5050,7 +4388,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   __pyx_r = __pyx_v_fixed_bkpt_terms;
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":153
+  /* "segreg/model/one_bkpt_segreg.pyx":112
  * 
  * # TODO: add fixed m1
  * cdef FixedBkptTerms fixed_breakpt_ls(OLSData ols_terms_1,             # <<<<<<<<<<<<<<
@@ -5067,7 +4405,7 @@ static struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_f_6s
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":237
+/* "segreg/model/one_bkpt_segreg.pyx":196
  *     return fixed_bkpt_terms
  * 
  * cdef double rss_for_region(OLSData ols_data, double u, double v, double m):             # <<<<<<<<<<<<<<
@@ -5091,7 +4429,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   double __pyx_t_2;
   __Pyx_RefNannySetupContext("rss_for_region", 0);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":238
+  /* "segreg/model/one_bkpt_segreg.pyx":197
  * 
  * cdef double rss_for_region(OLSData ols_data, double u, double v, double m):
  *     cdef size_t num_data = ols_data.num             # <<<<<<<<<<<<<<
@@ -5101,7 +4439,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_t_1 = __pyx_v_ols_data.num;
   __pyx_v_num_data = __pyx_t_1;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":239
+  /* "segreg/model/one_bkpt_segreg.pyx":198
  * cdef double rss_for_region(OLSData ols_data, double u, double v, double m):
  *     cdef size_t num_data = ols_data.num
  *     cdef double sum_x = ols_data.sum_x             # <<<<<<<<<<<<<<
@@ -5111,7 +4449,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_t_2 = __pyx_v_ols_data.sum_x;
   __pyx_v_sum_x = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":240
+  /* "segreg/model/one_bkpt_segreg.pyx":199
  *     cdef size_t num_data = ols_data.num
  *     cdef double sum_x = ols_data.sum_x
  *     cdef double sum_y = ols_data.sum_y             # <<<<<<<<<<<<<<
@@ -5121,7 +4459,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_t_2 = __pyx_v_ols_data.sum_y;
   __pyx_v_sum_y = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":241
+  /* "segreg/model/one_bkpt_segreg.pyx":200
  *     cdef double sum_x = ols_data.sum_x
  *     cdef double sum_y = ols_data.sum_y
  *     cdef double sum_xx = ols_data.sum_xx             # <<<<<<<<<<<<<<
@@ -5131,7 +4469,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_t_2 = __pyx_v_ols_data.sum_xx;
   __pyx_v_sum_xx = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":242
+  /* "segreg/model/one_bkpt_segreg.pyx":201
  *     cdef double sum_y = ols_data.sum_y
  *     cdef double sum_xx = ols_data.sum_xx
  *     cdef double sum_yy = ols_data.sum_yy             # <<<<<<<<<<<<<<
@@ -5141,7 +4479,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_t_2 = __pyx_v_ols_data.sum_yy;
   __pyx_v_sum_yy = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":243
+  /* "segreg/model/one_bkpt_segreg.pyx":202
  *     cdef double sum_xx = ols_data.sum_xx
  *     cdef double sum_yy = ols_data.sum_yy
  *     cdef double sum_xy = ols_data.sum_xy             # <<<<<<<<<<<<<<
@@ -5151,7 +4489,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_t_2 = __pyx_v_ols_data.sum_xy;
   __pyx_v_sum_xy = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":245
+  /* "segreg/model/one_bkpt_segreg.pyx":204
  *     cdef double sum_xy = ols_data.sum_xy
  * 
  *     cdef double two_m = 2.0 * m             # <<<<<<<<<<<<<<
@@ -5160,7 +4498,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
  */
   __pyx_v_two_m = (2.0 * __pyx_v_m);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":246
+  /* "segreg/model/one_bkpt_segreg.pyx":205
  * 
  *     cdef double two_m = 2.0 * m
  *     cdef double mm = m * m             # <<<<<<<<<<<<<<
@@ -5169,7 +4507,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
  */
   __pyx_v_mm = (__pyx_v_m * __pyx_v_m);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":247
+  /* "segreg/model/one_bkpt_segreg.pyx":206
  *     cdef double two_m = 2.0 * m
  *     cdef double mm = m * m
  *     cdef double mmu = mm * u             # <<<<<<<<<<<<<<
@@ -5178,7 +4516,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
  */
   __pyx_v_mmu = (__pyx_v_mm * __pyx_v_u);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":253
+  /* "segreg/model/one_bkpt_segreg.pyx":212
  *             + mm * sum_xx
  *             + sum_yy
  *             - two_m * sum_xy)             # <<<<<<<<<<<<<<
@@ -5188,7 +4526,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   __pyx_r = (((((((((__pyx_v_v * __pyx_v_v) - ((__pyx_v_two_m * __pyx_v_u) * __pyx_v_v)) + (__pyx_v_mmu * __pyx_v_u)) * __pyx_v_num_data) + ((2.0 * ((__pyx_v_m * __pyx_v_v) - __pyx_v_mmu)) * __pyx_v_sum_x)) + ((2.0 * ((__pyx_v_m * __pyx_v_u) - __pyx_v_v)) * __pyx_v_sum_y)) + (__pyx_v_mm * __pyx_v_sum_xx)) + __pyx_v_sum_yy) - (__pyx_v_two_m * __pyx_v_sum_xy));
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":237
+  /* "segreg/model/one_bkpt_segreg.pyx":196
  *     return fixed_bkpt_terms
  * 
  * cdef double rss_for_region(OLSData ols_data, double u, double v, double m):             # <<<<<<<<<<<<<<
@@ -5202,7 +4540,7 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":258
+/* "segreg/model/one_bkpt_segreg.pyx":217
  * 
  * 
  * def fixed_bkpt_least_squares(double[:] ols_data1,             # <<<<<<<<<<<<<<
@@ -5211,10 +4549,10 @@ static double __pyx_f_6segreg_5model_15one_bkpt_segreg_rss_for_region(struct __p
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squares[] = "fixed_bkpt_least_squares(double[:] ols_data1, double[:] ols_data2, double u)";
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squares = {"fixed_bkpt_least_squares", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squares, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squares};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_5fixed_bkpt_least_squares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_4fixed_bkpt_least_squares[] = "fixed_bkpt_least_squares(double[:] ols_data1, double[:] ols_data2, double u)";
+static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_5fixed_bkpt_least_squares = {"fixed_bkpt_least_squares", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_5fixed_bkpt_least_squares, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_4fixed_bkpt_least_squares};
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_5fixed_bkpt_least_squares(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_ols_data1 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_ols_data2 = { 0, 0, { 0 }, { 0 }, { 0 } };
   double __pyx_v_u;
@@ -5249,17 +4587,17 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squ
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ols_data2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_least_squares", 1, 3, 3, 1); __PYX_ERR(0, 258, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_least_squares", 1, 3, 3, 1); __PYX_ERR(0, 217, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_u)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_least_squares", 1, 3, 3, 2); __PYX_ERR(0, 258, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fixed_bkpt_least_squares", 1, 3, 3, 2); __PYX_ERR(0, 217, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fixed_bkpt_least_squares") < 0)) __PYX_ERR(0, 258, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fixed_bkpt_least_squares") < 0)) __PYX_ERR(0, 217, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -5268,26 +4606,26 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squ
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_ols_data1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_ols_data1.memview)) __PYX_ERR(0, 258, __pyx_L3_error)
-    __pyx_v_ols_data2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_ols_data2.memview)) __PYX_ERR(0, 259, __pyx_L3_error)
-    __pyx_v_u = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_u == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 260, __pyx_L3_error)
+    __pyx_v_ols_data1 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_ols_data1.memview)) __PYX_ERR(0, 217, __pyx_L3_error)
+    __pyx_v_ols_data2 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_ols_data2.memview)) __PYX_ERR(0, 218, __pyx_L3_error)
+    __pyx_v_u = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_u == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 219, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fixed_bkpt_least_squares", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 258, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fixed_bkpt_least_squares", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 217, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.fixed_bkpt_least_squares", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squares(__pyx_self, __pyx_v_ols_data1, __pyx_v_ols_data2, __pyx_v_u);
+  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_4fixed_bkpt_least_squares(__pyx_self, __pyx_v_ols_data1, __pyx_v_ols_data2, __pyx_v_u);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squares(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_ols_data1, __Pyx_memviewslice __pyx_v_ols_data2, double __pyx_v_u) {
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_4fixed_bkpt_least_squares(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_ols_data1, __Pyx_memviewslice __pyx_v_ols_data2, double __pyx_v_u) {
   struct __pyx_t_6segreg_5model_10regression_OLSData __pyx_v_ols_data_to_use1;
   struct __pyx_t_6segreg_5model_10regression_OLSData __pyx_v_ols_data_to_use2;
   struct __pyx_t_6segreg_5model_15one_bkpt_segreg_FixedBkptTerms __pyx_v_fixed_bkpt_terms;
@@ -5305,7 +4643,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("fixed_bkpt_least_squares", 0);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":262
+  /* "segreg/model/one_bkpt_segreg.pyx":221
  *                              double u):
  *     cdef OLSData ols_data_to_use1
  *     ols_data_to_use1.num = int(ols_data1[0])             # <<<<<<<<<<<<<<
@@ -5320,11 +4658,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 262, __pyx_L1_error)
+    __PYX_ERR(0, 221, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use1.num = ((size_t)(*((double *) ( /* dim=0 */ (__pyx_v_ols_data1.data + __pyx_t_1 * __pyx_v_ols_data1.strides[0]) ))));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":263
+  /* "segreg/model/one_bkpt_segreg.pyx":222
  *     cdef OLSData ols_data_to_use1
  *     ols_data_to_use1.num = int(ols_data1[0])
  *     ols_data_to_use1.sum_x = ols_data1[1]             # <<<<<<<<<<<<<<
@@ -5339,11 +4677,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 263, __pyx_L1_error)
+    __PYX_ERR(0, 222, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use1.sum_x = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data1.data + __pyx_t_1 * __pyx_v_ols_data1.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":264
+  /* "segreg/model/one_bkpt_segreg.pyx":223
  *     ols_data_to_use1.num = int(ols_data1[0])
  *     ols_data_to_use1.sum_x = ols_data1[1]
  *     ols_data_to_use1.sum_y = ols_data1[2]             # <<<<<<<<<<<<<<
@@ -5358,11 +4696,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 264, __pyx_L1_error)
+    __PYX_ERR(0, 223, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use1.sum_y = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data1.data + __pyx_t_1 * __pyx_v_ols_data1.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":265
+  /* "segreg/model/one_bkpt_segreg.pyx":224
  *     ols_data_to_use1.sum_x = ols_data1[1]
  *     ols_data_to_use1.sum_y = ols_data1[2]
  *     ols_data_to_use1.sum_xx = ols_data1[3]             # <<<<<<<<<<<<<<
@@ -5377,11 +4715,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 265, __pyx_L1_error)
+    __PYX_ERR(0, 224, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use1.sum_xx = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data1.data + __pyx_t_1 * __pyx_v_ols_data1.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":266
+  /* "segreg/model/one_bkpt_segreg.pyx":225
  *     ols_data_to_use1.sum_y = ols_data1[2]
  *     ols_data_to_use1.sum_xx = ols_data1[3]
  *     ols_data_to_use1.sum_yy = ols_data1[4]             # <<<<<<<<<<<<<<
@@ -5396,11 +4734,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 266, __pyx_L1_error)
+    __PYX_ERR(0, 225, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use1.sum_yy = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data1.data + __pyx_t_1 * __pyx_v_ols_data1.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":267
+  /* "segreg/model/one_bkpt_segreg.pyx":226
  *     ols_data_to_use1.sum_xx = ols_data1[3]
  *     ols_data_to_use1.sum_yy = ols_data1[4]
  *     ols_data_to_use1.sum_xy = ols_data1[5]             # <<<<<<<<<<<<<<
@@ -5415,11 +4753,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data1.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 267, __pyx_L1_error)
+    __PYX_ERR(0, 226, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use1.sum_xy = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data1.data + __pyx_t_1 * __pyx_v_ols_data1.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":270
+  /* "segreg/model/one_bkpt_segreg.pyx":229
  * 
  *     cdef OLSData ols_data_to_use2
  *     ols_data_to_use2.num = int(ols_data2[0])             # <<<<<<<<<<<<<<
@@ -5434,11 +4772,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 270, __pyx_L1_error)
+    __PYX_ERR(0, 229, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use2.num = ((size_t)(*((double *) ( /* dim=0 */ (__pyx_v_ols_data2.data + __pyx_t_1 * __pyx_v_ols_data2.strides[0]) ))));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":271
+  /* "segreg/model/one_bkpt_segreg.pyx":230
  *     cdef OLSData ols_data_to_use2
  *     ols_data_to_use2.num = int(ols_data2[0])
  *     ols_data_to_use2.sum_x = ols_data2[1]             # <<<<<<<<<<<<<<
@@ -5453,11 +4791,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 271, __pyx_L1_error)
+    __PYX_ERR(0, 230, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use2.sum_x = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data2.data + __pyx_t_1 * __pyx_v_ols_data2.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":272
+  /* "segreg/model/one_bkpt_segreg.pyx":231
  *     ols_data_to_use2.num = int(ols_data2[0])
  *     ols_data_to_use2.sum_x = ols_data2[1]
  *     ols_data_to_use2.sum_y = ols_data2[2]             # <<<<<<<<<<<<<<
@@ -5472,11 +4810,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 272, __pyx_L1_error)
+    __PYX_ERR(0, 231, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use2.sum_y = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data2.data + __pyx_t_1 * __pyx_v_ols_data2.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":273
+  /* "segreg/model/one_bkpt_segreg.pyx":232
  *     ols_data_to_use2.sum_x = ols_data2[1]
  *     ols_data_to_use2.sum_y = ols_data2[2]
  *     ols_data_to_use2.sum_xx = ols_data2[3]             # <<<<<<<<<<<<<<
@@ -5491,11 +4829,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 273, __pyx_L1_error)
+    __PYX_ERR(0, 232, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use2.sum_xx = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data2.data + __pyx_t_1 * __pyx_v_ols_data2.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":274
+  /* "segreg/model/one_bkpt_segreg.pyx":233
  *     ols_data_to_use2.sum_y = ols_data2[2]
  *     ols_data_to_use2.sum_xx = ols_data2[3]
  *     ols_data_to_use2.sum_yy = ols_data2[4]             # <<<<<<<<<<<<<<
@@ -5510,11 +4848,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 274, __pyx_L1_error)
+    __PYX_ERR(0, 233, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use2.sum_yy = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data2.data + __pyx_t_1 * __pyx_v_ols_data2.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":275
+  /* "segreg/model/one_bkpt_segreg.pyx":234
  *     ols_data_to_use2.sum_xx = ols_data2[3]
  *     ols_data_to_use2.sum_yy = ols_data2[4]
  *     ols_data_to_use2.sum_xy = ols_data2[5]             # <<<<<<<<<<<<<<
@@ -5529,11 +4867,11 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   } else if (unlikely(__pyx_t_1 >= __pyx_v_ols_data2.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 275, __pyx_L1_error)
+    __PYX_ERR(0, 234, __pyx_L1_error)
   }
   __pyx_v_ols_data_to_use2.sum_xy = (*((double *) ( /* dim=0 */ (__pyx_v_ols_data2.data + __pyx_t_1 * __pyx_v_ols_data2.strides[0]) )));
 
-  /* "segreg/model/one_bkpt_segreg.pyx":277
+  /* "segreg/model/one_bkpt_segreg.pyx":236
  *     ols_data_to_use2.sum_xy = ols_data2[5]
  * 
  *     cdef FixedBkptTerms fixed_bkpt_terms = fixed_breakpt_ls(ols_data_to_use1,             # <<<<<<<<<<<<<<
@@ -5542,7 +4880,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
  */
   __pyx_v_fixed_bkpt_terms = __pyx_f_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls(__pyx_v_ols_data_to_use1, __pyx_v_ols_data_to_use2, __pyx_v_u, NULL);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":280
+  /* "segreg/model/one_bkpt_segreg.pyx":239
  *                                                             ols_data_to_use2,
  *                                                             u)
  *     return (fixed_bkpt_terms.v,             # <<<<<<<<<<<<<<
@@ -5550,47 +4888,47 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
  *             fixed_bkpt_terms.m2,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.v); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.v); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":281
+  /* "segreg/model/one_bkpt_segreg.pyx":240
  *                                                             u)
  *     return (fixed_bkpt_terms.v,
  *             fixed_bkpt_terms.m1,             # <<<<<<<<<<<<<<
  *             fixed_bkpt_terms.m2,
  *             fixed_bkpt_terms.rss)
  */
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":282
+  /* "segreg/model/one_bkpt_segreg.pyx":241
  *     return (fixed_bkpt_terms.v,
  *             fixed_bkpt_terms.m1,
  *             fixed_bkpt_terms.m2,             # <<<<<<<<<<<<<<
  *             fixed_bkpt_terms.rss)
  * 
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.m2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":283
+  /* "segreg/model/one_bkpt_segreg.pyx":242
  *             fixed_bkpt_terms.m1,
  *             fixed_bkpt_terms.m2,
  *             fixed_bkpt_terms.rss)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.rss); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_fixed_bkpt_terms.rss); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":280
+  /* "segreg/model/one_bkpt_segreg.pyx":239
  *                                                             ols_data_to_use2,
  *                                                             u)
  *     return (fixed_bkpt_terms.v,             # <<<<<<<<<<<<<<
  *             fixed_bkpt_terms.m1,
  *             fixed_bkpt_terms.m2,
  */
-  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 239, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_3);
@@ -5608,7 +4946,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":258
+  /* "segreg/model/one_bkpt_segreg.pyx":217
  * 
  * 
  * def fixed_bkpt_least_squares(double[:] ols_data1,             # <<<<<<<<<<<<<<
@@ -5633,7 +4971,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
   return __pyx_r;
 }
 
-/* "segreg/model/one_bkpt_segreg.pyx":297
+/* "segreg/model/one_bkpt_segreg.pyx":256
  * # moreover, for num_end_to_skip = 0, we don't let the solution lie in last
  * # interval between last two datapoints
  * def estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs):             # <<<<<<<<<<<<<<
@@ -5642,10 +4980,10 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6fixed_bkpt_least_squ
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_segreg(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_segreg[] = "estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs)";
-static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_segreg = {"estimate_one_bkpt_segreg", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_segreg, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_segreg};
-static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_segreg(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_7estimate_one_bkpt_segreg(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6segreg_5model_15one_bkpt_segreg_6estimate_one_bkpt_segreg[] = "estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs)";
+static PyMethodDef __pyx_mdef_6segreg_5model_15one_bkpt_segreg_7estimate_one_bkpt_segreg = {"estimate_one_bkpt_segreg", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6segreg_5model_15one_bkpt_segreg_7estimate_one_bkpt_segreg, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6segreg_5model_15one_bkpt_segreg_6estimate_one_bkpt_segreg};
+static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_7estimate_one_bkpt_segreg(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_indep = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_dep = { 0, 0, { 0 }, { 0 }, { 0 } };
   PyObject *__pyx_v_kwargs = 0;
@@ -5680,11 +5018,11 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_se
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dep)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("estimate_one_bkpt_segreg", 1, 2, 2, 1); __PYX_ERR(0, 297, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("estimate_one_bkpt_segreg", 1, 2, 2, 1); __PYX_ERR(0, 256, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "estimate_one_bkpt_segreg") < 0)) __PYX_ERR(0, 297, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "estimate_one_bkpt_segreg") < 0)) __PYX_ERR(0, 256, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5692,19 +5030,19 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_se
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_indep = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_indep.memview)) __PYX_ERR(0, 297, __pyx_L3_error)
-    __pyx_v_dep = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_dep.memview)) __PYX_ERR(0, 297, __pyx_L3_error)
+    __pyx_v_indep = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_indep.memview)) __PYX_ERR(0, 256, __pyx_L3_error)
+    __pyx_v_dep = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_dep.memview)) __PYX_ERR(0, 256, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("estimate_one_bkpt_segreg", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 297, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("estimate_one_bkpt_segreg", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 256, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("segreg.model.one_bkpt_segreg.estimate_one_bkpt_segreg", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_segreg(__pyx_self, __pyx_v_indep, __pyx_v_dep, __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_6segreg_5model_15one_bkpt_segreg_6estimate_one_bkpt_segreg(__pyx_self, __pyx_v_indep, __pyx_v_dep, __pyx_v_kwargs);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_kwargs);
@@ -5712,7 +5050,7 @@ static PyObject *__pyx_pw_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_se
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_segreg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_indep, __Pyx_memviewslice __pyx_v_dep, PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_6estimate_one_bkpt_segreg(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_indep, __Pyx_memviewslice __pyx_v_dep, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_m2 = NULL;
   size_t __pyx_v_num_end_to_skip;
   int __pyx_v_check_near_middle;
@@ -5787,45 +5125,45 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("estimate_one_bkpt_segreg", 0);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":299
+  /* "segreg/model/one_bkpt_segreg.pyx":258
  * def estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs):
  *     # TODO: finish with fixed rhs slope
  *     m2 = kwargs.pop('m2', None)             # <<<<<<<<<<<<<<
  *     cdef size_t num_end_to_skip = kwargs.pop('num_end_to_skip', 2)
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_m2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_m2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_m2 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":300
+  /* "segreg/model/one_bkpt_segreg.pyx":259
  *     # TODO: finish with fixed rhs slope
  *     m2 = kwargs.pop('m2', None)
  *     cdef size_t num_end_to_skip = kwargs.pop('num_end_to_skip', 2)             # <<<<<<<<<<<<<<
  * 
  *     # TODO: this does not seem to help; why?
  */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_num_end_to_skip, __pyx_int_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_num_end_to_skip, __pyx_int_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_num_end_to_skip = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":303
+  /* "segreg/model/one_bkpt_segreg.pyx":262
  * 
  *     # TODO: this does not seem to help; why?
  *     cdef bint check_near_middle = kwargs.pop('check_near_middle', True)             # <<<<<<<<<<<<<<
  * 
  *     if m2 is None:
  */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_check_near_middle, Py_True); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_check_near_middle, Py_True); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_check_near_middle = __pyx_t_3;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":305
+  /* "segreg/model/one_bkpt_segreg.pyx":264
  *     cdef bint check_near_middle = kwargs.pop('check_near_middle', True)
  * 
  *     if m2 is None:             # <<<<<<<<<<<<<<
@@ -5836,19 +5174,19 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
 
-    /* "segreg/model/one_bkpt_segreg.pyx":306
+    /* "segreg/model/one_bkpt_segreg.pyx":265
  * 
  *     if m2 is None:
  *         m2 = NAN             # <<<<<<<<<<<<<<
  * 
  *     # we can have multiple y values for same x value in the data, so we
  */
-    __pyx_t_1 = PyFloat_FromDouble(NAN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(NAN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_m2, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":305
+    /* "segreg/model/one_bkpt_segreg.pyx":264
  *     cdef bint check_near_middle = kwargs.pop('check_near_middle', True)
  * 
  *     if m2 is None:             # <<<<<<<<<<<<<<
@@ -5857,19 +5195,19 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
  */
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":312
+  /* "segreg/model/one_bkpt_segreg.pyx":271
  *     # list call gets set out of order, so we call sort here on indices
  *     # TODO: write these in C?
  *     unique_indep = np.unique(indep)             # <<<<<<<<<<<<<<
  *     unique_indep_lhs_indices = np.searchsorted(indep, unique_indep)
  *     unique_indep_lhs_indices.sort()
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_unique); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_unique); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_indep, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_indep, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_7 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -5884,25 +5222,25 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   __pyx_t_1 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_unique_indep = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":313
+  /* "segreg/model/one_bkpt_segreg.pyx":272
  *     # TODO: write these in C?
  *     unique_indep = np.unique(indep)
  *     unique_indep_lhs_indices = np.searchsorted(indep, unique_indep)             # <<<<<<<<<<<<<<
  *     unique_indep_lhs_indices.sort()
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_searchsorted); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_searchsorted); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_indep, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_indep, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -5919,7 +5257,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_6, __pyx_v_unique_indep};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -5928,14 +5266,14 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_6, __pyx_v_unique_indep};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 272, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -5946,7 +5284,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
     __Pyx_GIVEREF(__pyx_v_unique_indep);
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_v_unique_indep);
     __pyx_t_6 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
@@ -5954,14 +5292,14 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   __pyx_v_unique_indep_lhs_indices = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":314
+  /* "segreg/model/one_bkpt_segreg.pyx":273
  *     unique_indep = np.unique(indep)
  *     unique_indep_lhs_indices = np.searchsorted(indep, unique_indep)
  *     unique_indep_lhs_indices.sort()             # <<<<<<<<<<<<<<
  * 
  *     # c++ std::set
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_unique_indep_lhs_indices, __pyx_n_s_sort); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_unique_indep_lhs_indices, __pyx_n_s_sort); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_9 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -5975,28 +5313,28 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   }
   __pyx_t_1 = (__pyx_t_9) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_9) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":320
+  /* "segreg/model/one_bkpt_segreg.pyx":279
  * 
  *     ########################################################################
  *     cdef size_t num_unique_indep = unique_indep_lhs_indices.shape[0]             # <<<<<<<<<<<<<<
  *     cdef size_t half_num = int(num_unique_indep / 2)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_unique_indep_lhs_indices, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_unique_indep_lhs_indices, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 320, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 320, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_num_unique_indep = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":321
+  /* "segreg/model/one_bkpt_segreg.pyx":280
  *     ########################################################################
  *     cdef size_t num_unique_indep = unique_indep_lhs_indices.shape[0]
  *     cdef size_t half_num = int(num_unique_indep / 2)             # <<<<<<<<<<<<<<
@@ -6005,19 +5343,19 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
  */
   __pyx_v_half_num = (__pyx_v_num_unique_indep / 2);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":343
+  /* "segreg/model/one_bkpt_segreg.pyx":302
  *     #####check_near_middle = False
  * 
  *     cdef min_value = float("inf")             # <<<<<<<<<<<<<<
  * 
  *     if check_near_middle:
  */
-  __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_n_u_inf); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_n_u_inf); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_v_min_value = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":345
+  /* "segreg/model/one_bkpt_segreg.pyx":304
  *     cdef min_value = float("inf")
  * 
  *     if check_near_middle:             # <<<<<<<<<<<<<<
@@ -6027,20 +5365,20 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
   __pyx_t_4 = (__pyx_v_check_near_middle != 0);
   if (__pyx_t_4) {
 
-    /* "segreg/model/one_bkpt_segreg.pyx":350
+    /* "segreg/model/one_bkpt_segreg.pyx":309
  * 
  *         # TODO: how many to check here?
  *         half_index = unique_indep_lhs_indices[half_num]             # <<<<<<<<<<<<<<
  * 
  *         indices_can_skip.insert(half_index)
  */
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_v_half_num, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_v_half_num, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_half_index = __pyx_t_2;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":352
+    /* "segreg/model/one_bkpt_segreg.pyx":311
  *         half_index = unique_indep_lhs_indices[half_num]
  * 
  *         indices_can_skip.insert(half_index)             # <<<<<<<<<<<<<<
@@ -6051,10 +5389,10 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
       __pyx_v_indices_can_skip.insert(__pyx_v_half_index);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 352, __pyx_L1_error)
+      __PYX_ERR(0, 311, __pyx_L1_error)
     }
 
-    /* "segreg/model/one_bkpt_segreg.pyx":354
+    /* "segreg/model/one_bkpt_segreg.pyx":313
  *         indices_can_skip.insert(half_index)
  * 
  *         x0 = indep[half_index]             # <<<<<<<<<<<<<<
@@ -6064,21 +5402,21 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
     __pyx_t_2 = __pyx_v_half_index;
     __pyx_v_x0 = (*((double *) ( /* dim=0 */ (__pyx_v_indep.data + __pyx_t_2 * __pyx_v_indep.strides[0]) )));
 
-    /* "segreg/model/one_bkpt_segreg.pyx":356
+    /* "segreg/model/one_bkpt_segreg.pyx":315
  *         x0 = indep[half_index]
  * 
  *         index_to_use = np.searchsorted(indep, x0)             # <<<<<<<<<<<<<<
  *         # don't need to add 1 here as terms all zero when x = x0
  *         ols_1 = ols_data(indep[0:index_to_use], dep[0:index_to_use])
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_searchsorted); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_searchsorted); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_indep, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_indep, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_x0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_x0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = NULL;
     __pyx_t_8 = 0;
@@ -6095,7 +5433,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_9)) {
       PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_1, __pyx_t_6};
-      __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 356, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6105,7 +5443,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
       PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_1, __pyx_t_6};
-      __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 356, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6113,7 +5451,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 356, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 315, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_7) {
         __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -6124,16 +5462,16 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
       PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_8, __pyx_t_6);
       __pyx_t_1 = 0;
       __pyx_t_6 = 0;
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 356, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_10, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_index_to_use = __pyx_t_2;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":358
+    /* "segreg/model/one_bkpt_segreg.pyx":317
  *         index_to_use = np.searchsorted(indep, x0)
  *         # don't need to add 1 here as terms all zero when x = x0
  *         ols_1 = ols_data(indep[0:index_to_use], dep[0:index_to_use])             # <<<<<<<<<<<<<<
@@ -6158,7 +5496,7 @@ static PyObject *__pyx_pf_6segreg_5model_15one_bkpt_segreg_8estimate_one_bkpt_se
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 358, __pyx_L1_error)
+    __PYX_ERR(0, 317, __pyx_L1_error)
 }
 
 __pyx_t_12.data = __pyx_v_dep.data;
@@ -6179,7 +5517,7 @@ __pyx_t_12.data = __pyx_v_dep.data;
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 358, __pyx_L1_error)
+    __PYX_ERR(0, 317, __pyx_L1_error)
 }
 
 __pyx_v_ols_1 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_11, __pyx_t_12);
@@ -6190,7 +5528,7 @@ __pyx_v_ols_1 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_11, __pyx_t
     __pyx_t_12.memview = NULL;
     __pyx_t_12.data = NULL;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":359
+    /* "segreg/model/one_bkpt_segreg.pyx":318
  *         # don't need to add 1 here as terms all zero when x = x0
  *         ols_1 = ols_data(indep[0:index_to_use], dep[0:index_to_use])
  *         ols_2 = ols_data(indep[index_to_use:], dep[index_to_use:])             # <<<<<<<<<<<<<<
@@ -6215,7 +5553,7 @@ __pyx_v_ols_1 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_11, __pyx_t
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 359, __pyx_L1_error)
+    __PYX_ERR(0, 318, __pyx_L1_error)
 }
 
 __pyx_t_11.data = __pyx_v_dep.data;
@@ -6236,7 +5574,7 @@ __pyx_t_11.data = __pyx_v_dep.data;
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 359, __pyx_L1_error)
+    __PYX_ERR(0, 318, __pyx_L1_error)
 }
 
 __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t_11);
@@ -6247,20 +5585,20 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
     __pyx_t_11.memview = NULL;
     __pyx_t_11.data = NULL;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":362
+    /* "segreg/model/one_bkpt_segreg.pyx":321
  * 
  *         #y0, lhs_slope, rhs_slope, rss = fixed_breakpt_ls(ols_1, ols_2, x0)
  *         fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)             # <<<<<<<<<<<<<<
  *         y0 = fixed_bkpt_terms.v
  *         lhs_slope = fixed_bkpt_terms.m1
  */
-    __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 362, __pyx_L1_error)
+    __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 321, __pyx_L1_error)
     __pyx_t_15.__pyx_n = 1;
     __pyx_t_15.m2 = __pyx_t_13;
     __pyx_t_14 = __pyx_f_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls(__pyx_v_ols_1, __pyx_v_ols_2, __pyx_v_x0, &__pyx_t_15); 
     __pyx_v_fixed_bkpt_terms = __pyx_t_14;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":363
+    /* "segreg/model/one_bkpt_segreg.pyx":322
  *         #y0, lhs_slope, rhs_slope, rss = fixed_breakpt_ls(ols_1, ols_2, x0)
  *         fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)
  *         y0 = fixed_bkpt_terms.v             # <<<<<<<<<<<<<<
@@ -6270,7 +5608,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
     __pyx_t_13 = __pyx_v_fixed_bkpt_terms.v;
     __pyx_v_y0 = __pyx_t_13;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":364
+    /* "segreg/model/one_bkpt_segreg.pyx":323
  *         fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)
  *         y0 = fixed_bkpt_terms.v
  *         lhs_slope = fixed_bkpt_terms.m1             # <<<<<<<<<<<<<<
@@ -6280,7 +5618,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
     __pyx_t_13 = __pyx_v_fixed_bkpt_terms.m1;
     __pyx_v_lhs_slope = __pyx_t_13;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":365
+    /* "segreg/model/one_bkpt_segreg.pyx":324
  *         y0 = fixed_bkpt_terms.v
  *         lhs_slope = fixed_bkpt_terms.m1
  *         rhs_slope = fixed_bkpt_terms.m2             # <<<<<<<<<<<<<<
@@ -6290,7 +5628,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
     __pyx_t_13 = __pyx_v_fixed_bkpt_terms.m2;
     __pyx_v_rhs_slope = __pyx_t_13;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":366
+    /* "segreg/model/one_bkpt_segreg.pyx":325
  *         lhs_slope = fixed_bkpt_terms.m1
  *         rhs_slope = fixed_bkpt_terms.m2
  *         rss = fixed_bkpt_terms.rss             # <<<<<<<<<<<<<<
@@ -6300,7 +5638,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
     __pyx_t_13 = __pyx_v_fixed_bkpt_terms.rss;
     __pyx_v_rss = __pyx_t_13;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":368
+    /* "segreg/model/one_bkpt_segreg.pyx":327
  *         rss = fixed_bkpt_terms.rss
  * 
  *         one_bkpt_params.x0 = x0             # <<<<<<<<<<<<<<
@@ -6309,7 +5647,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
  */
     __pyx_v_one_bkpt_params.x0 = __pyx_v_x0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":369
+    /* "segreg/model/one_bkpt_segreg.pyx":328
  * 
  *         one_bkpt_params.x0 = x0
  *         one_bkpt_params.y0 = y0             # <<<<<<<<<<<<<<
@@ -6318,7 +5656,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
  */
     __pyx_v_one_bkpt_params.y0 = __pyx_v_y0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":370
+    /* "segreg/model/one_bkpt_segreg.pyx":329
  *         one_bkpt_params.x0 = x0
  *         one_bkpt_params.y0 = y0
  *         one_bkpt_params.lhs_slope = lhs_slope             # <<<<<<<<<<<<<<
@@ -6327,7 +5665,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
  */
     __pyx_v_one_bkpt_params.lhs_slope = __pyx_v_lhs_slope;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":371
+    /* "segreg/model/one_bkpt_segreg.pyx":330
  *         one_bkpt_params.y0 = y0
  *         one_bkpt_params.lhs_slope = lhs_slope
  *         one_bkpt_params.rhs_slope = rhs_slope             # <<<<<<<<<<<<<<
@@ -6336,19 +5674,19 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
  */
     __pyx_v_one_bkpt_params.rhs_slope = __pyx_v_rhs_slope;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":373
+    /* "segreg/model/one_bkpt_segreg.pyx":332
  *         one_bkpt_params.rhs_slope = rhs_slope
  * 
  *         min_value = rss             # <<<<<<<<<<<<<<
  * 
  *     ########################################################################
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF_SET(__pyx_v_min_value, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":345
+    /* "segreg/model/one_bkpt_segreg.pyx":304
  *     cdef min_value = float("inf")
  * 
  *     if check_near_middle:             # <<<<<<<<<<<<<<
@@ -6357,7 +5695,7 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
  */
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":393
+  /* "segreg/model/one_bkpt_segreg.pyx":352
  *     # at last loop iter, rhs has 4 distinct indep
  * 
  *     cdef size_t first_index = 1 + num_end_to_skip             # <<<<<<<<<<<<<<
@@ -6366,20 +5704,20 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
  */
   __pyx_v_first_index = (1 + __pyx_v_num_end_to_skip);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":396
+  /* "segreg/model/one_bkpt_segreg.pyx":355
  * 
  *     # double check all the when repeated x vals
  *     cdef size_t prev_index = unique_indep_lhs_indices[first_index]             # <<<<<<<<<<<<<<
  * 
  *     first_y = dep[0:prev_index]
  */
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_v_first_index, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_v_first_index, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_prev_index = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":398
+  /* "segreg/model/one_bkpt_segreg.pyx":357
  *     cdef size_t prev_index = unique_indep_lhs_indices[first_index]
  * 
  *     first_y = dep[0:prev_index]             # <<<<<<<<<<<<<<
@@ -6404,10 +5742,10 @@ __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 398, __pyx_L1_error)
+    __PYX_ERR(0, 357, __pyx_L1_error)
 }
 
-__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 398, __pyx_L1_error)
+__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
   __pyx_t_11.memview = NULL;
@@ -6415,7 +5753,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_v_first_y = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":399
+  /* "segreg/model/one_bkpt_segreg.pyx":358
  * 
  *     first_y = dep[0:prev_index]
  *     first_x = indep[0:prev_index]             # <<<<<<<<<<<<<<
@@ -6440,10 +5778,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 399, __pyx_L1_error)
+    __PYX_ERR(0, 358, __pyx_L1_error)
 }
 
-__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 399, __pyx_L1_error)
+__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
   __pyx_t_11.memview = NULL;
@@ -6451,7 +5789,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_v_first_x = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":401
+  /* "segreg/model/one_bkpt_segreg.pyx":360
  *     first_x = indep[0:prev_index]
  * 
  *     last_y = dep[prev_index:]             # <<<<<<<<<<<<<<
@@ -6476,10 +5814,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 401, __pyx_L1_error)
+    __PYX_ERR(0, 360, __pyx_L1_error)
 }
 
-__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 401, __pyx_L1_error)
+__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
   __pyx_t_11.memview = NULL;
@@ -6487,7 +5825,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_v_last_y = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":402
+  /* "segreg/model/one_bkpt_segreg.pyx":361
  * 
  *     last_y = dep[prev_index:]
  *     last_x = indep[prev_index:]             # <<<<<<<<<<<<<<
@@ -6512,10 +5850,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 402, __pyx_L1_error)
+    __PYX_ERR(0, 361, __pyx_L1_error)
 }
 
-__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
+__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
   __pyx_t_11.memview = NULL;
@@ -6523,7 +5861,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_v_last_x = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":404
+  /* "segreg/model/one_bkpt_segreg.pyx":363
  *     last_x = indep[prev_index:]
  * 
  *     ols_all = ols_data(indep, dep)             # <<<<<<<<<<<<<<
@@ -6532,15 +5870,15 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
   __pyx_v_ols_all = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_v_indep, __pyx_v_dep);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":406
+  /* "segreg/model/one_bkpt_segreg.pyx":365
  *     ols_all = ols_data(indep, dep)
  * 
  *     ols_1 = ols_data(first_x, first_y)             # <<<<<<<<<<<<<<
  *     ols_2 = ols_data(last_x, last_y)
  * 
  */
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_first_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 406, __pyx_L1_error)
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_first_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_first_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 365, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_first_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 365, __pyx_L1_error)
   __pyx_v_ols_1 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_11, __pyx_t_12);
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
   __pyx_t_11.memview = NULL;
@@ -6549,15 +5887,15 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":407
+  /* "segreg/model/one_bkpt_segreg.pyx":366
  * 
  *     ols_1 = ols_data(first_x, first_y)
  *     ols_2 = ols_data(last_x, last_y)             # <<<<<<<<<<<<<<
  * 
  *     # STEP 1. check for local min in intervals between data points
  */
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_last_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 407, __pyx_L1_error)
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_last_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_last_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 366, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_last_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 366, __pyx_L1_error)
   __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_12, __pyx_t_11);
   __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   __pyx_t_12.memview = NULL;
@@ -6566,7 +5904,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":411
+  /* "segreg/model/one_bkpt_segreg.pyx":370
  *     # STEP 1. check for local min in intervals between data points
  *     # for index in xrange(2, self._num_obs - 1):
  *     cdef int count = -1             # <<<<<<<<<<<<<<
@@ -6575,7 +5913,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
   __pyx_v_count = -1;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":426
+  /* "segreg/model/one_bkpt_segreg.pyx":385
  *     cdef double tot_sum_sq_resid
  * 
  *     cdef size_t range_begin = first_index + 1             # <<<<<<<<<<<<<<
@@ -6584,32 +5922,32 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
   __pyx_v_range_begin = (__pyx_v_first_index + 1);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":428
+  /* "segreg/model/one_bkpt_segreg.pyx":387
  *     cdef size_t range_begin = first_index + 1
  * 
  *     cdef size_t range_end = unique_indep_lhs_indices.shape[0] - num_end_to_skip - 1             # <<<<<<<<<<<<<<
  * 
  *     last_index = unique_indep_lhs_indices[range_end - 1]
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_unique_indep_lhs_indices, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_unique_indep_lhs_indices, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_FromSize_t(__pyx_v_num_end_to_skip); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_FromSize_t(__pyx_v_num_end_to_skip); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_10 = PyNumber_Subtract(__pyx_t_9, __pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_10 = PyNumber_Subtract(__pyx_t_9, __pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_SubtractObjC(__pyx_t_10, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_SubtractObjC(__pyx_t_10, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_range_end = __pyx_t_2;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":430
+  /* "segreg/model/one_bkpt_segreg.pyx":389
  *     cdef size_t range_end = unique_indep_lhs_indices.shape[0] - num_end_to_skip - 1
  * 
  *     last_index = unique_indep_lhs_indices[range_end - 1]             # <<<<<<<<<<<<<<
@@ -6617,39 +5955,39 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  * 
  */
   __pyx_t_2 = (__pyx_v_range_end - 1);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_t_2, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_t_2, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_v_last_index = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":431
+  /* "segreg/model/one_bkpt_segreg.pyx":390
  * 
  *     last_index = unique_indep_lhs_indices[range_end - 1]
  *     last_plus_one_index = unique_indep_lhs_indices[range_end]             # <<<<<<<<<<<<<<
  * 
  *     for index in unique_indep_lhs_indices[range_begin:range_end]:
  */
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_v_range_end, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_unique_indep_lhs_indices, __pyx_v_range_end, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_v_last_plus_one_index = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":433
+  /* "segreg/model/one_bkpt_segreg.pyx":392
  *     last_plus_one_index = unique_indep_lhs_indices[range_end]
  * 
  *     for index in unique_indep_lhs_indices[range_begin:range_end]:             # <<<<<<<<<<<<<<
  * 
  *         next_y = dep[prev_index:index]
  */
-  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_unique_indep_lhs_indices, __pyx_v_range_begin, __pyx_v_range_end, NULL, NULL, NULL, 1, 1, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 433, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_unique_indep_lhs_indices, __pyx_v_range_begin, __pyx_v_range_end, NULL, NULL, NULL, 1, 1, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (likely(PyList_CheckExact(__pyx_t_5)) || PyTuple_CheckExact(__pyx_t_5)) {
     __pyx_t_10 = __pyx_t_5; __Pyx_INCREF(__pyx_t_10); __pyx_t_16 = 0;
     __pyx_t_17 = NULL;
   } else {
-    __pyx_t_16 = -1; __pyx_t_10 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_16 = -1; __pyx_t_10 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_17 = Py_TYPE(__pyx_t_10)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_17 = Py_TYPE(__pyx_t_10)->tp_iternext; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 392, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   for (;;) {
@@ -6657,17 +5995,17 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       if (likely(PyList_CheckExact(__pyx_t_10))) {
         if (__pyx_t_16 >= PyList_GET_SIZE(__pyx_t_10)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_10, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
+        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_10, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 392, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_10, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 433, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_10, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 392, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       } else {
         if (__pyx_t_16 >= PyTuple_GET_SIZE(__pyx_t_10)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_10, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_10, __pyx_t_16); __Pyx_INCREF(__pyx_t_5); __pyx_t_16++; if (unlikely(0 < 0)) __PYX_ERR(0, 392, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_10, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 433, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_10, __pyx_t_16); __pyx_t_16++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 392, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       }
@@ -6677,17 +6015,17 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 433, __pyx_L1_error)
+          else __PYX_ERR(0, 392, __pyx_L1_error)
         }
         break;
       }
       __Pyx_GOTREF(__pyx_t_5);
     }
-    __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_5); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_index = __pyx_t_2;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":435
+    /* "segreg/model/one_bkpt_segreg.pyx":394
  *     for index in unique_indep_lhs_indices[range_begin:range_end]:
  * 
  *         next_y = dep[prev_index:index]             # <<<<<<<<<<<<<<
@@ -6712,10 +6050,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 435, __pyx_L1_error)
+    __PYX_ERR(0, 394, __pyx_L1_error)
 }
 
-__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 435, __pyx_L1_error)
+__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     __pyx_t_11.memview = NULL;
@@ -6723,7 +6061,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __Pyx_XDECREF_SET(__pyx_v_next_y, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":436
+    /* "segreg/model/one_bkpt_segreg.pyx":395
  * 
  *         next_y = dep[prev_index:index]
  *         next_x = indep[prev_index:index]             # <<<<<<<<<<<<<<
@@ -6748,10 +6086,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     0,
     1) < 0))
 {
-    __PYX_ERR(0, 436, __pyx_L1_error)
+    __PYX_ERR(0, 395, __pyx_L1_error)
 }
 
-__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 436, __pyx_L1_error)
+__pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 395, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     __pyx_t_11.memview = NULL;
@@ -6759,7 +6097,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __Pyx_XDECREF_SET(__pyx_v_next_x, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":438
+    /* "segreg/model/one_bkpt_segreg.pyx":397
  *         next_x = indep[prev_index:index]
  * 
  *         prev_index = index             # <<<<<<<<<<<<<<
@@ -6768,15 +6106,15 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     __pyx_v_prev_index = __pyx_v_index;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":440
+    /* "segreg/model/one_bkpt_segreg.pyx":399
  *         prev_index = index
  * 
  *         ols_next = ols_data(next_x, next_y)             # <<<<<<<<<<<<<<
  * 
  *         ols_1 = add(ols_1, ols_next)
  */
-    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_next_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 440, __pyx_L1_error)
-    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_next_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 440, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_next_x, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(0, 399, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_v_next_y, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(0, 399, __pyx_L1_error)
     __pyx_v_ols_next = __pyx_f_6segreg_5model_10regression_ols_data(__pyx_t_11, __pyx_t_12);
     __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     __pyx_t_11.memview = NULL;
@@ -6785,7 +6123,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __pyx_t_12.memview = NULL;
     __pyx_t_12.data = NULL;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":442
+    /* "segreg/model/one_bkpt_segreg.pyx":401
  *         ols_next = ols_data(next_x, next_y)
  * 
  *         ols_1 = add(ols_1, ols_next)             # <<<<<<<<<<<<<<
@@ -6794,7 +6132,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     __pyx_v_ols_1 = __pyx_f_6segreg_5model_10regression_add(__pyx_v_ols_1, __pyx_v_ols_next);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":452
+    /* "segreg/model/one_bkpt_segreg.pyx":411
  * 
  *         # aug-2020: NEW this is equivalent; hopefully less rounding errors
  *         ols_2 = subtract(ols_all, ols_1)             # <<<<<<<<<<<<<<
@@ -6803,7 +6141,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     __pyx_v_ols_2 = __pyx_f_6segreg_5model_10regression_subtract(__pyx_v_ols_all, __pyx_v_ols_1);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":457
+    /* "segreg/model/one_bkpt_segreg.pyx":416
  *         ########################################################################
  * 
  *         index_minus_one = index - 1             # <<<<<<<<<<<<<<
@@ -6812,7 +6150,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     __pyx_v_index_minus_one = (__pyx_v_index - 1);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":462
+    /* "segreg/model/one_bkpt_segreg.pyx":421
  *         # higher we expect the sum resid squares to be, which is why
  *         # we bifurcate here on the data
  *         count += 1             # <<<<<<<<<<<<<<
@@ -6821,7 +6159,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     __pyx_v_count = (__pyx_v_count + 1);
 
-    /* "segreg/model/one_bkpt_segreg.pyx":463
+    /* "segreg/model/one_bkpt_segreg.pyx":422
  *         # we bifurcate here on the data
  *         count += 1
  *         if count < half_num:             # <<<<<<<<<<<<<<
@@ -6831,20 +6169,20 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __pyx_t_4 = ((__pyx_v_count < __pyx_v_half_num) != 0);
     if (__pyx_t_4) {
 
-      /* "segreg/model/one_bkpt_segreg.pyx":464
+      /* "segreg/model/one_bkpt_segreg.pyx":423
  *         count += 1
  *         if count < half_num:
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_2, m2)             # <<<<<<<<<<<<<<
  *             rhs_ols_intercept = ols_est_terms.intercept
  *             rhs_ols_slope = ols_est_terms.slope
  */
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 464, __pyx_L1_error)
+      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 423, __pyx_L1_error)
       __pyx_t_19.__pyx_n = 1;
       __pyx_t_19.slope = __pyx_t_13;
       __pyx_t_18 = __pyx_f_6segreg_5model_10regression_ols_from_formula_with_rss_cimpl(__pyx_v_ols_2, &__pyx_t_19); 
       __pyx_v_ols_est_terms = __pyx_t_18;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":465
+      /* "segreg/model/one_bkpt_segreg.pyx":424
  *         if count < half_num:
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_2, m2)
  *             rhs_ols_intercept = ols_est_terms.intercept             # <<<<<<<<<<<<<<
@@ -6854,7 +6192,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.intercept;
       __pyx_v_rhs_ols_intercept = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":466
+      /* "segreg/model/one_bkpt_segreg.pyx":425
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_2, m2)
  *             rhs_ols_intercept = ols_est_terms.intercept
  *             rhs_ols_slope = ols_est_terms.slope             # <<<<<<<<<<<<<<
@@ -6864,7 +6202,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.slope;
       __pyx_v_rhs_ols_slope = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":467
+      /* "segreg/model/one_bkpt_segreg.pyx":426
  *             rhs_ols_intercept = ols_est_terms.intercept
  *             rhs_ols_slope = ols_est_terms.slope
  *             rhs_rss = ols_est_terms.rss             # <<<<<<<<<<<<<<
@@ -6874,22 +6212,22 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.rss;
       __pyx_v_rhs_rss = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":473
+      /* "segreg/model/one_bkpt_segreg.pyx":432
  *             # so if we are already bigger than some previous potential min
  *             ## value, stop
  *             if rhs_rss > min_value:             # <<<<<<<<<<<<<<
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  */
-      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rhs_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 473, __pyx_L1_error)
+      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rhs_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 473, __pyx_L1_error)
+      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 473, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":474
+        /* "segreg/model/one_bkpt_segreg.pyx":433
  *             ## value, stop
  *             if rhs_rss > min_value:
  *                 indices_can_skip.insert(index_minus_one)             # <<<<<<<<<<<<<<
@@ -6900,10 +6238,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index_minus_one);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 474, __pyx_L1_error)
+          __PYX_ERR(0, 433, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":475
+        /* "segreg/model/one_bkpt_segreg.pyx":434
  *             if rhs_rss > min_value:
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)             # <<<<<<<<<<<<<<
@@ -6914,10 +6252,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 475, __pyx_L1_error)
+          __PYX_ERR(0, 434, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":476
+        /* "segreg/model/one_bkpt_segreg.pyx":435
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  *                 continue             # <<<<<<<<<<<<<<
@@ -6926,7 +6264,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         goto __pyx_L5_continue;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":473
+        /* "segreg/model/one_bkpt_segreg.pyx":432
  *             # so if we are already bigger than some previous potential min
  *             ## value, stop
  *             if rhs_rss > min_value:             # <<<<<<<<<<<<<<
@@ -6935,7 +6273,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":478
+      /* "segreg/model/one_bkpt_segreg.pyx":437
  *                 continue
  * 
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_1)             # <<<<<<<<<<<<<<
@@ -6944,7 +6282,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       __pyx_v_ols_est_terms = __pyx_f_6segreg_5model_10regression_ols_from_formula_with_rss_cimpl(__pyx_v_ols_1, NULL);
 
-      /* "segreg/model/one_bkpt_segreg.pyx":479
+      /* "segreg/model/one_bkpt_segreg.pyx":438
  * 
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_1)
  *             lhs_ols_intercept = ols_est_terms.intercept             # <<<<<<<<<<<<<<
@@ -6954,7 +6292,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.intercept;
       __pyx_v_lhs_ols_intercept = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":480
+      /* "segreg/model/one_bkpt_segreg.pyx":439
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_1)
  *             lhs_ols_intercept = ols_est_terms.intercept
  *             lhs_ols_slope = ols_est_terms.slope             # <<<<<<<<<<<<<<
@@ -6964,7 +6302,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.slope;
       __pyx_v_lhs_ols_slope = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":481
+      /* "segreg/model/one_bkpt_segreg.pyx":440
  *             lhs_ols_intercept = ols_est_terms.intercept
  *             lhs_ols_slope = ols_est_terms.slope
  *             lhs_rss = ols_est_terms.rss             # <<<<<<<<<<<<<<
@@ -6974,7 +6312,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.rss;
       __pyx_v_lhs_rss = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":483
+      /* "segreg/model/one_bkpt_segreg.pyx":442
  *             lhs_rss = ols_est_terms.rss
  * 
  *             tot_sum_sq_resid = lhs_rss + rhs_rss             # <<<<<<<<<<<<<<
@@ -6983,22 +6321,22 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       __pyx_v_tot_sum_sq_resid = (__pyx_v_lhs_rss + __pyx_v_rhs_rss);
 
-      /* "segreg/model/one_bkpt_segreg.pyx":484
+      /* "segreg/model/one_bkpt_segreg.pyx":443
  * 
  *             tot_sum_sq_resid = lhs_rss + rhs_rss
  *             if tot_sum_sq_resid > min_value:             # <<<<<<<<<<<<<<
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  */
-      __pyx_t_9 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 484, __pyx_L1_error)
+      __pyx_t_9 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 443, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 484, __pyx_L1_error)
+      __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 443, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 484, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 443, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":485
+        /* "segreg/model/one_bkpt_segreg.pyx":444
  *             tot_sum_sq_resid = lhs_rss + rhs_rss
  *             if tot_sum_sq_resid > min_value:
  *                 indices_can_skip.insert(index_minus_one)             # <<<<<<<<<<<<<<
@@ -7009,10 +6347,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index_minus_one);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 485, __pyx_L1_error)
+          __PYX_ERR(0, 444, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":486
+        /* "segreg/model/one_bkpt_segreg.pyx":445
  *             if tot_sum_sq_resid > min_value:
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)             # <<<<<<<<<<<<<<
@@ -7023,10 +6361,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 486, __pyx_L1_error)
+          __PYX_ERR(0, 445, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":487
+        /* "segreg/model/one_bkpt_segreg.pyx":446
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  *                 continue             # <<<<<<<<<<<<<<
@@ -7035,7 +6373,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         goto __pyx_L5_continue;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":484
+        /* "segreg/model/one_bkpt_segreg.pyx":443
  * 
  *             tot_sum_sq_resid = lhs_rss + rhs_rss
  *             if tot_sum_sq_resid > min_value:             # <<<<<<<<<<<<<<
@@ -7044,7 +6382,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":463
+      /* "segreg/model/one_bkpt_segreg.pyx":422
  *         # we bifurcate here on the data
  *         count += 1
  *         if count < half_num:             # <<<<<<<<<<<<<<
@@ -7054,7 +6392,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       goto __pyx_L7;
     }
 
-    /* "segreg/model/one_bkpt_segreg.pyx":490
+    /* "segreg/model/one_bkpt_segreg.pyx":449
  * 
  *         else:
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_1)             # <<<<<<<<<<<<<<
@@ -7064,7 +6402,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     /*else*/ {
       __pyx_v_ols_est_terms = __pyx_f_6segreg_5model_10regression_ols_from_formula_with_rss_cimpl(__pyx_v_ols_1, NULL);
 
-      /* "segreg/model/one_bkpt_segreg.pyx":491
+      /* "segreg/model/one_bkpt_segreg.pyx":450
  *         else:
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_1)
  *             lhs_ols_intercept = ols_est_terms.intercept             # <<<<<<<<<<<<<<
@@ -7074,7 +6412,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.intercept;
       __pyx_v_lhs_ols_intercept = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":492
+      /* "segreg/model/one_bkpt_segreg.pyx":451
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_1)
  *             lhs_ols_intercept = ols_est_terms.intercept
  *             lhs_ols_slope = ols_est_terms.slope             # <<<<<<<<<<<<<<
@@ -7084,7 +6422,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.slope;
       __pyx_v_lhs_ols_slope = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":493
+      /* "segreg/model/one_bkpt_segreg.pyx":452
  *             lhs_ols_intercept = ols_est_terms.intercept
  *             lhs_ols_slope = ols_est_terms.slope
  *             lhs_rss = ols_est_terms.rss             # <<<<<<<<<<<<<<
@@ -7094,22 +6432,22 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.rss;
       __pyx_v_lhs_rss = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":499
+      /* "segreg/model/one_bkpt_segreg.pyx":458
  *             # so if we are already bigger than some previous potential min
  *             ## value, stop
  *             if lhs_rss > min_value:             # <<<<<<<<<<<<<<
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  */
-      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_lhs_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 499, __pyx_L1_error)
+      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_lhs_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 458, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 499, __pyx_L1_error)
+      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 458, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 499, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 458, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":500
+        /* "segreg/model/one_bkpt_segreg.pyx":459
  *             ## value, stop
  *             if lhs_rss > min_value:
  *                 indices_can_skip.insert(index_minus_one)             # <<<<<<<<<<<<<<
@@ -7120,10 +6458,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index_minus_one);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 500, __pyx_L1_error)
+          __PYX_ERR(0, 459, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":501
+        /* "segreg/model/one_bkpt_segreg.pyx":460
  *             if lhs_rss > min_value:
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)             # <<<<<<<<<<<<<<
@@ -7134,10 +6472,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 501, __pyx_L1_error)
+          __PYX_ERR(0, 460, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":502
+        /* "segreg/model/one_bkpt_segreg.pyx":461
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  *                 continue             # <<<<<<<<<<<<<<
@@ -7146,7 +6484,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         goto __pyx_L5_continue;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":499
+        /* "segreg/model/one_bkpt_segreg.pyx":458
  *             # so if we are already bigger than some previous potential min
  *             ## value, stop
  *             if lhs_rss > min_value:             # <<<<<<<<<<<<<<
@@ -7155,20 +6493,20 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":504
+      /* "segreg/model/one_bkpt_segreg.pyx":463
  *                 continue
  * 
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_2, m2)             # <<<<<<<<<<<<<<
  *             rhs_ols_intercept = ols_est_terms.intercept
  *             rhs_ols_slope = ols_est_terms.slope
  */
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 504, __pyx_L1_error)
+      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 463, __pyx_L1_error)
       __pyx_t_19.__pyx_n = 1;
       __pyx_t_19.slope = __pyx_t_13;
       __pyx_t_18 = __pyx_f_6segreg_5model_10regression_ols_from_formula_with_rss_cimpl(__pyx_v_ols_2, &__pyx_t_19); 
       __pyx_v_ols_est_terms = __pyx_t_18;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":505
+      /* "segreg/model/one_bkpt_segreg.pyx":464
  * 
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_2, m2)
  *             rhs_ols_intercept = ols_est_terms.intercept             # <<<<<<<<<<<<<<
@@ -7178,7 +6516,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.intercept;
       __pyx_v_rhs_ols_intercept = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":506
+      /* "segreg/model/one_bkpt_segreg.pyx":465
  *             ols_est_terms = ols_from_formula_with_rss_cimpl(ols_2, m2)
  *             rhs_ols_intercept = ols_est_terms.intercept
  *             rhs_ols_slope = ols_est_terms.slope             # <<<<<<<<<<<<<<
@@ -7188,7 +6526,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.slope;
       __pyx_v_rhs_ols_slope = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":507
+      /* "segreg/model/one_bkpt_segreg.pyx":466
  *             rhs_ols_intercept = ols_est_terms.intercept
  *             rhs_ols_slope = ols_est_terms.slope
  *             rhs_rss = ols_est_terms.rss             # <<<<<<<<<<<<<<
@@ -7198,7 +6536,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_13 = __pyx_v_ols_est_terms.rss;
       __pyx_v_rhs_rss = __pyx_t_13;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":509
+      /* "segreg/model/one_bkpt_segreg.pyx":468
  *             rhs_rss = ols_est_terms.rss
  * 
  *             tot_sum_sq_resid = lhs_rss + rhs_rss             # <<<<<<<<<<<<<<
@@ -7207,22 +6545,22 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       __pyx_v_tot_sum_sq_resid = (__pyx_v_lhs_rss + __pyx_v_rhs_rss);
 
-      /* "segreg/model/one_bkpt_segreg.pyx":510
+      /* "segreg/model/one_bkpt_segreg.pyx":469
  * 
  *             tot_sum_sq_resid = lhs_rss + rhs_rss
  *             if tot_sum_sq_resid > min_value:             # <<<<<<<<<<<<<<
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  */
-      __pyx_t_9 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 510, __pyx_L1_error)
+      __pyx_t_9 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 469, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 510, __pyx_L1_error)
+      __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 469, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 510, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 469, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":511
+        /* "segreg/model/one_bkpt_segreg.pyx":470
  *             tot_sum_sq_resid = lhs_rss + rhs_rss
  *             if tot_sum_sq_resid > min_value:
  *                 indices_can_skip.insert(index_minus_one)             # <<<<<<<<<<<<<<
@@ -7233,10 +6571,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index_minus_one);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 511, __pyx_L1_error)
+          __PYX_ERR(0, 470, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":512
+        /* "segreg/model/one_bkpt_segreg.pyx":471
  *             if tot_sum_sq_resid > min_value:
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)             # <<<<<<<<<<<<<<
@@ -7247,10 +6585,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
           __pyx_v_indices_can_skip.insert(__pyx_v_index);
         } catch(...) {
           __Pyx_CppExn2PyErr();
-          __PYX_ERR(0, 512, __pyx_L1_error)
+          __PYX_ERR(0, 471, __pyx_L1_error)
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":513
+        /* "segreg/model/one_bkpt_segreg.pyx":472
  *                 indices_can_skip.insert(index_minus_one)
  *                 indices_can_skip.insert(index)
  *                 continue             # <<<<<<<<<<<<<<
@@ -7259,7 +6597,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         goto __pyx_L5_continue;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":510
+        /* "segreg/model/one_bkpt_segreg.pyx":469
  * 
  *             tot_sum_sq_resid = lhs_rss + rhs_rss
  *             if tot_sum_sq_resid > min_value:             # <<<<<<<<<<<<<<
@@ -7270,7 +6608,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     }
     __pyx_L7:;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":515
+    /* "segreg/model/one_bkpt_segreg.pyx":474
  *                 continue
  * 
  *         in_right_place = False             # <<<<<<<<<<<<<<
@@ -7279,7 +6617,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     __pyx_v_in_right_place = 0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":517
+    /* "segreg/model/one_bkpt_segreg.pyx":476
  *         in_right_place = False
  * 
  *         if abs(rhs_ols_slope - lhs_ols_slope) > 1.0e-14:             # <<<<<<<<<<<<<<
@@ -7289,7 +6627,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __pyx_t_4 = ((fabs((__pyx_v_rhs_ols_slope - __pyx_v_lhs_ols_slope)) > 1.0e-14) != 0);
     if (__pyx_t_4) {
 
-      /* "segreg/model/one_bkpt_segreg.pyx":519
+      /* "segreg/model/one_bkpt_segreg.pyx":478
  *         if abs(rhs_ols_slope - lhs_ols_slope) > 1.0e-14:
  * 
  *             x0 = (lhs_ols_intercept - rhs_ols_intercept) / (rhs_ols_slope - lhs_ols_slope)             # <<<<<<<<<<<<<<
@@ -7298,7 +6636,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       __pyx_v_x0 = ((__pyx_v_lhs_ols_intercept - __pyx_v_rhs_ols_intercept) / (__pyx_v_rhs_ols_slope - __pyx_v_lhs_ols_slope));
 
-      /* "segreg/model/one_bkpt_segreg.pyx":521
+      /* "segreg/model/one_bkpt_segreg.pyx":480
  *             x0 = (lhs_ols_intercept - rhs_ols_intercept) / (rhs_ols_slope - lhs_ols_slope)
  * 
  *             in_right_place = (indep[index_minus_one] < x0 and x0 < indep[index])             # <<<<<<<<<<<<<<
@@ -7318,7 +6656,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_L13_bool_binop_done:;
       __pyx_v_in_right_place = __pyx_t_4;
 
-      /* "segreg/model/one_bkpt_segreg.pyx":517
+      /* "segreg/model/one_bkpt_segreg.pyx":476
  *         in_right_place = False
  * 
  *         if abs(rhs_ols_slope - lhs_ols_slope) > 1.0e-14:             # <<<<<<<<<<<<<<
@@ -7327,7 +6665,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
     }
 
-    /* "segreg/model/one_bkpt_segreg.pyx":523
+    /* "segreg/model/one_bkpt_segreg.pyx":482
  *             in_right_place = (indep[index_minus_one] < x0 and x0 < indep[index])
  * 
  *         if in_right_place:             # <<<<<<<<<<<<<<
@@ -7337,7 +6675,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __pyx_t_4 = (__pyx_v_in_right_place != 0);
     if (__pyx_t_4) {
 
-      /* "segreg/model/one_bkpt_segreg.pyx":527
+      /* "segreg/model/one_bkpt_segreg.pyx":486
  *             # in this case, we have a local min on the interval, so we may
  *             # exclude checking the endpts
  *             indices_can_skip.insert(index_minus_one)             # <<<<<<<<<<<<<<
@@ -7348,10 +6686,10 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_v_indices_can_skip.insert(__pyx_v_index_minus_one);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 527, __pyx_L1_error)
+        __PYX_ERR(0, 486, __pyx_L1_error)
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":528
+      /* "segreg/model/one_bkpt_segreg.pyx":487
  *             # exclude checking the endpts
  *             indices_can_skip.insert(index_minus_one)
  *             indices_can_skip.insert(index)             # <<<<<<<<<<<<<<
@@ -7362,37 +6700,37 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_v_indices_can_skip.insert(__pyx_v_index);
       } catch(...) {
         __Pyx_CppExn2PyErr();
-        __PYX_ERR(0, 528, __pyx_L1_error)
+        __PYX_ERR(0, 487, __pyx_L1_error)
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":530
+      /* "segreg/model/one_bkpt_segreg.pyx":489
  *             indices_can_skip.insert(index)
  * 
  *             if tot_sum_sq_resid < min_value:             # <<<<<<<<<<<<<<
  *                 min_value = tot_sum_sq_resid
  * 
  */
-      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 530, __pyx_L1_error)
+      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 489, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_min_value, Py_LT); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 530, __pyx_L1_error)
+      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_min_value, Py_LT); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 489, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 530, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 489, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":531
+        /* "segreg/model/one_bkpt_segreg.pyx":490
  * 
  *             if tot_sum_sq_resid < min_value:
  *                 min_value = tot_sum_sq_resid             # <<<<<<<<<<<<<<
  * 
  *                 ## TODO: y0 = lhs_ols_intercept + lhs_ols_slope * x0
  */
-        __pyx_t_9 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 531, __pyx_L1_error)
+        __pyx_t_9 = PyFloat_FromDouble(__pyx_v_tot_sum_sq_resid); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 490, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF_SET(__pyx_v_min_value, __pyx_t_9);
         __pyx_t_9 = 0;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":534
+        /* "segreg/model/one_bkpt_segreg.pyx":493
  * 
  *                 ## TODO: y0 = lhs_ols_intercept + lhs_ols_slope * x0
  *                 y0 = (lhs_ols_intercept * rhs_ols_slope - rhs_ols_intercept * lhs_ols_slope) / (rhs_ols_slope - lhs_ols_slope)             # <<<<<<<<<<<<<<
@@ -7401,7 +6739,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         __pyx_v_y0 = (((__pyx_v_lhs_ols_intercept * __pyx_v_rhs_ols_slope) - (__pyx_v_rhs_ols_intercept * __pyx_v_lhs_ols_slope)) / (__pyx_v_rhs_ols_slope - __pyx_v_lhs_ols_slope));
 
-        /* "segreg/model/one_bkpt_segreg.pyx":536
+        /* "segreg/model/one_bkpt_segreg.pyx":495
  *                 y0 = (lhs_ols_intercept * rhs_ols_slope - rhs_ols_intercept * lhs_ols_slope) / (rhs_ols_slope - lhs_ols_slope)
  * 
  *                 one_bkpt_params.x0 = x0             # <<<<<<<<<<<<<<
@@ -7410,7 +6748,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         __pyx_v_one_bkpt_params.x0 = __pyx_v_x0;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":537
+        /* "segreg/model/one_bkpt_segreg.pyx":496
  * 
  *                 one_bkpt_params.x0 = x0
  *                 one_bkpt_params.y0 = y0             # <<<<<<<<<<<<<<
@@ -7419,7 +6757,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         __pyx_v_one_bkpt_params.y0 = __pyx_v_y0;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":538
+        /* "segreg/model/one_bkpt_segreg.pyx":497
  *                 one_bkpt_params.x0 = x0
  *                 one_bkpt_params.y0 = y0
  *                 one_bkpt_params.lhs_slope = lhs_ols_slope             # <<<<<<<<<<<<<<
@@ -7428,7 +6766,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         __pyx_v_one_bkpt_params.lhs_slope = __pyx_v_lhs_ols_slope;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":539
+        /* "segreg/model/one_bkpt_segreg.pyx":498
  *                 one_bkpt_params.y0 = y0
  *                 one_bkpt_params.lhs_slope = lhs_ols_slope
  *                 one_bkpt_params.rhs_slope = rhs_ols_slope             # <<<<<<<<<<<<<<
@@ -7437,7 +6775,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         __pyx_v_one_bkpt_params.rhs_slope = __pyx_v_rhs_ols_slope;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":530
+        /* "segreg/model/one_bkpt_segreg.pyx":489
  *             indices_can_skip.insert(index)
  * 
  *             if tot_sum_sq_resid < min_value:             # <<<<<<<<<<<<<<
@@ -7446,7 +6784,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":523
+      /* "segreg/model/one_bkpt_segreg.pyx":482
  *             in_right_place = (indep[index_minus_one] < x0 and x0 < indep[index])
  * 
  *         if in_right_place:             # <<<<<<<<<<<<<<
@@ -7456,7 +6794,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       goto __pyx_L15;
     }
 
-    /* "segreg/model/one_bkpt_segreg.pyx":544
+    /* "segreg/model/one_bkpt_segreg.pyx":503
  *             # else we need to check the endpts
  *             # if index_minus_one not in indices_can_skip:
  *             if indices_can_skip.find(index_minus_one) == indices_can_skip.end():             # <<<<<<<<<<<<<<
@@ -7467,7 +6805,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_t_4 = ((__pyx_v_indices_can_skip.find(__pyx_v_index_minus_one) == __pyx_v_indices_can_skip.end()) != 0);
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":545
+        /* "segreg/model/one_bkpt_segreg.pyx":504
  *             # if index_minus_one not in indices_can_skip:
  *             if indices_can_skip.find(index_minus_one) == indices_can_skip.end():
  *                 x0 = indep[index_minus_one]             # <<<<<<<<<<<<<<
@@ -7477,20 +6815,20 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_2 = __pyx_v_index_minus_one;
         __pyx_v_x0 = (*((double *) ( /* dim=0 */ (__pyx_v_indep.data + __pyx_t_2 * __pyx_v_indep.strides[0]) )));
 
-        /* "segreg/model/one_bkpt_segreg.pyx":547
+        /* "segreg/model/one_bkpt_segreg.pyx":506
  *                 x0 = indep[index_minus_one]
  * 
  *                 fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)             # <<<<<<<<<<<<<<
  *                 y0 = fixed_bkpt_terms.v
  *                 lhs_slope = fixed_bkpt_terms.m1
  */
-        __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 547, __pyx_L1_error)
+        __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 506, __pyx_L1_error)
         __pyx_t_15.__pyx_n = 1;
         __pyx_t_15.m2 = __pyx_t_13;
         __pyx_t_14 = __pyx_f_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls(__pyx_v_ols_1, __pyx_v_ols_2, __pyx_v_x0, &__pyx_t_15); 
         __pyx_v_fixed_bkpt_terms = __pyx_t_14;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":548
+        /* "segreg/model/one_bkpt_segreg.pyx":507
  * 
  *                 fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)
  *                 y0 = fixed_bkpt_terms.v             # <<<<<<<<<<<<<<
@@ -7500,7 +6838,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.v;
         __pyx_v_y0 = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":549
+        /* "segreg/model/one_bkpt_segreg.pyx":508
  *                 fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)
  *                 y0 = fixed_bkpt_terms.v
  *                 lhs_slope = fixed_bkpt_terms.m1             # <<<<<<<<<<<<<<
@@ -7510,7 +6848,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.m1;
         __pyx_v_lhs_slope = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":550
+        /* "segreg/model/one_bkpt_segreg.pyx":509
  *                 y0 = fixed_bkpt_terms.v
  *                 lhs_slope = fixed_bkpt_terms.m1
  *                 rhs_slope = fixed_bkpt_terms.m2             # <<<<<<<<<<<<<<
@@ -7520,7 +6858,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.m2;
         __pyx_v_rhs_slope = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":551
+        /* "segreg/model/one_bkpt_segreg.pyx":510
  *                 lhs_slope = fixed_bkpt_terms.m1
  *                 rhs_slope = fixed_bkpt_terms.m2
  *                 rss = fixed_bkpt_terms.rss             # <<<<<<<<<<<<<<
@@ -7530,22 +6868,22 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.rss;
         __pyx_v_rss = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":553
+        /* "segreg/model/one_bkpt_segreg.pyx":512
  *                 rss = fixed_bkpt_terms.rss
  * 
  *                 if(rss < min_value):             # <<<<<<<<<<<<<<
  *                     one_bkpt_params.x0 = x0
  *                     one_bkpt_params.y0 = y0
  */
-        __pyx_t_9 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 553, __pyx_L1_error)
+        __pyx_t_9 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 512, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 553, __pyx_L1_error)
+        __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 512, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 553, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 512, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         if (__pyx_t_4) {
 
-          /* "segreg/model/one_bkpt_segreg.pyx":554
+          /* "segreg/model/one_bkpt_segreg.pyx":513
  * 
  *                 if(rss < min_value):
  *                     one_bkpt_params.x0 = x0             # <<<<<<<<<<<<<<
@@ -7554,7 +6892,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.x0 = __pyx_v_x0;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":555
+          /* "segreg/model/one_bkpt_segreg.pyx":514
  *                 if(rss < min_value):
  *                     one_bkpt_params.x0 = x0
  *                     one_bkpt_params.y0 = y0             # <<<<<<<<<<<<<<
@@ -7563,7 +6901,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.y0 = __pyx_v_y0;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":556
+          /* "segreg/model/one_bkpt_segreg.pyx":515
  *                     one_bkpt_params.x0 = x0
  *                     one_bkpt_params.y0 = y0
  *                     one_bkpt_params.lhs_slope = lhs_slope             # <<<<<<<<<<<<<<
@@ -7572,7 +6910,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.lhs_slope = __pyx_v_lhs_slope;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":557
+          /* "segreg/model/one_bkpt_segreg.pyx":516
  *                     one_bkpt_params.y0 = y0
  *                     one_bkpt_params.lhs_slope = lhs_slope
  *                     one_bkpt_params.rhs_slope = rhs_slope             # <<<<<<<<<<<<<<
@@ -7581,19 +6919,19 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.rhs_slope = __pyx_v_rhs_slope;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":559
+          /* "segreg/model/one_bkpt_segreg.pyx":518
  *                     one_bkpt_params.rhs_slope = rhs_slope
  * 
  *                     min_value = rss             # <<<<<<<<<<<<<<
  * 
  *             if index == last_index and indices_can_skip.find(index) == indices_can_skip.end():
  */
-          __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 559, __pyx_L1_error)
+          __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 518, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF_SET(__pyx_v_min_value, __pyx_t_5);
           __pyx_t_5 = 0;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":553
+          /* "segreg/model/one_bkpt_segreg.pyx":512
  *                 rss = fixed_bkpt_terms.rss
  * 
  *                 if(rss < min_value):             # <<<<<<<<<<<<<<
@@ -7602,7 +6940,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":544
+        /* "segreg/model/one_bkpt_segreg.pyx":503
  *             # else we need to check the endpts
  *             # if index_minus_one not in indices_can_skip:
  *             if indices_can_skip.find(index_minus_one) == indices_can_skip.end():             # <<<<<<<<<<<<<<
@@ -7611,18 +6949,18 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
       }
 
-      /* "segreg/model/one_bkpt_segreg.pyx":561
+      /* "segreg/model/one_bkpt_segreg.pyx":520
  *                     min_value = rss
  * 
  *             if index == last_index and indices_can_skip.find(index) == indices_can_skip.end():             # <<<<<<<<<<<<<<
  *                 # don't need to add over next_x ols; same answer at a datapt
  *                 x0 = indep[index]
  */
-      __pyx_t_5 = __Pyx_PyInt_FromSize_t(__pyx_v_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 561, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyInt_FromSize_t(__pyx_v_index); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 520, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_last_index, Py_EQ); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 561, __pyx_L1_error)
+      __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_v_last_index, Py_EQ); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 520, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 561, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 520, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       if (__pyx_t_3) {
       } else {
@@ -7634,7 +6972,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
       __pyx_L20_bool_binop_done:;
       if (__pyx_t_4) {
 
-        /* "segreg/model/one_bkpt_segreg.pyx":563
+        /* "segreg/model/one_bkpt_segreg.pyx":522
  *             if index == last_index and indices_can_skip.find(index) == indices_can_skip.end():
  *                 # don't need to add over next_x ols; same answer at a datapt
  *                 x0 = indep[index]             # <<<<<<<<<<<<<<
@@ -7644,20 +6982,20 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_2 = __pyx_v_index;
         __pyx_v_x0 = (*((double *) ( /* dim=0 */ (__pyx_v_indep.data + __pyx_t_2 * __pyx_v_indep.strides[0]) )));
 
-        /* "segreg/model/one_bkpt_segreg.pyx":564
+        /* "segreg/model/one_bkpt_segreg.pyx":523
  *                 # don't need to add over next_x ols; same answer at a datapt
  *                 x0 = indep[index]
  *                 fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)             # <<<<<<<<<<<<<<
  *                 y0 = fixed_bkpt_terms.v
  *                 lhs_slope = fixed_bkpt_terms.m1
  */
-        __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L1_error)
+        __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 523, __pyx_L1_error)
         __pyx_t_15.__pyx_n = 1;
         __pyx_t_15.m2 = __pyx_t_13;
         __pyx_t_14 = __pyx_f_6segreg_5model_15one_bkpt_segreg_fixed_breakpt_ls(__pyx_v_ols_1, __pyx_v_ols_2, __pyx_v_x0, &__pyx_t_15); 
         __pyx_v_fixed_bkpt_terms = __pyx_t_14;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":565
+        /* "segreg/model/one_bkpt_segreg.pyx":524
  *                 x0 = indep[index]
  *                 fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)
  *                 y0 = fixed_bkpt_terms.v             # <<<<<<<<<<<<<<
@@ -7667,7 +7005,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.v;
         __pyx_v_y0 = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":566
+        /* "segreg/model/one_bkpt_segreg.pyx":525
  *                 fixed_bkpt_terms = fixed_breakpt_ls(ols_1, ols_2, x0, m2)
  *                 y0 = fixed_bkpt_terms.v
  *                 lhs_slope = fixed_bkpt_terms.m1             # <<<<<<<<<<<<<<
@@ -7677,7 +7015,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.m1;
         __pyx_v_lhs_slope = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":567
+        /* "segreg/model/one_bkpt_segreg.pyx":526
  *                 y0 = fixed_bkpt_terms.v
  *                 lhs_slope = fixed_bkpt_terms.m1
  *                 rhs_slope = fixed_bkpt_terms.m2             # <<<<<<<<<<<<<<
@@ -7687,7 +7025,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.m2;
         __pyx_v_rhs_slope = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":568
+        /* "segreg/model/one_bkpt_segreg.pyx":527
  *                 lhs_slope = fixed_bkpt_terms.m1
  *                 rhs_slope = fixed_bkpt_terms.m2
  *                 rss = fixed_bkpt_terms.rss             # <<<<<<<<<<<<<<
@@ -7697,22 +7035,22 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
         __pyx_t_13 = __pyx_v_fixed_bkpt_terms.rss;
         __pyx_v_rss = __pyx_t_13;
 
-        /* "segreg/model/one_bkpt_segreg.pyx":570
+        /* "segreg/model/one_bkpt_segreg.pyx":529
  *                 rss = fixed_bkpt_terms.rss
  * 
  *                 if(rss < min_value):             # <<<<<<<<<<<<<<
  *                     one_bkpt_params.x0 = x0
  *                     one_bkpt_params.y0 = y0
  */
-        __pyx_t_9 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 570, __pyx_L1_error)
+        __pyx_t_9 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 529, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 570, __pyx_L1_error)
+        __pyx_t_5 = PyObject_RichCompare(__pyx_t_9, __pyx_v_min_value, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 529, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 570, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 529, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         if (__pyx_t_4) {
 
-          /* "segreg/model/one_bkpt_segreg.pyx":571
+          /* "segreg/model/one_bkpt_segreg.pyx":530
  * 
  *                 if(rss < min_value):
  *                     one_bkpt_params.x0 = x0             # <<<<<<<<<<<<<<
@@ -7721,7 +7059,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.x0 = __pyx_v_x0;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":572
+          /* "segreg/model/one_bkpt_segreg.pyx":531
  *                 if(rss < min_value):
  *                     one_bkpt_params.x0 = x0
  *                     one_bkpt_params.y0 = y0             # <<<<<<<<<<<<<<
@@ -7730,7 +7068,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.y0 = __pyx_v_y0;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":573
+          /* "segreg/model/one_bkpt_segreg.pyx":532
  *                     one_bkpt_params.x0 = x0
  *                     one_bkpt_params.y0 = y0
  *                     one_bkpt_params.lhs_slope = lhs_slope             # <<<<<<<<<<<<<<
@@ -7739,7 +7077,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.lhs_slope = __pyx_v_lhs_slope;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":574
+          /* "segreg/model/one_bkpt_segreg.pyx":533
  *                     one_bkpt_params.y0 = y0
  *                     one_bkpt_params.lhs_slope = lhs_slope
  *                     one_bkpt_params.rhs_slope = rhs_slope             # <<<<<<<<<<<<<<
@@ -7748,19 +7086,19 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
           __pyx_v_one_bkpt_params.rhs_slope = __pyx_v_rhs_slope;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":576
+          /* "segreg/model/one_bkpt_segreg.pyx":535
  *                     one_bkpt_params.rhs_slope = rhs_slope
  * 
  *                     min_value = rss             # <<<<<<<<<<<<<<
  * 
  *     # old code did this
  */
-          __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 576, __pyx_L1_error)
+          __pyx_t_5 = PyFloat_FromDouble(__pyx_v_rss); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 535, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF_SET(__pyx_v_min_value, __pyx_t_5);
           __pyx_t_5 = 0;
 
-          /* "segreg/model/one_bkpt_segreg.pyx":570
+          /* "segreg/model/one_bkpt_segreg.pyx":529
  *                 rss = fixed_bkpt_terms.rss
  * 
  *                 if(rss < min_value):             # <<<<<<<<<<<<<<
@@ -7769,7 +7107,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  */
         }
 
-        /* "segreg/model/one_bkpt_segreg.pyx":561
+        /* "segreg/model/one_bkpt_segreg.pyx":520
  *                     min_value = rss
  * 
  *             if index == last_index and indices_can_skip.find(index) == indices_can_skip.end():             # <<<<<<<<<<<<<<
@@ -7780,7 +7118,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     }
     __pyx_L15:;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":433
+    /* "segreg/model/one_bkpt_segreg.pyx":392
  *     last_plus_one_index = unique_indep_lhs_indices[range_end]
  * 
  *     for index in unique_indep_lhs_indices[range_begin:range_end]:             # <<<<<<<<<<<<<<
@@ -7791,33 +7129,33 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   }
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":580
+  /* "segreg/model/one_bkpt_segreg.pyx":539
  *     # old code did this
  *     # TODO: keep?
  *     if isnan(m2):             # <<<<<<<<<<<<<<
  *         min_params = [one_bkpt_params.x0, one_bkpt_params.y0, one_bkpt_params.lhs_slope, one_bkpt_params.rhs_slope]
  *     else:
  */
-  __pyx_t_20 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_20 == (long double)-1) && PyErr_Occurred())) __PYX_ERR(0, 580, __pyx_L1_error)
+  __pyx_t_20 = __pyx_PyFloat_AsDouble(__pyx_v_m2); if (unlikely((__pyx_t_20 == (long double)-1) && PyErr_Occurred())) __PYX_ERR(0, 539, __pyx_L1_error)
   __pyx_t_4 = (isnan(__pyx_t_20) != 0);
   if (__pyx_t_4) {
 
-    /* "segreg/model/one_bkpt_segreg.pyx":581
+    /* "segreg/model/one_bkpt_segreg.pyx":540
  *     # TODO: keep?
  *     if isnan(m2):
  *         min_params = [one_bkpt_params.x0, one_bkpt_params.y0, one_bkpt_params.lhs_slope, one_bkpt_params.rhs_slope]             # <<<<<<<<<<<<<<
  *     else:
  *         min_params = [one_bkpt_params.x0, one_bkpt_params.y0, one_bkpt_params.lhs_slope]
  */
-    __pyx_t_10 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.x0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 581, __pyx_L1_error)
+    __pyx_t_10 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.x0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.y0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 581, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.y0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.lhs_slope); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 581, __pyx_L1_error)
+    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.lhs_slope); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.rhs_slope); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 581, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.rhs_slope); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 581, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 540, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_10);
     PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_10);
@@ -7834,7 +7172,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     __pyx_v_min_params = ((PyObject*)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "segreg/model/one_bkpt_segreg.pyx":580
+    /* "segreg/model/one_bkpt_segreg.pyx":539
  *     # old code did this
  *     # TODO: keep?
  *     if isnan(m2):             # <<<<<<<<<<<<<<
@@ -7844,7 +7182,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
     goto __pyx_L23;
   }
 
-  /* "segreg/model/one_bkpt_segreg.pyx":583
+  /* "segreg/model/one_bkpt_segreg.pyx":542
  *         min_params = [one_bkpt_params.x0, one_bkpt_params.y0, one_bkpt_params.lhs_slope, one_bkpt_params.rhs_slope]
  *     else:
  *         min_params = [one_bkpt_params.x0, one_bkpt_params.y0, one_bkpt_params.lhs_slope]             # <<<<<<<<<<<<<<
@@ -7852,13 +7190,13 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
  *     return min_params, min_value
  */
   /*else*/ {
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.x0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.x0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.y0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.y0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.lhs_slope); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_one_bkpt_params.lhs_slope); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_5 = PyList_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_5 = PyList_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 542, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_1);
     PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
@@ -7874,13 +7212,13 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   }
   __pyx_L23:;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":585
+  /* "segreg/model/one_bkpt_segreg.pyx":544
  *         min_params = [one_bkpt_params.x0, one_bkpt_params.y0, one_bkpt_params.lhs_slope]
  * 
  *     return min_params, min_value             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 585, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 544, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_min_params);
   __Pyx_GIVEREF(__pyx_v_min_params);
@@ -7892,7 +7230,7 @@ __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_t_11, 1, (PyObject *(*)(char *)) __
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":297
+  /* "segreg/model/one_bkpt_segreg.pyx":256
  * # moreover, for num_end_to_skip = 0, we don't let the solution lie in last
  * # interval between last two datapoints
  * def estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs):             # <<<<<<<<<<<<<<
@@ -9117,7 +8455,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 884, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 884, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -9249,7 +8587,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 890, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 890, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -9381,7 +8719,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  * 
  * cdef extern from *:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 896, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 896, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -9631,7 +8969,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  *         if itemsize <= 0:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 133, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9663,7 +9001,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  *         if not isinstance(format, bytes):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 136, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9790,7 +9128,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 148, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10064,7 +9402,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  *             if self.dtype_is_object:
  */
-      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(3, 176, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(3, 176, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_Raise(__pyx_t_10, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -10308,7 +9646,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.buf = self.data
  *         info.len = self.len
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 192, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 192, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -11042,7 +10380,7 @@ static PyObject *__pyx_pf___pyx_array___reduce_cython__(CYTHON_UNUSED struct __p
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11098,7 +10436,7 @@ static PyObject *__pyx_pf___pyx_array_2__setstate_cython__(CYTHON_UNUSED struct 
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12808,7 +12146,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  * 
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 418, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 418, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13856,7 +13194,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         else:
  *             if len(self.view.format) == 1:
  */
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(3, 495, __pyx_L5_except_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(3, 495, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -14218,7 +13556,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  * 
  *         if flags & PyBUF_ND:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 520, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 520, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14767,7 +14105,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  * 
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 570, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 570, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14884,7 +14222,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->view.ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 577, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Multiply(__pyx_tuple__19, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 577, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_tuple__17, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 577, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -15922,7 +15260,7 @@ static PyObject *__pyx_pf___pyx_memoryview___reduce_cython__(CYTHON_UNUSED struc
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -15978,7 +15316,7 @@ static PyObject *__pyx_pf___pyx_memoryview_2__setstate_cython__(CYTHON_UNUSED st
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16335,9 +15673,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
         __Pyx_GOTREF(__pyx_t_7);
         { Py_ssize_t __pyx_temp;
           for (__pyx_temp=0; __pyx_temp < ((__pyx_v_ndim - __pyx_t_8) + 1); __pyx_temp++) {
-            __Pyx_INCREF(__pyx_slice__22);
-            __Pyx_GIVEREF(__pyx_slice__22);
-            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__22);
+            __Pyx_INCREF(__pyx_slice__20);
+            __Pyx_GIVEREF(__pyx_slice__20);
+            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__20);
           }
         }
         __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(3, 682, __pyx_L1_error)
@@ -16370,7 +15708,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  */
       /*else*/ {
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__22); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(3, 685, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__20); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(3, 685, __pyx_L1_error)
       }
       __pyx_L7:;
 
@@ -16510,9 +15848,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
     __Pyx_GOTREF(__pyx_t_3);
     { Py_ssize_t __pyx_temp;
       for (__pyx_temp=0; __pyx_temp < __pyx_v_nslices; __pyx_temp++) {
-        __Pyx_INCREF(__pyx_slice__22);
-        __Pyx_GIVEREF(__pyx_slice__22);
-        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__22);
+        __Pyx_INCREF(__pyx_slice__20);
+        __Pyx_GIVEREF(__pyx_slice__20);
+        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__20);
       }
     }
     __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_3); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(3, 696, __pyx_L1_error)
@@ -16639,7 +15977,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  * 
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(3, 703, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(3, 703, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_Raise(__pyx_t_5, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -18823,7 +18161,7 @@ static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED 
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -18879,7 +18217,7 @@ static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUS
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -22446,14 +21784,14 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   return __pyx_r;
 }
 
-static struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *__pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func[8];
-static int __pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func = 0;
+static struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *__pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func[8];
+static int __pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func = 0;
 
-static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   PyObject *o;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func)))) {
-    o = (PyObject*)__pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func[--__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func];
-    memset(o, 0, sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func));
+  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func)))) {
+    o = (PyObject*)__pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func[--__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func];
+    memset(o, 0, sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func));
     (void) PyObject_INIT(o, t);
     PyObject_GC_Track(o);
   } else {
@@ -22463,157 +21801,21 @@ static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struc
   return o;
 }
 
-static void __pyx_tp_dealloc_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func(PyObject *o) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *)o;
-  PyObject_GC_UnTrack(o);
-  Py_CLEAR(p->__pyx_v_m1);
-  Py_CLEAR(p->__pyx_v_m2);
-  Py_CLEAR(p->__pyx_v_u);
-  Py_CLEAR(p->__pyx_v_v);
-  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func)))) {
-    __pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func[__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func++] = ((struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *)o);
-  } else {
-    (*Py_TYPE(o)->tp_free)(o);
-  }
-}
-
-static int __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func(PyObject *o, visitproc v, void *a) {
-  int e;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *)o;
-  if (p->__pyx_v_m1) {
-    e = (*v)(p->__pyx_v_m1, a); if (e) return e;
-  }
-  if (p->__pyx_v_m2) {
-    e = (*v)(p->__pyx_v_m2, a); if (e) return e;
-  }
-  if (p->__pyx_v_u) {
-    e = (*v)(p->__pyx_v_u, a); if (e) return e;
-  }
-  if (p->__pyx_v_v) {
-    e = (*v)(p->__pyx_v_v, a); if (e) return e;
-  }
-  return 0;
-}
-
-static int __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func(PyObject *o) {
-  PyObject* tmp;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func *)o;
-  tmp = ((PyObject*)p->__pyx_v_m1);
-  p->__pyx_v_m1 = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->__pyx_v_m2);
-  p->__pyx_v_m2 = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->__pyx_v_u);
-  p->__pyx_v_u = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->__pyx_v_v);
-  p->__pyx_v_v = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  return 0;
-}
-
-static PyTypeObject __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func = {
-  PyVarObject_HEAD_INIT(0, 0)
-  "segreg.model.one_bkpt_segreg.__pyx_scope_struct__segmented_func", /*tp_name*/
-  sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func), /*tp_basicsize*/
-  0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func, /*tp_dealloc*/
-  #if PY_VERSION_HEX < 0x030800b4
-  0, /*tp_print*/
-  #endif
-  #if PY_VERSION_HEX >= 0x030800b4
-  0, /*tp_vectorcall_offset*/
-  #endif
-  0, /*tp_getattr*/
-  0, /*tp_setattr*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*tp_compare*/
-  #endif
-  #if PY_MAJOR_VERSION >= 3
-  0, /*tp_as_async*/
-  #endif
-  0, /*tp_repr*/
-  0, /*tp_as_number*/
-  0, /*tp_as_sequence*/
-  0, /*tp_as_mapping*/
-  0, /*tp_hash*/
-  0, /*tp_call*/
-  0, /*tp_str*/
-  0, /*tp_getattro*/
-  0, /*tp_setattro*/
-  0, /*tp_as_buffer*/
-  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  0, /*tp_doc*/
-  __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func, /*tp_traverse*/
-  __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func, /*tp_clear*/
-  0, /*tp_richcompare*/
-  0, /*tp_weaklistoffset*/
-  0, /*tp_iter*/
-  0, /*tp_iternext*/
-  0, /*tp_methods*/
-  0, /*tp_members*/
-  0, /*tp_getset*/
-  0, /*tp_base*/
-  0, /*tp_dict*/
-  0, /*tp_descr_get*/
-  0, /*tp_descr_set*/
-  0, /*tp_dictoffset*/
-  0, /*tp_init*/
-  0, /*tp_alloc*/
-  __pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func, /*tp_new*/
-  0, /*tp_free*/
-  0, /*tp_is_gc*/
-  0, /*tp_bases*/
-  0, /*tp_mro*/
-  0, /*tp_cache*/
-  0, /*tp_subclasses*/
-  0, /*tp_weaklist*/
-  0, /*tp_del*/
-  0, /*tp_version_tag*/
-  #if PY_VERSION_HEX >= 0x030400a1
-  0, /*tp_finalize*/
-  #endif
-  #if PY_VERSION_HEX >= 0x030800b1
-  0, /*tp_vectorcall*/
-  #endif
-  #if PY_VERSION_HEX >= 0x030800b4 && PY_VERSION_HEX < 0x03090000
-  0, /*tp_print*/
-  #endif
-};
-
-static struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *__pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func[8];
-static int __pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func = 0;
-
-static PyObject *__pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  PyObject *o;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func)))) {
-    o = (PyObject*)__pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func[--__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func];
-    memset(o, 0, sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func));
-    (void) PyObject_INIT(o, t);
-    PyObject_GC_Track(o);
-  } else {
-    o = (*t->tp_alloc)(t, 0);
-    if (unlikely(!o)) return 0;
-  }
-  return o;
-}
-
-static void __pyx_tp_dealloc_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func(PyObject *o) {
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *)o;
+static void __pyx_tp_dealloc_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func(PyObject *o) {
+  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *)o;
   PyObject_GC_UnTrack(o);
   Py_CLEAR(p->__pyx_v_dep_to_use);
   Py_CLEAR(p->__pyx_v_indep_to_use);
-  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func)))) {
-    __pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func[__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func++] = ((struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *)o);
+  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func)))) {
+    __pyx_freelist_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func[__pyx_freecount_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func++] = ((struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *)o);
   } else {
     (*Py_TYPE(o)->tp_free)(o);
   }
 }
 
-static int __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *)o;
+  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *)o;
   if (p->__pyx_v_dep_to_use) {
     e = (*v)(p->__pyx_v_dep_to_use, a); if (e) return e;
   }
@@ -22623,9 +21825,9 @@ static int __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct
   return 0;
 }
 
-static int __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func(PyObject *o) {
+static int __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func *)o;
+  struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *p = (struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func *)o;
   tmp = ((PyObject*)p->__pyx_v_dep_to_use);
   p->__pyx_v_dep_to_use = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
@@ -22635,12 +21837,12 @@ static int __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_
   return 0;
 }
 
-static PyTypeObject __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func = {
+static PyTypeObject __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func = {
   PyVarObject_HEAD_INIT(0, 0)
-  "segreg.model.one_bkpt_segreg.__pyx_scope_struct_1_one_bkpt_rss_func", /*tp_name*/
-  sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func), /*tp_basicsize*/
+  "segreg.model.one_bkpt_segreg.__pyx_scope_struct__one_bkpt_rss_func", /*tp_name*/
+  sizeof(struct __pyx_obj_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func, /*tp_dealloc*/
+  __pyx_tp_dealloc_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -22667,8 +21869,8 @@ static PyTypeObject __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_stru
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func, /*tp_traverse*/
-  __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func, /*tp_clear*/
+  __pyx_tp_traverse_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func, /*tp_traverse*/
+  __pyx_tp_clear_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
@@ -22683,7 +21885,7 @@ static PyTypeObject __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_stru
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func, /*tp_new*/
+  __pyx_tp_new_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -23493,7 +22695,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_argsort, __pyx_k_argsort, sizeof(__pyx_k_argsort), 0, 0, 1, 1},
   {&__pyx_n_s_argsort_for_indep, __pyx_k_argsort_for_indep, sizeof(__pyx_k_argsort_for_indep), 0, 0, 1, 1},
   {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
-  {&__pyx_n_s_asarray, __pyx_k_asarray, sizeof(__pyx_k_asarray), 0, 0, 1, 1},
   {&__pyx_n_s_base, __pyx_k_base, sizeof(__pyx_k_base), 0, 0, 1, 1},
   {&__pyx_n_s_bkpt, __pyx_k_bkpt, sizeof(__pyx_k_bkpt), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
@@ -23508,7 +22709,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_dep, __pyx_k_dep, sizeof(__pyx_k_dep), 0, 0, 1, 1},
   {&__pyx_n_s_dep_to_use, __pyx_k_dep_to_use, sizeof(__pyx_k_dep_to_use), 0, 0, 1, 1},
   {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
-  {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_dtype_is_object, __pyx_k_dtype_is_object, sizeof(__pyx_k_dtype_is_object), 0, 0, 1, 1},
   {&__pyx_n_s_encode, __pyx_k_encode, sizeof(__pyx_k_encode), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
@@ -23539,7 +22739,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_index_to_use, __pyx_k_index_to_use, sizeof(__pyx_k_index_to_use), 0, 0, 1, 1},
   {&__pyx_n_s_indices_can_skip, __pyx_k_indices_can_skip, sizeof(__pyx_k_indices_can_skip), 0, 0, 1, 1},
   {&__pyx_n_u_inf, __pyx_k_inf, sizeof(__pyx_k_inf), 0, 1, 0, 1},
-  {&__pyx_n_s_isscalar, __pyx_k_isscalar, sizeof(__pyx_k_isscalar), 0, 0, 1, 1},
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
   {&__pyx_n_s_kwargs, __pyx_k_kwargs, sizeof(__pyx_k_kwargs), 0, 0, 1, 1},
@@ -23590,7 +22789,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_one_bkpt_rss_func_locals_func, __pyx_k_one_bkpt_rss_func_locals_func, sizeof(__pyx_k_one_bkpt_rss_func_locals_func), 0, 0, 1, 1},
   {&__pyx_n_s_pack, __pyx_k_pack, sizeof(__pyx_k_pack), 0, 0, 1, 1},
   {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
-  {&__pyx_n_s_piecewise, __pyx_k_piecewise, sizeof(__pyx_k_piecewise), 0, 0, 1, 1},
   {&__pyx_n_s_pop, __pyx_k_pop, sizeof(__pyx_k_pop), 0, 0, 1, 1},
   {&__pyx_n_s_prev_index, __pyx_k_prev_index, sizeof(__pyx_k_prev_index), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_PickleError, __pyx_k_pyx_PickleError, sizeof(__pyx_k_pyx_PickleError), 0, 0, 1, 1},
@@ -23607,7 +22805,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
-  {&__pyx_n_s_result, __pyx_k_result, sizeof(__pyx_k_result), 0, 0, 1, 1},
   {&__pyx_n_s_rhs_dep, __pyx_k_rhs_dep, sizeof(__pyx_k_rhs_dep), 0, 0, 1, 1},
   {&__pyx_n_s_rhs_indep, __pyx_k_rhs_indep, sizeof(__pyx_k_rhs_indep), 0, 0, 1, 1},
   {&__pyx_n_s_rhs_ols_intercept, __pyx_k_rhs_ols_intercept, sizeof(__pyx_k_rhs_ols_intercept), 0, 0, 1, 1},
@@ -23616,9 +22813,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_rhs_slope, __pyx_k_rhs_slope, sizeof(__pyx_k_rhs_slope), 0, 0, 1, 1},
   {&__pyx_n_s_rss, __pyx_k_rss, sizeof(__pyx_k_rss), 0, 0, 1, 1},
   {&__pyx_n_s_searchsorted, __pyx_k_searchsorted, sizeof(__pyx_k_searchsorted), 0, 0, 1, 1},
-  {&__pyx_n_s_segmented_func, __pyx_k_segmented_func, sizeof(__pyx_k_segmented_func), 0, 0, 1, 1},
-  {&__pyx_n_s_segmented_func_locals_func, __pyx_k_segmented_func_locals_func, sizeof(__pyx_k_segmented_func_locals_func), 0, 0, 1, 1},
-  {&__pyx_n_s_segmented_func_locals_func_local, __pyx_k_segmented_func_locals_func_local, sizeof(__pyx_k_segmented_func_locals_func_local), 0, 0, 1, 1},
   {&__pyx_n_s_segreg_model_one_bkpt_segreg, __pyx_k_segreg_model_one_bkpt_segreg, sizeof(__pyx_k_segreg_model_one_bkpt_segreg), 0, 0, 1, 1},
   {&__pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_k_segreg_model_one_bkpt_segreg_pyx, sizeof(__pyx_k_segreg_model_one_bkpt_segreg_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
@@ -23645,9 +22839,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_unpack, __pyx_k_unpack, sizeof(__pyx_k_unpack), 0, 0, 1, 1},
   {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
   {&__pyx_n_s_v, __pyx_k_v, sizeof(__pyx_k_v), 0, 0, 1, 1},
-  {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
   {&__pyx_n_s_x0, __pyx_k_x0, sizeof(__pyx_k_x0), 0, 0, 1, 1},
-  {&__pyx_n_s_x_arr, __pyx_k_x_arr, sizeof(__pyx_k_x_arr), 0, 0, 1, 1},
   {&__pyx_n_s_y0, __pyx_k_y0, sizeof(__pyx_k_y0), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
@@ -23670,29 +22862,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":57
- *     func: function object
- *     """
- *     def func(x):             # <<<<<<<<<<<<<<
- * 
- *         x_arr = np.asarray(x, dtype=float)
- */
-  __pyx_tuple_ = PyTuple_Pack(3, __pyx_n_s_x, __pyx_n_s_x_arr, __pyx_n_s_result); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple_);
-  __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_func, 57, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 57, __pyx_L1_error)
-
-  /* "segreg/model/one_bkpt_segreg.pyx":138
+  /* "segreg/model/one_bkpt_segreg.pyx":97
  *     dep_to_use = dep[argsort_for_indep]
  * 
  *     def func(u):             # <<<<<<<<<<<<<<
  *         v, m1, m2, rss = fixed_bkpt_ls_for_data(indep_to_use, dep_to_use, u)
  *         return rss
  */
-  __pyx_tuple__3 = PyTuple_Pack(5, __pyx_n_s_u, __pyx_n_s_v, __pyx_n_s_m1, __pyx_n_s_m2, __pyx_n_s_rss); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_func, 138, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_u, __pyx_n_s_v, __pyx_n_s_m1, __pyx_n_s_m2, __pyx_n_s_rss); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple_);
+  __Pyx_GIVEREF(__pyx_tuple_);
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_func, 97, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 97, __pyx_L1_error)
 
   /* "../../anaconda/envs/py385/lib/python3.8/site-packages/numpy/__init__.pxd":884
  *         __pyx_import_array()
@@ -23701,9 +22881,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(2, 884, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(2, 884, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "../../anaconda/envs/py385/lib/python3.8/site-packages/numpy/__init__.pxd":890
  *         _import_umath()
@@ -23712,9 +22892,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(2, 890, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(2, 890, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "View.MemoryView":133
  * 
@@ -23723,9 +22903,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if itemsize <= 0:
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(3, 133, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(3, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
 
   /* "View.MemoryView":136
  * 
@@ -23734,9 +22914,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if not isinstance(format, bytes):
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(3, 136, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(3, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
 
   /* "View.MemoryView":148
  * 
@@ -23745,9 +22925,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(3, 148, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(3, 148, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
 
   /* "View.MemoryView":176
  *             self.data = <char *>malloc(self.len)
@@ -23756,9 +22936,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *             if self.dtype_is_object:
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(3, 176, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(3, 176, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
 
   /* "View.MemoryView":192
  *             bufmode = PyBUF_F_CONTIGUOUS | PyBUF_ANY_CONTIGUOUS
@@ -23767,9 +22947,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         info.buf = self.data
  *         info.len = self.len
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(3, 192, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(3, 192, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -23777,18 +22957,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(3, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(3, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(3, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(3, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
 
   /* "View.MemoryView":418
  *     def __setitem__(memoryview self, object index, object value):
@@ -23797,9 +22977,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_Cannot_assign_to_read_only_memor); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(3, 418, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_Cannot_assign_to_read_only_memor); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(3, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "View.MemoryView":495
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -23808,9 +22988,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         else:
  *             if len(self.view.format) == 1:
  */
-  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(3, 495, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(3, 495, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "View.MemoryView":520
  *     def __getbuffer__(self, Py_buffer *info, int flags):
@@ -23819,9 +22999,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if flags & PyBUF_ND:
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_writable_memory_vi); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(3, 520, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_writable_memory_vi); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(3, 520, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "View.MemoryView":570
  *         if self.view.strides == NULL:
@@ -23830,9 +23010,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(3, 570, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(3, 570, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
 
   /* "View.MemoryView":577
  *     def suboffsets(self):
@@ -23841,12 +23021,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
-  __pyx_tuple__19 = PyTuple_New(1); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(3, 577, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
+  __pyx_tuple__17 = PyTuple_New(1); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(3, 577, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_INCREF(__pyx_int_neg_1);
   __Pyx_GIVEREF(__pyx_int_neg_1);
-  PyTuple_SET_ITEM(__pyx_tuple__19, 0, __pyx_int_neg_1);
-  __Pyx_GIVEREF(__pyx_tuple__19);
+  PyTuple_SET_ITEM(__pyx_tuple__17, 0, __pyx_int_neg_1);
+  __Pyx_GIVEREF(__pyx_tuple__17);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -23854,18 +23034,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(3, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(3, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(3, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(3, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
 
   /* "View.MemoryView":682
  *         if item is Ellipsis:
@@ -23874,9 +23054,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *                 seen_ellipsis = True
  *             else:
  */
-  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) __PYX_ERR(3, 682, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_slice__22);
-  __Pyx_GIVEREF(__pyx_slice__22);
+  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) __PYX_ERR(3, 682, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__20);
+  __Pyx_GIVEREF(__pyx_slice__20);
 
   /* "View.MemoryView":703
  *     for suboffset in suboffsets[:ndim]:
@@ -23885,9 +23065,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(3, 703, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(3, 703, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -23895,78 +23075,66 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(3, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__24);
-  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(3, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(3, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(3, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "segreg/model/one_bkpt_segreg.pyx":35
- * 
- * 
- * def segmented_func(u, v, m1, m2):             # <<<<<<<<<<<<<<
- *     """
- *     Returns the one-bkpt function corresponding to the given parameters.
- */
-  __pyx_tuple__26 = PyTuple_Pack(6, __pyx_n_s_u, __pyx_n_s_v, __pyx_n_s_m1, __pyx_n_s_m2, __pyx_n_s_func, __pyx_n_s_func); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__26);
-  __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(4, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_segmented_func, 35, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 35, __pyx_L1_error)
-
-  /* "segreg/model/one_bkpt_segreg.pyx":73
+  /* "segreg/model/one_bkpt_segreg.pyx":32
  * 
  * 
  * def fixed_bkpt_ls_for_data(indep, dep, bkpt):             # <<<<<<<<<<<<<<
  *     """
  *     NOTES
  */
-  __pyx_tuple__28 = PyTuple_Pack(11, __pyx_n_s_indep, __pyx_n_s_dep, __pyx_n_s_bkpt, __pyx_n_s_index, __pyx_n_s_lhs_indep, __pyx_n_s_lhs_dep, __pyx_n_s_rhs_indep, __pyx_n_s_rhs_dep, __pyx_n_s_ols_1, __pyx_n_s_ols_2, __pyx_n_s_fixed_bkpt_terms); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__28);
-  __Pyx_GIVEREF(__pyx_tuple__28);
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_fixed_bkpt_ls_for_data, 73, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(11, __pyx_n_s_indep, __pyx_n_s_dep, __pyx_n_s_bkpt, __pyx_n_s_index, __pyx_n_s_lhs_indep, __pyx_n_s_lhs_dep, __pyx_n_s_rhs_indep, __pyx_n_s_rhs_dep, __pyx_n_s_ols_1, __pyx_n_s_ols_2, __pyx_n_s_fixed_bkpt_terms); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(3, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_fixed_bkpt_ls_for_data, 32, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 32, __pyx_L1_error)
 
-  /* "segreg/model/one_bkpt_segreg.pyx":101
+  /* "segreg/model/one_bkpt_segreg.pyx":60
  * 
  * 
  * def one_bkpt_rss_func(indep, dep):             # <<<<<<<<<<<<<<
  *     """
  *     Returns a function which takes a bkpt and returns the RSS of a one-bkpt
  */
-  __pyx_tuple__30 = PyTuple_Pack(7, __pyx_n_s_indep, __pyx_n_s_dep, __pyx_n_s_argsort_for_indep, __pyx_n_s_indep_to_use, __pyx_n_s_dep_to_use, __pyx_n_s_func, __pyx_n_s_func); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 101, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(2, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_one_bkpt_rss_func, 101, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(7, __pyx_n_s_indep, __pyx_n_s_dep, __pyx_n_s_argsort_for_indep, __pyx_n_s_indep_to_use, __pyx_n_s_dep_to_use, __pyx_n_s_func, __pyx_n_s_func); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_one_bkpt_rss_func, 60, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 60, __pyx_L1_error)
 
-  /* "segreg/model/one_bkpt_segreg.pyx":258
+  /* "segreg/model/one_bkpt_segreg.pyx":217
  * 
  * 
  * def fixed_bkpt_least_squares(double[:] ols_data1,             # <<<<<<<<<<<<<<
  *                              double[:] ols_data2,
  *                              double u):
  */
-  __pyx_tuple__32 = PyTuple_Pack(6, __pyx_n_s_ols_data1, __pyx_n_s_ols_data2, __pyx_n_s_u, __pyx_n_s_ols_data_to_use1, __pyx_n_s_ols_data_to_use2, __pyx_n_s_fixed_bkpt_terms); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 258, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(3, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_fixed_bkpt_least_squares, 258, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(6, __pyx_n_s_ols_data1, __pyx_n_s_ols_data2, __pyx_n_s_u, __pyx_n_s_ols_data_to_use1, __pyx_n_s_ols_data_to_use2, __pyx_n_s_fixed_bkpt_terms); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(3, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_fixed_bkpt_least_squares, 217, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 217, __pyx_L1_error)
 
-  /* "segreg/model/one_bkpt_segreg.pyx":297
+  /* "segreg/model/one_bkpt_segreg.pyx":256
  * # moreover, for num_end_to_skip = 0, we don't let the solution lie in last
  * # interval between last two datapoints
  * def estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs):             # <<<<<<<<<<<<<<
  *     # TODO: finish with fixed rhs slope
  *     m2 = kwargs.pop('m2', None)
  */
-  __pyx_tuple__34 = PyTuple_Pack(50, __pyx_n_s_indep, __pyx_n_s_dep, __pyx_n_s_kwargs, __pyx_n_s_m2, __pyx_n_s_num_end_to_skip, __pyx_n_s_check_near_middle, __pyx_n_s_unique_indep, __pyx_n_s_unique_indep_lhs_indices, __pyx_n_s_indices_can_skip, __pyx_n_s_num_unique_indep, __pyx_n_s_half_num, __pyx_n_s_half_index, __pyx_n_s_x0, __pyx_n_s_y0, __pyx_n_s_lhs_slope, __pyx_n_s_rhs_slope, __pyx_n_s_index_to_use, __pyx_n_s_fixed_bkpt_terms, __pyx_n_s_one_bkpt_params, __pyx_n_s_ols_1, __pyx_n_s_ols_2, __pyx_n_s_ols_all, __pyx_n_s_in_right_place, __pyx_n_s_min_value, __pyx_n_s_rss, __pyx_n_s_first_index, __pyx_n_s_prev_index, __pyx_n_s_first_y, __pyx_n_s_first_x, __pyx_n_s_last_y, __pyx_n_s_last_x, __pyx_n_s_count, __pyx_n_s_index, __pyx_n_s_ols_next, __pyx_n_s_ols_est_terms, __pyx_n_s_rhs_ols_intercept, __pyx_n_s_rhs_ols_slope, __pyx_n_s_rhs_rss, __pyx_n_s_lhs_ols_intercept, __pyx_n_s_lhs_ols_slope, __pyx_n_s_lhs_rss, __pyx_n_s_tot_sum_sq_resid, __pyx_n_s_range_begin, __pyx_n_s_range_end, __pyx_n_s_last_index, __pyx_n_s_last_plus_one_index, __pyx_n_s_next_y, __pyx_n_s_next_x, __pyx_n_s_index_minus_one, __pyx_n_s_min_params); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 297, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__34);
-  __Pyx_GIVEREF(__pyx_tuple__34);
-  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(2, 0, 50, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_estimate_one_bkpt_segreg, 297, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(50, __pyx_n_s_indep, __pyx_n_s_dep, __pyx_n_s_kwargs, __pyx_n_s_m2, __pyx_n_s_num_end_to_skip, __pyx_n_s_check_near_middle, __pyx_n_s_unique_indep, __pyx_n_s_unique_indep_lhs_indices, __pyx_n_s_indices_can_skip, __pyx_n_s_num_unique_indep, __pyx_n_s_half_num, __pyx_n_s_half_index, __pyx_n_s_x0, __pyx_n_s_y0, __pyx_n_s_lhs_slope, __pyx_n_s_rhs_slope, __pyx_n_s_index_to_use, __pyx_n_s_fixed_bkpt_terms, __pyx_n_s_one_bkpt_params, __pyx_n_s_ols_1, __pyx_n_s_ols_2, __pyx_n_s_ols_all, __pyx_n_s_in_right_place, __pyx_n_s_min_value, __pyx_n_s_rss, __pyx_n_s_first_index, __pyx_n_s_prev_index, __pyx_n_s_first_y, __pyx_n_s_first_x, __pyx_n_s_last_y, __pyx_n_s_last_x, __pyx_n_s_count, __pyx_n_s_index, __pyx_n_s_ols_next, __pyx_n_s_ols_est_terms, __pyx_n_s_rhs_ols_intercept, __pyx_n_s_rhs_ols_slope, __pyx_n_s_rhs_rss, __pyx_n_s_lhs_ols_intercept, __pyx_n_s_lhs_ols_slope, __pyx_n_s_lhs_rss, __pyx_n_s_tot_sum_sq_resid, __pyx_n_s_range_begin, __pyx_n_s_range_end, __pyx_n_s_last_index, __pyx_n_s_last_plus_one_index, __pyx_n_s_next_y, __pyx_n_s_next_x, __pyx_n_s_index_minus_one, __pyx_n_s_min_params); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(2, 0, 50, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_segreg_model_one_bkpt_segreg_pyx, __pyx_n_s_estimate_one_bkpt_segreg, 256, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 256, __pyx_L1_error)
 
   /* "View.MemoryView":286
  *         return self.name
@@ -23975,9 +23143,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(3, 286, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__36);
-  __Pyx_GIVEREF(__pyx_tuple__36);
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(3, 286, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__32);
+  __Pyx_GIVEREF(__pyx_tuple__32);
 
   /* "View.MemoryView":287
  * 
@@ -23986,9 +23154,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(3, 287, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__37);
-  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(3, 287, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
 
   /* "View.MemoryView":288
  * cdef generic = Enum("<strided and direct or indirect>")
@@ -23997,9 +23165,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(3, 288, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__38);
-  __Pyx_GIVEREF(__pyx_tuple__38);
+  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(3, 288, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__34);
+  __Pyx_GIVEREF(__pyx_tuple__34);
 
   /* "View.MemoryView":291
  * 
@@ -24008,9 +23176,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(3, 291, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__39);
-  __Pyx_GIVEREF(__pyx_tuple__39);
+  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(3, 291, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__35);
+  __Pyx_GIVEREF(__pyx_tuple__35);
 
   /* "View.MemoryView":292
  * 
@@ -24019,19 +23187,19 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(3, 292, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__40);
-  __Pyx_GIVEREF(__pyx_tuple__40);
+  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(3, 292, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__36);
+  __Pyx_GIVEREF(__pyx_tuple__36);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Enum(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__41 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(3, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__41);
-  __Pyx_GIVEREF(__pyx_tuple__41);
-  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(3, 1, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(3, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__37);
+  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(3, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -24103,22 +23271,14 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
-  __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func.tp_print = 0;
+  __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func.tp_print = 0;
   #endif
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func.tp_dictoffset && __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func.tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func.tp_dictoffset && __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func.tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
-  __pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func = &__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__segmented_func;
-  if (PyType_Ready(&__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
-  #if PY_VERSION_HEX < 0x030800B1
-  __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func.tp_print = 0;
-  #endif
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func.tp_dictoffset && __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func.tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
-  }
-  __pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func = &__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct_1_one_bkpt_rss_func;
+  __pyx_ptype_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func = &__pyx_type_6segreg_5model_15one_bkpt_segreg___pyx_scope_struct__one_bkpt_rss_func;
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
   if (PyType_Ready(&__pyx_type___pyx_array) < 0) __PYX_ERR(3, 105, __pyx_L1_error)
@@ -24490,73 +23650,61 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":35
- * 
- * 
- * def segmented_func(u, v, m1, m2):             # <<<<<<<<<<<<<<
- *     """
- *     Returns the one-bkpt function corresponding to the given parameters.
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_1segmented_func, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_segmented_func, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "segreg/model/one_bkpt_segreg.pyx":73
+  /* "segreg/model/one_bkpt_segreg.pyx":32
  * 
  * 
  * def fixed_bkpt_ls_for_data(indep, dep, bkpt):             # <<<<<<<<<<<<<<
  *     """
  *     NOTES
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_3fixed_bkpt_ls_for_data, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_1fixed_bkpt_ls_for_data, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fixed_bkpt_ls_for_data, __pyx_t_1) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fixed_bkpt_ls_for_data, __pyx_t_1) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":101
+  /* "segreg/model/one_bkpt_segreg.pyx":60
  * 
  * 
  * def one_bkpt_rss_func(indep, dep):             # <<<<<<<<<<<<<<
  *     """
  *     Returns a function which takes a bkpt and returns the RSS of a one-bkpt
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_5one_bkpt_rss_func, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_3one_bkpt_rss_func, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_one_bkpt_rss_func, __pyx_t_1) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_one_bkpt_rss_func, __pyx_t_1) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":156
+  /* "segreg/model/one_bkpt_segreg.pyx":115
  *                                      OLSData ols_terms_2,
  *                                      double u,
  *                                      double m2=NAN):             # <<<<<<<<<<<<<<
  *     """
  *     Computes segmented regression for one break-point conditional on u.
  */
-  __pyx_k__5 = NAN;
+  __pyx_k__3 = NAN;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":258
+  /* "segreg/model/one_bkpt_segreg.pyx":217
  * 
  * 
  * def fixed_bkpt_least_squares(double[:] ols_data1,             # <<<<<<<<<<<<<<
  *                              double[:] ols_data2,
  *                              double u):
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_7fixed_bkpt_least_squares, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_5fixed_bkpt_least_squares, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fixed_bkpt_least_squares, __pyx_t_1) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fixed_bkpt_least_squares, __pyx_t_1) < 0) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "segreg/model/one_bkpt_segreg.pyx":297
+  /* "segreg/model/one_bkpt_segreg.pyx":256
  * # moreover, for num_end_to_skip = 0, we don't let the solution lie in last
  * # interval between last two datapoints
  * def estimate_one_bkpt_segreg(double[:] indep, double[:] dep, **kwargs):             # <<<<<<<<<<<<<<
  *     # TODO: finish with fixed rhs slope
  *     m2 = kwargs.pop('m2', None)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_9estimate_one_bkpt_segreg, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6segreg_5model_15one_bkpt_segreg_7estimate_one_bkpt_segreg, NULL, __pyx_n_s_segreg_model_one_bkpt_segreg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_estimate_one_bkpt_segreg, __pyx_t_1) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_estimate_one_bkpt_segreg, __pyx_t_1) < 0) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "segreg/model/one_bkpt_segreg.pyx":1
@@ -24589,7 +23737,7 @@ if (!__Pyx_RefNanny) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 286, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(generic);
   __Pyx_DECREF_SET(generic, __pyx_t_1);
@@ -24603,7 +23751,7 @@ if (!__Pyx_RefNanny) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 287, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(strided);
   __Pyx_DECREF_SET(strided, __pyx_t_1);
@@ -24617,7 +23765,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 288, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(indirect);
   __Pyx_DECREF_SET(indirect, __pyx_t_1);
@@ -24631,7 +23779,7 @@ if (!__Pyx_RefNanny) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 291, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(contiguous);
   __Pyx_DECREF_SET(contiguous, __pyx_t_1);
@@ -24645,7 +23793,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(indirect_contiguous);
   __Pyx_DECREF_SET(indirect_contiguous, __pyx_t_1);
@@ -24906,11 +24054,6 @@ bad:
     return -1;
 }
 
-/* None */
-static CYTHON_INLINE void __Pyx_RaiseClosureNameError(const char *varname) {
-    PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
-}
-
 /* PyObjectGetAttrStr */
 #if CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name) {
@@ -25000,6 +24143,148 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     return __Pyx_GetBuiltinName(name);
 }
 
+/* PyFunctionFastCall */
+#if CYTHON_FAST_PYCALL
+static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
+                                               PyObject *globals) {
+    PyFrameObject *f;
+    PyThreadState *tstate = __Pyx_PyThreadState_Current;
+    PyObject **fastlocals;
+    Py_ssize_t i;
+    PyObject *result;
+    assert(globals != NULL);
+    /* XXX Perhaps we should create a specialized
+       PyFrame_New() that doesn't take locals, but does
+       take builtins without sanity checking them.
+       */
+    assert(tstate != NULL);
+    f = PyFrame_New(tstate, co, globals, NULL);
+    if (f == NULL) {
+        return NULL;
+    }
+    fastlocals = __Pyx_PyFrame_GetLocalsplus(f);
+    for (i = 0; i < na; i++) {
+        Py_INCREF(*args);
+        fastlocals[i] = *args++;
+    }
+    result = PyEval_EvalFrameEx(f,0);
+    ++tstate->recursion_depth;
+    Py_DECREF(f);
+    --tstate->recursion_depth;
+    return result;
+}
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs) {
+    PyCodeObject *co = (PyCodeObject *)PyFunction_GET_CODE(func);
+    PyObject *globals = PyFunction_GET_GLOBALS(func);
+    PyObject *argdefs = PyFunction_GET_DEFAULTS(func);
+    PyObject *closure;
+#if PY_MAJOR_VERSION >= 3
+    PyObject *kwdefs;
+#endif
+    PyObject *kwtuple, **k;
+    PyObject **d;
+    Py_ssize_t nd;
+    Py_ssize_t nk;
+    PyObject *result;
+    assert(kwargs == NULL || PyDict_Check(kwargs));
+    nk = kwargs ? PyDict_Size(kwargs) : 0;
+    if (Py_EnterRecursiveCall((char*)" while calling a Python object")) {
+        return NULL;
+    }
+    if (
+#if PY_MAJOR_VERSION >= 3
+            co->co_kwonlyargcount == 0 &&
+#endif
+            likely(kwargs == NULL || nk == 0) &&
+            co->co_flags == (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)) {
+        if (argdefs == NULL && co->co_argcount == nargs) {
+            result = __Pyx_PyFunction_FastCallNoKw(co, args, nargs, globals);
+            goto done;
+        }
+        else if (nargs == 0 && argdefs != NULL
+                 && co->co_argcount == Py_SIZE(argdefs)) {
+            /* function called with no arguments, but all parameters have
+               a default value: use default values as arguments .*/
+            args = &PyTuple_GET_ITEM(argdefs, 0);
+            result =__Pyx_PyFunction_FastCallNoKw(co, args, Py_SIZE(argdefs), globals);
+            goto done;
+        }
+    }
+    if (kwargs != NULL) {
+        Py_ssize_t pos, i;
+        kwtuple = PyTuple_New(2 * nk);
+        if (kwtuple == NULL) {
+            result = NULL;
+            goto done;
+        }
+        k = &PyTuple_GET_ITEM(kwtuple, 0);
+        pos = i = 0;
+        while (PyDict_Next(kwargs, &pos, &k[i], &k[i+1])) {
+            Py_INCREF(k[i]);
+            Py_INCREF(k[i+1]);
+            i += 2;
+        }
+        nk = i / 2;
+    }
+    else {
+        kwtuple = NULL;
+        k = NULL;
+    }
+    closure = PyFunction_GET_CLOSURE(func);
+#if PY_MAJOR_VERSION >= 3
+    kwdefs = PyFunction_GET_KW_DEFAULTS(func);
+#endif
+    if (argdefs != NULL) {
+        d = &PyTuple_GET_ITEM(argdefs, 0);
+        nd = Py_SIZE(argdefs);
+    }
+    else {
+        d = NULL;
+        nd = 0;
+    }
+#if PY_MAJOR_VERSION >= 3
+    result = PyEval_EvalCodeEx((PyObject*)co, globals, (PyObject *)NULL,
+                               args, (int)nargs,
+                               k, (int)nk,
+                               d, (int)nd, kwdefs, closure);
+#else
+    result = PyEval_EvalCodeEx(co, globals, (PyObject *)NULL,
+                               args, (int)nargs,
+                               k, (int)nk,
+                               d, (int)nd, closure);
+#endif
+    Py_XDECREF(kwtuple);
+done:
+    Py_LeaveRecursiveCall();
+    return result;
+}
+#endif
+#endif
+
+/* PyCFunctionFastCall */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
+    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    int flags = PyCFunction_GET_FLAGS(func);
+    assert(PyCFunction_Check(func));
+    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
+    assert(nargs >= 0);
+    assert(nargs == 0 || args != NULL);
+    /* _PyCFunction_FastCallDict() must not be called with an exception set,
+       because it may clear it (directly or indirectly) and so the
+       caller loses its exception */
+    assert(!PyErr_Occurred());
+    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
+        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
+    } else {
+        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
+    }
+}
+#endif
+
 /* PyObjectCall */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
@@ -25017,6 +24302,498 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg
             "NULL result without error in PyObject_Call");
     }
     return result;
+}
+#endif
+
+/* SliceObject */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
+        Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** _py_start, PyObject** _py_stop, PyObject** _py_slice,
+        int has_cstart, int has_cstop, CYTHON_UNUSED int wraparound) {
+#if CYTHON_USE_TYPE_SLOTS
+    PyMappingMethods* mp;
+#if PY_MAJOR_VERSION < 3
+    PySequenceMethods* ms = Py_TYPE(obj)->tp_as_sequence;
+    if (likely(ms && ms->sq_slice)) {
+        if (!has_cstart) {
+            if (_py_start && (*_py_start != Py_None)) {
+                cstart = __Pyx_PyIndex_AsSsize_t(*_py_start);
+                if ((cstart == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstart = 0;
+        }
+        if (!has_cstop) {
+            if (_py_stop && (*_py_stop != Py_None)) {
+                cstop = __Pyx_PyIndex_AsSsize_t(*_py_stop);
+                if ((cstop == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstop = PY_SSIZE_T_MAX;
+        }
+        if (wraparound && unlikely((cstart < 0) | (cstop < 0)) && likely(ms->sq_length)) {
+            Py_ssize_t l = ms->sq_length(obj);
+            if (likely(l >= 0)) {
+                if (cstop < 0) {
+                    cstop += l;
+                    if (cstop < 0) cstop = 0;
+                }
+                if (cstart < 0) {
+                    cstart += l;
+                    if (cstart < 0) cstart = 0;
+                }
+            } else {
+                if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                    goto bad;
+                PyErr_Clear();
+            }
+        }
+        return ms->sq_slice(obj, cstart, cstop);
+    }
+#endif
+    mp = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(mp && mp->mp_subscript))
+#endif
+    {
+        PyObject* result;
+        PyObject *py_slice, *py_start, *py_stop;
+        if (_py_slice) {
+            py_slice = *_py_slice;
+        } else {
+            PyObject* owned_start = NULL;
+            PyObject* owned_stop = NULL;
+            if (_py_start) {
+                py_start = *_py_start;
+            } else {
+                if (has_cstart) {
+                    owned_start = py_start = PyInt_FromSsize_t(cstart);
+                    if (unlikely(!py_start)) goto bad;
+                } else
+                    py_start = Py_None;
+            }
+            if (_py_stop) {
+                py_stop = *_py_stop;
+            } else {
+                if (has_cstop) {
+                    owned_stop = py_stop = PyInt_FromSsize_t(cstop);
+                    if (unlikely(!py_stop)) {
+                        Py_XDECREF(owned_start);
+                        goto bad;
+                    }
+                } else
+                    py_stop = Py_None;
+            }
+            py_slice = PySlice_New(py_start, py_stop, Py_None);
+            Py_XDECREF(owned_start);
+            Py_XDECREF(owned_stop);
+            if (unlikely(!py_slice)) goto bad;
+        }
+#if CYTHON_USE_TYPE_SLOTS
+        result = mp->mp_subscript(obj, py_slice);
+#else
+        result = PyObject_GetItem(obj, py_slice);
+#endif
+        if (!_py_slice) {
+            Py_DECREF(py_slice);
+        }
+        return result;
+    }
+    PyErr_Format(PyExc_TypeError,
+        "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
+bad:
+    return NULL;
+}
+
+/* MemviewSliceInit */
+static int
+__Pyx_init_memviewslice(struct __pyx_memoryview_obj *memview,
+                        int ndim,
+                        __Pyx_memviewslice *memviewslice,
+                        int memview_is_new_reference)
+{
+    __Pyx_RefNannyDeclarations
+    int i, retval=-1;
+    Py_buffer *buf = &memview->view;
+    __Pyx_RefNannySetupContext("init_memviewslice", 0);
+    if (unlikely(memviewslice->memview || memviewslice->data)) {
+        PyErr_SetString(PyExc_ValueError,
+            "memviewslice is already initialized!");
+        goto fail;
+    }
+    if (buf->strides) {
+        for (i = 0; i < ndim; i++) {
+            memviewslice->strides[i] = buf->strides[i];
+        }
+    } else {
+        Py_ssize_t stride = buf->itemsize;
+        for (i = ndim - 1; i >= 0; i--) {
+            memviewslice->strides[i] = stride;
+            stride *= buf->shape[i];
+        }
+    }
+    for (i = 0; i < ndim; i++) {
+        memviewslice->shape[i]   = buf->shape[i];
+        if (buf->suboffsets) {
+            memviewslice->suboffsets[i] = buf->suboffsets[i];
+        } else {
+            memviewslice->suboffsets[i] = -1;
+        }
+    }
+    memviewslice->memview = memview;
+    memviewslice->data = (char *)buf->buf;
+    if (__pyx_add_acquisition_count(memview) == 0 && !memview_is_new_reference) {
+        Py_INCREF(memview);
+    }
+    retval = 0;
+    goto no_fail;
+fail:
+    memviewslice->memview = 0;
+    memviewslice->data = 0;
+    retval = -1;
+no_fail:
+    __Pyx_RefNannyFinishContext();
+    return retval;
+}
+#ifndef Py_NO_RETURN
+#define Py_NO_RETURN
+#endif
+static void __pyx_fatalerror(const char *fmt, ...) Py_NO_RETURN {
+    va_list vargs;
+    char msg[200];
+#ifdef HAVE_STDARG_PROTOTYPES
+    va_start(vargs, fmt);
+#else
+    va_start(vargs);
+#endif
+    vsnprintf(msg, 200, fmt, vargs);
+    va_end(vargs);
+    Py_FatalError(msg);
+}
+static CYTHON_INLINE int
+__pyx_add_acquisition_count_locked(__pyx_atomic_int *acquisition_count,
+                                   PyThread_type_lock lock)
+{
+    int result;
+    PyThread_acquire_lock(lock, 1);
+    result = (*acquisition_count)++;
+    PyThread_release_lock(lock);
+    return result;
+}
+static CYTHON_INLINE int
+__pyx_sub_acquisition_count_locked(__pyx_atomic_int *acquisition_count,
+                                   PyThread_type_lock lock)
+{
+    int result;
+    PyThread_acquire_lock(lock, 1);
+    result = (*acquisition_count)--;
+    PyThread_release_lock(lock);
+    return result;
+}
+static CYTHON_INLINE void
+__Pyx_INC_MEMVIEW(__Pyx_memviewslice *memslice, int have_gil, int lineno)
+{
+    int first_time;
+    struct __pyx_memoryview_obj *memview = memslice->memview;
+    if (unlikely(!memview || (PyObject *) memview == Py_None))
+        return;
+    if (unlikely(__pyx_get_slice_count(memview) < 0))
+        __pyx_fatalerror("Acquisition count is %d (line %d)",
+                         __pyx_get_slice_count(memview), lineno);
+    first_time = __pyx_add_acquisition_count(memview) == 0;
+    if (unlikely(first_time)) {
+        if (have_gil) {
+            Py_INCREF((PyObject *) memview);
+        } else {
+            PyGILState_STATE _gilstate = PyGILState_Ensure();
+            Py_INCREF((PyObject *) memview);
+            PyGILState_Release(_gilstate);
+        }
+    }
+}
+static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *memslice,
+                                             int have_gil, int lineno) {
+    int last_time;
+    struct __pyx_memoryview_obj *memview = memslice->memview;
+    if (unlikely(!memview || (PyObject *) memview == Py_None)) {
+        memslice->memview = NULL;
+        return;
+    }
+    if (unlikely(__pyx_get_slice_count(memview) <= 0))
+        __pyx_fatalerror("Acquisition count is %d (line %d)",
+                         __pyx_get_slice_count(memview), lineno);
+    last_time = __pyx_sub_acquisition_count(memview) == 1;
+    memslice->data = NULL;
+    if (unlikely(last_time)) {
+        if (have_gil) {
+            Py_CLEAR(memslice->memview);
+        } else {
+            PyGILState_STATE _gilstate = PyGILState_Ensure();
+            Py_CLEAR(memslice->memview);
+            PyGILState_Release(_gilstate);
+        }
+    } else {
+        memslice->memview = NULL;
+    }
+}
+
+/* None */
+static CYTHON_INLINE void __Pyx_RaiseClosureNameError(const char *varname) {
+    PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
+}
+
+/* RaiseTooManyValuesToUnpack */
+static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
+    PyErr_Format(PyExc_ValueError,
+                 "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
+}
+
+/* RaiseNeedMoreValuesToUnpack */
+static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
+    PyErr_Format(PyExc_ValueError,
+                 "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
+                 index, (index == 1) ? "" : "s");
+}
+
+/* IterFinish */
+static CYTHON_INLINE int __Pyx_IterFinish(void) {
+#if CYTHON_FAST_THREAD_STATE
+    PyThreadState *tstate = __Pyx_PyThreadState_Current;
+    PyObject* exc_type = tstate->curexc_type;
+    if (unlikely(exc_type)) {
+        if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) {
+            PyObject *exc_value, *exc_tb;
+            exc_value = tstate->curexc_value;
+            exc_tb = tstate->curexc_traceback;
+            tstate->curexc_type = 0;
+            tstate->curexc_value = 0;
+            tstate->curexc_traceback = 0;
+            Py_DECREF(exc_type);
+            Py_XDECREF(exc_value);
+            Py_XDECREF(exc_tb);
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+    return 0;
+#else
+    if (unlikely(PyErr_Occurred())) {
+        if (likely(PyErr_ExceptionMatches(PyExc_StopIteration))) {
+            PyErr_Clear();
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+    return 0;
+#endif
+}
+
+/* UnpackItemEndCheck */
+static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
+    if (unlikely(retval)) {
+        Py_DECREF(retval);
+        __Pyx_RaiseTooManyValuesError(expected);
+        return -1;
+    } else {
+        return __Pyx_IterFinish();
+    }
+    return 0;
+}
+
+/* PyObjectCallMethO */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
+    PyObject *self, *result;
+    PyCFunction cfunc;
+    cfunc = PyCFunction_GET_FUNCTION(func);
+    self = PyCFunction_GET_SELF(func);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = cfunc(self, arg);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
+
+/* PyObjectCallNoArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, NULL, 0);
+    }
+#endif
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
+#else
+    if (likely(PyCFunction_Check(func)))
+#endif
+    {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
+}
+#endif
+
+/* PyObjectCallOneArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *result;
+    PyObject *args = PyTuple_New(1);
+    if (unlikely(!args)) return NULL;
+    Py_INCREF(arg);
+    PyTuple_SET_ITEM(args, 0, arg);
+    result = __Pyx_PyObject_Call(func, args, NULL);
+    Py_DECREF(args);
+    return result;
+}
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, &arg, 1);
+    }
+#endif
+    if (likely(PyCFunction_Check(func))) {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_O)) {
+            return __Pyx_PyObject_CallMethO(func, arg);
+#if CYTHON_FAST_PYCCALL
+        } else if (PyCFunction_GET_FLAGS(func) & METH_FASTCALL) {
+            return __Pyx_PyCFunction_FastCall(func, &arg, 1);
+#endif
+        }
+    }
+    return __Pyx__PyObject_CallOneArg(func, arg);
+}
+#else
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *result;
+    PyObject *args = PyTuple_Pack(1, arg);
+    if (unlikely(!args)) return NULL;
+    result = __Pyx_PyObject_Call(func, args, NULL);
+    Py_DECREF(args);
+    return result;
+}
+#endif
+
+/* GetItemInt */
+static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
+    PyObject *r;
+    if (!j) return NULL;
+    r = PyObject_GetItem(o, j);
+    Py_DECREF(j);
+    return r;
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
+                                                              CYTHON_NCP_UNUSED int wraparound,
+                                                              CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    Py_ssize_t wrapped_i = i;
+    if (wraparound & unlikely(i < 0)) {
+        wrapped_i += PyList_GET_SIZE(o);
+    }
+    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyList_GET_SIZE(o)))) {
+        PyObject *r = PyList_GET_ITEM(o, wrapped_i);
+        Py_INCREF(r);
+        return r;
+    }
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+#else
+    return PySequence_GetItem(o, i);
+#endif
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
+                                                              CYTHON_NCP_UNUSED int wraparound,
+                                                              CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    Py_ssize_t wrapped_i = i;
+    if (wraparound & unlikely(i < 0)) {
+        wrapped_i += PyTuple_GET_SIZE(o);
+    }
+    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyTuple_GET_SIZE(o)))) {
+        PyObject *r = PyTuple_GET_ITEM(o, wrapped_i);
+        Py_INCREF(r);
+        return r;
+    }
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+#else
+    return PySequence_GetItem(o, i);
+#endif
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, int is_list,
+                                                     CYTHON_NCP_UNUSED int wraparound,
+                                                     CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS && CYTHON_USE_TYPE_SLOTS
+    if (is_list || PyList_CheckExact(o)) {
+        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyList_GET_SIZE(o);
+        if ((!boundscheck) || (likely(__Pyx_is_valid_index(n, PyList_GET_SIZE(o))))) {
+            PyObject *r = PyList_GET_ITEM(o, n);
+            Py_INCREF(r);
+            return r;
+        }
+    }
+    else if (PyTuple_CheckExact(o)) {
+        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyTuple_GET_SIZE(o);
+        if ((!boundscheck) || likely(__Pyx_is_valid_index(n, PyTuple_GET_SIZE(o)))) {
+            PyObject *r = PyTuple_GET_ITEM(o, n);
+            Py_INCREF(r);
+            return r;
+        }
+    } else {
+        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
+        if (likely(m && m->sq_item)) {
+            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
+                Py_ssize_t l = m->sq_length(o);
+                if (likely(l >= 0)) {
+                    i += l;
+                } else {
+                    if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                        return NULL;
+                    PyErr_Clear();
+                }
+            }
+            return m->sq_item(o, i);
+        }
+    }
+#else
+    if (is_list || PySequence_Check(o)) {
+        return PySequence_GetItem(o, i);
+    }
+#endif
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+}
+
+/* ObjectGetItem */
+#if CYTHON_USE_TYPE_SLOTS
+static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
+    PyObject *runerr;
+    Py_ssize_t key_value;
+    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
+    if (unlikely(!(m && m->sq_item))) {
+        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
+        return NULL;
+    }
+    key_value = __Pyx_PyIndex_AsSsize_t(index);
+    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
+        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
+    }
+    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
+        PyErr_Clear();
+        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
+    }
+    return NULL;
+}
+static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
+    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(m && m->mp_subscript)) {
+        return m->mp_subscript(obj, key);
+    }
+    return __Pyx_PyObject_GetIndex(obj, key);
 }
 #endif
 
@@ -25676,664 +25453,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
     return op;
 }
 
-/* PyFunctionFastCall */
-#if CYTHON_FAST_PYCALL
-static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
-                                               PyObject *globals) {
-    PyFrameObject *f;
-    PyThreadState *tstate = __Pyx_PyThreadState_Current;
-    PyObject **fastlocals;
-    Py_ssize_t i;
-    PyObject *result;
-    assert(globals != NULL);
-    /* XXX Perhaps we should create a specialized
-       PyFrame_New() that doesn't take locals, but does
-       take builtins without sanity checking them.
-       */
-    assert(tstate != NULL);
-    f = PyFrame_New(tstate, co, globals, NULL);
-    if (f == NULL) {
-        return NULL;
-    }
-    fastlocals = __Pyx_PyFrame_GetLocalsplus(f);
-    for (i = 0; i < na; i++) {
-        Py_INCREF(*args);
-        fastlocals[i] = *args++;
-    }
-    result = PyEval_EvalFrameEx(f,0);
-    ++tstate->recursion_depth;
-    Py_DECREF(f);
-    --tstate->recursion_depth;
-    return result;
-}
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, Py_ssize_t nargs, PyObject *kwargs) {
-    PyCodeObject *co = (PyCodeObject *)PyFunction_GET_CODE(func);
-    PyObject *globals = PyFunction_GET_GLOBALS(func);
-    PyObject *argdefs = PyFunction_GET_DEFAULTS(func);
-    PyObject *closure;
-#if PY_MAJOR_VERSION >= 3
-    PyObject *kwdefs;
-#endif
-    PyObject *kwtuple, **k;
-    PyObject **d;
-    Py_ssize_t nd;
-    Py_ssize_t nk;
-    PyObject *result;
-    assert(kwargs == NULL || PyDict_Check(kwargs));
-    nk = kwargs ? PyDict_Size(kwargs) : 0;
-    if (Py_EnterRecursiveCall((char*)" while calling a Python object")) {
-        return NULL;
-    }
-    if (
-#if PY_MAJOR_VERSION >= 3
-            co->co_kwonlyargcount == 0 &&
-#endif
-            likely(kwargs == NULL || nk == 0) &&
-            co->co_flags == (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)) {
-        if (argdefs == NULL && co->co_argcount == nargs) {
-            result = __Pyx_PyFunction_FastCallNoKw(co, args, nargs, globals);
-            goto done;
-        }
-        else if (nargs == 0 && argdefs != NULL
-                 && co->co_argcount == Py_SIZE(argdefs)) {
-            /* function called with no arguments, but all parameters have
-               a default value: use default values as arguments .*/
-            args = &PyTuple_GET_ITEM(argdefs, 0);
-            result =__Pyx_PyFunction_FastCallNoKw(co, args, Py_SIZE(argdefs), globals);
-            goto done;
-        }
-    }
-    if (kwargs != NULL) {
-        Py_ssize_t pos, i;
-        kwtuple = PyTuple_New(2 * nk);
-        if (kwtuple == NULL) {
-            result = NULL;
-            goto done;
-        }
-        k = &PyTuple_GET_ITEM(kwtuple, 0);
-        pos = i = 0;
-        while (PyDict_Next(kwargs, &pos, &k[i], &k[i+1])) {
-            Py_INCREF(k[i]);
-            Py_INCREF(k[i+1]);
-            i += 2;
-        }
-        nk = i / 2;
-    }
-    else {
-        kwtuple = NULL;
-        k = NULL;
-    }
-    closure = PyFunction_GET_CLOSURE(func);
-#if PY_MAJOR_VERSION >= 3
-    kwdefs = PyFunction_GET_KW_DEFAULTS(func);
-#endif
-    if (argdefs != NULL) {
-        d = &PyTuple_GET_ITEM(argdefs, 0);
-        nd = Py_SIZE(argdefs);
-    }
-    else {
-        d = NULL;
-        nd = 0;
-    }
-#if PY_MAJOR_VERSION >= 3
-    result = PyEval_EvalCodeEx((PyObject*)co, globals, (PyObject *)NULL,
-                               args, (int)nargs,
-                               k, (int)nk,
-                               d, (int)nd, kwdefs, closure);
-#else
-    result = PyEval_EvalCodeEx(co, globals, (PyObject *)NULL,
-                               args, (int)nargs,
-                               k, (int)nk,
-                               d, (int)nd, closure);
-#endif
-    Py_XDECREF(kwtuple);
-done:
-    Py_LeaveRecursiveCall();
-    return result;
-}
-#endif
-#endif
-
-/* PyCFunctionFastCall */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
-    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
-    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
-    PyObject *self = PyCFunction_GET_SELF(func);
-    int flags = PyCFunction_GET_FLAGS(func);
-    assert(PyCFunction_Check(func));
-    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
-    assert(nargs >= 0);
-    assert(nargs == 0 || args != NULL);
-    /* _PyCFunction_FastCallDict() must not be called with an exception set,
-       because it may clear it (directly or indirectly) and so the
-       caller loses its exception */
-    assert(!PyErr_Occurred());
-    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
-        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
-    } else {
-        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
-    }
-}
-#endif
-
-/* PyObjectCall2Args */
-static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
-    PyObject *args, *result = NULL;
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(function)) {
-        PyObject *args[2] = {arg1, arg2};
-        return __Pyx_PyFunction_FastCall(function, args, 2);
-    }
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(function)) {
-        PyObject *args[2] = {arg1, arg2};
-        return __Pyx_PyCFunction_FastCall(function, args, 2);
-    }
-    #endif
-    args = PyTuple_New(2);
-    if (unlikely(!args)) goto done;
-    Py_INCREF(arg1);
-    PyTuple_SET_ITEM(args, 0, arg1);
-    Py_INCREF(arg2);
-    PyTuple_SET_ITEM(args, 1, arg2);
-    Py_INCREF(function);
-    result = __Pyx_PyObject_Call(function, args, NULL);
-    Py_DECREF(args);
-    Py_DECREF(function);
-done:
-    return result;
-}
-
-/* PyObjectCallMethO */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
-    PyObject *self, *result;
-    PyCFunction cfunc;
-    cfunc = PyCFunction_GET_FUNCTION(func);
-    self = PyCFunction_GET_SELF(func);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = cfunc(self, arg);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
-    }
-    return result;
-}
-#endif
-
-/* PyObjectCallOneArg */
-#if CYTHON_COMPILING_IN_CPYTHON
-static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-    PyObject *result;
-    PyObject *args = PyTuple_New(1);
-    if (unlikely(!args)) return NULL;
-    Py_INCREF(arg);
-    PyTuple_SET_ITEM(args, 0, arg);
-    result = __Pyx_PyObject_Call(func, args, NULL);
-    Py_DECREF(args);
-    return result;
-}
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-#if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(func)) {
-        return __Pyx_PyFunction_FastCall(func, &arg, 1);
-    }
-#endif
-    if (likely(PyCFunction_Check(func))) {
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_O)) {
-            return __Pyx_PyObject_CallMethO(func, arg);
-#if CYTHON_FAST_PYCCALL
-        } else if (PyCFunction_GET_FLAGS(func) & METH_FASTCALL) {
-            return __Pyx_PyCFunction_FastCall(func, &arg, 1);
-#endif
-        }
-    }
-    return __Pyx__PyObject_CallOneArg(func, arg);
-}
-#else
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-    PyObject *result;
-    PyObject *args = PyTuple_Pack(1, arg);
-    if (unlikely(!args)) return NULL;
-    result = __Pyx_PyObject_Call(func, args, NULL);
-    Py_DECREF(args);
-    return result;
-}
-#endif
-
-/* SliceObject */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
-        Py_ssize_t cstart, Py_ssize_t cstop,
-        PyObject** _py_start, PyObject** _py_stop, PyObject** _py_slice,
-        int has_cstart, int has_cstop, CYTHON_UNUSED int wraparound) {
-#if CYTHON_USE_TYPE_SLOTS
-    PyMappingMethods* mp;
-#if PY_MAJOR_VERSION < 3
-    PySequenceMethods* ms = Py_TYPE(obj)->tp_as_sequence;
-    if (likely(ms && ms->sq_slice)) {
-        if (!has_cstart) {
-            if (_py_start && (*_py_start != Py_None)) {
-                cstart = __Pyx_PyIndex_AsSsize_t(*_py_start);
-                if ((cstart == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
-            } else
-                cstart = 0;
-        }
-        if (!has_cstop) {
-            if (_py_stop && (*_py_stop != Py_None)) {
-                cstop = __Pyx_PyIndex_AsSsize_t(*_py_stop);
-                if ((cstop == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
-            } else
-                cstop = PY_SSIZE_T_MAX;
-        }
-        if (wraparound && unlikely((cstart < 0) | (cstop < 0)) && likely(ms->sq_length)) {
-            Py_ssize_t l = ms->sq_length(obj);
-            if (likely(l >= 0)) {
-                if (cstop < 0) {
-                    cstop += l;
-                    if (cstop < 0) cstop = 0;
-                }
-                if (cstart < 0) {
-                    cstart += l;
-                    if (cstart < 0) cstart = 0;
-                }
-            } else {
-                if (!PyErr_ExceptionMatches(PyExc_OverflowError))
-                    goto bad;
-                PyErr_Clear();
-            }
-        }
-        return ms->sq_slice(obj, cstart, cstop);
-    }
-#endif
-    mp = Py_TYPE(obj)->tp_as_mapping;
-    if (likely(mp && mp->mp_subscript))
-#endif
-    {
-        PyObject* result;
-        PyObject *py_slice, *py_start, *py_stop;
-        if (_py_slice) {
-            py_slice = *_py_slice;
-        } else {
-            PyObject* owned_start = NULL;
-            PyObject* owned_stop = NULL;
-            if (_py_start) {
-                py_start = *_py_start;
-            } else {
-                if (has_cstart) {
-                    owned_start = py_start = PyInt_FromSsize_t(cstart);
-                    if (unlikely(!py_start)) goto bad;
-                } else
-                    py_start = Py_None;
-            }
-            if (_py_stop) {
-                py_stop = *_py_stop;
-            } else {
-                if (has_cstop) {
-                    owned_stop = py_stop = PyInt_FromSsize_t(cstop);
-                    if (unlikely(!py_stop)) {
-                        Py_XDECREF(owned_start);
-                        goto bad;
-                    }
-                } else
-                    py_stop = Py_None;
-            }
-            py_slice = PySlice_New(py_start, py_stop, Py_None);
-            Py_XDECREF(owned_start);
-            Py_XDECREF(owned_stop);
-            if (unlikely(!py_slice)) goto bad;
-        }
-#if CYTHON_USE_TYPE_SLOTS
-        result = mp->mp_subscript(obj, py_slice);
-#else
-        result = PyObject_GetItem(obj, py_slice);
-#endif
-        if (!_py_slice) {
-            Py_DECREF(py_slice);
-        }
-        return result;
-    }
-    PyErr_Format(PyExc_TypeError,
-        "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
-bad:
-    return NULL;
-}
-
-/* MemviewSliceInit */
-static int
-__Pyx_init_memviewslice(struct __pyx_memoryview_obj *memview,
-                        int ndim,
-                        __Pyx_memviewslice *memviewslice,
-                        int memview_is_new_reference)
-{
-    __Pyx_RefNannyDeclarations
-    int i, retval=-1;
-    Py_buffer *buf = &memview->view;
-    __Pyx_RefNannySetupContext("init_memviewslice", 0);
-    if (unlikely(memviewslice->memview || memviewslice->data)) {
-        PyErr_SetString(PyExc_ValueError,
-            "memviewslice is already initialized!");
-        goto fail;
-    }
-    if (buf->strides) {
-        for (i = 0; i < ndim; i++) {
-            memviewslice->strides[i] = buf->strides[i];
-        }
-    } else {
-        Py_ssize_t stride = buf->itemsize;
-        for (i = ndim - 1; i >= 0; i--) {
-            memviewslice->strides[i] = stride;
-            stride *= buf->shape[i];
-        }
-    }
-    for (i = 0; i < ndim; i++) {
-        memviewslice->shape[i]   = buf->shape[i];
-        if (buf->suboffsets) {
-            memviewslice->suboffsets[i] = buf->suboffsets[i];
-        } else {
-            memviewslice->suboffsets[i] = -1;
-        }
-    }
-    memviewslice->memview = memview;
-    memviewslice->data = (char *)buf->buf;
-    if (__pyx_add_acquisition_count(memview) == 0 && !memview_is_new_reference) {
-        Py_INCREF(memview);
-    }
-    retval = 0;
-    goto no_fail;
-fail:
-    memviewslice->memview = 0;
-    memviewslice->data = 0;
-    retval = -1;
-no_fail:
-    __Pyx_RefNannyFinishContext();
-    return retval;
-}
-#ifndef Py_NO_RETURN
-#define Py_NO_RETURN
-#endif
-static void __pyx_fatalerror(const char *fmt, ...) Py_NO_RETURN {
-    va_list vargs;
-    char msg[200];
-#ifdef HAVE_STDARG_PROTOTYPES
-    va_start(vargs, fmt);
-#else
-    va_start(vargs);
-#endif
-    vsnprintf(msg, 200, fmt, vargs);
-    va_end(vargs);
-    Py_FatalError(msg);
-}
-static CYTHON_INLINE int
-__pyx_add_acquisition_count_locked(__pyx_atomic_int *acquisition_count,
-                                   PyThread_type_lock lock)
-{
-    int result;
-    PyThread_acquire_lock(lock, 1);
-    result = (*acquisition_count)++;
-    PyThread_release_lock(lock);
-    return result;
-}
-static CYTHON_INLINE int
-__pyx_sub_acquisition_count_locked(__pyx_atomic_int *acquisition_count,
-                                   PyThread_type_lock lock)
-{
-    int result;
-    PyThread_acquire_lock(lock, 1);
-    result = (*acquisition_count)--;
-    PyThread_release_lock(lock);
-    return result;
-}
-static CYTHON_INLINE void
-__Pyx_INC_MEMVIEW(__Pyx_memviewslice *memslice, int have_gil, int lineno)
-{
-    int first_time;
-    struct __pyx_memoryview_obj *memview = memslice->memview;
-    if (unlikely(!memview || (PyObject *) memview == Py_None))
-        return;
-    if (unlikely(__pyx_get_slice_count(memview) < 0))
-        __pyx_fatalerror("Acquisition count is %d (line %d)",
-                         __pyx_get_slice_count(memview), lineno);
-    first_time = __pyx_add_acquisition_count(memview) == 0;
-    if (unlikely(first_time)) {
-        if (have_gil) {
-            Py_INCREF((PyObject *) memview);
-        } else {
-            PyGILState_STATE _gilstate = PyGILState_Ensure();
-            Py_INCREF((PyObject *) memview);
-            PyGILState_Release(_gilstate);
-        }
-    }
-}
-static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *memslice,
-                                             int have_gil, int lineno) {
-    int last_time;
-    struct __pyx_memoryview_obj *memview = memslice->memview;
-    if (unlikely(!memview || (PyObject *) memview == Py_None)) {
-        memslice->memview = NULL;
-        return;
-    }
-    if (unlikely(__pyx_get_slice_count(memview) <= 0))
-        __pyx_fatalerror("Acquisition count is %d (line %d)",
-                         __pyx_get_slice_count(memview), lineno);
-    last_time = __pyx_sub_acquisition_count(memview) == 1;
-    memslice->data = NULL;
-    if (unlikely(last_time)) {
-        if (have_gil) {
-            Py_CLEAR(memslice->memview);
-        } else {
-            PyGILState_STATE _gilstate = PyGILState_Ensure();
-            Py_CLEAR(memslice->memview);
-            PyGILState_Release(_gilstate);
-        }
-    } else {
-        memslice->memview = NULL;
-    }
-}
-
-/* RaiseTooManyValuesToUnpack */
-static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
-    PyErr_Format(PyExc_ValueError,
-                 "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
-}
-
-/* RaiseNeedMoreValuesToUnpack */
-static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
-    PyErr_Format(PyExc_ValueError,
-                 "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
-                 index, (index == 1) ? "" : "s");
-}
-
-/* IterFinish */
-static CYTHON_INLINE int __Pyx_IterFinish(void) {
-#if CYTHON_FAST_THREAD_STATE
-    PyThreadState *tstate = __Pyx_PyThreadState_Current;
-    PyObject* exc_type = tstate->curexc_type;
-    if (unlikely(exc_type)) {
-        if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) {
-            PyObject *exc_value, *exc_tb;
-            exc_value = tstate->curexc_value;
-            exc_tb = tstate->curexc_traceback;
-            tstate->curexc_type = 0;
-            tstate->curexc_value = 0;
-            tstate->curexc_traceback = 0;
-            Py_DECREF(exc_type);
-            Py_XDECREF(exc_value);
-            Py_XDECREF(exc_tb);
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-    return 0;
-#else
-    if (unlikely(PyErr_Occurred())) {
-        if (likely(PyErr_ExceptionMatches(PyExc_StopIteration))) {
-            PyErr_Clear();
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-    return 0;
-#endif
-}
-
-/* UnpackItemEndCheck */
-static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
-    if (unlikely(retval)) {
-        Py_DECREF(retval);
-        __Pyx_RaiseTooManyValuesError(expected);
-        return -1;
-    } else {
-        return __Pyx_IterFinish();
-    }
-    return 0;
-}
-
-/* PyObjectCallNoArg */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-#if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(func)) {
-        return __Pyx_PyFunction_FastCall(func, NULL, 0);
-    }
-#endif
-#ifdef __Pyx_CyFunction_USED
-    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
-#else
-    if (likely(PyCFunction_Check(func)))
-#endif
-    {
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
-            return __Pyx_PyObject_CallMethO(func, NULL);
-        }
-    }
-    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
-}
-#endif
-
-/* GetItemInt */
-static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
-    PyObject *r;
-    if (!j) return NULL;
-    r = PyObject_GetItem(o, j);
-    Py_DECREF(j);
-    return r;
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
-                                                              CYTHON_NCP_UNUSED int wraparound,
-                                                              CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    Py_ssize_t wrapped_i = i;
-    if (wraparound & unlikely(i < 0)) {
-        wrapped_i += PyList_GET_SIZE(o);
-    }
-    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyList_GET_SIZE(o)))) {
-        PyObject *r = PyList_GET_ITEM(o, wrapped_i);
-        Py_INCREF(r);
-        return r;
-    }
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-#else
-    return PySequence_GetItem(o, i);
-#endif
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
-                                                              CYTHON_NCP_UNUSED int wraparound,
-                                                              CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    Py_ssize_t wrapped_i = i;
-    if (wraparound & unlikely(i < 0)) {
-        wrapped_i += PyTuple_GET_SIZE(o);
-    }
-    if ((!boundscheck) || likely(__Pyx_is_valid_index(wrapped_i, PyTuple_GET_SIZE(o)))) {
-        PyObject *r = PyTuple_GET_ITEM(o, wrapped_i);
-        Py_INCREF(r);
-        return r;
-    }
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-#else
-    return PySequence_GetItem(o, i);
-#endif
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, int is_list,
-                                                     CYTHON_NCP_UNUSED int wraparound,
-                                                     CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS && CYTHON_USE_TYPE_SLOTS
-    if (is_list || PyList_CheckExact(o)) {
-        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyList_GET_SIZE(o);
-        if ((!boundscheck) || (likely(__Pyx_is_valid_index(n, PyList_GET_SIZE(o))))) {
-            PyObject *r = PyList_GET_ITEM(o, n);
-            Py_INCREF(r);
-            return r;
-        }
-    }
-    else if (PyTuple_CheckExact(o)) {
-        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyTuple_GET_SIZE(o);
-        if ((!boundscheck) || likely(__Pyx_is_valid_index(n, PyTuple_GET_SIZE(o)))) {
-            PyObject *r = PyTuple_GET_ITEM(o, n);
-            Py_INCREF(r);
-            return r;
-        }
-    } else {
-        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
-        if (likely(m && m->sq_item)) {
-            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
-                Py_ssize_t l = m->sq_length(o);
-                if (likely(l >= 0)) {
-                    i += l;
-                } else {
-                    if (!PyErr_ExceptionMatches(PyExc_OverflowError))
-                        return NULL;
-                    PyErr_Clear();
-                }
-            }
-            return m->sq_item(o, i);
-        }
-    }
-#else
-    if (is_list || PySequence_Check(o)) {
-        return PySequence_GetItem(o, i);
-    }
-#endif
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-}
-
-/* ObjectGetItem */
-#if CYTHON_USE_TYPE_SLOTS
-static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
-    PyObject *runerr;
-    Py_ssize_t key_value;
-    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
-    if (unlikely(!(m && m->sq_item))) {
-        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
-        return NULL;
-    }
-    key_value = __Pyx_PyIndex_AsSsize_t(index);
-    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
-        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
-    }
-    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
-        PyErr_Clear();
-        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
-    }
-    return NULL;
-}
-static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
-    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
-    if (likely(m && m->mp_subscript)) {
-        return m->mp_subscript(obj, key);
-    }
-    return __Pyx_PyObject_GetIndex(obj, key);
-}
-#endif
-
 /* PyErrFetchRestore */
 #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
@@ -26546,6 +25665,35 @@ static CYTHON_INLINE PyObject *__Pyx_PyDict_Pop(PyObject *d, PyObject *key, PyOb
     } else {
         return __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyDict_Type_pop, d, key);
     }
+}
+
+/* PyObjectCall2Args */
+static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
+    PyObject *args, *result = NULL;
+    #if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(function)) {
+        PyObject *args[2] = {arg1, arg2};
+        return __Pyx_PyFunction_FastCall(function, args, 2);
+    }
+    #endif
+    #if CYTHON_FAST_PYCCALL
+    if (__Pyx_PyFastCFunction_Check(function)) {
+        PyObject *args[2] = {arg1, arg2};
+        return __Pyx_PyCFunction_FastCall(function, args, 2);
+    }
+    #endif
+    args = PyTuple_New(2);
+    if (unlikely(!args)) goto done;
+    Py_INCREF(arg1);
+    PyTuple_SET_ITEM(args, 0, arg1);
+    Py_INCREF(arg2);
+    PyTuple_SET_ITEM(args, 1, arg2);
+    Py_INCREF(function);
+    result = __Pyx_PyObject_Call(function, args, NULL);
+    Py_DECREF(args);
+    Py_DECREF(function);
+done:
+    return result;
 }
 
 /* PyIntBinop */

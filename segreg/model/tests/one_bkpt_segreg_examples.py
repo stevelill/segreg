@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 
 from segreg.analysis import stats_plotting
 from segreg.model import one_bkpt_segreg
-
+from segreg.model import segreg_util
 
 OneBkptExample = namedtuple("OneBkptExample", ["indep",
                                                "dep",
@@ -29,7 +29,7 @@ def _plot(indep, dep, num_end_to_skip):
                                                            dep,
                                                            num_end_to_skip=num_end_to_skip)
 
-    func = one_bkpt_segreg.segmented_func(*min_params)
+    func = segreg_util.one_bkpt_segmented_func(*min_params)
     stats_plotting.plot_model(func=func,
                               indep=indep,
                               dep=dep,
@@ -227,6 +227,7 @@ def interior_interval_E(multiple_y=False, plot=False):
                           params=params,
                           rss=rss)
 
+
 def interior_interval_E_minusone(multiple_y=False, plot=False):
     indep = np.arange(9)
     num_distinct_indep = len(indep)
@@ -260,6 +261,7 @@ def interior_interval_E_minusone(multiple_y=False, plot=False):
                           params=params,
                           rss=rss)
 
+
 def interior_interval_W(multiple_y=False, plot=False):
     indep = np.arange(9)
     num_distinct_indep = len(indep)
@@ -292,6 +294,7 @@ def interior_interval_W(multiple_y=False, plot=False):
                           num_end_to_skip=num_end_to_skip,
                           params=params,
                           rss=rss)
+
 
 def interior_interval_W_plusone(multiple_y=False, plot=False):
     indep = np.arange(9)

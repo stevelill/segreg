@@ -15,6 +15,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from segreg.analysis import stats_plotting
 from segreg.model import two_bkpt_segreg
+from segreg.model import segreg_util
 
 
 TwoBkptExample = namedtuple("TwoBkptExample", ["indep",
@@ -33,12 +34,11 @@ def _plot(indep, dep, num_end_to_skip, num_between_to_skip):
                                                            num_end_to_skip=num_end_to_skip,
                                                            num_between_to_skip=num_between_to_skip)
 
-    func = two_bkpt_segreg.segmented_func(min_params)
-    stats_plotting.plot_model(func=func,
+    func = segreg_util.two_bkpt_segmented_func(*min_params)
+    stats_plotting.plot_model(func_arr=[func],
                               indep=indep,
                               dep=dep,
-                              extra_pts=[min_params[0],
-                                         min_params[2]],
+                              extra_pts_arr=[[min_params[0], min_params[2]]],
                               full_size_scatter=True)
 
     plt.ylim([min(dep) - 2, max(dep) + 2])

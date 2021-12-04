@@ -60,7 +60,8 @@ def test1():
     """
     Random dataset for testing.
 
-    dep created with one_bkpt_segreg.segmented_func(u=20, v=10, m1=0.0, m2=-0.1) 
+    dep created with one-bkpt model defined by parameters:
+    (u=20, v=10, m1=0.0, m2=-0.1) 
     and normal errors.
 
     RETURNS
@@ -89,7 +90,8 @@ def test2():
     """
     Random dataset for testing.
 
-    dep created with one_bkpt_segreg.segmented_func(u=50, v=20, m1=0.0, m2=-0.1) 
+    dep created with one-bkpt model defined by parameters: 
+    (u=50, v=20, m1=0.0, m2=-0.1) 
     and normal errors.
 
     RETURNS

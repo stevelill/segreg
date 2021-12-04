@@ -9,6 +9,7 @@ import numpy as np
 
 from segreg.model import one_bkpt_segreg
 from segreg.model import two_bkpt_segreg
+from segreg.model import segreg_util
 from segreg.model.estimator import Estimator
 
 
@@ -198,7 +199,7 @@ class OneBkptSegRegEstimator(Estimator):
         else:
             m2 = self._restrict_rhs_slope
 
-        return one_bkpt_segreg.segmented_func(u, v, m1, m2)
+        return segreg_util.one_bkpt_segmented_func(u, v, m1, m2)
     get_func_for_params.__doc__ += Estimator.get_func_for_params.__doc__
 
     @property
@@ -410,7 +411,7 @@ class TwoBkptSegRegEstimator(Estimator):
         m1 = params[4]
         m2 = params[5]
 
-        return two_bkpt_segreg.segmented_func([u1, v1, u2, v2, m1, m2])
+        return segreg_util.two_bkpt_segmented_func(u1, v1, u2, v2, m1, m2)
     get_func_for_params.__doc__ += Estimator.get_func_for_params.__doc__
 
     @property

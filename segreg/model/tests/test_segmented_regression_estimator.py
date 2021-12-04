@@ -9,10 +9,10 @@ import unittest
 
 import numpy as np
 
-from segreg.model import one_bkpt_segreg
-from segreg.model import OneBkptSegRegEstimator
 from segreg.data import _testing_util
+from segreg.model import OneBkptSegRegEstimator
 from segreg.model import estimator
+from segreg.model import segreg_util
 
 
 class TestOneBkptSegRegEstimator(unittest.TestCase):
@@ -26,10 +26,12 @@ class TestOneBkptSegRegEstimator(unittest.TestCase):
         self._v = 10
         self._m1 = -0.05
         self._m2 = 0.4
-        self._func = one_bkpt_segreg.segmented_func(self._u,
-                                                    self._v,
-                                                    self._m1,
-                                                    self._m2)
+
+        self._func = segreg_util.one_bkpt_segmented_func(self._u,
+                                                         self._v,
+                                                         self._m1,
+                                                         self._m2)
+
         self._stddev = 2.0
 
         seed = 32402304

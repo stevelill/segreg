@@ -13,7 +13,7 @@ import numpy as np
 import numpy.testing
 
 from segreg.analysis import stats_plotting
-from segreg.model import two_bkpt_segreg
+from segreg.model import segreg_util
 from segreg.model.alt import brute_force_segreg
 from segreg.model.alt import two_bkpt_segreg_alt
 
@@ -67,12 +67,12 @@ class TwoBkptSegregHelper(unittest.TestCase):
             print()
 
         if plot:
-            func = two_bkpt_segreg.segmented_func(lhs_min_params)
-            stats_plotting.plot_model(func=func,
+            func = segreg_util.two_bkpt_segmented_func(*lhs_min_params)
+            stats_plotting.plot_model(func_arr=[func],
                                       indep=indep,
                                       dep=dep,
-                                      extra_pts=[lhs_min_params[0],
-                                                 lhs_min_params[2]],
+                                      extra_pts_arr=[[lhs_min_params[0],
+                                                      lhs_min_params[2]]],
                                       full_size_scatter=True)
             plt.show()
 

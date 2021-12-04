@@ -27,55 +27,6 @@ from segreg.model.one_bkpt_segreg cimport fixed_breakpt_ls
 ##########################################################################
 
 
-def segmented_func(params):
-    def func(x):
-        return _segmented_func(x, params)
-
-    return func
-
-
-def _segmented_func(x, params):
-    if np.isscalar(x):
-        result = _segmented_func_impl([x], params)
-        return result[0]
-    else:
-        return _segmented_func_impl(x, params)
-
-
-def _segmented_func_impl(x, params):
-    """
-    Parameters
-    ----------
-    x: array-like (non-scalar)
-    """
-    # TODO: remember this function gives odd results with integer input
-    x_arr = np.array(x, dtype=float)
-
-    u1, v1, u2, v2, m1, m2 = params
-
-    mid_slope = (v2 - v1) / (u2 - u1)
-
-    # we sort the data
-    argsort_inds = x_arr.argsort()
-
-    sorted_arr = x_arr[argsort_inds]
-
-    first = sorted_arr[sorted_arr <= u1]
-    second = sorted_arr[np.logical_and(u1 < sorted_arr, sorted_arr <= u2)]
-    third = sorted_arr[u2 < sorted_arr]
-
-    first_vals = v1 + m1 * (first - u1)
-    second_vals = v1 + mid_slope * (second - u1)
-    third_vals = v2 + m2 * (third - u2)
-
-    sorted_result = np.append(first_vals, second_vals)
-    sorted_result = np.append(sorted_result, third_vals)
-
-    result = sorted_result[argsort_inds]
-
-    return result
-
-
 def fixed_bkpt_ls_for_data(double[:] indep, double[:] dep, u1, u2):
     index1 = np.searchsorted(indep, u1, side='right')
     index2 = np.searchsorted(indep, u2, side='right')
@@ -294,8 +245,8 @@ cdef TwoFixedBkptTerms two_fixed_bkpt_ls(OLSData ols_terms_1,
     cdef double m = (v2 - v1) / (u2 - u1)
     cdef double two_v1 = 2.0 * v1
     cdef double two_v2 = 2.0 * v2
-    
-    ## TODO: double-check this formula vs rss_for_region
+
+    # TODO: double-check this formula vs rss_for_region
     cdef double rss = (E - two_v1 * (A1 + A2) - two_v2 * A3
                        - 2.0 * m1 * B11 - 2.0 * m * B21 - 2.0 * m2 * B32
                        + v1 * v1 * (num_data_1 + num_data_2) +

@@ -29,47 +29,6 @@ from segreg.model.regression cimport ols_from_formula_with_rss_cimpl
 from segreg.model.one_bkpt_segreg cimport FixedBkptTerms
 
 
-################################################################################
-
-
-def segmented_func(u, v, m1, m2):
-    """
-    Returns the one-bkpt function corresponding to the given parameters.
-
-    ``(u,v)`` is the breakpoint (in x-y plane)
-
-    ``m1`` is the slope of the left-hand segment
-
-    ``m2`` is the slope of the right-hand segment
-
-
-    Parameters
-    ----------
-    u: float
-    v: float
-    m1: float
-    m2: float
-
-    Returns
-    -------
-    func: function object
-    """
-    def func(x):
-
-        x_arr = np.asarray(x, dtype=float)
-
-        result = np.piecewise(x_arr,
-                              [x_arr <= u,
-                               x_arr > u],
-                              [lambda x: v + m1 * (x - u),
-                                  lambda x: v + m2 * (x - u)])
-        # np.piecewise returns zero-dim array when scalar
-        if np.isscalar(x):
-            result = float(result)
-        return result
-    return func
-
-
 def fixed_bkpt_ls_for_data(indep, dep, bkpt):
     """    
     NOTES

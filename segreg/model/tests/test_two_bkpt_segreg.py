@@ -11,7 +11,8 @@ import unittest
 import numpy as np
 import numpy.testing
 
-from segreg.model import one_bkpt_segreg, two_bkpt_segreg
+from segreg.model import two_bkpt_segreg
+from segreg.model import segreg_util
 from segreg.model.alt import regression_alt
 from segreg.model.alt import two_bkpt_segreg_alt
 from segreg.model.tests import two_bkpt_segreg_examples
@@ -29,7 +30,8 @@ class TestTwoBkptSegreg(unittest.TestCase):
         v = 10
         m1 = -0.05
         m2 = 0.4
-        func = one_bkpt_segreg.segmented_func(u, v, m1, m2)
+
+        func = segreg_util.one_bkpt_segmented_func(u, v, m1, m2)
         stddev = 2.0
 
         seed = 123456789
@@ -81,7 +83,8 @@ class TestTwoBkptSegreg(unittest.TestCase):
         v = 10
         m1 = -0.05
         m2 = 0.4
-        func = one_bkpt_segreg.segmented_func(u, v, m1, m2)
+
+        func = segreg_util.one_bkpt_segmented_func(u, v, m1, m2)
         stddev = 2.0
 
         seed = 123456789
