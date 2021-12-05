@@ -1,0 +1,6 @@
+segreg.model.OLSRegressionEstimator.params
+==========================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OLSRegressionEstimator.params

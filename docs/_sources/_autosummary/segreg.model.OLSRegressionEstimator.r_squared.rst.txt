@@ -1,0 +1,6 @@
+segreg.model.OLSRegressionEstimator.r\_squared
+==============================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OLSRegressionEstimator.r_squared

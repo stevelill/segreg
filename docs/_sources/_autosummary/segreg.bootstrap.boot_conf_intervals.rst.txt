@@ -1,0 +1,6 @@
+﻿segreg.bootstrap.boot\_conf\_intervals
+======================================
+
+.. currentmodule:: segreg.bootstrap
+
+.. autofunction:: boot_conf_intervals

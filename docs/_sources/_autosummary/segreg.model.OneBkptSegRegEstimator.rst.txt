@@ -1,0 +1,41 @@
+﻿segreg.model.OneBkptSegRegEstimator
+===================================
+
+.. currentmodule:: segreg.model
+
+.. autoclass:: OneBkptSegRegEstimator
+   :exclude-members: fit,get_func_for_params,
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+
+      ~OneBkptSegRegEstimator.fit
+      ~OneBkptSegRegEstimator.get_func_for_params
+   
+   
+   
+
+   
+   
+   .. rubric:: Properties
+
+   .. autosummary::
+      :toctree:
+
+      ~OneBkptSegRegEstimator.estimated_params_indices
+      ~OneBkptSegRegEstimator.has_restricted_params
+      ~OneBkptSegRegEstimator.loglikelihood
+      ~OneBkptSegRegEstimator.model_function
+      ~OneBkptSegRegEstimator.num_params
+      ~OneBkptSegRegEstimator.param_names
+      ~OneBkptSegRegEstimator.params
+      ~OneBkptSegRegEstimator.r_squared
+      ~OneBkptSegRegEstimator.residuals
+      ~OneBkptSegRegEstimator.rss
+   
+   
+   

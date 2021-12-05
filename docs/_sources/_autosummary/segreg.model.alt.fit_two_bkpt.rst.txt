@@ -1,0 +1,6 @@
+﻿segreg.model.alt.fit\_two\_bkpt
+===============================
+
+.. currentmodule:: segreg.model.alt
+
+.. autofunction:: fit_two_bkpt

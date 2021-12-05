@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>segreg.model.OneBkptSegRegEstimator &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="segreg.model.OneBkptSegRegEstimator.fit" href="segreg.model.OneBkptSegRegEstimator.fit.html" />
+    <link rel="prev" title="segreg.model.OLSRegressionEstimator.rss" href="segreg.model.OLSRegressionEstimator.rss.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="segreg.model.OneBkptSegRegEstimator.fit.html" title="segreg.model.OneBkptSegRegEstimator.fit"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.OLSRegressionEstimator.rss.html" title="segreg.model.OLSRegressionEstimator.rss"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.OneBkptSegRegEstimator</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="segreg-model-onebkptsegregestimator">
+<h1>segreg.model.OneBkptSegRegEstimator<a class="headerlink" href="#segreg-model-onebkptsegregestimator" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="segreg.model.OneBkptSegRegEstimator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">OneBkptSegRegEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_end_to_skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restrict_rhs_slope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_bias_variance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/segreg/model/segreg_estimator.html#OneBkptSegRegEstimator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#segreg.model.OneBkptSegRegEstimator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimator for one-bkpt segmented regression.</p>
+<p>This estimator is limited to univariate, continuous, linear, one-bkpt
+segmented regression problems.  The model fitting estimates the parameters:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[u,</span> <span class="pre">v,</span> <span class="pre">m1,</span> <span class="pre">m2,</span> <span class="pre">sigma]</span></code></p>
+</div></blockquote>
+<p>where</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">(u,v)</span></code> is the breakpoint (in x-y plane)</p>
+<p><code class="docutils literal notranslate"><span class="pre">m1</span></code> is the slope of the left-hand segment</p>
+<p><code class="docutils literal notranslate"><span class="pre">m2</span></code> is the slope of the right-hand segment</p>
+<p><code class="docutils literal notranslate"><span class="pre">sigma</span></code> is the standard deviation of the residuals</p>
+</div></blockquote>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">segreg.model</span> <span class="kn">import</span> <span class="n">OneBkptSegRegEstimator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">indep</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dep</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">OneBkptSegRegEstimator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">indep</span><span class="p">,</span> <span class="n">dep</span><span class="p">)</span>
+<span class="go">array([ 5.,  5.,  1., -1.,  0.])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_end_to_skip</strong> (<em>int</em>) – Number of data points to skip at each end of the data when solving for
+the bkpts.  As such, this determines a guaranteed minimum number of data
+points in the left and right segments in the returned fit.
+If None, defaults to the underlying implementation.
+TODO: explain</p></li>
+<li><p><strong>restrict_rhs_slope</strong> (<em>float</em><em> or </em><em>None</em>) – If not <code class="docutils literal notranslate"><span class="pre">None</span></code>, will fix the rhs slope, <code class="docutils literal notranslate"><span class="pre">m2</span></code>, to the given value.  As
+such, the rhs slope <code class="docutils literal notranslate"><span class="pre">m2</span></code> will not be estimated when <code class="docutils literal notranslate"><span class="pre">fit</span></code> is called.</p></li>
+<li><p><strong>no_bias_variance</strong> (<em>bool</em>) – If True, will modify the MLE estimate of the variance so that it is
+unbiased.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="segreg.model.OLSRegressionEstimator.html#segreg.model.OLSRegressionEstimator" title="segreg.model.OLSRegressionEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OLSRegressionEstimator</span></code></a>, <a class="reference internal" href="segreg.model.TwoBkptSegRegEstimator.html#segreg.model.TwoBkptSegRegEstimator" title="segreg.model.TwoBkptSegRegEstimator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoBkptSegRegEstimator</span></code></a></p>
+</div>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.fit.html#segreg.model.OneBkptSegRegEstimator.fit" title="segreg.model.OneBkptSegRegEstimator.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(indep, dep)</p></td>
+<td><p>Fit the model to the given data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.get_func_for_params.html#segreg.model.OneBkptSegRegEstimator.get_func_for_params" title="segreg.model.OneBkptSegRegEstimator.get_func_for_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_func_for_params</span></code></a>(params)</p></td>
+<td><p>Returns the regression model function defined by the given parameters.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Properties</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.estimated_params_indices.html#segreg.model.OneBkptSegRegEstimator.estimated_params_indices" title="segreg.model.OneBkptSegRegEstimator.estimated_params_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimated_params_indices</span></code></a></p></td>
+<td><p>Indices in the parameter array of the fitted parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.has_restricted_params.html#segreg.model.OneBkptSegRegEstimator.has_restricted_params" title="segreg.model.OneBkptSegRegEstimator.has_restricted_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_restricted_params</span></code></a></p></td>
+<td><p>Whether there are any model parameters set to a fixed value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.loglikelihood.html#segreg.model.OneBkptSegRegEstimator.loglikelihood" title="segreg.model.OneBkptSegRegEstimator.loglikelihood"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loglikelihood</span></code></a></p></td>
+<td><p>Computes loglikelihood at the MLE (maximum likelihood estimate).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.model_function.html#segreg.model.OneBkptSegRegEstimator.model_function" title="segreg.model.OneBkptSegRegEstimator.model_function"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_function</span></code></a></p></td>
+<td><p>Returns the regression model function defined by the estimated parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.num_params.html#segreg.model.OneBkptSegRegEstimator.num_params" title="segreg.model.OneBkptSegRegEstimator.num_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_params</span></code></a></p></td>
+<td><p>Number of model parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.param_names.html#segreg.model.OneBkptSegRegEstimator.param_names" title="segreg.model.OneBkptSegRegEstimator.param_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">param_names</span></code></a></p></td>
+<td><p>Names of the parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.params.html#segreg.model.OneBkptSegRegEstimator.params" title="segreg.model.OneBkptSegRegEstimator.params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code></a></p></td>
+<td><p>Returns the fitted parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.r_squared.html#segreg.model.OneBkptSegRegEstimator.r_squared" title="segreg.model.OneBkptSegRegEstimator.r_squared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">r_squared</span></code></a></p></td>
+<td><p>R-squared of the fit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.residuals.html#segreg.model.OneBkptSegRegEstimator.residuals" title="segreg.model.OneBkptSegRegEstimator.residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">residuals</span></code></a></p></td>
+<td><p>Returns the residuals from the fit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="segreg.model.OneBkptSegRegEstimator.rss.html#segreg.model.OneBkptSegRegEstimator.rss" title="segreg.model.OneBkptSegRegEstimator.rss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rss</span></code></a></p></td>
+<td><p>Residual sum of squares of the fit.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="segreg.model.OLSRegressionEstimator.rss.html"
+                        title="previous chapter">segreg.model.OLSRegressionEstimator.rss</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="segreg.model.OneBkptSegRegEstimator.fit.html"
+                        title="next chapter">segreg.model.OneBkptSegRegEstimator.fit</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_autosummary/segreg.model.OneBkptSegRegEstimator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="segreg.model.OneBkptSegRegEstimator.fit.html" title="segreg.model.OneBkptSegRegEstimator.fit"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.OLSRegressionEstimator.rss.html" title="segreg.model.OLSRegressionEstimator.rss"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.model.OneBkptSegRegEstimator</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

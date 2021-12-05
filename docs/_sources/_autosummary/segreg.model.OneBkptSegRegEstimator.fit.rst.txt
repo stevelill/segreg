@@ -1,0 +1,8 @@
+:orphan:
+
+segreg.model.OneBkptSegRegEstimator.fit
+=======================================
+
+.. currentmodule:: segreg.model
+
+.. automethod:: OneBkptSegRegEstimator.fit
