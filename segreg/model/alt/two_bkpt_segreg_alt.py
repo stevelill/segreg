@@ -378,12 +378,68 @@ def estimate_two_bkpt_segreg(indep,
                              optimize=True):
     """
     Estimate two-bkpt segmented regression model.
+
+    This method is limited to univariate, continuous, linear, two-bkpt 
+    segmented regression problems.  Estimates the parameters: 
+
+    ``[u1, v1, u2, v2, m1, m2]``
+
+    where
+
+        ``(u1,v1), (u2, v2)`` are the breakpoints (in x-y plane), ordered such
+        that ``u1 < u2``
+
+        ``m1`` is the slope of the left-most segment
+
+        ``m2`` is the slope of the right-most segment
+
+    Parameters
+    ----------
+    indep: numpy array of shape (num_data,)
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: numpy array of shape (num_data,)
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+    num_end_to_skip: int
+        Number of data points to skip at each end of the data when solving for
+        the bkpts.  As such, this determines a guaranteed minimum number of data 
+        points in the left and right segments in the returned fit.
+        If None, defaults to the underlying implementation.
+        TODO: explain
+    num_between_to_skip: int
+        Number of data points to skip between the two bkpts (ie: the middle
+        segment) when solving for the bkpts.  Specifically, for each choice of
+        left bkpt ``u1``, will skip this many data points between ``u1`` and
+        ``u2``.  As such, this determines a guaranteed minimum number of data 
+        points between the bkpts in the returned fit.
+    verbose: bool
+    optimize: bool
+        If True, will implement a few optimizations in the algorithm when 
+        appropriate.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from segreg.model.alt import fit_two_bkpt
+    >>> indep = np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14])
+    >>> dep = np.array([1,2,3,4,5,4,3,2,1,0,1,2,3,4])
+    >>> fit_two_bkpt(indep, dep)
+    (array([ 5.,  5., 10., -0.,  1.,  1.]), 0.0)
+
+    Returns
+    -------
+    params: array of shape (num_params,)
+        The estimated parameters.  The returned parameters are, in order,
+        [u1, v1, u2, v2, m1, m2].
+    rss: float
+        Residual sum of squares of the fit.
     """
     # TODO: do we need to sort the data?
     # TODO: can we raise Exception with Numba?
     # if num_between_to_skip < 2:
     #    pass
-        #raise Exception("num_between_to_skip must be greater than zero")
+    #raise Exception("num_between_to_skip must be greater than zero")
 
     min_value = np.inf
     min_params = None
@@ -750,6 +806,11 @@ def estimate_two_bkpt_segreg(indep,
                     min_params = check_min_params
                     min_value = check_min_value
 
+    # for straight-line data, the fitted rss can sometimes be negative,
+    # due to noise in the computations
+    if abs(min_value) < 1.0e-13:
+        min_value = 0.0
+
     return min_params, min_value
 
 
@@ -807,11 +868,9 @@ def _fix_u1_bndy(u1_fixed,
 
     rss = rss_12 + rss3
 
- 
     if verbose:
         print("initial RSS: ", rss)
         print()
- 
 
     min_params = None
 

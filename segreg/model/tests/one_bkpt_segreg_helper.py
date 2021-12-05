@@ -44,14 +44,12 @@ class OneBkptSegregHelper(unittest.TestCase):
         (lhs_min_params,
          lhs_min_value) = lhs_module.estimate_one_bkpt_segreg(indep,
                                                               dep,
-                                                              num_end_to_skip=num_end_to_skip,
-                                                              check_near_middle=False)
+                                                              num_end_to_skip=num_end_to_skip)
 
         (rhs_min_params,
          rhs_min_value) = rhs_module.estimate_one_bkpt_segreg(indep,
                                                               dep,
-                                                              num_end_to_skip=num_end_to_skip,
-                                                              check_near_middle=False)
+                                                              num_end_to_skip=num_end_to_skip)
 
         if verbose:
             print()
@@ -74,12 +72,19 @@ class OneBkptSegregHelper(unittest.TestCase):
                                       full_size_scatter=True)
             plt.show()
 
-        numpy.testing.assert_allclose(lhs_min_params,
-                                      rhs_min_params,
-                                      rtol=0.0,
-                                      atol=tol)
+        # In some rare cases, there are two solutions.  Let's allow that.
+        # There seems to be variation in RSS for different algorithms at
+        # precision around 1e-12.
+        if abs(lhs_min_value - rhs_min_value) > 1.0e-12:
 
-        self.assertAlmostEqual(lhs_min_value, rhs_min_value, delta=1000.0 * tol)
+            numpy.testing.assert_allclose(lhs_min_params,
+                                          rhs_min_params,
+                                          rtol=0.0,
+                                          atol=tol)
+
+        self.assertAlmostEqual(lhs_min_value,
+                               rhs_min_value,
+                               delta=1000.0 * tol)
 
         if expected_params is not None:
             self.check_known_value(expected_params=expected_params,
@@ -111,8 +116,7 @@ class OneBkptSegregHelper(unittest.TestCase):
         (lhs_min_params,
          lhs_min_value) = lhs_module.estimate_one_bkpt_segreg(indep,
                                                               dep,
-                                                              num_end_to_skip=num_end_to_skip,
-                                                              check_near_middle=False)
+                                                              num_end_to_skip=num_end_to_skip)
 
         (rhs_min_params,
          rhs_min_value) = brute_force_segreg.estimate_one_bkpt_segreg(indep,

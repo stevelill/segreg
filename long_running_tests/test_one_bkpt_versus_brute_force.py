@@ -15,6 +15,7 @@ from segreg.model.tests.one_bkpt_segreg_helper import OneBkptSegregHelper
 
 class TestOneBkptVersusBruteForce(OneBkptSegregHelper):
 
+    #@unittest.skip("skipping")
     def test1(self):
         num_data = 10
         num_tests = 10000
@@ -38,6 +39,7 @@ class TestOneBkptVersusBruteForce(OneBkptSegregHelper):
                                     investigate=False,
                                     num_end_to_skip=2)
 
+    #@unittest.skip("skipping")
     def test2(self):
         num_data = 100
         num_tests = 10000
@@ -59,6 +61,7 @@ class TestOneBkptVersusBruteForce(OneBkptSegregHelper):
                                     investigate=False,
                                     num_end_to_skip=20)
 
+    #@unittest.skip("skipping")
     def test3(self):
         num_data = 10
         num_tests = 10000
@@ -80,6 +83,7 @@ class TestOneBkptVersusBruteForce(OneBkptSegregHelper):
                                     seeds=seeds,
                                     investigate=False)
 
+    #@unittest.skip("skipping")
     def test4(self):
         num_data = 100
         num_tests = 10000

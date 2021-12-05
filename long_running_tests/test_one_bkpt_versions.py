@@ -33,9 +33,13 @@ class TestOneBkptVersions(OneBkptSegregHelper):
         start = time.time()
 
         seeds = None
-        #seeds = [350054]
-
         investigate = False
+
+        # for investigation
+        #seeds = [350054]
+        #seeds = [924305]
+        #seeds = [314519]
+        #investigate = True
 
         self.compare_test_suite(lhs_module,
                                 rhs_module,
@@ -50,6 +54,7 @@ class TestOneBkptVersions(OneBkptSegregHelper):
         print("time: ", end - start)
         print()
 
+    #@unittest.skip("skipping")
     def test1(self):
 
         lhs_module = one_bkpt_segreg_alt
@@ -65,6 +70,7 @@ class TestOneBkptVersions(OneBkptSegregHelper):
                       num_tests=num_tests,
                       num_end_to_skip=num_end_to_skip)
 
+    #@unittest.skip("skipping")
     def test2(self):
 
         lhs_module = one_bkpt_segreg_alt
@@ -80,6 +86,7 @@ class TestOneBkptVersions(OneBkptSegregHelper):
                       num_tests=num_tests,
                       num_end_to_skip=num_end_to_skip)
 
+    #@unittest.skip("skipping")
     def test3(self):
 
         lhs_module = one_bkpt_segreg_alt
@@ -96,6 +103,7 @@ class TestOneBkptVersions(OneBkptSegregHelper):
                       num_end_to_skip=num_end_to_skip,
                       tol=1.0e-10)
 
+    #@unittest.skip("skipping")
     def test4(self):
 
         lhs_module = one_bkpt_segreg_alt
@@ -112,6 +120,7 @@ class TestOneBkptVersions(OneBkptSegregHelper):
                       num_end_to_skip=num_end_to_skip,
                       tol=1.0e-10)
 
+    #@unittest.skip("skipping")
     def test5(self):
 
         lhs_module = one_bkpt_segreg_alt
@@ -127,6 +136,7 @@ class TestOneBkptVersions(OneBkptSegregHelper):
                       num_tests=num_tests,
                       num_end_to_skip=num_end_to_skip)
 
+    #@unittest.skip("skipping")
     def test6(self):
 
         lhs_module = one_bkpt_segreg_alt

@@ -296,20 +296,65 @@ def fixed_bkpt_ls_regression(indep, dep, u):
 @jit(nopython=True, cache=False)
 def estimate_one_bkpt_segreg(indep,
                              dep,
-                             num_end_to_skip=3,
+                             num_end_to_skip=2,
                              verbose=False,
-                             extra_verbose=False,
-                             optimize=True,
-                             check_near_middle=False):
+                             optimize=True):
     """
     Estimate one-bkpt segmented regression model.
-    
-    NOTES
-    -----
-    This implementation does not compute anything when there are 2n+1 distinct
-    data points, and num_end_to_skip is n-1.  In such a case, there is only
-    one possible configuration, where the bkpt is at the nth data point.
+
+    This method is limited to univariate, continuous, linear, one-bkpt 
+    segmented regression problems.  Estimates the parameters: 
+
+        ``[u, v, m1, m2]``
+
+    where
+
+        ``(u,v)`` is the breakpoint (in x-y plane)
+
+        ``m1`` is the slope of the left-hand segment
+
+        ``m2`` is the slope of the right-hand segment
+
+    Parameters
+    ----------
+    indep: numpy array of shape (num_data,)
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: numpy array of shape (num_data,)
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+    num_end_to_skip: int
+        Number of data points to skip at each end of the data when solving for
+        the bkpts.  As such, this determines a guaranteed minimum number of data 
+        points in the left and right segments in the returned fit.
+        If None, defaults to the underlying implementation.
+        TODO: explain
+    verbose: bool
+    optimize: bool
+        If True, will implement a few optimizations in the algorithm when 
+        appropriate.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from segreg.model.alt import fit_one_bkpt
+    >>> indep = np.array([1,2,3,4,5,6,7,8,9])
+    >>> dep = np.array([1,2,3,4,5,4,3,2,1])
+    >>> fit_one_bkpt(indep, dep)
+    (array([ 5.,  5.,  1., -1.]), 0.0)
+
+    Returns
+    -------
+    params: array of shape (num_params,)
+        The estimated parameters.  The returned parameters are, in order,
+        [u, v, m1, m2].
+    rss: float
+        Residual sum of squares of the fit.
     """
+    # This implementation does not compute anything when there are 2n+1 distinct
+    # data points, and num_end_to_skip is n-1.  In such a case, there is only
+    # one possible configuration, where the bkpt is at the nth data point.
+
     min_value = np.inf
     min_params = None
 
@@ -389,7 +434,8 @@ def estimate_one_bkpt_segreg(indep,
         if abs(slope_diff) > 1.0e-14:
 
             u1_intersect = (ols_intercept1 - ols_intercept2) / slope_diff
-            u1_right_place = (u1_data < u1_intersect) and (u1_intersect < u1_data_next)
+            u1_right_place = ((u1_data < u1_intersect) and
+                              (u1_intersect < u1_data_next))
 
             if verbose:
                 print()
@@ -399,7 +445,10 @@ def estimate_one_bkpt_segreg(indep,
                 if rss < min_value:
                     min_value = rss
                     v1 = ols_intercept1 + ols_slope1 * u1_intersect
-                    min_params = [u1_intersect, v1, ols_slope1, ols_slope2]
+                    min_params = np.array([u1_intersect,
+                                           v1,
+                                           ols_slope1,
+                                           ols_slope2])
 
                     if verbose:
                         print()
@@ -423,7 +472,7 @@ def estimate_one_bkpt_segreg(indep,
 
         if rss < min_value:
             min_value = rss
-            min_params = [u1_data, v1, m1, m2]
+            min_params = np.array([u1_data, v1, m1, m2])
 
             if verbose:
                 print()
@@ -445,7 +494,7 @@ def estimate_one_bkpt_segreg(indep,
 
             if rss < min_value:
                 min_value = rss
-                min_params = [u1_data_next, v1, m1, m2]
+                min_params = np.array([u1_data_next, v1, m1, m2])
 
                 if verbose:
                     print()
@@ -453,6 +502,11 @@ def estimate_one_bkpt_segreg(indep,
                     print("params: ", min_params)
                     print("RSS: ", rss)
                     print()
+
+    # for straight-line data, the fitted rss can sometimes be negative,
+    # due to noise in the computations
+    if abs(min_value) < 1.0e-13:
+        min_value = 0.0
 
     return min_params, min_value
 
