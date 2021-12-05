@@ -1,8 +1,0 @@
-:orphan:
-
-segreg.model.TwoBkptSegRegEstimator.fit
-=======================================
-
-.. currentmodule:: segreg.model
-
-.. automethod:: TwoBkptSegRegEstimator.fit

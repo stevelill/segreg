@@ -1,6 +1,0 @@
-﻿segreg.data.test1
-=================
-
-.. currentmodule:: segreg.data
-
-.. autofunction:: test1
