@@ -1,6 +1,0 @@
-segreg.model.OneBkptSegRegEstimator.param\_names
-================================================
-
-.. currentmodule:: segreg.model
-
-.. autoproperty:: OneBkptSegRegEstimator.param_names

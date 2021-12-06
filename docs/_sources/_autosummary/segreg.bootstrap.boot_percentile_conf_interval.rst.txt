@@ -1,6 +1,0 @@
-﻿segreg.bootstrap.boot\_percentile\_conf\_interval
-=================================================
-
-.. currentmodule:: segreg.bootstrap
-
-.. autofunction:: boot_percentile_conf_interval

@@ -1,6 +1,0 @@
-segreg.model.OneBkptSegRegEstimator.r\_squared
-==============================================
-
-.. currentmodule:: segreg.model
-
-.. autoproperty:: OneBkptSegRegEstimator.r_squared
