@@ -68,12 +68,12 @@ class TwoBkptSegregHelper(unittest.TestCase):
 
         if plot:
             func = segreg_util.two_bkpt_segmented_func(*lhs_min_params)
-            stats_plotting.plot_model(func_arr=[func],
-                                      indep=indep,
-                                      dep=dep,
-                                      extra_pts_arr=[[lhs_min_params[0],
-                                                      lhs_min_params[2]]],
-                                      full_size_scatter=True)
+            stats_plotting.plot_models(func_arr=[func],
+                                       indep=indep,
+                                       dep=dep,
+                                       extra_pts_arr=[[lhs_min_params[0],
+                                                       lhs_min_params[2]]],
+                                       full_size_scatter=True)
             plt.show()
 
         self.assertAlmostEqual(lhs_min_value,

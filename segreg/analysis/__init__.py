@@ -7,6 +7,6 @@ of segmented regression modelling.
 # License: BSD 3 clause
 
 
-from segreg.analysis.stats_plotting import plot_model
+from segreg.analysis.stats_plotting import plot_models
 
-__all__ = ["plot_model"]
+__all__ = ["plot_models"]

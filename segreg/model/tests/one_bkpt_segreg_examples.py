@@ -30,11 +30,11 @@ def _plot(indep, dep, num_end_to_skip):
                                                            num_end_to_skip=num_end_to_skip)
 
     func = segreg_util.one_bkpt_segmented_func(*min_params)
-    stats_plotting.plot_model(func=func,
-                              indep=indep,
-                              dep=dep,
-                              extra_pts=[min_params[0]],
-                              full_size_scatter=True)
+    stats_plotting.plot_models(func=func,
+                               indep=indep,
+                               dep=dep,
+                               extra_pts=[min_params[0]],
+                               full_size_scatter=True)
 
     plt.ylim([min(dep) - 2, max(dep) + 2])
     plt.gca().set_aspect('equal', adjustable='box')

@@ -65,11 +65,11 @@ class OneBkptSegregHelper(unittest.TestCase):
 
         if plot:
             func = segreg_util.one_bkpt_segmented_func(*lhs_min_params)
-            stats_plotting.plot_model(func=func,
-                                      indep=indep,
-                                      dep=dep,
-                                      extra_pts=[lhs_min_params[0]],
-                                      full_size_scatter=True)
+            stats_plotting.plot_models(func=func,
+                                       indep=indep,
+                                       dep=dep,
+                                       extra_pts=[lhs_min_params[0]],
+                                       full_size_scatter=True)
             plt.show()
 
         # In some rare cases, there are two solutions.  Let's allow that.

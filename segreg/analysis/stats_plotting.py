@@ -1,7 +1,5 @@
 """
 Routines to plot segmented regression results.
-
-SEMI-DEPRECATED -- METHODS WILL BE REMOVED OR MODIFIED SOON
 """
 
 # Author: Steven Lillywhite
@@ -14,22 +12,24 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 # TODO: handle legend
-def plot_model(func_arr,
-               indep,
-               dep,
-               domain_begin_arr=None,
-               domain_end_arr=None,
-               extra_pts_arr=None,
-               title=None,
-               xlabel=None,
-               ylabel=None,
-               mark_extra_pts=True,
-               padding_scale=5.0,
-               full_size_scatter=False,
-               scatter_size=3,
-               scatter_color="gray",
-               marker="o",
-               ax=None):
+
+
+def plot_models(func_arr,
+                indep,
+                dep,
+                domain_begin_arr=None,
+                domain_end_arr=None,
+                extra_pts_arr=None,
+                title=None,
+                xlabel=None,
+                ylabel=None,
+                mark_extra_pts=True,
+                padding_scale=5.0,
+                full_size_scatter=False,
+                scatter_size=3,
+                scatter_color="gray",
+                marker="o",
+                ax=None):
     """
     Plots univariate functions together with scatter of the data.
 
@@ -192,7 +192,7 @@ def plot_model(func_arr,
     return ax
 
 
-## TODO: rewrite this
+# TODO: rewrite this
 def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
     title = kwargs.pop('title', None)
     xlabel = kwargs.pop('xlabel', None)
