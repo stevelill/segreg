@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>segreg.analysis.plot_models &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="segreg.bootstrap.boot_conf_intervals" href="segreg.bootstrap.boot_conf_intervals.html" />
+    <link rel="prev" title="segreg.model.one_bkpt_rss_func" href="segreg.model.one_bkpt_rss_func.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="segreg.bootstrap.boot_conf_intervals.html" title="segreg.bootstrap.boot_conf_intervals"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.one_bkpt_rss_func.html" title="segreg.model.one_bkpt_rss_func"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.analysis.plot_models</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="segreg-analysis-plot-models">
+<h1>segreg.analysis.plot_models<a class="headerlink" href="#segreg-analysis-plot-models" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="segreg.analysis.plot_models">
+<span class="sig-name descname"><span class="pre">plot_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_begin_arr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_end_arr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_pts_arr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mark_extra_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_size_scatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/segreg/analysis/stats_plotting.html#plot_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#segreg.analysis.plot_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots univariate functions together with scatter of the data.</p>
+<p>This plotting utility is geared towards segmented regression problems where
+the function inputs would be the piecewise-linear segmented functions.</p>
+<p class="rubric">Notes</p>
+<p>For plotting segmented regression models, it is recommended to pass in the
+bkpts via the parameter <code class="docutils literal notranslate"><span class="pre">extra_pts_arr</span></code> to ensure the plot looks correct.
+This is because the bkpts might not coincide with data points, and the plot
+interpolation between plotted points could appear wrong near the bkpts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func_arr</strong> (<em>array-like</em>) – An array of function objects.  Each function should be defined on the
+domain of the independent data.</p></li>
+<li><p><strong>indep</strong> (<em>array-like</em>) – The independent data.  Also called predictor, explanatory variable,
+regressor, or exogenous variable.</p></li>
+<li><p><strong>dep</strong> (<em>array-like</em>) – The dependent data.  Also called response, regressand, or endogenous
+variable.</p></li>
+<li><p><strong>domain_begin_arr</strong> (<em>array-like</em>) – An array of float.  Each element specifies the left endpoint of the
+domain to plot for corresponding function in <code class="docutils literal notranslate"><span class="pre">func_arr</span></code>. Must have
+same length as the parameter <code class="docutils literal notranslate"><span class="pre">func_arr</span></code>.</p></li>
+<li><p><strong>domain_end_arr</strong> (<em>array-like</em>) – An array of float.  Each element specifies the right endpoint of the
+domain to plot for corresponding function in <code class="docutils literal notranslate"><span class="pre">func_arr</span></code>. Must have
+same length as the parameter <code class="docutils literal notranslate"><span class="pre">func_arr</span></code>.</p></li>
+<li><p><strong>extra_pts_arr</strong> (<em>array-like</em>) – <p>An array of arrays.  Each element is an array containing extra points
+to plot.  The points are in the x-axis domain (ie: the domain of the
+independent data).  Must have same length as the parameter <code class="docutils literal notranslate"><span class="pre">func_arr</span></code>.
+Each element must be either array-like or None.</p>
+<blockquote>
+<div><p>Eg: [ [1,2], [3] ].</p>
+<p>Eg: [ None, [4,5] ].</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – </p></li>
+<li><p><strong>xlabel</strong> (<em>str</em>) – </p></li>
+<li><p><strong>ylabel</strong> (<em>str</em>) – </p></li>
+<li><p><strong>mark_extra_pts</strong> (<em>bool</em>) – If True, will add marker to any plotted extra points, as set by the
+parameter <code class="docutils literal notranslate"><span class="pre">extra_pts_arr</span></code>.</p></li>
+<li><p><strong>padding_scale</strong> (<em>float</em>) – </p></li>
+<li><p><strong>full_size_scatter</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>scatter_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>scatter_color</strong> (<em>str</em>) – </p></li>
+<li><p><strong>marker</strong> (<em>str</em>) – </p></li>
+<li><p><strong>ax</strong> (<em>matplotlib axes object</em><em>, </em><em>default None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="segreg.model.one_bkpt_rss_func.html"
+                        title="previous chapter">segreg.model.one_bkpt_rss_func</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="segreg.bootstrap.boot_conf_intervals.html"
+                        title="next chapter">segreg.bootstrap.boot_conf_intervals</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_autosummary/segreg.analysis.plot_models.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="segreg.bootstrap.boot_conf_intervals.html" title="segreg.bootstrap.boot_conf_intervals"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="segreg.model.one_bkpt_rss_func.html" title="segreg.model.one_bkpt_rss_func"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.analysis.plot_models</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

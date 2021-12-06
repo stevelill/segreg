@@ -1,0 +1,6 @@
+segreg.model.OLSRegressionEstimator.residuals
+=============================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OLSRegressionEstimator.residuals

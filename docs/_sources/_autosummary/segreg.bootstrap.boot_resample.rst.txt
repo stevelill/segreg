@@ -1,0 +1,6 @@
+﻿segreg.bootstrap.boot\_resample
+===============================
+
+.. currentmodule:: segreg.bootstrap
+
+.. autofunction:: boot_resample

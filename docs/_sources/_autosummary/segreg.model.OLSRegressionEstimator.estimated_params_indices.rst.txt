@@ -1,0 +1,6 @@
+segreg.model.OLSRegressionEstimator.estimated\_params\_indices
+==============================================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OLSRegressionEstimator.estimated_params_indices

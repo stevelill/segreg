@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>segreg.data._datasets &#8212; segreg 1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nature.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.data._datasets</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for segreg.data._datasets</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The ``segreg.datasets`` module provides datasets for testing segmented </span>
+<span class="sd">regression.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Author: Steven Lillywhite</span>
+<span class="c1"># License: BSD 3 clause</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="hinkley"><a class="viewcode-back" href="../../../_autosummary/segreg.data.hinkley.html#segreg.data.hinkley">[docs]</a><span class="k">def</span> <span class="nf">hinkley</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A dataset from an academic paper by David Hinkley.</span>
+
+<span class="sd">    Inference in Two-Phase Regression</span>
+<span class="sd">    David Hinkley</span>
+<span class="sd">    Journal of the American Statistical Association</span>
+<span class="sd">    Vol. 66, No. 336 (Dec., 1971), pp. 736-743</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    indep : numpy array</span>
+<span class="sd">    dep : numpy array        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span>
+                      <span class="mf">2.52288</span><span class="p">,</span>
+                      <span class="mf">3.0</span><span class="p">,</span>
+                      <span class="mf">3.52288</span><span class="p">,</span>
+                      <span class="mf">4.0</span><span class="p">,</span>
+                      <span class="mf">4.52288</span><span class="p">,</span>
+                      <span class="mf">5.0</span><span class="p">,</span>
+                      <span class="mf">5.52288</span><span class="p">,</span>
+                      <span class="mf">6.0</span><span class="p">,</span>
+                      <span class="mf">6.52288</span><span class="p">,</span>
+                      <span class="mf">7.0</span><span class="p">,</span>
+                      <span class="mf">7.52288</span><span class="p">,</span>
+                      <span class="mf">8.0</span><span class="p">,</span>
+                      <span class="mf">8.52288</span><span class="p">,</span>
+                      <span class="mf">9.0</span><span class="p">])</span>
+    <span class="n">dep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.370483</span><span class="p">,</span>
+                    <span class="mf">.537970</span><span class="p">,</span>
+                    <span class="mf">.607684</span><span class="p">,</span>
+                    <span class="mf">.723323</span><span class="p">,</span>
+                    <span class="mf">.761856</span><span class="p">,</span>
+                    <span class="mf">.892063</span><span class="p">,</span>
+                    <span class="mf">.956707</span><span class="p">,</span>
+                    <span class="mf">.940349</span><span class="p">,</span>
+                    <span class="mf">.898609</span><span class="p">,</span>
+                    <span class="mf">.953850</span><span class="p">,</span>
+                    <span class="mf">.990834</span><span class="p">,</span>
+                    <span class="mf">.890291</span><span class="p">,</span>
+                    <span class="mf">.990779</span><span class="p">,</span>
+                    <span class="mf">1.050865</span><span class="p">,</span>
+                    <span class="mf">.982785</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">indep</span><span class="p">,</span> <span class="n">dep</span></div>
+
+
+<div class="viewcode-block" id="test1"><a class="viewcode-back" href="../../../_autosummary/segreg.data.test1.html#segreg.data.test1">[docs]</a><span class="k">def</span> <span class="nf">test1</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Random dataset for testing.</span>
+
+<span class="sd">    ``dep`` created with one-bkpt model defined by parameters:</span>
+
+<span class="sd">    (u=20, v=10, m1=0.0, m2=-0.1) </span>
+
+<span class="sd">    and normal errors.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    indep : numpy array</span>
+<span class="sd">    dep : numpy array        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">,</span>
+                      <span class="mf">13.</span><span class="p">,</span> <span class="mf">14.</span><span class="p">,</span> <span class="mf">15.</span><span class="p">,</span> <span class="mf">16.</span><span class="p">,</span> <span class="mf">17.</span><span class="p">,</span> <span class="mf">18.</span><span class="p">,</span> <span class="mf">19.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">,</span> <span class="mf">22.</span><span class="p">,</span> <span class="mf">23.</span><span class="p">,</span> <span class="mf">24.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">,</span>
+                      <span class="mf">26.</span><span class="p">,</span> <span class="mf">27.</span><span class="p">,</span> <span class="mf">28.</span><span class="p">,</span> <span class="mf">29.</span><span class="p">,</span> <span class="mf">30.</span><span class="p">,</span> <span class="mf">31.</span><span class="p">,</span> <span class="mf">32.</span><span class="p">,</span> <span class="mf">33.</span><span class="p">,</span> <span class="mf">34.</span><span class="p">,</span> <span class="mf">35.</span><span class="p">,</span> <span class="mf">36.</span><span class="p">,</span> <span class="mf">37.</span><span class="p">,</span> <span class="mf">38.</span><span class="p">,</span>
+                      <span class="mf">39.</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">dep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.78862702</span><span class="p">,</span> <span class="mf">10.80865967</span><span class="p">,</span> <span class="mf">10.36303396</span><span class="p">,</span> <span class="mf">10.06787099</span><span class="p">,</span> <span class="mf">10.63787434</span><span class="p">,</span>
+                    <span class="mf">10.17632513</span><span class="p">,</span> <span class="mf">10.03836726</span><span class="p">,</span> <span class="mf">10.21000339</span><span class="p">,</span> <span class="mf">10.1880592</span><span class="p">,</span> <span class="mf">10.83228144</span><span class="p">,</span>
+                    <span class="mf">10.4639768</span><span class="p">,</span> <span class="mf">10.02054785</span><span class="p">,</span> <span class="mf">10.06725762</span><span class="p">,</span> <span class="mf">10.36737546</span><span class="p">,</span> <span class="mf">10.07423906</span><span class="p">,</span>
+                    <span class="mf">10.27969998</span><span class="p">,</span> <span class="mf">10.11165485</span><span class="p">,</span> <span class="mf">10.18817926</span><span class="p">,</span> <span class="mf">10.92853834</span><span class="p">,</span> <span class="mf">10.64732206</span><span class="p">,</span>
+                    <span class="mf">10.43788206</span><span class="p">,</span> <span class="mf">10.24099838</span><span class="p">,</span> <span class="mf">10.39779815</span><span class="p">,</span> <span class="mf">10.67018116</span><span class="p">,</span> <span class="mf">9.61842261</span><span class="p">,</span>
+                    <span class="mf">9.86287077</span><span class="p">,</span> <span class="mf">9.85279224</span><span class="p">,</span> <span class="mf">9.89176769</span><span class="p">,</span> <span class="mf">9.33674018</span><span class="p">,</span> <span class="mf">9.23876682</span><span class="p">,</span>
+                    <span class="mf">9.84379126</span><span class="p">,</span> <span class="mf">9.26903955</span><span class="p">,</span> <span class="mf">9.4313239</span><span class="p">,</span> <span class="mf">9.23073589</span><span class="p">,</span> <span class="mf">8.62025779</span><span class="p">,</span>
+                    <span class="mf">8.75997475</span><span class="p">,</span> <span class="mf">8.69917697</span><span class="p">,</span> <span class="mf">9.10815078</span><span class="p">,</span> <span class="mf">8.92514738</span><span class="p">,</span> <span class="mf">8.11896596</span><span class="p">],</span>
+                   <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">indep</span><span class="p">,</span> <span class="n">dep</span></div>
+
+
+<div class="viewcode-block" id="test2"><a class="viewcode-back" href="../../../_autosummary/segreg.data.test2.html#segreg.data.test2">[docs]</a><span class="k">def</span> <span class="nf">test2</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Random dataset for testing.</span>
+
+<span class="sd">    ``dep`` created with one-bkpt model defined by parameters:</span>
+
+<span class="sd">    (u=50, v=20, m1=0.0, m2=-0.1) </span>
+
+<span class="sd">    and normal errors.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    indep : numpy array</span>
+<span class="sd">    dep : numpy array        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">indep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">,</span> <span class="mf">13.</span><span class="p">,</span> <span class="mf">14.</span><span class="p">,</span> <span class="mf">15.</span><span class="p">,</span> <span class="mf">16.</span><span class="p">,</span> <span class="mf">17.</span><span class="p">,</span> <span class="mf">18.</span><span class="p">,</span> <span class="mf">19.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span>
+                      <span class="mf">21.</span><span class="p">,</span> <span class="mf">22.</span><span class="p">,</span> <span class="mf">23.</span><span class="p">,</span> <span class="mf">24.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">,</span> <span class="mf">26.</span><span class="p">,</span> <span class="mf">27.</span><span class="p">,</span> <span class="mf">28.</span><span class="p">,</span> <span class="mf">29.</span><span class="p">,</span> <span class="mf">30.</span><span class="p">,</span> <span class="mf">31.</span><span class="p">,</span>
+                      <span class="mf">32.</span><span class="p">,</span> <span class="mf">33.</span><span class="p">,</span> <span class="mf">34.</span><span class="p">,</span> <span class="mf">35.</span><span class="p">,</span> <span class="mf">36.</span><span class="p">,</span> <span class="mf">37.</span><span class="p">,</span> <span class="mf">38.</span><span class="p">,</span> <span class="mf">39.</span><span class="p">,</span> <span class="mf">40.</span><span class="p">,</span> <span class="mf">41.</span><span class="p">,</span> <span class="mf">42.</span><span class="p">,</span>
+                      <span class="mf">43.</span><span class="p">,</span> <span class="mf">44.</span><span class="p">,</span> <span class="mf">45.</span><span class="p">,</span> <span class="mf">46.</span><span class="p">,</span> <span class="mf">47.</span><span class="p">,</span> <span class="mf">48.</span><span class="p">,</span> <span class="mf">49.</span><span class="p">,</span> <span class="mf">50.</span><span class="p">,</span> <span class="mf">51.</span><span class="p">,</span> <span class="mf">52.</span><span class="p">,</span> <span class="mf">53.</span><span class="p">,</span>
+                      <span class="mf">54.</span><span class="p">,</span> <span class="mf">55.</span><span class="p">,</span> <span class="mf">56.</span><span class="p">,</span> <span class="mf">57.</span><span class="p">,</span> <span class="mf">58.</span><span class="p">,</span> <span class="mf">59.</span><span class="p">,</span> <span class="mf">60.</span><span class="p">,</span> <span class="mf">61.</span><span class="p">,</span> <span class="mf">62.</span><span class="p">,</span> <span class="mf">63.</span><span class="p">,</span> <span class="mf">64.</span><span class="p">,</span>
+                      <span class="mf">65.</span><span class="p">,</span> <span class="mf">66.</span><span class="p">,</span> <span class="mf">67.</span><span class="p">,</span> <span class="mf">68.</span><span class="p">,</span> <span class="mf">69.</span><span class="p">,</span> <span class="mf">70.</span><span class="p">,</span> <span class="mf">71.</span><span class="p">,</span> <span class="mf">72.</span><span class="p">,</span> <span class="mf">73.</span><span class="p">,</span> <span class="mf">74.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">,</span>
+                      <span class="mf">76.</span><span class="p">,</span> <span class="mf">77.</span><span class="p">,</span> <span class="mf">78.</span><span class="p">,</span> <span class="mf">79.</span><span class="p">,</span> <span class="mf">80.</span><span class="p">,</span> <span class="mf">81.</span><span class="p">,</span> <span class="mf">82.</span><span class="p">,</span> <span class="mf">83.</span><span class="p">,</span> <span class="mf">84.</span><span class="p">,</span> <span class="mf">85.</span><span class="p">,</span> <span class="mf">86.</span><span class="p">,</span>
+                      <span class="mf">87.</span><span class="p">,</span> <span class="mf">88.</span><span class="p">,</span> <span class="mf">89.</span><span class="p">,</span> <span class="mf">90.</span><span class="p">,</span> <span class="mf">91.</span><span class="p">,</span> <span class="mf">92.</span><span class="p">,</span> <span class="mf">93.</span><span class="p">,</span> <span class="mf">94.</span><span class="p">,</span> <span class="mf">95.</span><span class="p">,</span> <span class="mf">96.</span><span class="p">,</span> <span class="mf">97.</span><span class="p">,</span>
+                      <span class="mf">98.</span><span class="p">,</span> <span class="mf">99.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="mf">101.</span><span class="p">,</span> <span class="mf">102.</span><span class="p">,</span> <span class="mf">103.</span><span class="p">,</span> <span class="mf">104.</span><span class="p">,</span> <span class="mf">105.</span><span class="p">,</span> <span class="mf">106.</span><span class="p">,</span> <span class="mf">107.</span><span class="p">,</span>
+                      <span class="mf">108.</span><span class="p">,</span> <span class="mf">109.</span><span class="p">])</span>
+    <span class="n">dep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">20.1</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">19.6</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">20.4</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">20.4</span><span class="p">,</span> <span class="mf">19.9</span><span class="p">,</span> <span class="mf">19.7</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">,</span>
+                    <span class="mf">20.3</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">19.3</span><span class="p">,</span> <span class="mf">20.4</span><span class="p">,</span> <span class="mf">20.7</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">19.5</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">20.7</span><span class="p">,</span>
+                    <span class="mf">20.7</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">19.9</span><span class="p">,</span> <span class="mf">19.6</span><span class="p">,</span> <span class="mf">19.7</span><span class="p">,</span>
+                    <span class="mf">20.6</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">20.6</span><span class="p">,</span> <span class="mf">20.9</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">19.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span>
+                    <span class="mf">19.7</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">19.4</span><span class="p">,</span> <span class="mf">18.7</span><span class="p">,</span> <span class="mf">19.6</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mf">18.6</span><span class="p">,</span> <span class="mf">19.</span><span class="p">,</span> <span class="mf">18.1</span><span class="p">,</span>
+                    <span class="mf">19.</span><span class="p">,</span> <span class="mf">20.2</span><span class="p">,</span> <span class="mf">18.9</span><span class="p">,</span> <span class="mf">19.2</span><span class="p">,</span> <span class="mf">19.</span><span class="p">,</span> <span class="mf">19.3</span><span class="p">,</span> <span class="mf">18.</span><span class="p">,</span> <span class="mf">17.7</span><span class="p">,</span> <span class="mf">17.9</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span>
+                    <span class="mf">18.3</span><span class="p">,</span> <span class="mf">17.1</span><span class="p">,</span> <span class="mf">18.3</span><span class="p">,</span> <span class="mf">18.1</span><span class="p">,</span> <span class="mf">17.3</span><span class="p">,</span> <span class="mf">17.5</span><span class="p">,</span> <span class="mf">17.</span><span class="p">,</span> <span class="mf">17.2</span><span class="p">,</span> <span class="mf">16.4</span><span class="p">,</span> <span class="mf">17.3</span><span class="p">,</span>
+                    <span class="mf">17.1</span><span class="p">,</span> <span class="mf">16.7</span><span class="p">,</span> <span class="mf">17.1</span><span class="p">,</span> <span class="mf">17.6</span><span class="p">,</span> <span class="mf">15.7</span><span class="p">,</span> <span class="mf">17.1</span><span class="p">,</span> <span class="mf">16.7</span><span class="p">,</span> <span class="mf">16.8</span><span class="p">,</span> <span class="mf">16.2</span><span class="p">,</span> <span class="mf">15.1</span><span class="p">,</span>
+                    <span class="mf">15.5</span><span class="p">,</span> <span class="mf">15.7</span><span class="p">,</span> <span class="mf">15.1</span><span class="p">,</span> <span class="mf">15.6</span><span class="p">,</span> <span class="mf">15.2</span><span class="p">,</span> <span class="mf">16.2</span><span class="p">,</span> <span class="mf">15.3</span><span class="p">,</span> <span class="mf">15.1</span><span class="p">,</span> <span class="mf">14.9</span><span class="p">,</span> <span class="mf">15.</span><span class="p">,</span>
+                    <span class="mf">14.5</span><span class="p">,</span> <span class="mf">15.4</span><span class="p">,</span> <span class="mf">14.6</span><span class="p">,</span> <span class="mf">15.</span><span class="p">,</span> <span class="mf">14.6</span><span class="p">,</span> <span class="mf">15.</span><span class="p">,</span> <span class="mf">14.2</span><span class="p">,</span> <span class="mf">13.3</span><span class="p">,</span> <span class="mf">13.8</span><span class="p">,</span> <span class="mf">14.</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">indep</span><span class="p">,</span> <span class="n">dep</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">segreg 1.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">segreg.data._datasets</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Steven Lillywhite.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>
