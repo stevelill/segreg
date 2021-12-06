@@ -16,7 +16,7 @@ API
 .. autosummary::
    :toctree: _autosummary
 
-   ~segreg.analysis.plot_model
+   ~segreg.analysis.plot_models
 
 ``segreg.bootstrap``: Bootstrap
 *******************************
