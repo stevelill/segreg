@@ -11,6 +11,8 @@ import numpy as np
 
 # TODO: handle legend
 
+_DEFAULT_SCATTER_SIZE = 3
+
 
 def plot_models(func_arr,
                 indep,
@@ -22,10 +24,10 @@ def plot_models(func_arr,
                 xlabel=None,
                 ylabel=None,
                 mark_extra_pts=True,
-                full_size_scatter=False,
                 scatter_size=3,
                 scatter_color="gray",
                 marker="o",
+                legend=None,
                 ax=None):
     """
     Plots univariate functions together with scatter of the data.
@@ -77,6 +79,8 @@ def plot_models(func_arr,
     scatter_size: int
     scatter_color: str
     marker: str
+    legend: array-like
+        An array of ``str``.  Must have same length as the parameter ``func_arr``.
     ax: matplotlib axes object, default None
     """
     num_series = len(func_arr)
@@ -101,17 +105,19 @@ def plot_models(func_arr,
     if ax is None:
         f, ax = plt.subplots()
 
-    if full_size_scatter:
-        ax.scatter(indep, dep, color=scatter_color)
-    else:
-        ax.scatter(indep,
-                   dep,
-                   color=scatter_color,
-                   s=scatter_size,
-                   marker=marker)
+    if scatter_size is None:
+        scatter_size = _DEFAULT_SCATTER_SIZE
+
+    ax.scatter(indep,
+               dep,
+               color=scatter_color,
+               s=scatter_size,
+               marker=marker)
 
     if extra_pts_arr is None:
         extra_pts_arr = [None for x in func_arr]
+
+    plotted_lines = []
     for func, domain_orig, extra_pts in zip(func_arr,
                                             domain_orig_arr,
                                             extra_pts_arr):
@@ -127,7 +133,8 @@ def plot_models(func_arr,
                 for extra_pt in extra_pts:
                     ax.plot(extra_pt, func(extra_pt), 'o', color="red")
 
-        ax.plot(domain, func(domain))
+        line, = ax.plot(domain, func(domain))
+        plotted_lines.append(line)
 
     if title is not None:
         ax.set_title(title)
@@ -135,6 +142,9 @@ def plot_models(func_arr,
         ax.set_xlabel(xlabel)
     if ylabel is not None:
         ax.set_ylabel(ylabel)
+
+    if legend is not None:
+        ax.legend(plotted_lines, legend)
 
     return ax
 
