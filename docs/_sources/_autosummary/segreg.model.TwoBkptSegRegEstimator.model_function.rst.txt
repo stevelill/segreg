@@ -1,0 +1,6 @@
+segreg.model.TwoBkptSegRegEstimator.model\_function
+===================================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: TwoBkptSegRegEstimator.model_function

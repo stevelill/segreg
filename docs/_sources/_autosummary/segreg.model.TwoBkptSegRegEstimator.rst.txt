@@ -1,0 +1,41 @@
+﻿segreg.model.TwoBkptSegRegEstimator
+===================================
+
+.. currentmodule:: segreg.model
+
+.. autoclass:: TwoBkptSegRegEstimator
+   :exclude-members: fit,get_func_for_params,
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+
+      ~TwoBkptSegRegEstimator.fit
+      ~TwoBkptSegRegEstimator.get_func_for_params
+   
+   
+   
+
+   
+   
+   .. rubric:: Properties
+
+   .. autosummary::
+      :toctree:
+
+      ~TwoBkptSegRegEstimator.estimated_params_indices
+      ~TwoBkptSegRegEstimator.has_restricted_params
+      ~TwoBkptSegRegEstimator.loglikelihood
+      ~TwoBkptSegRegEstimator.model_function
+      ~TwoBkptSegRegEstimator.num_params
+      ~TwoBkptSegRegEstimator.param_names
+      ~TwoBkptSegRegEstimator.params
+      ~TwoBkptSegRegEstimator.r_squared
+      ~TwoBkptSegRegEstimator.residuals
+      ~TwoBkptSegRegEstimator.rss
+   
+   
+   

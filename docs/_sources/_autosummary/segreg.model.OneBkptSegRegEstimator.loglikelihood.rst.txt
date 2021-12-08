@@ -1,0 +1,6 @@
+segreg.model.OneBkptSegRegEstimator.loglikelihood
+=================================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OneBkptSegRegEstimator.loglikelihood
