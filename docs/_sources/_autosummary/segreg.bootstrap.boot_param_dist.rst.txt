@@ -1,6 +1,0 @@
-﻿segreg.bootstrap.boot\_param\_dist
-==================================
-
-.. currentmodule:: segreg.bootstrap
-
-.. autofunction:: boot_param_dist

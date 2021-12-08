@@ -1,6 +1,0 @@
-﻿segreg.data.hinkley
-===================
-
-.. currentmodule:: segreg.data
-
-.. autofunction:: hinkley

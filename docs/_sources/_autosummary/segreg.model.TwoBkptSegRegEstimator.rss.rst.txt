@@ -1,6 +1,0 @@
-segreg.model.TwoBkptSegRegEstimator.rss
-=======================================
-
-.. currentmodule:: segreg.model
-
-.. autoproperty:: TwoBkptSegRegEstimator.rss

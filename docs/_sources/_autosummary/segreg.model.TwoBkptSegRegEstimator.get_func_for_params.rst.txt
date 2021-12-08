@@ -1,8 +1,0 @@
-:orphan:
-
-segreg.model.TwoBkptSegRegEstimator.get\_func\_for\_params
-==========================================================
-
-.. currentmodule:: segreg.model
-
-.. automethod:: TwoBkptSegRegEstimator.get_func_for_params
