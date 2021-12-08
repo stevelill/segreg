@@ -5,14 +5,12 @@ We consider the :doc:`api` to be the public interface for the ``segreg`` code.
 
 .. toctree::
    :maxdepth: 1
-
+   
    api
-   code_generalities
    tutorial
+   code_generalities
 
-
-Other
-*****
+* `Technical Paper <_static/segmented_regression.pdf>`_
 
 * :ref:`genindex`
 * :ref:`search`

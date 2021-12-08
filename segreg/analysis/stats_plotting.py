@@ -6,8 +6,6 @@ Routines to plot segmented regression results.
 # License: BSD 3 clause
 
 
-import os
-
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -24,7 +22,6 @@ def plot_models(func_arr,
                 xlabel=None,
                 ylabel=None,
                 mark_extra_pts=True,
-                padding_scale=5.0,
                 full_size_scatter=False,
                 scatter_size=3,
                 scatter_color="gray",
@@ -76,7 +73,6 @@ def plot_models(func_arr,
     mark_extra_pts: bool
         If True, will add marker to any plotted extra points, as set by the
         parameter ``extra_pts_arr``.
-    padding_scale: float
     full_size_scatter: bool
     scatter_size: int
     scatter_color: str
@@ -95,9 +91,6 @@ def plot_models(func_arr,
 
     domain_orig_arr = []
     for domain_begin, domain_end in zip(domain_begin_arr, domain_end_arr):
-        # todo clean up dx
-        dx = (domain_end - domain_begin) / 100.0
-        #domain_orig = np.arange(domain_begin, domain_end + dx, dx)
 
         domain_orig = np.linspace(start=domain_begin,
                                   stop=domain_end,
@@ -106,7 +99,6 @@ def plot_models(func_arr,
         domain_orig_arr.append(domain_orig)
 
     if ax is None:
-        # todo: finish
         f, ax = plt.subplots()
 
     if full_size_scatter:
@@ -137,57 +129,12 @@ def plot_models(func_arr,
 
         ax.plot(domain, func(domain))
 
-    # if padding is None:
-    padding = padding_scale * dx
-    #print("padding: ", padding)
-
-    #padding_left = padding * abs(domain_begin)
-    #padding_right = padding * abs(domain_end)
-    #padding_to_use = max(padding_left, padding_right)
-
-# MOST RECENT WAS THIS for xlim
-#    plt.xlim([min(domain_begin_arr) - padding,
-#              max(domain_end_arr) + padding])
-
-
-#     ax = plt.gca()
-#     lim = ax.get_xlim()
-#     curr_xticks = list(ax.get_xticks())
-#     ax.set_xticks(curr_xticks[0:-1] + [domain_end])
-#     ax.set_xlim(lim)
-
     if title is not None:
         ax.set_title(title)
     if xlabel is not None:
         ax.set_xlabel(xlabel)
     if ylabel is not None:
         ax.set_ylabel(ylabel)
-
-#    import matplotlib.dates as mdates
-#    ax = plt.gca()
-#    myticks = ax.get_xticks()
-#    mylabels = ax.get_xticklabels()
-
-#    newticks = [datetime.date(year=int(x), month=1, day=1) for x in myticks]
-
-#    ax.set_xticklabels(newticks)
-#    ax.xaxis.set_major_locator(mdates.YearLocator(40, 1))
-
-#    fig = plt.gcf()
-
-#    fig.autofmt_xdate()
-
-#    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
-
-#    print("my x axis ticks")
-#    print(myticks)
-
-#    print("my x axis labels")
-#    print(mylabels)
-
-#    gu.date_ticks(ax=ax, num_years=5, month=Month.SEP, date_format='%Y')
-
-#    ax.xaxis.set_major_locator(MaxNLocator(20))
 
     return ax
 
@@ -197,7 +144,6 @@ def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
     title = kwargs.pop('title', None)
     xlabel = kwargs.pop('xlabel', None)
     ylabel = kwargs.pop('ylabel', None)
-    savedir = kwargs.pop('savedir', None)
     name = kwargs.pop('name', "")
     lines = kwargs.pop('lines', False)
 
@@ -229,10 +175,3 @@ def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
     # keep it tight
     plt.axis('tight')
     plt.ticklabel_format(useOffset=False, style='plain')
-
-    if savedir is not None:
-        filepath = os.path.join(savedir, name + "_segreg_sumsq")
-        plt.savefig(filepath)
-
-    plt.grid()
-    # plt.show()

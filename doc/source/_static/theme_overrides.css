@@ -9,3 +9,11 @@ div.related {
 div.related a {
     color: white;
 }
+
+.toctree-wrapper ul li {
+    list-style-type: none;
+}
+
+ul.simple li {
+    list-style-type: none;
+}
