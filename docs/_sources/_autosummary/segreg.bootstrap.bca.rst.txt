@@ -1,6 +1,0 @@
-﻿segreg.bootstrap.bca
-====================
-
-.. currentmodule:: segreg.bootstrap
-
-.. autofunction:: bca

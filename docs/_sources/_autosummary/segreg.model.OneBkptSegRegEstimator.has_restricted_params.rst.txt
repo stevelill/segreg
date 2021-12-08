@@ -1,6 +1,0 @@
-segreg.model.OneBkptSegRegEstimator.has\_restricted\_params
-===========================================================
-
-.. currentmodule:: segreg.model
-
-.. autoproperty:: OneBkptSegRegEstimator.has_restricted_params

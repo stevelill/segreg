@@ -1,8 +1,0 @@
-:orphan:
-
-segreg.model.OLSRegressionEstimator.fit
-=======================================
-
-.. currentmodule:: segreg.model
-
-.. automethod:: OLSRegressionEstimator.fit

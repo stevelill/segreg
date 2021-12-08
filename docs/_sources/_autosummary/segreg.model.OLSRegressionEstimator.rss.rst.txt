@@ -1,6 +1,0 @@
-segreg.model.OLSRegressionEstimator.rss
-=======================================
-
-.. currentmodule:: segreg.model
-
-.. autoproperty:: OLSRegressionEstimator.rss
