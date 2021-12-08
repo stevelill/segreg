@@ -1,0 +1,6 @@
+segreg.model.OneBkptSegRegEstimator.rss
+=======================================
+
+.. currentmodule:: segreg.model
+
+.. autoproperty:: OneBkptSegRegEstimator.rss
