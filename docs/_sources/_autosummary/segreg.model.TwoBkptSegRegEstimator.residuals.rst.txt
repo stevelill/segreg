@@ -1,6 +1,0 @@
-segreg.model.TwoBkptSegRegEstimator.residuals
-=============================================
-
-.. currentmodule:: segreg.model
-
-.. autoproperty:: TwoBkptSegRegEstimator.residuals

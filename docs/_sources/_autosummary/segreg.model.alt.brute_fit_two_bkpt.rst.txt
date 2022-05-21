@@ -1,6 +1,0 @@
-﻿segreg.model.alt.brute\_fit\_two\_bkpt
-======================================
-
-.. currentmodule:: segreg.model.alt
-
-.. autofunction:: brute_fit_two_bkpt

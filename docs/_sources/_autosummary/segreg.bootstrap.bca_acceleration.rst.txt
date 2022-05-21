@@ -1,6 +1,0 @@
-﻿segreg.bootstrap.bca\_acceleration
-==================================
-
-.. currentmodule:: segreg.bootstrap
-
-.. autofunction:: bca_acceleration

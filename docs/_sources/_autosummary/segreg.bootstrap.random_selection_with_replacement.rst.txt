@@ -1,6 +1,0 @@
-﻿segreg.bootstrap.random\_selection\_with\_replacement
-=====================================================
-
-.. currentmodule:: segreg.bootstrap
-
-.. autofunction:: random_selection_with_replacement
