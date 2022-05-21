@@ -10,6 +10,7 @@ API
    ~segreg.model.OneBkptSegRegEstimator
    ~segreg.model.TwoBkptSegRegEstimator
    ~segreg.model.one_bkpt_rss_func
+   ~segreg.model.two_bkpt_rss_func
 
 ``segreg.analysis``: Tools for Analyzing Results
 ************************************************
@@ -17,6 +18,8 @@ API
    :toctree: _autosummary
 
    ~segreg.analysis.plot_models
+   ~segreg.analysis.plot_one_bkpt_segreg_rss
+   ~segreg.analysis.plot_two_bkpt_segreg_rss
 
 ``segreg.bootstrap``: Bootstrap
 *******************************
