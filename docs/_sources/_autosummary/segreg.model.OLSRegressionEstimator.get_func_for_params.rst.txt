@@ -1,0 +1,8 @@
+:orphan:
+
+segreg.model.OLSRegressionEstimator.get\_func\_for\_params
+==========================================================
+
+.. currentmodule:: segreg.model
+
+.. automethod:: OLSRegressionEstimator.get_func_for_params

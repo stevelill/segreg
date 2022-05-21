@@ -1,0 +1,6 @@
+﻿segreg.analysis.plot\_one\_bkpt\_segreg\_rss
+============================================
+
+.. currentmodule:: segreg.analysis
+
+.. autofunction:: plot_one_bkpt_segreg_rss
