@@ -7,6 +7,54 @@ Useful routines for segmented regression problems.
 
 import numpy as np
 
+from segreg.model import two_bkpt_segreg
+
+
+def two_bkpt_rss_func(indep, dep):
+    """    
+    Returns a function which takes a pair of bkpts and returns the RSS of a 
+    two-bkpt segmented fit.
+
+    The returned function takes a pair of arguments which are interpreted as
+    bkpt locations.  Given a pair of bkpts, it computes the RSS of a two-bkpt 
+    segmented fit to the given data for the specified bkpts.  In particular, 
+    there is no estimation of the bkpts involved.
+
+    This method is intended to be used primarily for plotting or diagnosis of
+    two-bkpt segmented regression problems.
+
+    Notes
+    -----
+    For two-bkpt segmented regression problems, estimation of the bkpts is
+    equivalent to minimization of the returned function.
+
+    Parameters
+    ----------
+    indep: array-like of shape (num_data,)
+        The independent data.  Also called predictor, explanatory variable,
+        regressor, or exogenous variable.
+    dep: array-like of shape (num_data,)
+        The dependent data.  Also called response, regressand, or endogenous
+        variable.
+
+    Returns
+    -------
+    func: a function object
+    """
+
+    # sort input because called function expects this
+    argsort_for_indep = indep.argsort()
+    indep_to_use = indep[argsort_for_indep]
+    dep_to_use = dep[argsort_for_indep]
+
+    def func(u1, u2):
+        v1, v2, m1, m2, rss = two_bkpt_segreg.fixed_bkpt_ls_for_data(indep_to_use,
+                                                                     dep_to_use,
+                                                                     u1,
+                                                                     u2)
+        return rss
+    return func
+
 
 def one_bkpt_segmented_func(u, v, m1, m2):
     """

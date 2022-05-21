@@ -7,9 +7,11 @@ Routines to plot segmented regression results.
 
 
 from matplotlib import pyplot as plt
+from mpl_toolkits import mplot3d
 import numpy as np
 
-# TODO: handle legend
+from segreg.model import one_bkpt_rss_func
+from segreg.model import two_bkpt_rss_func
 
 _DEFAULT_SCATTER_SIZE = 3
 
@@ -149,39 +151,80 @@ def plot_models(func_arr,
     return ax
 
 
-# TODO: rewrite this
-def plot_segmented_sumsq(indep, segmented_sumsq_func, **kwargs):
-    title = kwargs.pop('title', None)
-    xlabel = kwargs.pop('xlabel', None)
-    ylabel = kwargs.pop('ylabel', None)
-    name = kwargs.pop('name', "")
-    lines = kwargs.pop('lines', False)
+def plot_one_bkpt_segreg_rss(indep, dep, lines=True):
 
     argsort_for_indep = indep.argsort()
     indep_to_use = indep[argsort_for_indep]
+    dep_to_use = dep[argsort_for_indep]
 
-    dx = 0.01
-    domain = np.arange(indep_to_use[0] + dx, indep_to_use[-1], dx)
+    # TODO: make epsilon better
+    epsilon = 0.01
+    domain = np.linspace(start=indep_to_use[0] + epsilon,
+                         stop=indep_to_use[-1] - epsilon,
+                         num=100)
 
-    #domain = np.arange(indep_to_use[1], indep_to_use[-1], 0.01)
+    domain = np.concatenate((domain, indep[1:-2]))
+    domain = np.array(list(set(domain)))
+    domain.sort()
 
-    myrange = []
-    for val in domain:
-        myrange.append(segmented_sumsq_func(val))
+    func = one_bkpt_rss_func(indep=indep_to_use, dep=dep_to_use)
+
+    myrange = [func(x) for x in domain]
 
     if lines:
         for val in indep_to_use:
             plt.axvline(val, color="red", linewidth=0.5)
 
     plt.plot(domain, myrange)
-    if xlabel is not None:
-        plt.xlabel(xlabel)
-    if ylabel is not None:
-        plt.ylabel(ylabel)
-    if title is not None:
-        plt.title(title)
-    else:
-        plt.title("Residual Sum Squares for Segmented Regression; " + name)
     # keep it tight
-    plt.axis('tight')
-    plt.ticklabel_format(useOffset=False, style='plain')
+#    plt.axis('tight')
+#    plt.ticklabel_format(useOffset=False, style='plain')
+
+
+def _compute_surf(X, Y, func):
+    rownum = X.shape[0]
+    colnum = X.shape[1]
+    Z = np.empty((rownum, colnum))
+    for i in range(rownum):
+        for j in range(colnum):
+
+            x_val = X[j, i]
+            y_val = Y[j, i]
+
+            if x_val < y_val:
+                val = func(x_val, y_val)
+            else:
+                val = np.nan
+
+            Z[j, i] = val
+    return Z
+
+
+def plot_two_bkpt_segreg_rss(indep, dep):
+
+    argsort_for_indep = indep.argsort()
+    indep_to_use = indep[argsort_for_indep]
+    dep_to_use = dep[argsort_for_indep]
+
+    # TODO: make epsilon better
+    epsilon = 0.1
+    domain = np.linspace(start=indep_to_use[0] + epsilon,
+                         stop=indep_to_use[-1] - epsilon,
+                         num=100)
+
+    domain = np.concatenate((domain, indep[1:-2]))
+    domain.sort()
+
+    func = two_bkpt_rss_func(indep_to_use, dep_to_use)
+
+    fig = plt.figure()
+    ax = plt.axes(projection='3d')
+
+    X, Y = np.meshgrid(domain, domain)
+    Z = _compute_surf(X, Y, func)
+
+    ax.plot_surface(X, Y, Z)
+
+    ax.set_xlabel('u1')
+    ax.set_ylabel('u2')
+    ax.set_zlabel('RSS')
